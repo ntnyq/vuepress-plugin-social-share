@@ -1,8 +1,8 @@
 # vuepress-plugin-social-share
 
 [![CIRCLECI](https://img.shields.io/circleci/project/ntnyq/vuepress-plugin-social-share/master.svg?logo=circleci)](https://circleci.com/gh/ntnyq/vuepress-plugin-social-share)
-[![NPM VERSION](https://img.shields.io/npm/v/vuepress-plugin-svg-icons.svg)](https://www.npmjs.com/package/vuepress-plugin-svg-icons)
-[![NPM DOWNLOADS](https://img.shields.io/npm/dy/vuepress-plugin-svg-icons.svg)](https://www.npmjs.com/package/vuepress-plugin-svg-icons)
+[![NPM VERSION](https://img.shields.io/npm/v/vuepress-plugin-social-share.svg)](https://www.npmjs.com/package/vuepress-plugin-social-share)
+[![NPM DOWNLOADS](https://img.shields.io/npm/dy/vuepress-plugin-social-share.svg)](https://www.npmjs.com/package/vuepress-plugin-social-share)
 [![LICENSE](https://img.shields.io/github/license/ntnyq/vuepress-plugin-social-share.svg)](https://github.com/ntnyq/vuepress-plugin-social-share/blob/master/LICENSE)
 
 :mega: Social sharing plugin for [VuePress](https://vuepress.vuejs.org)
