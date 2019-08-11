@@ -32,7 +32,7 @@
     ]
   },
   "peerDependencies": {
-    "vuepress": "^1.0.0"
+    "vuepress": "^1.0.3"
   },
   "author": {
     "name": "ntnyq",
