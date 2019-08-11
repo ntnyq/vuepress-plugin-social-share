@@ -1,0 +1,88 @@
+$social-share-plain-color ?= $accentColor
+$social-share-mobile ?= $MQMobile
+$prefix-class = '.social-share'
+
+{$prefix-class}
+  &-list
+    list-style none
+    padding 0
+    margin 0
+    line-height 1
+
+  &-main
+    position relative
+    box-sizing border-box
+
+  &-item
+    position relative
+
+  &-btn
+    padding 0
+    font-weight 500
+    color $social-share-plain-color
+    font-family inherit
+    text-align center
+    background none
+    border none
+    box-shadow none
+    outline none
+    appearance none
+    cursor pointer
+    -webkit-tap-highlight-color rgba(0, 0, 0, 0)
+    transition all 0.3s ease-out
+
+    &:not({$prefix-class}-trigger):hover
+      background-color rgba(188, 188, 188, 0.15)
+
+  &-wrap
+    transition all 0.3s ease-out
+
+    &.is-global
+      position fixed
+      bottom 50%
+      right 0
+      z-index 9999
+      padding 4px 0 8px
+      border-radius 8px 0 0 8px
+      background-color #fff
+      border 1px solid #eee
+      border-right none
+      transform translate(0, 50%)
+      box-shadow -2px 1px 6px rgba(0, 0, 0, 0.08)
+
+      {$prefix-class}
+        &-btn
+          padding 8px 14px
+          border-radius 5px
+          font-size 36px
+
+    &.is-local
+      {$prefix-class}
+        &-main
+          padding 10px
+
+        &-item
+          display inline-block
+
+        &-btn
+          padding 0.24em 0.28em
+          font-size 32px
+
+    @media screen and (max-width: $social-share-mobile)
+      &.is-global
+        bottom 15%
+        padding 2px 0 5px
+        border-radius 5px 0 0 5px
+        transform translate(0, 0)
+        box-shadow -1px 1px 3px rgba(0, 0, 0, 0.03)
+
+        {$prefix-class}
+          &-btn
+            padding 4px 8px
+            border-radius 3px
+            font-size 24px
+
+      &.is-local
+        {$prefix-class}
+          &-btn
+            font-size 24px

@@ -1,0 +1,65 @@
+{
+  "name": "vuepress-plugin-social-share",
+  "version": "0.0.1",
+  "main": "lib/index.js",
+  "description": "Social sharing plugin for VuePress",
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs",
+    "lint": "eslint --fix --ext .js,.vue .",
+    "svgo": "vuepress svgo docs"
+  },
+  "files": [
+    "lib/"
+  ],
+  "homepage": "https://sns.goyfe.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ntnyq/vuepress-plugin-social-share.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ntnyq/vuepress-plugin-social-share/issues"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,vue}": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "peerDependencies": {
+    "vuepress": "^1.0.0"
+  },
+  "author": {
+    "name": "ntnyq",
+    "email": "ntnyq13@gmail.com"
+  },
+  "keywords": [
+    "vuepress",
+    "vuepress-plugin",
+    "plugin",
+    "social",
+    "share",
+    "sns",
+    "twitter",
+    "facebook",
+    "weibo"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "babel-eslint": "^10.0.2",
+    "eslint": "^6.1.0",
+    "eslint-config-goy": "^0.0.3",
+    "eslint-plugin-vue": "^5.2.3",
+    "husky": "^3.0.3",
+    "lint-staged": "^9.2.1",
+    "vuepress": "^1.0.3"
+  },
+  "dependencies": {
+    "@goy/vuepress-plugin-svg-icons": "^2.0.1"
+  }
+}

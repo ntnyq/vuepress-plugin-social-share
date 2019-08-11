@@ -1,0 +1,53 @@
+{
+  "facebook": {
+    "sharer": "https://www.facebook.com/sharer/sharer.php?u=@url&title=@title&description=@description&quote=@quote&hashtag=@hashtags",
+    "type": "popup",
+    "color": "#3b5998"
+  },
+  "line": {
+    "sharer": "https://line.me/R/msg/text/?@description%0D%0A@url",
+    "type": "popup",
+    "color": "#1da1f2"
+  },
+  "reddit": {
+    "sharer": "https://www.reddit.com/submit?url=@url&title=@title",
+    "type": "popup",
+    "color": "#ff4501"
+  },
+  "skype": {
+    "sharer": "https://web.skype.com/share?url=@description%0D%0A@url",
+    "type": "popup",
+    "color": "#1da1f2"
+  },
+  "telegram": {
+    "sharer": "https://t.me/share/url?url=@url&text=@description",
+    "type": "popup",
+    "color": "#1da1f2"
+  },
+  "twitter": {
+    "sharer": "https://twitter.com/intent/tweet?text=@title&url=@url&hashtags=@hashtags@twitteruser",
+    "type": "popup",
+    "color": "#1da1f2"
+  },
+  "weibo": {
+    "sharer": "http://service.weibo.com/share/share.php?url=@url&title=@title&pic=@media@appkey",
+    "type": "popup",
+    "color": "#e6172d"
+  },
+  "qq": {
+    "sharer": "https://connect.qq.com/widget/shareqq/index.html?url=@url&title=@title&source=@title&desc=@description&pics=@media&summary=\"@description\"",
+    "type": "popup",
+    "color": "#e9201f"
+  },
+  "douban": {
+    "sharer": "https://shuo.douban.com/!service/share?href=@url&name=@title&text=@description&image=@media&starid=0&aid=0&style=11",
+    "type": "popup",
+    "color": "#00b51d"
+  },
+  "whatsapp": {
+    "sharer": "https://api.whatsapp.com/send?text=@description%0D%0A@url",
+    "type": "popup",
+    "color": "#1da1f2",
+    "action": "share/whatsapp/share"
+  }
+}

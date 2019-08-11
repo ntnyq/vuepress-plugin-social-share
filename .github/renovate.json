@@ -1,0 +1,26 @@
+{
+  "extends": [
+    "config:base",
+    "group:allNonMajor",
+    ":label(renovate)",
+    ":assignee(ntnyq)",
+    ":semanticCommitTypeAll(chore)"
+  ],
+  "meteor": {
+    "enabled": false
+  },
+  "rangeStrategy": "bump",
+  "major": {
+    "groupName": "all major dependencies"
+  },
+  "minor": {
+    "groupName": "all minor dependencies"
+  },
+  "patch": {
+    "automerge": true,
+    "groupName": "all patch dependencies"
+  },
+  "npm": {
+    "commitMessageTopic": "{{prettyDepType}} {{depName}}"
+  }
+}
