@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vuepress dev docs",
     "build": "vuepress build docs",
-    "lint": "eslint --fix --ext .js,.vue .",
+    "lint": "eslint --ext .js,.vue .",
+    "lint:fix": "eslint --fix --ext .js,.vue .",
     "svgo": "vuepress svgo docs"
   },
   "files": [

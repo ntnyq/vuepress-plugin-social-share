@@ -56,10 +56,13 @@
 
 <script>
 import NTEWORKS_DATA from './networks.json'
+import {
+  getMetaContentByName,
+  isExternal,
+} from '../utils'
 
 const inBrowser = typeof window !== 'undefined'
 const $window = inBrowser ? window : null
-const doc = inBrowser ? $window.document : null
 
 export default {
   props: {
@@ -103,7 +106,7 @@ export default {
     visible () {
       return (
         (!this.$frontmatter.noSocialShare &&
-          this.networks.length) ||
+          this.networks.length > 0) ||
         !this.isGlobal
       )
     },
@@ -113,7 +116,7 @@ export default {
         this.$frontmatter.$shareUrl ||
         this.$frontmatter.shareUrl ||
         this.$frontmatter.permalink ||
-        $window.location.href
+        ($window ? $window.location.href : '')
       )
     },
 
@@ -122,8 +125,7 @@ export default {
         this.$frontmatter.$shareTitle ||
         this.$frontmatter.shareTitle ||
         this.$frontmatter.title ||
-        doc.title ||
-        this.$title
+        ($window ? $window.document.title : this.$title)
       )
     },
 
@@ -132,44 +134,66 @@ export default {
         this.$frontmatter.$shareDescription ||
         this.$frontmatter.shareDescription ||
         this.$frontmatter.description ||
+        getMetaContentByName('description') ||
         this.$description
       )
     },
 
     media () {
-      return (
+      const mediaUrl = (
         this.$frontmatter.$shareImage ||
         this.$frontmatter.shareImage ||
         this.$frontmatter.image ||
         this.fallbackImage
       )
+
+      if (isExternal(mediaUrl)) {
+        return mediaUrl
+      }
+
+      const realUrl = $window
+        ? `${$window.location.origin}${this.$withBase(mediaUrl)}`
+        : ''
+
+      return realUrl
     },
 
     quote () {
       return (
         this.$frontmatter.$shareQuote ||
         this.$frontmatter.shareQuote ||
-        this.$frontmatter.quote ||
         (this.autoQuote ? this.description : '')
       )
     },
 
     hashtags () {
-      return (
+      const shareTags = (
         this.$frontmatter.$shareTags ||
         this.$frontmatter.shareTags ||
         this.$frontmatter.tags ||
-        ''
+        this.$frontmatter.tag ||
+        getMetaContentByName('keywrods')
       )
+
+      if (Array.isArray(shareTags)) {
+        return shareTags.join(',')
+      }
+
+      if (typeof shareTags === 'string') {
+        return shareTags.replace(/\s/g, '')
+      }
+
+      return ''
     },
   },
 
   data () {
-    const baseNetworks = this.networks.map(name => ({
+    // Remove duplicated networks
+    const networks = [...new Set(this.networks)]
+    const baseNetworks = networks.map(name => ({
       name,
       ...NTEWORKS_DATA[name],
     }))
-
     const networkList = [...baseNetworks]
 
     return {
@@ -187,7 +211,6 @@ export default {
         height: 436,
         top: 0,
         left: 0,
-        window: undefined,
         interval: null,
       },
     }
@@ -204,8 +227,8 @@ export default {
       let url = sharer
 
       /**
-       * On IOS, Twitter sharing shouldn't include a hashtag parameter if the hashtag value is empty
-       * Source: https://github.com/nicolasbeauvais/vue-social-sharing/issues/143
+       * On IOS, Twitter sharing should't have a empty hashtag parameter
+       * See https://github.com/nicolasbeauvais/vue-social-sharing/issues/143
        */
       if (['twitter'].includes(name) && this.hashtags.length === 0) {
         url = url.replace('&hashtags=@hashtags', '')
@@ -228,7 +251,7 @@ export default {
      * @param name Social network name
      * @param hashtags All hashtags specified
      */
-    generateHashTags (name, hashtags) {
+    generateHashTags (name, hashtags = '') {
       if (['facebook'].includes(name) && hashtags.length) {
         return `%23${hashtags.split(',')[0]}`
       }
@@ -301,7 +324,8 @@ export default {
      * Center the popup on dual screens
      * http://stackoverflow.com/questions/4068373/center-a-popup-window-on-screen/32261263
      */
-    const docElem = doc.documentElement
+    const docElem = $window.document.documentElement
+    const screen = $window.screen
     const dualScreenLeft = $window.screenLeft !== undefined
       ? $window.screenLeft
       : screen.left
