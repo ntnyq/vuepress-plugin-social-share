@@ -68,6 +68,11 @@ export default {
       default: () => ['twitter', 'facebook', 'reddit'],
     },
 
+    tags: {
+      type: Array,
+      default: () => [],
+    },
+
     twitterUser: {
       type: String,
       default: '',
@@ -169,6 +174,7 @@ export default {
         this.$frontmatter.shareTags ||
         this.$frontmatter.tags ||
         this.$frontmatter.tag ||
+        this.tags ||
         getMetaContentByName('keywrods')
       )
 
