@@ -11,11 +11,11 @@
 
 ## Status
 
-__WIP__ :muscle:
+**WIP** :muscle:
 
 ## Install
 
-``` bash
+```bash
 $ npm install vuepress-plugin-social-share
 # OR
 $ yarn add vuepress-plugin-social-share
@@ -23,21 +23,17 @@ $ yarn add vuepress-plugin-social-share
 
 ## Usage
 
-Add config to `.vuepress-config.js`:
+Add config to `.vuepress/config.js`:
 
-``` js
+```js
 module.exports = {
   plugins: [
     'social-share'
-  ]
+  ],
 }
 ```
 
-``` markdown
-<social-share :is-global="false" />
-```
-
-[Custom options detail](https://sns.goyfe.com/guide)
+:mag: [Custom options detail](https://sns.goyfe.com/guide)
 
 ## Prior Art
 

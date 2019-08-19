@@ -31,7 +31,7 @@
           >
             <vp-icon
               :name="network.name"
-              :color=" isPlain ? null: network.color"
+              :color="isPlain ? null: network.color"
               class="social-share-icon"
               focusable="false"
             />
@@ -46,10 +46,7 @@
       type="button"
       role="button"
     >
-      <vp-icon
-        :name="isActive ? 'close' : 'share'"
-        color="#999"
-      />
+      <vp-icon :name="isActive ? 'close' : 'share'" />
     </button>
   </div>
 </template>

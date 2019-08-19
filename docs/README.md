@@ -4,7 +4,7 @@ actionText: Get Started
 actionLink: /
 footer: MIT Licensed | Copyright © 2019-present ntnyq
 pageClass: site-home
-shareDescription: Shared via vuepress-plugin-social-share, see https://sns.goyfe.com/ for Detail
+shareDescription: A VuePress plugin which provides social sharing services
 shareImage: /hero.png
 tags: VuePress, plugin, SocialShare
 ---

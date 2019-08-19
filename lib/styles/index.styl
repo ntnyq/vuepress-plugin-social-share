@@ -1,4 +1,5 @@
 $social-share-plain-color ?= $accentColor
+$social-share-trigger-color ?= lighten($textColor, 40%)
 $social-share-mobile ?= $MQMobile
 $prefix-class = '.social-share'
 
@@ -16,10 +17,12 @@ $prefix-class = '.social-share'
   &-item
     position relative
 
+  &-trigger
+    color: $social-share-trigger-color
+
   &-btn
     padding 0
     font-weight 500
-    color $social-share-plain-color
     font-family inherit
     text-align center
     background none
@@ -31,8 +34,11 @@ $prefix-class = '.social-share'
     -webkit-tap-highlight-color rgba(0, 0, 0, 0)
     transition all 0.3s ease-out
 
-    &:not({$prefix-class}-trigger):hover
-      background-color rgba(188, 188, 188, 0.15)
+    &:not({$prefix-class}-trigger)
+      color $social-share-plain-color
+
+      &:hover
+        background-color rgba(188, 188, 188, 0.15)
 
   &-wrap
     transition all 0.3s ease-out

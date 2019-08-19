@@ -7,7 +7,7 @@
   "line": {
     "sharer": "https://line.me/R/msg/text/?@description%0D%0A@url",
     "type": "popup",
-    "color": "#1da1f2"
+    "color": "#00b902"
   },
   "reddit": {
     "sharer": "https://www.reddit.com/submit?url=@url&title=@title",
@@ -17,12 +17,12 @@
   "skype": {
     "sharer": "https://web.skype.com/share?url=@description%0D%0A@url",
     "type": "popup",
-    "color": "#1da1f2"
+    "color": "#00aff0"
   },
   "telegram": {
     "sharer": "https://t.me/share/url?url=@url&text=@description",
     "type": "popup",
-    "color": "#1da1f2"
+    "color": "#2fa8dc"
   },
   "twitter": {
     "sharer": "https://twitter.com/intent/tweet?text=@title&url=@url&hashtags=@hashtags@twitteruser",
@@ -47,7 +47,7 @@
   "whatsapp": {
     "sharer": "https://api.whatsapp.com/send?text=@description%0D%0A@url",
     "type": "popup",
-    "color": "#1da1f2",
+    "color": "#1bb1a5",
     "action": "share/whatsapp/share"
   }
 }

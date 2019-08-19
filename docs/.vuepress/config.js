@@ -4,6 +4,13 @@ module.exports = {
   title: 'vuepress-plugin-social-share',
   description: 'Social sharing plugin for VuePress',
   dest: 'site',
+  locales: {
+    '/': {
+      lang: 'en-US',
+      title: 'vuepress-plugin-social-share',
+      description: 'Social sharing plugin for VuePress'
+    }
+  },
 
   plugins: [
     [
@@ -30,6 +37,7 @@ module.exports = {
         lastUpdated: 'Last Updated',
         nav: [
           { text: 'Home', link: '/' },
+          { text: 'Demo', link: '/demo/' },
           { text: 'Changelog', link: 'https://github.com/ntnyq/vuepress-plugin-social-share/blob/master/CHANGELOG.md' }
         ]
       }
