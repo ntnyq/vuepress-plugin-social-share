@@ -1,58 +1,45 @@
 <template>
   <div
-    v-show="visible"
-    :class="isGlobal ? 'is-global' : 'is-local'"
-    class="social-share-wrap"
+    v-if="visible"
+    class="social-share"
   >
-    <div class="social-share-main">
-      <ul
-        v-show="isActive || !isGlobal"
-        class="social-share-list"
-        role="list-box"
-      >
-        <li
-          v-for="network in networkList"
-          :key="network.name"
-          class="social-share-item"
-          role="option"
-        >
-          <button
-            @click="share(network)"
-            :data-link="network.type === 'popup'
-              ? `#share-${network.name}`
-              : createShareUrl(network)"
-            :data-action="network.type === 'popup'
-              ? null
-              : network.action"
-            :title="network.name"
-            class="social-share-btn"
-            type="button"
-            role="button"
-          >
-            <vp-icon
-              :name="network.name"
-              :color="isPlain ? null: network.color"
-              class="social-share-icon"
-              focusable="false"
-            />
-          </button>
-        </li>
-      </ul>
-    </div>
-    <button
-      @click="isActive = !isActive"
-      v-if="isGlobal"
-      class="social-share-trigger social-share-btn"
-      type="button"
-      role="button"
+    <ul
+      class="social-share-list"
+      role="list-box"
     >
-      <vp-icon :name="isActive ? 'close' : 'share'" />
-    </button>
+      <li
+        v-for="network in networkList"
+        :key="network.name"
+        class="social-share-item"
+        role="option"
+      >
+        <button
+          @click="share(network)"
+          :data-link="network.type === 'popup'
+            ? `#share-${network.name}`
+            : createShareUrl(network)"
+          :data-action="network.type === 'popup'
+            ? null
+            : network.action"
+          :title="network.name"
+          class="social-share-btn"
+          type="button"
+          role="button"
+        >
+          <vp-icon
+            :name="network.name"
+            :color="isPlain ? null: network.color"
+            class="social-share-icon"
+            focusable="false"
+          />
+        </button>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-import NTEWORKS_DATA from './networks.json'
+import NTEWORKS_DATA from '../networks.json'
 import {
   getMetaContentByName,
   isExternal,
@@ -97,20 +84,11 @@ export default {
       type: Boolean,
       default: false,
     },
-
-    isGlobal: {
-      type: Boolean,
-      default: true,
-    },
   },
 
   computed: {
     visible () {
-      return (
-        (!this.$frontmatter.noSocialShare &&
-          this.networks.length > 0) ||
-        !this.isGlobal
-      )
+      return this.networks.length && !this.$frontmatter.noSocialShare
     },
 
     url () {
@@ -201,7 +179,6 @@ export default {
 
     return {
       networkList,
-      isActive: false,
       popup: {
         status: false,
         resizable: false,

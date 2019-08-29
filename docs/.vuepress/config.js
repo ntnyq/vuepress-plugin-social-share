@@ -16,6 +16,7 @@ module.exports = {
     [
       require(resolve(__dirname, '../../lib')),
       {
+        networks: ['qq', 'twitter', 'reddit', 'telegram', 'weibo'],
         twitterUser: 'ntnyq'
       }
     ]

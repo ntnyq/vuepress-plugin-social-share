@@ -1,6 +1,6 @@
 ---
 sidebar: false
-noSocialShare: true
+noGlobalSocialShare: true
 ---
 
 # Demo
@@ -10,17 +10,17 @@ Some demos.
 ## Local mode
 
 ``` vue
-<social-share :is-global="false" />
+<social-share />
 ```
-<social-share :is-global="false" />
+<social-share />
 
 ## Plain mode
 
 ``` vue
-<social-share :is-global="false" is-plain />
+<social-share is-plain />
 ```
 
-<social-share :is-global="false" is-plain />
+<social-share is-plain />
 
 ## Custom hashtags
 
@@ -28,31 +28,29 @@ Some demos.
 <social-share 
   :networks="['twitter', 'facebook']" 
   :tags="['SocialShare', 'VuePress']" 
-  :is-global="false" 
 />
 ```
 
-<social-share :networks="['twitter', 'facebook']" :tags="['SocialShare', 'VuePress']" :is-global="false" />
+<social-share :networks="['twitter', 'facebook']" :tags="['SocialShare', 'VuePress']" />
 
 ## Custom networks
 
 ``` vue
 <social-share 
   :networks="['facebook', 'qq', 'twitter', 'line', 'reddit', 'skype', 'douban', 'whatsapp', 'telegram', 'weibo']" 
-  :is-global="false"
 />
 ```
 
-<social-share :networks="['facebook', 'qq', 'twitter', 'line', 'reddit', 'skype', 'douban', 'whatsapp', 'telegram', 'weibo']" :is-global="false"/>
+<social-share :networks="['facebook', 'qq', 'twitter', 'line', 'reddit', 'skype', 'douban', 'whatsapp', 'telegram', 'weibo']" />
 
 ## No global UI
 
-Add `noSocialShare: true` in **frontmatter** to disable the global ui component.
+Add `noGlobalSocialShare: true` in **frontmatter** to disable the global ui component.
 
 Currently, the page you are looking at has no global social share component.
 
 ``` markdown
 ---
-noSocialShare: true
+noGlobalSocialShare: true
 ---
 ```

@@ -4,25 +4,29 @@ $social-share-mobile ?= $MQMobile
 $prefix-class = '.social-share'
 
 {$prefix-class}
+  position relative
+  box-sizing border-box
+
   &-list
-    list-style none
+    list-style: none
     padding 0
     margin 0
     line-height 1
 
-  &-main
-    position relative
-    box-sizing border-box
-
   &-item
     position relative
+    display inline-block
 
   &-trigger
     color: $social-share-trigger-color
 
   &-btn
+    position relative
+    width 56px
+    height 56px
     padding 0
-    font-weight 500
+    border-radius 50%
+    font-size 32px
     font-family inherit
     text-align center
     background none
@@ -41,54 +45,44 @@ $prefix-class = '.social-share'
         background-color rgba(188, 188, 188, 0.15)
 
   &-wrap
+    position fixed
+    right 0
+    bottom 50%
+    z-index 99999
+    background-color #fff
+    border 1px solid #efefef
+    border-right none
+    border-radius 8px 0 0 8px
+    transform translate(0, 50%)
     transition all 0.3s ease-out
+    box-shadow -2px 1px 6px rgba(0, 0, 0, 0.08)
 
-    &.is-global
-      position fixed
-      bottom 50%
-      right 0
-      z-index 9999
-      padding 4px 0 8px
-      border-radius 8px 0 0 8px
-      background-color #fff
-      border 1px solid #eee
-      border-right none
-      transform translate(0, 50%)
-      box-shadow -2px 1px 6px rgba(0, 0, 0, 0.08)
+    {$prefix-class}
+      &-item
+        display: block
+
+      &-btn
+        width 60px
+        height 60px
+        border-radius 5px
+        font-size 36px
+
+@media screen and (max-width: $social-share-mobile)
+  {$prefix-class}
+    &-btn
+      width 36px
+      height 36px
+      font-size 24px
+
+    &-wrap
+      bottom 15%
+      border-radius 5px 0 0 5px
+      transform translate(0, 0)
+      box-shadow -1px 1px 3px rgba(0, 0, 0, 0.03)
 
       {$prefix-class}
         &-btn
-          padding 8px 14px
-          border-radius 5px
-          font-size 36px
-
-    &.is-local
-      {$prefix-class}
-        &-main
-          padding 10px
-
-        &-item
-          display inline-block
-
-        &-btn
-          padding 0.24em 0.28em
-          font-size 32px
-
-    @media screen and (max-width: $social-share-mobile)
-      &.is-global
-        bottom 15%
-        padding 2px 0 5px
-        border-radius 5px 0 0 5px
-        transform translate(0, 0)
-        box-shadow -1px 1px 3px rgba(0, 0, 0, 0.03)
-
-        {$prefix-class}
-          &-btn
-            padding 4px 8px
-            border-radius 3px
-            font-size 24px
-
-      &.is-local
-        {$prefix-class}
-          &-btn
-            font-size 24px
+          width 36px
+          height 36px
+          font-size 24px
+          border-radius 3px
