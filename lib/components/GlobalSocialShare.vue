@@ -28,7 +28,7 @@ export default {
 
   computed: {
     visible () {
-      return !this.$frontmatter.noGlobalSocialShare && !this.$frontmatter.noSocialShare
+      return !(this.$frontmatter.noGlobalSocialShare || this.$frontmatter.noSocialShare)
     },
   },
 

@@ -62,17 +62,17 @@ export default {
 
     twitterUser: {
       type: String,
-      default: '',
+      default: undefined,
     },
 
     weiboAppKey: {
       type: String,
-      default: '',
+      default: undefined,
     },
 
     fallbackImage: {
       type: String,
-      default: '',
+      default: undefined,
     },
 
     autoQuote: {
@@ -95,7 +95,6 @@ export default {
       return (
         this.$frontmatter.$shareUrl ||
         this.$frontmatter.shareUrl ||
-        this.$frontmatter.permalink ||
         ($window ? $window.location.href : '')
       )
     },
@@ -153,7 +152,7 @@ export default {
         this.$frontmatter.tags ||
         this.$frontmatter.tag ||
         this.tags ||
-        getMetaContentByName('keywrods')
+        getMetaContentByName('keywords')
       )
 
       if (Array.isArray(shareTags)) {
