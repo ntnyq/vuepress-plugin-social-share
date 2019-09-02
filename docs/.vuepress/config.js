@@ -17,7 +17,8 @@ module.exports = {
       require(resolve(__dirname, '../../lib')),
       {
         networks: ['qq', 'twitter', 'reddit', 'telegram', 'weibo'],
-        twitterUser: 'ntnyq'
+        twitterUser: 'ntnyq',
+        fallbackImage: '/hero.png'
       }
     ]
   ],
@@ -30,6 +31,7 @@ module.exports = {
     search: false,
     editLinks: true,
     lastUpdated: true,
+    displayAllHeaders: true,
     locales: {
       '/': {
         label: 'English',
@@ -38,8 +40,12 @@ module.exports = {
         lastUpdated: 'Last Updated',
         nav: [
           { text: 'Home', link: '/' },
+          { text: 'Guide', link: '/guide/' },
           { text: 'Demo', link: '/demo/' },
           { text: 'Changelog', link: 'https://github.com/ntnyq/vuepress-plugin-social-share/blob/master/CHANGELOG.md' }
+        ],
+        sidebar: [
+          '/guide/'
         ]
       }
     }
