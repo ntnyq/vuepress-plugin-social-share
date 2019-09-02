@@ -127,9 +127,9 @@ export default {
         this.fallbackImage
       )
 
-      if (isExternal(mediaUrl)) {
-        return mediaUrl
-      }
+      if (!mediaUrl) return ''
+
+      if (isExternal(mediaUrl)) return mediaUrl
 
       const realUrl = $window
         ? `${$window.location.origin}${this.$withBase(mediaUrl)}`
