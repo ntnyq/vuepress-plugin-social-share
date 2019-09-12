@@ -61,6 +61,6 @@
     "vuepress": "^1.0.3"
   },
   "dependencies": {
-    "@goy/vuepress-plugin-svg-icons": "^2.0.1"
+    "@goy/vuepress-plugin-svg-icons": "^3.1.0"
   }
 }
