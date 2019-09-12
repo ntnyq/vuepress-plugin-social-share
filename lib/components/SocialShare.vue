@@ -26,10 +26,9 @@
           type="button"
           role="button"
         >
-          <vp-icon
+          <social-share-icon
             :name="network.name"
-            :color="isPlain ? null: network.color"
-            class="social-share-icon"
+            :color="isPlain ? undefined : network.color"
             focusable="false"
           />
         </button>

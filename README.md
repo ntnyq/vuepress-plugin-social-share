@@ -16,9 +16,9 @@
 ## Install
 
 ```bash
-$ npm install vuepress-plugin-social-share
+$ npm install vuepress-plugin-social-share -D
 # OR
-$ yarn add vuepress-plugin-social-share
+$ yarn add vuepress-plugin-social-share -D
 ```
 
 ## Usage

@@ -58,9 +58,9 @@
     "eslint-plugin-vue": "^5.2.3",
     "husky": "^3.0.5",
     "lint-staged": "^9.2.5",
-    "vuepress": "^1.0.3"
+    "vuepress": "^1.0.4"
   },
   "dependencies": {
-    "@goy/vuepress-plugin-svg-icons": "^2.0.1"
+    "@goy/vuepress-plugin-svg-icons": "^3.1.0"
   }
 }

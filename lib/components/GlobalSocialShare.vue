@@ -13,7 +13,7 @@
       type="button"
       role="button"
     >
-      <vp-icon :name="isActive ? 'close' : 'share'" />
+      <social-share-icon :name="isActive ? 'close' : 'share'" />
     </button>
   </div>
 </template>
