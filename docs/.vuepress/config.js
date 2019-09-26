@@ -8,8 +8,8 @@ module.exports = {
     '/': {
       lang: 'en-US',
       title: 'vuepress-plugin-social-share',
-      description: 'Social sharing plugin for VuePress'
-    }
+      description: 'Social sharing plugin for VuePress',
+    },
   },
 
   plugins: [
@@ -18,9 +18,9 @@ module.exports = {
       {
         networks: ['qq', 'twitter', 'reddit', 'telegram', 'weibo'],
         twitterUser: 'ntnyq',
-        fallbackImage: '/hero.png'
-      }
-    ]
+        fallbackImage: '/hero.png',
+      },
+    ],
   ],
 
   themeConfig: {
@@ -42,12 +42,12 @@ module.exports = {
           { text: 'Home', link: '/' },
           { text: 'Guide', link: '/guide/' },
           { text: 'Demo', link: '/demo/' },
-          { text: 'Changelog', link: 'https://github.com/ntnyq/vuepress-plugin-social-share/blob/master/CHANGELOG.md' }
+          { text: 'Changelog', link: 'https://github.com/ntnyq/vuepress-plugin-social-share/blob/master/CHANGELOG.md' },
         ],
         sidebar: [
-          '/guide/'
-        ]
-      }
-    }
-  }
+          '/guide/',
+        ],
+      },
+    },
+  },
 }
