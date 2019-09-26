@@ -670,10 +670,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@goy/vuepress-plugin-svg-icons@^3.1.0":
-  version "3.1.0"
-  resolved "https://registry.npmjs.org/@goy/vuepress-plugin-svg-icons/-/vuepress-plugin-svg-icons-3.1.0.tgz#ca75ac1e5c29b074cf1bcd24b63a0ae64f96fc90"
-  integrity sha512-kr9oZppwCbF3r/vc6nfD8zFbykK+tmg6mUrXqoEHLY8vKH/aMOBIYnpRvx1IyuPU7+0oVJmGp+R7T8cparjwKQ==
+"@goy/vuepress-plugin-svg-icons@^3.1.1":
+  version "3.1.1"
+  resolved "https://registry.npmjs.org/@goy/vuepress-plugin-svg-icons/-/vuepress-plugin-svg-icons-3.1.1.tgz#f4317ea1c4e5c4a55292073b0069a3dbc5e04668"
+  integrity sha512-6T/7XMEM60Tx7VF9hUDfeW6gIDeMNyhya8+GP/B+ksNt/u/m3a/A4X7U3LcElMClJmpQ5qc2JO5bY/T7nAIzig==
   dependencies:
     svg-mixer "^2.4.0"
     svgo "^1.3.0"

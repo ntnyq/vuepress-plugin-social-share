@@ -4,8 +4,8 @@
   "main": "lib/index.js",
   "description": "Social sharing plugin for VuePress",
   "scripts": {
-    "dev": "vuepress dev docs --debug --no-clear-screen",
-    "build": "vuepress build docs --debug",
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs",
     "lint": "eslint --ext .js,.vue .",
     "lint:fix": "eslint --fix --ext .js,.vue .",
     "svgo": "vuepress svgo docs"
@@ -61,6 +61,6 @@
     "vuepress": "^1.1.0"
   },
   "dependencies": {
-    "@goy/vuepress-plugin-svg-icons": "^3.1.0"
+    "@goy/vuepress-plugin-svg-icons": "^3.1.1"
   }
 }
