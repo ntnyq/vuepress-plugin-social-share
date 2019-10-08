@@ -670,10 +670,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@goy/vuepress-plugin-svg-icons@^3.1.1":
-  version "3.1.1"
-  resolved "https://registry.npmjs.org/@goy/vuepress-plugin-svg-icons/-/vuepress-plugin-svg-icons-3.1.1.tgz#f4317ea1c4e5c4a55292073b0069a3dbc5e04668"
-  integrity sha512-6T/7XMEM60Tx7VF9hUDfeW6gIDeMNyhya8+GP/B+ksNt/u/m3a/A4X7U3LcElMClJmpQ5qc2JO5bY/T7nAIzig==
+"@goy/vuepress-plugin-svg-icons@^3.1.2":
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/@goy/vuepress-plugin-svg-icons/-/vuepress-plugin-svg-icons-3.1.2.tgz#ebe6d128ae5ea0de316043d09f75ed6440741a00"
+  integrity sha512-ilcd06VaUSxww7WGJnWZZrbPBRT7HMdzymZrm93DqSnvibdzO+t9YTXFjl1mhwCwPQ90VX7j0bJ6tPJ4jSKh4A==
   dependencies:
     svg-mixer "^2.4.0"
     svgo "^1.3.0"
@@ -2989,10 +2989,10 @@ escape-string-regexp@1.0.5, escape-string-regexp@^1.0.2, escape-string-regexp@^1
   resolved "https://registry.npmjs.org/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
   integrity sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ=
 
-eslint-config-goy@^0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/eslint-config-goy/-/eslint-config-goy-0.0.5.tgz#df80765dffd28aad607f42e0e8a0ec05d368028b"
-  integrity sha512-ZpLPjLhWSiuxsSqmlj0I9Yhz179YcU3zCP3xzlEbXwBhGA8X4rrGDeI9JrB/ZkSFFsM/SZVNbHbaxBTMekvQXQ==
+eslint-config-goy@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/eslint-config-goy/-/eslint-config-goy-0.1.1.tgz#a3e62f5c0f1e220a46cc8a81c2d9e32726dbff8a"
+  integrity sha512-YAXVX6Kur/MmwULjzZZuIckcPc0o/EPtL6fb4ur/fqiCuMqWKWk09VqD/pCtiwDSuJ1M6Zs3JpjR9T9TyiGuwQ==
   dependencies:
     eslint-config-standard "^14.1.0"
     eslint-plugin-import "^2.18.2"
@@ -3108,10 +3108,10 @@ eslint-visitor-keys@^1.1.0:
   resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-1.1.0.tgz#e2a82cea84ff246ad6fb57f9bde5b46621459ec2"
   integrity sha512-8y9YjtM1JBJU/A9Kc+SbaOV4y29sSWckBwMHa+FGtVj5gN/sbnKDf6xJUl+8g7FAij9LVaP8C24DUiH/f/2Z9A==
 
-eslint@^6.4.0:
-  version "6.4.0"
-  resolved "https://registry.npmjs.org/eslint/-/eslint-6.4.0.tgz#5aa9227c3fbe921982b2eda94ba0d7fae858611a"
-  integrity sha512-WTVEzK3lSFoXUovDHEbkJqCVPEPwbhCq4trDktNI6ygs7aO41d4cDT0JFAT5MivzZeVLWlg7vHL+bgrQv/t3vA==
+eslint@^6.5.1:
+  version "6.5.1"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-6.5.1.tgz#828e4c469697d43bb586144be152198b91e96ed6"
+  integrity sha512-32h99BoLYStT1iq1v2P9uwpyznQ4M2jRiFB6acitKz52Gqn+vPaMDUTB1bYi1WN4Nquj2w+t+bimYUG83DC55A==
   dependencies:
     "@babel/code-frame" "^7.0.0"
     ajv "^6.10.0"
@@ -4131,10 +4131,10 @@ https-browserify@^1.0.0:
   resolved "https://registry.npmjs.org/https-browserify/-/https-browserify-1.0.0.tgz#ec06c10e0a34c0f2faf199f7fd7fc78fffd03c73"
   integrity sha1-7AbBDgo0wPL68Zn3/X/Hj//QPHM=
 
-husky@^3.0.5:
-  version "3.0.5"
-  resolved "https://registry.npmjs.org/husky/-/husky-3.0.5.tgz#d7db27c346645a8dc52df02aa534a377ad7925e0"
-  integrity sha512-cKd09Jy9cDyNIvAdN2QQAP/oA21sle4FWXjIMDttailpLAYZuBE7WaPmhrkj+afS8Sj9isghAtFvWSQ0JiwOHg==
+husky@^3.0.8:
+  version "3.0.8"
+  resolved "https://registry.yarnpkg.com/husky/-/husky-3.0.8.tgz#8de3fed26ce9b43034ef51013c4ad368b6b74ea8"
+  integrity sha512-HFOsgcyrX3qe/rBuqyTt+P4Gxn5P0seJmr215LAZ/vnwK3jWB3r0ck7swbzGRUbufCf9w/lgHPVbF/YXQALgfQ==
   dependencies:
     chalk "^2.4.2"
     cosmiconfig "^5.2.1"
@@ -4831,10 +4831,10 @@ linkify-it@^2.0.0:
   dependencies:
     uc.micro "^1.0.1"
 
-lint-staged@^9.4.0:
-  version "9.4.0"
-  resolved "https://registry.npmjs.org/lint-staged/-/lint-staged-9.4.0.tgz#dd4abcc9a82539fd290aed1584e3241b8f8af687"
-  integrity sha512-jTu1KoGiGTSffM539wK+3igVqDGVsby3KwDBaXL471YndahkjnavLX+R5Nsk49JwklyMo0ZAXay1BaoyA6d2Jw==
+lint-staged@^9.4.2:
+  version "9.4.2"
+  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-9.4.2.tgz#14cb577a9512f520691f8b5aefce6a8f7ead6c04"
+  integrity sha512-OFyGokJSWTn2M6vngnlLXjaHhi8n83VIZZ5/1Z26SULRUWgR3ITWpAEQC9Pnm3MC/EpCxlwts/mQWDHNji2+zA==
   dependencies:
     chalk "^2.4.2"
     commander "^2.20.0"
