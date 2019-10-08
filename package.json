@@ -53,14 +53,14 @@
   "license": "MIT",
   "devDependencies": {
     "babel-eslint": "^10.0.3",
-    "eslint": "^6.4.0",
-    "eslint-config-goy": "^0.0.5",
+    "eslint": "^6.5.1",
+    "eslint-config-goy": "^0.1.1",
     "eslint-plugin-vue": "^5.2.3",
-    "husky": "^3.0.5",
-    "lint-staged": "^9.4.0",
+    "husky": "^3.0.8",
+    "lint-staged": "^9.4.2",
     "vuepress": "^1.1.0"
   },
   "dependencies": {
-    "@goy/vuepress-plugin-svg-icons": "^3.1.1"
+    "@goy/vuepress-plugin-svg-icons": "^3.1.2"
   }
 }
