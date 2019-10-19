@@ -13,9 +13,10 @@ $prefix-class = '.social-share'
     margin 0
     line-height 1
 
-  &-item
+  &-network
     position relative
     display inline-block
+    vertical-align: middle
 
   &-trigger
     color: $social-share-trigger-color
@@ -44,15 +45,27 @@ $prefix-class = '.social-share'
       &:hover
         background-color rgba(188, 188, 188, 0.15)
 
-  &-icon
+  &-icon-svg
     svg
-      width: 1em
-      height: 1em
-      fill: currentColor
-      vertical-align: -0.15em
-      overflow: hidden
+      width: 1em !important
+      height: 1em !important
+      fill: currentColor !important
+      vertical-align: -0.15em !important
+      overflow: hidden !important
 
-  &-wrap
+  &-icon-img
+    position: absolute
+    top: 50%
+    left: 50%
+    display: block
+    width: 1em
+    height: 1em
+    margin: -0.5em 0 0 -0.5em
+    background-repeat: no-repeat
+    background-position: center
+    background-size: contain
+
+  &-global
     position fixed
     right 0
     bottom 50%
@@ -66,7 +79,7 @@ $prefix-class = '.social-share'
     box-shadow -2px 1px 6px rgba(0, 0, 0, 0.08)
 
     {$prefix-class}
-      &-item
+      &-network
         display: block
 
       &-btn
@@ -78,11 +91,11 @@ $prefix-class = '.social-share'
 @media screen and (max-width: $social-share-mobile)
   {$prefix-class}
     &-btn
-      width 36px
-      height 36px
-      font-size 24px
+      width 40px
+      height 40px
+      font-size 28px
 
-    &-wrap
+    &-global
       bottom 15%
       border-radius 5px 0 0 5px
       transform translate(0, 0)
@@ -90,7 +103,7 @@ $prefix-class = '.social-share'
 
       {$prefix-class}
         &-btn
-          width 36px
-          height 36px
-          font-size 24px
+          width 40px
+          height 40px
+          font-size 28px
           border-radius 3px

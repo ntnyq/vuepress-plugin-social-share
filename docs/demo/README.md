@@ -17,10 +17,13 @@ Some demos.
 ## Plain mode
 
 ``` vue
-<social-share is-plain />
+<social-share 
+  :networks="['facebook', 'qq', 'twitter', 'line', 'reddit']" 
+  is-plain 
+/>
 ```
 
-<social-share is-plain />
+<social-share :networks="['facebook', 'qq', 'twitter', 'line', 'reddit']" is-plain />
 
 ## Custom hashtags
 
@@ -33,7 +36,7 @@ Some demos.
 
 <social-share :networks="['twitter', 'facebook']" :tags="['SocialShare', 'VuePress']" />
 
-## Custom networks
+## Built-in networks
 
 ``` vue
 <social-share 
@@ -42,6 +45,18 @@ Some demos.
 ```
 
 <social-share :networks="['facebook', 'qq', 'twitter', 'line', 'reddit', 'skype', 'douban', 'whatsapp', 'telegram', 'weibo']" />
+
+## User-customed networks
+
+``` vue
+<social-share 
+  :networks="['email', 'pinterest', 'linkedin']" 
+/>
+```
+
+<social-share 
+  :networks="['email', 'pinterest', 'linkedin']" 
+/>
 
 ## No global UI
 

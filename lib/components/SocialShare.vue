@@ -7,48 +7,31 @@
       class="social-share-list"
       role="list-box"
     >
-      <li
+      <social-share-network
         v-for="network in networkList"
         :key="network.name"
-        class="social-share-item"
-        role="option"
-      >
-        <button
-          @click="share(network)"
-          :data-link="network.type === 'popup'
-            ? `#share-${network.name}`
-            : createShareUrl(network)"
-          :data-action="network.type === 'popup'
-            ? null
-            : network.action"
-          :title="network.name"
-          class="social-share-btn"
-          type="button"
-          role="button"
-        >
-          <span
-            :style="{ color: isPlain ? false : network.color }"
-            v-html="network.icon"
-            class="social-share-icon"
-            focusable="false"
-          />
-        </button>
-      </li>
+        :network="network"
+        :is-plain="isPlain"
+      />
+      <slot />
     </ul>
   </div>
 </template>
 
 <script>
-import NTEWORKS_DATA from '../networks.json'
+import deepMerge from 'deepmerge'
+import BASE_NETWORKS from '../networks.json'
+import SocialShareNetwork from './SocialShareNetwork.vue'
 import {
   getMetaContentByName,
-  isExternal,
+  isExternalUrl,
 } from '../utils'
 
 const inBrowser = typeof window !== 'undefined'
 const $window = inBrowser ? window : null
 
 export default {
+  components: { SocialShareNetwork },
   props: {
     networks: {
       type: Array,
@@ -83,6 +66,11 @@ export default {
     isPlain: {
       type: Boolean,
       default: false,
+    },
+
+    extendsNetworks: {
+      type: Object,
+      default: () => ({}),
     },
   },
 
@@ -128,7 +116,7 @@ export default {
 
       if (!mediaUrl) return ''
 
-      if (isExternal(mediaUrl)) return mediaUrl
+      if (isExternalUrl(mediaUrl)) return mediaUrl
 
       const realUrl = $window
         ? `${$window.location.origin}${this.$withBase(mediaUrl)}`
@@ -170,11 +158,8 @@ export default {
   data () {
     // Remove duplicated networks
     const networks = [...new Set(this.networks)]
-    const baseNetworks = networks.map(name => ({
-      name,
-      ...NTEWORKS_DATA[name],
-    }))
-    const networkList = [...baseNetworks]
+    const networksData = deepMerge(BASE_NETWORKS, this.extendsNetworks)
+    const networkList = networks.map(name => ({ name, ...networksData[name] }))
 
     return {
       networkList,
@@ -197,71 +182,18 @@ export default {
 
   methods: {
     /**
-     * Returns generated sharer url.
+     * Opens sharer popup
      *
-     * @param name Social network name
-     * @param sharer Social network sharer
+     * @param {string} shareUrl target sharer url
+     * @param {string} name sharer name
+     * @param {string} url current page url
      */
-    createShareUrl ({ name, sharer }) {
-      let url = sharer
-
-      /**
-       * On IOS, Twitter sharing should't have a empty hashtag parameter
-       * See https://github.com/nicolasbeauvais/vue-social-sharing/issues/143
-       */
-      if (['twitter'].includes(name) && this.hashtags.length === 0) {
-        url = url.replace('&hashtags=@hashtags', '')
-      }
-
-      return url
-        .replace(/@url/g, encodeURIComponent(this.url))
-        .replace(/@title/g, encodeURIComponent(this.title))
-        .replace(/@description/g, encodeURIComponent(this.description))
-        .replace(/@quote/g, encodeURIComponent(this.quote))
-        .replace(/@hashtags/g, this.generateHashTags(name, this.hashtags))
-        .replace(/@appkey/g, this.weiboAppKey ? `&appkey=${this.weiboAppKey}` : '')
-        .replace(/@media/g, this.media)
-        .replace(/@twitteruser/g, this.twitterUser ? `&via=${this.twitterUser}` : '')
-    },
-
-    /**
-     * Encode hashtags for the specified social network.
-     *
-     * @param name Social network name
-     * @param hashtags All hashtags specified
-     */
-    generateHashTags (name, hashtags = '') {
-      if (['facebook'].includes(name) && hashtags.length) {
-        return `%23${hashtags.split(',')[0]}`
-      }
-
-      return hashtags
-    },
-
-    /**
-     * Shares URL in specified network.
-     *
-     * @param name Social network name
-     * @param sharer Social network sharer
-     */
-    share ({ name, sharer }) {
-      this.openSharer(name, this.createShareUrl({ name, sharer }))
-
-      this.$root.$emit('social_share_open', name, this.url)
-    },
-
-    /**
-     * Opens sharer popup.
-     *
-     * @param name Social network name
-     * @param url Url to share
-     */
-    openSharer (name, url) {
-      // If a popup window already exist it will be replaced, trigger a close event.
+    openSharer (shareUrl, { name, url }) {
+      // If a popup window already exist it will be replaced, trigger a close event
       let popupWindow = null
 
       popupWindow = window.open(
-        url,
+        shareUrl,
         'sharer',
         'status=' + (this.popup.status ? 'yes' : 'no') +
         ',height=' + this.popup.height +
@@ -287,7 +219,7 @@ export default {
 
           popupWindow = undefined
 
-          this.$root.$emit('social_share_close', name, this.url)
+          this.$root.$emit('social_share_close', { name, url })
         }
       }, 500)
     },

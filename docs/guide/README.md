@@ -14,7 +14,7 @@ $ yarn add vuepress-plugin-social-share -D
 
 > See [Official Docs](https://v1.vuepress.vuejs.org/zh/plugin/using-a-plugin.html) about how to use a plugin in VuePress.
 
-Add __vuepress-plugin-social-share__ to your config file.
+Config in your `.vuepress/config.js`:
 
 ``` js
 module.exports = {
@@ -29,6 +29,16 @@ module.exports = {
 For advanced usage.
 
 ``` js
+// .vuepress/config.js
+
+const extendsNetworks = {
+  email: {
+    sharer: 'mailto:?subject=@title&body=@url%0D%0A%0D%0A@description',
+    type: 'direct',
+    icon: '/email.png',
+  },
+}
+
 module.exports = {
   plugins: [
     ['social-share', {
@@ -37,7 +47,8 @@ module.exports = {
       weiboAppKey: 'your_app_key',
       fallbackImage: '/hero.png',
       autoQuote: true,
-      isPlain: false
+      isPlain: false,
+      extendsNetworks,
     }]
   ]
 }
@@ -122,9 +133,98 @@ Maybe you don't like the share icons have different colors and you can set `isPl
 
 All share icon colors will be set as the `$accentColor` by default.
 
-## Component options
+### extendsNetworks
 
-The `SocialShare` component's props.
+- __type:__ `object`
+- __default__ `undefined`
+
+With this option, you can add your custom sharer or override the [built-in networks config](https://github.com/ntnyq/vuepress-plugin-social-share/blob/master/lib/networks.json).
+
+i.e:
+
+``` js
+const extendsNetworks = {
+  email: {
+    sharer: 'mailto:?subject=@title&body=@url%0D%0A%0D%0A@description',
+    type: 'direct',
+    icon: '/email.png',
+  },
+  pinterest: {
+    sharer: 'https://pinterest.com/pin/create/button/?url=@url&media=@media&description=@title',
+    type: 'popup',
+    icon: '/pinterest.png',
+  },
+  linkedin: {
+    sharer: 'https://www.linkedin.com/shareArticle?mini=true&url=@url&title=@title&summary=@description',
+    type: 'popup',
+    color: '#1786b1',
+    icon: '<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M910.336 0H113.664A114.005333 114.005333 0 0 0 0 113.664v796.672A114.005333 114.005333 0 0 0 113.664 1024h796.672A114.005333 114.005333 0 0 0 1024 910.336V113.664A114.005333 114.005333 0 0 0 910.336 0zM352.256 796.330667H207.189333V375.466667h145.066667z m-72.021333-477.866667a77.824 77.824 0 0 1-81.237334-74.069333A77.824 77.824 0 0 1 280.234667 170.666667a77.824 77.824 0 0 1 81.237333 73.728 77.824 77.824 0 0 1-81.237333 73.386666z m582.314666 477.866667H716.8v-227.669334c0-46.762667-18.432-93.525333-73.045333-93.525333a84.992 84.992 0 0 0-81.237334 94.549333v226.304h-140.629333V375.466667h141.653333v60.757333a155.989333 155.989333 0 0 1 136.533334-71.338667c60.416 0 163.498667 30.378667 163.498666 194.901334z" /></svg>',
+  },
+  twitter: {
+    color: '#f00'
+  }
+}
+
+module.exports = {
+  plugins: [
+    ['social-share', {
+      networks: ['twitter', 'facebook', 'email', 'pinterest', 'linkedin'],
+      extendsNetworks,
+    }]
+  ]
+}
+```
+
+1. You need to specific the `extendsNetworks` option with an object which `key` will be sharer's name and `value` will be options
+
+2. Config the plugin's `networks` option if you want to add custom sharer to `GlobalSocialShare`
+
+3. You can override the built-in networks config by given its options a different value
+
+Custom sharer's option: 
+
+#### sharer
+
+- __type:__ `string`
+- __required__ `true`
+
+You can use placeholders below in the sharer, it will be replaced by [Share Meta](#share-meta)
+
+- `@url`  [url](#url)
+- `@title`  [title](#title)
+- `@media`  [media](#media)
+- `@description`  [description](#description)
+- `@quote`  [quote](#quote)
+- `@hashtags` [hashtags](#hashtags)
+
+#### type
+
+- __type:__ `string`
+- __default__ `undefined`
+- __required__ `true`
+
+- `popup` Open a new browser window for sharing service, mostly you need this
+- `direct` Open sharer in current window directly. For `mailto:`, `sms:` and other built-in protocal
+
+The plugin does nothing if you don't provide a type.
+
+#### color 
+
+- __type:__ `string`
+- __required__ `''`
+
+Set the svg element color if you use it as sharer's icon.
+
+#### icon
+
+- __type:__ `string`
+- __required__ `true`
+
+You can set `icon` with a __network image__, an __image in your public folder with absolute path__ or a __svg element__.
+
+## Component Props
+
+The props of `SocialShare` component.
 
 ### networks
 
