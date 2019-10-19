@@ -1,25 +1,41 @@
 {
   "name": "vuepress-plugin-social-share",
   "version": "0.0.6",
-  "main": "lib/index.js",
   "description": "Social sharing plugin for VuePress",
-  "scripts": {
-    "dev": "vuepress dev docs",
-    "build": "vuepress build docs",
-    "lint": "eslint --ext .js,.vue .",
-    "lint:fix": "eslint --fix --ext .js,.vue .",
-    "svgo": "vuepress svgo docs"
-  },
-  "files": [
-    "lib"
+  "keywords": [
+    "facebook",
+    "plugin",
+    "share",
+    "sns",
+    "social",
+    "twitter",
+    "vuepress",
+    "vuepress-plugin",
+    "weibo"
   ],
   "homepage": "https://sns.goyfe.com",
+  "bugs": {
+    "url": "https://github.com/ntnyq/vuepress-plugin-social-share/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ntnyq/vuepress-plugin-social-share.git"
   },
-  "bugs": {
-    "url": "https://github.com/ntnyq/vuepress-plugin-social-share/issues"
+  "license": "MIT",
+  "author": {
+    "name": "ntnyq",
+    "email": "ntnyq13@gmail.com"
+  },
+  "files": [
+    "lib"
+  ],
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "vuepress build docs",
+    "dev": "vuepress dev docs",
+    "lint": "eslint --ext .js,.vue .",
+    "lint:fix": "eslint --fix --ext .js,.vue .",
+    "svgo": "vuepress svgo docs"
   },
   "husky": {
     "hooks": {
@@ -32,35 +48,19 @@
       "git add"
     ]
   },
-  "peerDependencies": {
-    "vuepress": "^1.0.3"
+  "dependencies": {
+    "@goy/vuepress-plugin-svg-icons": "^3.1.2"
   },
-  "author": {
-    "name": "ntnyq",
-    "email": "ntnyq13@gmail.com"
-  },
-  "keywords": [
-    "vuepress",
-    "vuepress-plugin",
-    "plugin",
-    "social",
-    "share",
-    "sns",
-    "twitter",
-    "facebook",
-    "weibo"
-  ],
-  "license": "MIT",
   "devDependencies": {
     "babel-eslint": "^10.0.3",
     "eslint": "^6.5.1",
     "eslint-config-goy": "^0.1.1",
     "eslint-plugin-vue": "^5.2.3",
-    "husky": "^3.0.8",
+    "husky": "^3.0.9",
     "lint-staged": "^9.4.2",
-    "vuepress": "^1.1.0"
+    "vuepress": "^1.2.0"
   },
-  "dependencies": {
-    "@goy/vuepress-plugin-svg-icons": "^3.1.2"
+  "peerDependencies": {
+    "vuepress": "^1.0.3"
   }
 }
