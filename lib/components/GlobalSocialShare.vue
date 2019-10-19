@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="visible"
-    class="social-share-wrap"
+    class="social-share-global"
   >
     <social-share
       v-show="isActive"
@@ -13,7 +13,7 @@
       type="button"
       role="button"
     >
-      <span class="social-share-icon">
+      <span class="social-share-icon-svg">
         <svg
           v-if="isActive"
           viewBox="0 0 1024 1024"
@@ -40,6 +40,8 @@ export default {
   components: {
     SocialShare,
   },
+
+  inheritAttrs: false,
 
   computed: {
     visible () {
