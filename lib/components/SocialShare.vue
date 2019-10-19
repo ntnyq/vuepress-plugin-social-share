@@ -26,9 +26,10 @@
           type="button"
           role="button"
         >
-          <social-share-icon
-            :name="network.name"
-            :color="isPlain ? undefined : network.color"
+          <span
+            :style="{ color: isPlain ? false : network.color }"
+            v-html="network.icon"
+            class="social-share-icon"
             focusable="false"
           />
         </button>
