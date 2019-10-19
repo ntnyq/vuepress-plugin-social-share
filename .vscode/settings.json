@@ -1,0 +1,8 @@
+{
+  "eslint.enable": true,
+  "vetur.format.defaultFormatterOptions": {
+    "js-beautify-html": {
+      "wrap_attributes": "force-expand-multiline"
+    }
+  },
+}
