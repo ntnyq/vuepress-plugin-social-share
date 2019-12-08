@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.1](https://github.com/ntnyq/vuepress-plugin-social-share/compare/v0.1.0...v0.1.1) (2019-12-08)
+
+
+### Bug Fixes
+
+* tweak dynamic module name and bump deps ([4992bcc](https://github.com/ntnyq/vuepress-plugin-social-share/commit/4992bcc))
+
 ## [0.1.0](https://github.com/ntnyq/vuepress-plugin-social-share/compare/v0.0.6...v0.1.0) (2019-10-19)
 
 
