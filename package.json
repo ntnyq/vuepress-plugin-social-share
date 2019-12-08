@@ -3,14 +3,15 @@
   "version": "0.1.0",
   "description": "Social sharing plugin for VuePress",
   "keywords": [
-    "facebook",
-    "plugin",
-    "share",
-    "sns",
-    "social",
-    "twitter",
     "vuepress",
     "vuepress-plugin",
+    "share",
+    "social",
+    "social-share",
+    "sns",
+    "facebook",
+    "plugin",
+    "twitter",
     "weibo"
   ],
   "homepage": "https://sns.goyfe.com",
@@ -34,8 +35,7 @@
     "build": "vuepress build docs",
     "dev": "vuepress dev docs",
     "lint": "eslint --ext .js,.vue .",
-    "lint:fix": "eslint --fix --ext .js,.vue .",
-    "svgo": "vuepress svgo docs"
+    "lint:fix": "eslint --fix --ext .js,.vue ."
   },
   "husky": {
     "hooks": {
@@ -48,19 +48,19 @@
       "git add"
     ]
   },
+  "dependencies": {
+    "deepmerge": "^4.2.2"
+  },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
-    "eslint": "^6.5.1",
+    "eslint": "^6.7.2",
     "eslint-config-goy": "^0.1.1",
-    "eslint-plugin-vue": "^5.2.3",
-    "husky": "^3.0.9",
-    "lint-staged": "^9.4.2",
+    "eslint-plugin-vue": "^6.0.1",
+    "husky": "^3.1.0",
+    "lint-staged": "^9.5.0",
     "vuepress": "^1.2.0"
   },
   "peerDependencies": {
     "vuepress": "^1.0.3"
-  },
-  "dependencies": {
-    "deepmerge": "^4.1.1"
   }
 }

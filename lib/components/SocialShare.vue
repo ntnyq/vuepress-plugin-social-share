@@ -8,7 +8,7 @@
       role="list-box"
     >
       <social-share-network
-        v-for="network in networkList"
+        v-for="network in userNetworks"
         :key="network.name"
         :network="network"
         :is-plain="isPlain"
@@ -19,19 +19,20 @@
 </template>
 
 <script>
-import deepMerge from 'deepmerge'
-import BASE_NETWORKS from '../networks.json'
 import SocialShareNetwork from './SocialShareNetwork.vue'
 import {
-  getMetaContentByName,
   isExternalUrl,
+  getMetaContentByName,
 } from '../utils'
 
 const inBrowser = typeof window !== 'undefined'
 const $window = inBrowser ? window : null
 
 export default {
-  components: { SocialShareNetwork },
+  components: {
+    SocialShareNetwork,
+  },
+
   props: {
     networks: {
       type: Array,
@@ -68,7 +69,7 @@ export default {
       default: false,
     },
 
-    extendsNetworks: {
+    networksData: {
       type: Object,
       default: () => ({}),
     },
@@ -158,15 +159,15 @@ export default {
   data () {
     // Remove duplicated networks
     const networks = [...new Set(this.networks)]
-    const networksData = deepMerge(BASE_NETWORKS, this.extendsNetworks)
-    const networkList = networks.map(name => ({ name, ...networksData[name] }))
+    const networksData = Object.keys(this.networksData).map(name => ({ name, ...this.networksData[name] }))
+    const userNetworks = networksData.filter(network => networks.includes(network.name))
 
     return {
-      networkList,
+      userNetworks,
       popup: {
         status: false,
         resizable: false,
-        toobar: false,
+        toolbar: false,
         menubar: false,
         scrollbars: false,
         location: false,
@@ -207,7 +208,7 @@ export default {
         ',menubar=' + (this.popup.menubar ? 'yes' : 'no') +
         ',scrollbars=' + (this.popup.scrollbars ? 'yes' : 'no') +
         ',location=' + (this.popup.location ? 'yes' : 'no') +
-        ',directories=' + (this.popup.directories ? 'yes' : 'no')
+        ',directories=' + (this.popup.directories ? 'yes' : 'no'),
       )
 
       popupWindow.focus()
