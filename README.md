@@ -27,9 +27,7 @@ Add config to `.vuepress/config.js`:
 
 ```js
 module.exports = {
-  plugins: [
-    'social-share'
-  ],
+  plugins: ['social-share'],
 }
 ```
 
@@ -37,7 +35,7 @@ module.exports = {
 
 ## Prior Art
 
-Deeply thank to [Vue Social Sharing](https://github.com/nicolasbeauvais/vue-social-sharing) for the component api source code.
+Deeply thank to [vue-social-sharing](https://github.com/nicolasbeauvais/vue-social-sharing) for the component api source code.
 
 ## License
 

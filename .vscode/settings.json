@@ -5,4 +5,7 @@
       "wrap_attributes": "force-expand-multiline"
     }
   },
+  "[javascript]": {
+    "editor.formatOnSave": false
+  }
 }
