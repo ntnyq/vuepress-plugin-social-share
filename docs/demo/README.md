@@ -9,17 +9,18 @@ Some demos.
 
 ## Local mode
 
-``` vue
+```vue
 <social-share />
 ```
+
 <social-share />
 
 ## Plain mode
 
-``` vue
-<social-share 
-  :networks="['facebook', 'qq', 'twitter', 'line', 'reddit']" 
-  is-plain 
+```vue
+<social-share
+  :networks="['facebook', 'qq', 'twitter', 'line', 'reddit']"
+  is-plain
 />
 ```
 
@@ -27,20 +28,43 @@ Some demos.
 
 ## Custom hashtags
 
-``` vue
-<social-share 
-  :networks="['twitter', 'facebook']" 
-  :tags="['SocialShare', 'VuePress']" 
+```vue
+<social-share
+  :networks="['twitter', 'facebook']"
+  :tags="['SocialShare', 'VuePress']"
 />
 ```
 
 <social-share :networks="['twitter', 'facebook']" :tags="['SocialShare', 'VuePress']" />
 
+## Custom order
+
+```vue
+<social-share :networks="['twitter', 'facebook']" />
+
+<social-share :networks="['facebook', 'twitter']" />
+```
+
+<social-share :networks="['twitter', 'facebook']" />
+
+<social-share :networks="['facebook', 'twitter']" />
+
 ## Built-in networks
 
-``` vue
-<social-share 
-  :networks="['facebook', 'qq', 'twitter', 'line', 'reddit', 'skype', 'douban', 'whatsapp', 'telegram', 'weibo']" 
+```vue
+<social-share
+  :networks="[
+    'facebook',
+    'qq',
+    'twitter',
+    'line',
+    'reddit',
+    'skype',
+    'douban',
+    'whatsapp',
+    'telegram',
+    'weibo',
+  ]"
 />
 ```
 
@@ -48,10 +72,8 @@ Some demos.
 
 ## User-customed networks
 
-``` vue
-<social-share 
-  :networks="['email', 'pinterest', 'linkedin']" 
-/>
+```vue
+<social-share :networks="['email', 'pinterest', 'linkedin']" />
 ```
 
 <social-share 
@@ -64,7 +86,7 @@ Add `noGlobalSocialShare: true` in **frontmatter** to disable the global ui comp
 
 Currently, the page you are looking at has no global social share component.
 
-``` markdown
+```markdown
 ---
 noGlobalSocialShare: true
 ---

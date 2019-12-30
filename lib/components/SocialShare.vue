@@ -159,8 +159,10 @@ export default {
   data () {
     // Remove duplicated networks
     const networks = [...new Set(this.networks)]
-    const networksData = Object.keys(this.networksData).map(name => ({ name, ...this.networksData[name] }))
-    const userNetworks = networksData.filter(network => networks.includes(network.name))
+    const userNetworks = Object.keys(this.networksData)
+      .map(name => ({ name, ...this.networksData[name] }))
+      .filter(network => networks.includes(network.name))
+      .sort((prev, next) => networks.indexOf(prev.name) - networks.indexOf(next.name))
 
     return {
       userNetworks,
