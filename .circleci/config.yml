@@ -35,6 +35,7 @@ jobs:
   #------------------------------------------------------------
   # 2. Run parallel jobs:
   #   => linter
+  #   => test
   #------------------------------------------------------------
 
   run-linter-check:
@@ -46,6 +47,16 @@ jobs:
       - run:
           name: Run Linter
           command: yarn lint
+
+  run-test:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/project
+      - run:
+          name: Run Test
+          command: yarn test
 
   #------------------------------------------------------------
   # 3. Build docs
@@ -71,4 +82,5 @@ workflows:
     jobs:
       - install-dependencies
       - run-linter-check: { requires: [install-dependencies] }
-      - build-docs: { requires: [run-linter-check] }
+      - run-test: { requires: [install-dependencies] }
+      - build-docs: { requires: [run-linter-check, run-test] }
