@@ -1,5 +1,8 @@
 {
   "eslint.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.eslint.fixAll": true
+  },
   "vetur.format.defaultFormatterOptions": {
     "js-beautify-html": {
       "wrap_attributes": "force-expand-multiline"
