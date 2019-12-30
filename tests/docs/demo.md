@@ -1,8 +1,3 @@
----
-sidebar: false
-noGlobalSocialShare: true
----
-
 demo
 
 <social-share />
