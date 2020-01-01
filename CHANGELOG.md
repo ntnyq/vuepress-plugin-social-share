@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://github.com/ntnyq/vuepress-plugin-social-share/compare/v0.1.1...v0.1.2) (2019-12-30)
+
+
+### Bug Fixes
+
+* merge options error ([c4b6b82](https://github.com/ntnyq/vuepress-plugin-social-share/commit/c4b6b82c2c961ba420c2727483ae051cf1b10511))
+
 ### [0.1.1](https://github.com/ntnyq/vuepress-plugin-social-share/compare/v0.1.0...v0.1.1) (2019-12-08)
 
 
