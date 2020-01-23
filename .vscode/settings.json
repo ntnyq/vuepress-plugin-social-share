@@ -1,5 +1,10 @@
 {
   "eslint.enable": true,
+  "eslint.validate": [
+    "javascript",
+    "vue",
+    "vue-html"
+  ],
   "editor.codeActionsOnSave": {
     "source.eslint.fixAll": true
   },
@@ -8,6 +13,7 @@
       "wrap_attributes": "force-expand-multiline"
     }
   },
+  "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
   "[javascript]": {
     "editor.formatOnSave": false
   }

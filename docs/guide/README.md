@@ -239,6 +239,15 @@ Set the svg element color if you use it as sharer's icon.
 
 You can set `icon` with a **network image**, an **image in your public folder with absolute path** or an **svg element**.
 
+### noGlobalSocialShare <badge>v0.2.0+</badge>
+
+- **type:** `boolean`
+- **default** `false`
+
+Set it to `true` if you want to disable the global social share component.
+
+If you only want to disable global social share in some specific page, check [Disable social share](#disable-social-share).
+
 ## Component Props
 
 The props of `SocialShare` component.
@@ -346,11 +355,11 @@ If you want to override them, just set them in your `palette.styl`:
 $social-share-plain-color = red
 ```
 
-## Disable
+## Disable social share
 
-You can disable **vuepress-plugin-social-share** in the markdown frontmatter.
+You can disable **vuepress-plugin-social-share** in a specific page by setting the markdown frontmatter.
 
-### Disable global component
+### Disable global social share
 
 Set `noGlobalSocialShare` to `true` if you want to disable the global social share component.
 
@@ -360,7 +369,7 @@ noGlobalSocialShare: true
 ---
 ```
 
-### Disable social share
+### Disable all social share
 
 Set `noSocialShare` to `true` if you want to disable all social share component.
 
