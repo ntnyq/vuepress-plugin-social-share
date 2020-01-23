@@ -21,6 +21,8 @@ const extendsNetworks = {
 
 exports.pluginsWithoutOptions = [VuePressPluginSocialShare]
 
+exports.pluginsNoGlobalSocialShare = [VuePressPluginSocialShare, { noGlobalSocialShare: true }]
+
 exports.pluginsWithOptions = [
   [VuePressPluginSocialShare, {
     networks: ['qq', 'twitter', 'weibo', 'email', 'linkedin', 'pinterest'],
