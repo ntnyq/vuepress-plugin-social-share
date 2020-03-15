@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.1](https://github.com/ntnyq/vuepress-plugin-social-share/compare/v0.2.0...v0.2.1) (2020-03-15)
+
+
+### Bug Fixes
+
+* invalid aria role attr ([095f5b8](https://github.com/ntnyq/vuepress-plugin-social-share/commit/095f5b8915f38c2c34fd957820b6a4eabcdea43d))
+
 ## [0.2.0](https://github.com/ntnyq/vuepress-plugin-social-share/compare/v0.1.2...v0.2.0) (2020-01-23)
 
 
