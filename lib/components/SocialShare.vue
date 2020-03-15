@@ -5,7 +5,7 @@
   >
     <ul
       class="social-share-list"
-      role="list-box"
+      role="listbox"
     >
       <social-share-network
         v-for="network in userNetworks"
