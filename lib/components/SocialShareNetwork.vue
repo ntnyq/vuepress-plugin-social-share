@@ -54,7 +54,6 @@ export default {
         media,
         hashtags,
         description,
-        weiboAppKey,
         twitterUser,
       } = this.$parent
 
@@ -73,7 +72,6 @@ export default {
         .replace(/@description/g, encodeURIComponent(description))
         .replace(/@quote/g, encodeURIComponent(quote))
         .replace(/@hashtags/g, this.generateHashTags(hashtags))
-        .replace(/@appkey/g, weiboAppKey ? `&appkey=${weiboAppKey}` : '')
         .replace(/@twitteruser/g, twitterUser ? `&via=${twitterUser}` : '')
     },
   },

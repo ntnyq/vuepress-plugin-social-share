@@ -49,11 +49,6 @@ export default {
       default: undefined,
     },
 
-    weiboAppKey: {
-      type: String,
-      default: undefined,
-    },
-
     fallbackImage: {
       type: String,
       default: undefined,
