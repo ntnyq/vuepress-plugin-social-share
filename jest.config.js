@@ -1,9 +1,9 @@
-// const { resolve } = require('path')
+const { resolve } = require('path')
 
 module.exports = {
-  // rootDir: resolve(__dirname),
+  rootDir: resolve(__dirname),
 
-  // testEnvironment: 'node',
+  testEnvironment: 'node',
 
   testMatch: [
     '<rootDir>/tests/**/*.spec.js',
