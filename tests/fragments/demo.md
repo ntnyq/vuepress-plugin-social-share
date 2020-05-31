@@ -1,5 +1,3 @@
-demo
-
 <social-share />
 
 <social-share :networks="['facebook', 'qq', 'twitter', 'line', 'reddit']" is-plain />

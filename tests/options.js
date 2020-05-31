@@ -1,5 +1,3 @@
-const VuePressPluginSocialShare = require('../lib')
-
 const extendsNetworks = {
   email: {
     sharer: 'mailto:?subject=@title&body=@url%0D%0A%0D%0A@description',
@@ -19,14 +17,16 @@ const extendsNetworks = {
   },
 }
 
-exports.pluginsWithoutOptions = [VuePressPluginSocialShare]
+const optionsDefault = {}
+const optionsNoGlobal = { noGlobalSocialShare: true }
+const optionsBasic = {
+  networks: ['qq', 'twitter', 'weibo', 'email', 'linkedin', 'pinterest'],
+  extendsNetworks,
+  twitterUser: 'ntnyq',
+}
 
-exports.pluginsNoGlobalSocialShare = [VuePressPluginSocialShare, { noGlobalSocialShare: true }]
-
-exports.pluginsWithOptions = [
-  [VuePressPluginSocialShare, {
-    networks: ['qq', 'twitter', 'weibo', 'email', 'linkedin', 'pinterest'],
-    extendsNetworks,
-    twitterUser: 'ntnyq',
-  }],
+exports.options = [
+  { name: 'default', options: optionsDefault },
+  { name: 'basic', options: optionsBasic },
+  { name: 'no-global', options: optionsNoGlobal },
 ]
