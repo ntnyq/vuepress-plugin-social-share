@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/ntnyq/vuepress-plugin-social-share/compare/v0.2.1...v0.3.0) (2020-05-31)
+
+
+### Features
+
+* make sharer email built-in ([9297242](https://github.com/ntnyq/vuepress-plugin-social-share/commit/92972428f2d98ceb7aa4cdad0638fb3818133222))
+
 ### [0.2.1](https://github.com/ntnyq/vuepress-plugin-social-share/compare/v0.2.0...v0.2.1) (2020-03-15)
 
 
