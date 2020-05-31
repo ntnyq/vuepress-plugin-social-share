@@ -34,10 +34,18 @@ For advanced usage.
 // .vuepress/config.js
 
 const extendsNetworks = {
-  email: {
-    sharer: 'mailto:?subject=@title&body=@url%0D%0A%0D%0A@description',
-    type: 'direct',
-    icon: '/email.png',
+  pinterest: {
+    sharer: 'https://pinterest.com/pin/create/button/?url=@url&media=@media&description=@title',
+    type: 'popup',
+    icon: '/pinterest.png',
+  },
+  linkedin: {
+    sharer:
+      'https://www.linkedin.com/shareArticle?mini=true&url=@url&title=@title&summary=@description',
+    type: 'popup',
+    color: '#1786b1',
+    icon:
+      '<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M910.336 0H113.664A114.005333 114.005333 0 0 0 0 113.664v796.672A114.005333 114.005333 0 0 0 113.664 1024h796.672A114.005333 114.005333 0 0 0 1024 910.336V113.664A114.005333 114.005333 0 0 0 910.336 0zM352.256 796.330667H207.189333V375.466667h145.066667z m-72.021333-477.866667a77.824 77.824 0 0 1-81.237334-74.069333A77.824 77.824 0 0 1 280.234667 170.666667a77.824 77.824 0 0 1 81.237333 73.728 77.824 77.824 0 0 1-81.237333 73.386666z m582.314666 477.866667H716.8v-227.669334c0-46.762667-18.432-93.525333-73.045333-93.525333a84.992 84.992 0 0 0-81.237334 94.549333v226.304h-140.629333V375.466667h141.653333v60.757333a155.989333 155.989333 0 0 1 136.533334-71.338667c60.416 0 163.498667 30.378667 163.498666 194.901334z" /></svg>',
   },
 }
 
@@ -46,12 +54,12 @@ module.exports = {
     [
       'social-share',
       {
-        networks: ['twitter', 'facebook', 'reddit', 'telegram'],
+        networks: ['twitter', 'facebook', 'reddit', 'telegram', 'email'],
+        email: 'ntnyq13@gmail.com',
         twitterUser: 'ntnyq',
-        weiboAppKey: 'your_app_key',
-        fallbackImage: '/hero.png',
+        fallbackImage: '/social-share.png',
         autoQuote: true,
-        isPlain: false,
+        isPlain: true,
         extendsNetworks,
       },
     ],
@@ -71,6 +79,7 @@ Currently, networks below are built-in supported:
 - facebook <social-share class="list-demo-sns" :networks="['facebook']"/>
 - line <social-share class="list-demo-sns" :networks="['line']"/>
 - reddit <social-share class="list-demo-sns" :networks="['reddit']"/>
+- email <social-share class="list-demo-sns" :networks="['email']"/>
 - skype <social-share class="list-demo-sns" :networks="['skype']"/>
 - telegram <social-share class="list-demo-sns" :networks="['telegram']"/>
 - twitter <social-share class="list-demo-sns" :networks="['twitter']"/>
@@ -79,6 +88,22 @@ Currently, networks below are built-in supported:
 - douban <social-share class="list-demo-sns" :networks="['douban']"/>
 - whatsapp <social-share class="list-demo-sns" :networks="['whatsapp']"/>
 
+### email <badge>v0.3.0+</badge>
+
+- **type:** `string`
+- **default** `undefined`
+
+::: warning Note
+There is no single, standard way in which browsers/email clients handle mailto links (e.g. subject and body fields may be discarded without a warning). Also there is a risk that popup and ad blockers, anti-virus software etc. may silently block forced opening of mailto links.
+
+Mailto only launches the MUA(Mail User Agent) which is configured as the default in the system-settings.
+
+- [Automatically open default email client and pre-populate content](https://stackoverflow.com/questions/13231125/automatically-open-default-email-client-and-pre-populate-content)
+- [Open email client through javascript](https://stackoverflow.com/questions/22941457/open-email-client-through-javascript)
+  :::
+
+Your email address.
+
 ### twitterUser
 
 - **type:** `string`
@@ -86,7 +111,7 @@ Currently, networks below are built-in supported:
 
 Your Twitter profile username.
 
-### weiboAppKey
+### weiboAppKey <badge type="error">Remove at v0.3.0</badge>
 
 - **type:** `string`
 - **default** `undefined`
@@ -133,14 +158,14 @@ module.exports = {
 - **type:** `boolean`
 - **default** `true`
 
-For Facebook, use the share meta [description](/guide/#description) as share quote content.
+For Facebook, use the share meta [description](/guide/#description) as the share quote content.
 
 ### isPlain
 
 - **type:** `boolean`
 - **default** `false`
 
-You can set `isPlain` to `true` if you don't link share icons have different colors.
+You can set `isPlain` to `true` if you don't like that all share icons have different colors.
 
 All share icon colors will be set as the [\$accentColor](/guide/#custom-style) by default.
 
@@ -155,14 +180,8 @@ i.e:
 
 ```js
 const extendsNetworks = {
-  email: {
-    sharer: 'mailto:?subject=@title&body=@url%0D%0A%0D%0A@description',
-    type: 'direct',
-    icon: '/email.png',
-  },
   pinterest: {
-    sharer:
-      'https://pinterest.com/pin/create/button/?url=@url&media=@media&description=@title',
+    sharer: 'https://pinterest.com/pin/create/button/?url=@url&media=@media&description=@title',
     type: 'popup',
     icon: '/pinterest.png',
   },
@@ -221,7 +240,7 @@ You can use placeholders below in the sharer, it will be replaced by [Share Meta
 - **required** `true`
 
 - `popup` Open a new browser window for sharing service, mostly you need this
-- `direct` Open sharer in current window directly. For `mailto:`, `sms:` and other built-in protocal
+- `direct` Open the sharer in current window directly. For `mailto:`, `sms:` and other built-in protocal
 
 The plugin does nothing if you haven't config `type` properly.
 
@@ -237,7 +256,7 @@ Set the svg element color if you use it as sharer's icon.
 - **type:** `string`
 - **required** `true`
 
-You can set `icon` with a **network image**, an **image in your public folder with absolute path** or an **svg element**.
+You can set `icon` with a **network image**, an **image in your public folder with an absolute path** or an **svg element**.
 
 ### noGlobalSocialShare <badge>v0.2.0+</badge>
 

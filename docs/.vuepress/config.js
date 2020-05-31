@@ -1,9 +1,4 @@
 const extendsNetworks = {
-  email: {
-    sharer: 'mailto:?subject=@title&body=@url%0D%0A%0D%0A@description',
-    type: 'direct',
-    icon: '/email.png',
-  },
   pinterest: {
     sharer: 'https://pinterest.com/pin/create/button/?url=@url&media=@media&description=@title',
     type: 'popup',
@@ -32,9 +27,10 @@ module.exports = {
   plugins: [
     [require('../../lib'), {
       networks: ['qq', 'twitter', 'weibo', 'email', 'linkedin', 'pinterest'],
-      extendsNetworks,
+      email: 'ntnyq13@gmail.com',
       twitterUser: 'ntnyq',
       fallbackImage: '/hero.png',
+      extendsNetworks,
     }],
   ],
 
