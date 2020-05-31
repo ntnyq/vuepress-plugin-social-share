@@ -52,15 +52,15 @@
     "deepmerge": "^4.2.2"
   },
   "devDependencies": {
-    "@types/jest": "^25.2.2",
+    "@types/jest": "^25.2.3",
     "babel-eslint": "^10.0.3",
-    "eslint": "^7.0.0",
+    "eslint": "^7.1.0",
     "eslint-config-goy": "^0.2.0",
     "eslint-plugin-vue": "^6.2.2",
     "husky": "^4.2.3",
     "jest": "^26.0.1",
     "jest-serializer-vue": "^2.0.2",
-    "lint-staged": "^10.0.8",
+    "lint-staged": "^10.2.7",
     "vuepress": "^1.5.0"
   },
   "peerDependencies": {
