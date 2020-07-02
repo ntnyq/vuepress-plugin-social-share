@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.1](https://github.com/ntnyq/vuepress-plugin-social-share/compare/v0.3.0...v0.3.1) (2020-07-02)
+
+
+### Features
+
+* click outside to close global social share ([b2c7dbb](https://github.com/ntnyq/vuepress-plugin-social-share/commit/b2c7dbb7218c1d5f38ed64fb5a47f502f1112bff))
+
 ## [0.3.0](https://github.com/ntnyq/vuepress-plugin-social-share/compare/v0.2.1...v0.3.0) (2020-05-31)
 
 
