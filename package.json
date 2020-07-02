@@ -44,24 +44,22 @@
     }
   },
   "lint-staged": {
-    "*.{js,vue}": [
-      "eslint --fix"
-    ]
+    "*.{js,jsx,vue}": "eslint --fix"
   },
   "dependencies": {
     "deepmerge": "^4.2.2"
   },
   "devDependencies": {
-    "@types/jest": "^25.2.3",
+    "@types/jest": "^26.0.3",
     "babel-eslint": "^10.0.3",
-    "eslint": "^7.1.0",
-    "eslint-config-goy": "^0.2.0",
+    "eslint": "^7.3.1",
+    "eslint-config-goy": "^0.2.2",
     "eslint-plugin-vue": "^6.2.2",
     "husky": "^4.2.3",
-    "jest": "^26.0.1",
+    "jest": "^26.1.0",
     "jest-serializer-vue": "^2.0.2",
-    "lint-staged": "^10.2.7",
-    "vuepress": "^1.5.0"
+    "lint-staged": "^10.2.11",
+    "vuepress": "^1.5.2"
   },
   "peerDependencies": {
     "vuepress": "^1.0.3"
