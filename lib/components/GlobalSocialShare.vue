@@ -54,5 +54,24 @@ export default {
       isActive: false,
     }
   },
+
+  methods: {
+    handleClick (evt) {
+      const { target } = evt
+
+      if (!this.$el.contains) return
+      if (this.$el.contains(target)) return
+
+      this.isActive = false
+    },
+  },
+
+  mounted () {
+    document.addEventListener('click', this.handleClick)
+
+    this.$on('hook:beforeDestroy', () => {
+      document.removeEventListener('click', this.handleClick)
+    })
+  },
 }
 </script>
