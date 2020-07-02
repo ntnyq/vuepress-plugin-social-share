@@ -9,10 +9,6 @@
 
 :book: [Live Demo and Docs](https://sns.goyfe.com)
 
-## Status
-
-**WIP** :muscle:
-
 ## Install
 
 ```bash

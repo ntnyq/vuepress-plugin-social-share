@@ -111,7 +111,7 @@ Your email address.
 
 Your Twitter profile username.
 
-### weiboAppKey <badge type="error">Remove at v0.3.0</badge>
+### weiboAppKey <badge type="error">Removed since v0.3.0</badge>
 
 - **type:** `string`
 - **default** `undefined`
