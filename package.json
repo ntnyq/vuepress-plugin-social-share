@@ -1,6 +1,6 @@
 {
   "name": "vuepress-plugin-social-share",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Social sharing plugin for VuePress",
   "keywords": [
     "vuepress",
