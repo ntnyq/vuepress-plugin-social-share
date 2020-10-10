@@ -5,24 +5,22 @@
     role="option"
   >
     <button
-      @click="share"
-      :data-link="network.type=== 'popup'
-        ? `#share-${network.name}`
-        : shareUrl"
-      :data-action="network.type=== 'popup'
-        ? null
-        : network.action"
+      :data-link="
+        network.type === 'popup' ? `#share-${network.name}` : shareUrl
+      "
+      :data-action="network.type === 'popup' ? null : network.action"
       :title="network.name"
       class="social-share-btn"
       type="button"
       role="button"
+      @click="share"
     >
       <span
-        :style="{ color: isPlain ? false : network.color }"
-        v-html="network.icon"
         v-if="isSvgIcon"
+        :style="{ color: isPlain ? false : network.color }"
         class="social-share-icon-svg"
         focusable="false"
+        v-html="network.icon"
       />
 
       <span
@@ -39,6 +37,19 @@ import { isSVG } from '../utils'
 
 export default {
   name: 'SocialShareNetwork',
+
+  props: {
+    network: {
+      type: Object,
+      validator: network => network.sharer && network.icon,
+      required: true,
+    },
+
+    isPlain: {
+      type: Boolean,
+      default: false,
+    },
+  },
 
   computed: {
     isSvgIcon () {
@@ -76,21 +87,6 @@ export default {
     },
   },
 
-  props: {
-    network: {
-      type: Object,
-      validator (network) {
-        return network.sharer && network.icon
-      },
-      required: true,
-    },
-
-    isPlain: {
-      type: Boolean,
-      default: false,
-    },
-  },
-
   methods: {
     /**
      * Encode hashtags for the specified social network
@@ -117,7 +113,8 @@ export default {
 
       switch (type) {
         case 'popup':
-          this.$parent.openSharer && this.$parent.openSharer(this.shareUrl, { name, url })
+          this.$parent.openSharer &&
+            this.$parent.openSharer(this.shareUrl, { name, url })
           break
 
         case 'direct':
@@ -128,7 +125,7 @@ export default {
           break
       }
 
-      this.$root.$emit('social_share_open', { name, url })
+      this.$root.$emit('social-share-open', { name, url })
     },
   },
 }

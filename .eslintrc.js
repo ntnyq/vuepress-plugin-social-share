@@ -1,17 +1,11 @@
 module.exports = {
   root: true,
 
-  env: {
-    node: true,
-  },
+  extends: ['@ntnyq/vue'],
 
-  extends: [
-    'plugin:vue/strongly-recommended',
-    'goy',
-  ],
-
-  parserOptions: {
-    parser: 'babel-eslint',
+  rules: {
+    'vue/no-v-html': 'off',
+    'vue/one-component-per-file': 'off',
   },
 
   overrides: [
