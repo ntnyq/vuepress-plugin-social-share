@@ -28,7 +28,8 @@
     "email": "ntnyq13@gmail.com"
   },
   "files": [
-    "lib"
+    "lib",
+    "vetur"
   ],
   "main": "lib/index.js",
   "scripts": {
@@ -37,6 +38,9 @@
     "lint": "eslint --ext .js,.vue .",
     "lint:fix": "eslint --fix --ext .js,.vue .",
     "test": "jest"
+  },
+  "vetur": {
+    "tags": "vetur/social-share.json"
   },
   "husky": {
     "hooks": {
@@ -51,15 +55,15 @@
     "deepmerge": "^4.2.2"
   },
   "devDependencies": {
-    "@ntnyq/eslint-config-vue": "^0.1.0",
-    "@ntnyq/prettier-config": "^0.1.0",
-    "@types/jest": "^26.0.14",
-    "eslint": "^7.11.0",
+    "@ntnyq/eslint-config-vue": "^0.2.1",
+    "@ntnyq/prettier-config": "^0.2.0",
+    "@types/jest": "^26.0.15",
+    "eslint": "^7.14.0",
     "husky": "^4.3.0",
-    "jest": "^26.5.2",
+    "jest": "^26.6.3",
     "jest-serializer-vue": "^2.0.2",
-    "lint-staged": "^10.4.0",
-    "vuepress": "^1.6.0"
+    "lint-staged": "^10.5.1",
+    "vuepress": "^1.7.1"
   },
   "peerDependencies": {
     "vuepress": "^1.0.3"
