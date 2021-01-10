@@ -240,7 +240,7 @@ You can use placeholders below in the sharer, it will be replaced by [Share Meta
 - **required** `true`
 
 - `popup` Open a new browser window for sharing service, mostly you need this
-- `direct` Open the sharer in current window directly. For `mailto:`, `sms:` and other built-in protocal
+- `direct` Open the sharer in current window directly. For `mailto:`, `sms:` and other built-in protocol
 
 The plugin does nothing if you haven't config `type` properly.
 
