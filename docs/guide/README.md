@@ -52,7 +52,7 @@ const extendsNetworks = {
 module.exports = {
   plugins: [
     [
-      'social-share',
+      'social-share':
       {
         networks: ['twitter', 'facebook', 'reddit', 'telegram', 'email'],
         email: 'ntnyq13@gmail.com',
