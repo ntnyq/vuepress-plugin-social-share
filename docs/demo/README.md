@@ -18,7 +18,10 @@ Some demos.
 ## Plain mode
 
 ```vue
-<social-share :networks="['facebook', 'qq', 'twitter', 'line', 'reddit']" is-plain />
+<social-share
+    :networks="['facebook', 'qq', 'twitter', 'line', 'reddit']"
+    is-plain
+/>
 ```
 
 <social-share :networks="['facebook', 'qq', 'twitter', 'line', 'reddit']" is-plain />
@@ -26,7 +29,10 @@ Some demos.
 ## Custom hashtags
 
 ```vue
-<social-share :networks="['twitter', 'facebook']" :tags="['SocialShare', 'VuePress']" />
+<social-share
+    :networks="['twitter', 'facebook']"
+    :tags="['SocialShare', 'VuePress']"
+/>
 ```
 
 <social-share :networks="['twitter', 'facebook']" :tags="['SocialShare', 'VuePress']" />
@@ -47,18 +53,18 @@ Some demos.
 
 ```vue
 <social-share
-  :networks="[
-    'facebook',
-    'qq',
-    'twitter',
-    'line',
-    'reddit',
-    'skype',
-    'douban',
-    'whatsapp',
-    'telegram',
-    'weibo',
-  ]"
+    :networks="[
+        'facebook',
+        'qq',
+        'twitter',
+        'line',
+        'reddit',
+        'skype',
+        'douban',
+        'whatsapp',
+        'telegram',
+        'weibo',
+    ]"
 />
 ```
 
