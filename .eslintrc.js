@@ -8,6 +8,10 @@ module.exports = {
     'vue/one-component-per-file': 'off',
   },
 
+  parserOptions: {
+    requireConfigFile: false,
+  },
+
   overrides: [
     {
       files: [
