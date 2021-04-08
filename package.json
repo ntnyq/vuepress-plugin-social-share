@@ -41,11 +41,6 @@
   "vetur": {
     "tags": "vetur/social-share.json"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "prettier": "@ntnyq/prettier-config",
   "lint-staged": {
     "*.{js,jsx,vue}": "eslint --fix",
