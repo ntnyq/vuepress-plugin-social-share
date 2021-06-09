@@ -44,7 +44,7 @@ module.exports = {
     repo: 'ntnyq/vuepress-plugin-social-share',
     docsRepo: 'ntnyq/vuepress-plugin-social-share',
     docsDir: 'docs',
-    docsBranch: 'master',
+    docsBranch: 'main',
     search: false,
     editLinks: true,
     lastUpdated: true,
