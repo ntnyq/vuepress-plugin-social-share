@@ -10,8 +10,11 @@
     "linkedin",
     "vetur",
     "vuepress",
-    "weibo"
+    "weibo",
+    "pnpm",
+    "serializers"
   ],
+  "allowCompoundWords": true,
   "flagWords": [],
   "ignoreWords": [],
   "dictionaries": [],
