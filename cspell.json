@@ -1,0 +1,30 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "ntnyq",
+    "tsbuildinfo",
+    "vitepress",
+    "goyfe",
+    "customed",
+    "linkedin",
+    "vetur",
+    "vuepress",
+    "weibo"
+  ],
+  "flagWords": [],
+  "ignoreWords": [],
+  "dictionaries": [],
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/vscode-extension/**",
+    "**/.git/objects/**",
+    "**/*.tsbuildinfo",
+    "**/yarn.lock",
+    "**/pnpm-lock.yaml",
+    "**/package-lock.json",
+    "*.spec.js.snap",
+    "*.min.*",
+    "*.log*"
+  ]
+}

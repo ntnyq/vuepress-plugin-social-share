@@ -1,4 +1,5 @@
 {
+  "editor.formatOnSave": true,
   "eslint.validate": ["javascript", "vue", "vue-html"],
   "editor.codeActionsOnSave": {
     "source.eslint.fixAll": true
@@ -11,12 +12,5 @@
   "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
   "[javascript]": {
     "editor.formatOnSave": false
-  },
-  "cSpell.words": [
-    "customed",
-    "linkedin",
-    "vetur",
-    "vuepress",
-    "weibo"
-  ]
+  }
 }
