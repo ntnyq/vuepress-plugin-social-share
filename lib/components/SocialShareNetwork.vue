@@ -41,7 +41,11 @@ export default {
   props: {
     network: {
       type: Object,
-      validator: network => network.sharer && network.icon,
+      validator: network => {
+        if (!network.icon) return false
+        if ([`popup`].includes(network.type)) return Boolean(network.sharer)
+        return true
+      },
       required: true,
     },
 
@@ -57,7 +61,7 @@ export default {
     },
 
     shareUrl () {
-      let { name, sharer } = this.network
+      let { name, sharer = `` } = this.network
       const {
         url,
         title,
@@ -115,6 +119,10 @@ export default {
         case 'popup':
           this.$parent.openSharer &&
             this.$parent.openSharer(this.shareUrl, { name, url })
+          break
+
+        case `qrcode`:
+          this.$parent.showQRCode && this.$parent.showQRCode()
           break
 
         case 'direct':

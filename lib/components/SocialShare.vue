@@ -249,6 +249,42 @@ export default {
         }
       }, 500)
     },
+
+    /**
+     * Show QRCode modal
+     */
+    showQRCode () {
+      const body = document.body
+      const socialShareEl = document.querySelector(`#__VUEPRESS_SOCIAL_SHARE__`)
+
+      if (socialShareEl) {
+        socialShareEl.parent.removeChild(socialShareEl)
+      }
+      const socialShareOverlay = document.createElement('div')
+
+      socialShareOverlay.id = '__VUEPRESS_SOCIAL_SHARE__'
+      socialShareOverlay.classList.add(`social-share-overlay`)
+
+      import('qrcode/build/qrcode.min.js').then(QRCode => {
+        QRCode.toDataURL(this.url, {
+          errorCorrectionLevel: `H`,
+          width: 250,
+          scale: 1,
+          margin: 1.5,
+        })
+          .then(url => {
+            socialShareOverlay.innerHTML = `<img class="social-share-qrcode" src="${url}" />`
+
+            body.appendChild(socialShareOverlay)
+            socialShareOverlay.classList.add('show')
+
+            socialShareOverlay.addEventListener('click', () => {
+              socialShareOverlay.classList.remove('show')
+              body.removeChild(socialShareOverlay)
+            })
+          })
+      })
+    },
   },
 }
 </script>

@@ -31,7 +31,7 @@ module.exports = {
     [
       require('../../lib'),
       {
-        networks: ['qq', 'twitter', 'weibo', 'email', 'linkedin', 'pinterest'],
+        networks: ['qq', 'twitter', 'weibo', 'email', 'linkedin', 'pinterest', 'wechat'],
         email: 'ntnyq13@gmail.com',
         twitterUser: 'ntnyq',
         fallbackImage: '/hero.png',

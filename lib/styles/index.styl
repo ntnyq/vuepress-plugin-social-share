@@ -1,14 +1,14 @@
 $social-share-plain-color ?= $accentColor
 $social-share-trigger-color ?= lighten($textColor, 40%)
 $social-share-mobile ?= $MQMobile
-$prefix-class = '.social-share'
+$prefix-class = ".social-share"
 
 {$prefix-class}
   position relative
   box-sizing border-box
 
   &-list
-    list-style: none
+    list-style none
     padding 0
     margin 0
     line-height 1
@@ -16,10 +16,10 @@ $prefix-class = '.social-share'
   &-network
     position relative
     display inline-block
-    vertical-align: middle
+    vertical-align middle
 
   &-trigger
-    color: $social-share-trigger-color
+    color $social-share-trigger-color
 
   &-btn
     position relative
@@ -47,23 +47,23 @@ $prefix-class = '.social-share'
 
   &-icon-svg
     svg
-      width: 1em !important
-      height: 1em !important
-      fill: currentColor !important
-      vertical-align: -0.15em !important
-      overflow: hidden !important
+      width 1em !important
+      height 1em !important
+      fill currentColor !important
+      vertical-align -0.15em !important
+      overflow hidden !important
 
   &-icon-img
-    position: absolute
-    top: 50%
-    left: 50%
-    display: block
-    width: 1em
-    height: 1em
-    margin: -0.5em 0 0 -0.5em
-    background-repeat: no-repeat
-    background-position: center
-    background-size: contain
+    position absolute
+    top 50%
+    left 50%
+    display block
+    width 1em
+    height 1em
+    margin -0.5em 0 0 -0.5em
+    background-repeat no-repeat
+    background-position center
+    background-size contain
 
   &-global
     position fixed
@@ -80,7 +80,7 @@ $prefix-class = '.social-share'
 
     {$prefix-class}
       &-network
-        display: block
+        display block
 
       &-btn
         width 60px
@@ -88,7 +88,32 @@ $prefix-class = '.social-share'
         border-radius 5px
         font-size 36px
 
-@media screen and (max-width: $social-share-mobile)
+  &-overlay
+    position fixed
+    top 0
+    left 0
+    right 0
+    bottom 0
+    z-index 99999
+    display flex
+    justify-content center
+    align-items center
+    background-color rgba(0, 0, 0, 0.5)
+    transition all 0.3s ease-out
+    opacity 0
+
+    &.show
+      opacity 1
+
+  &-qrcode
+    display block
+    width 250px
+    height 250px
+    border-radius 4px
+    overflow hidden
+    box-shadow 0 0 4px rgba(0, 0, 0, 0.08)
+
+@media screen and (max-width $social-share-mobile)
   {$prefix-class}
     &-btn
       width 40px
