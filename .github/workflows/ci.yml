@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - uses: actions/setup-node@v2
-      - run: yarn install --frozen-lockfile --non-interactive
+      - run: yarn install
       - run: yarn lint
       - run: yarn test
       - run: yarn build

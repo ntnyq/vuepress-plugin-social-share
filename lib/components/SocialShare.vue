@@ -70,36 +70,6 @@ export default {
     },
   },
 
-  data () {
-    // Remove duplicated networks
-    const networks = [...new Set(this.networks)]
-    const userNetworks = Object.keys(this.networksData)
-      .map(name => ({ name, ...this.networksData[name] }))
-      .filter(network => networks.includes(network.name))
-      .sort(
-        (prev, next) =>
-          networks.indexOf(prev.name) - networks.indexOf(next.name),
-      )
-
-    return {
-      userNetworks,
-      popup: {
-        status: false,
-        resizable: false,
-        toolbar: false,
-        menubar: false,
-        scrollbars: false,
-        location: false,
-        directories: false,
-        width: 626,
-        height: 436,
-        top: 0,
-        left: 0,
-        interval: null,
-      },
-    }
-  },
-
   computed: {
     visible () {
       return this.networks.length && !this.$frontmatter.noSocialShare
@@ -179,35 +149,34 @@ export default {
     },
   },
 
-  /**
-   * Sets popup default dimensions.
-   */
-  mounted () {
-    if (!inBrowser) return false
+  data () {
+    // Remove duplicated networks
+    const networks = [...new Set(this.networks)]
+    const userNetworks = Object.keys(this.networksData)
+      .map(name => ({ name, ...this.networksData[name] }))
+      .filter(network => networks.includes(network.name))
+      .sort(
+        (prev, next) =>
+          networks.indexOf(prev.name) - networks.indexOf(next.name),
+      )
 
-    /**
-     * Center the popup on dual screens
-     * http://stackoverflow.com/questions/4068373/center-a-popup-window-on-screen/32261263
-     */
-    const docElem = $window.document.documentElement
-    const screen = $window.screen
-    const dualScreenLeft =
-      $window.screenLeft !== undefined ? $window.screenLeft : screen.left
-    const dualScreenTop =
-      $window.screenTop !== undefined ? $window.screenTop : screen.top
-    const width = $window.innerWidth
-      ? $window.innerWidth
-      : docElem.clientWidth
-        ? docElem.clientWidth
-        : screen.width
-    const height = $window.innerHeight
-      ? $window.innerHeight
-      : docElem.clientHeight
-        ? docElem.clientHeight
-        : screen.height
-
-    this.popup.left = width / 2 - this.popup.width / 2 + dualScreenLeft
-    this.popup.top = height / 2 - this.popup.height / 2 + dualScreenTop
+    return {
+      userNetworks,
+      popup: {
+        status: false,
+        resizable: false,
+        toolbar: false,
+        menubar: false,
+        scrollbars: false,
+        location: false,
+        directories: false,
+        width: 626,
+        height: 436,
+        top: 0,
+        left: 0,
+        interval: null,
+      },
+    }
   },
 
   methods: {
@@ -256,16 +225,16 @@ export default {
     showQRCode () {
       const body = document.body
       const socialShareEl = document.querySelector(`#__VUEPRESS_SOCIAL_SHARE__`)
-
-      if (socialShareEl) {
-        socialShareEl.parent.removeChild(socialShareEl)
-      }
       const socialShareOverlay = document.createElement('div')
 
       socialShareOverlay.id = '__VUEPRESS_SOCIAL_SHARE__'
       socialShareOverlay.classList.add(`social-share-overlay`)
 
-      import('qrcode/build/qrcode.min.js').then(QRCode => {
+      if (socialShareEl) {
+        socialShareEl.parent.removeChild(socialShareEl)
+      }
+
+      import('qrcode').then(QRCode => {
         QRCode.toDataURL(this.url, {
           errorCorrectionLevel: `H`,
           width: 250,
@@ -278,13 +247,45 @@ export default {
             body.appendChild(socialShareOverlay)
             socialShareOverlay.classList.add('show')
 
-            socialShareOverlay.addEventListener('click', () => {
+            socialShareOverlay.addEventListener('click', evt => {
               socialShareOverlay.classList.remove('show')
               body.removeChild(socialShareOverlay)
+              evt.stopPropagation()
             })
           })
       })
     },
+  },
+
+  /**
+   * Sets popup default dimensions.
+   */
+  mounted () {
+    if (!inBrowser) return false
+
+    /**
+     * Center the popup on dual screens
+     * http://stackoverflow.com/questions/4068373/center-a-popup-window-on-screen/32261263
+     */
+    const docElem = $window.document.documentElement
+    const screen = $window.screen
+    const dualScreenLeft =
+      $window.screenLeft !== undefined ? $window.screenLeft : screen.left
+    const dualScreenTop =
+      $window.screenTop !== undefined ? $window.screenTop : screen.top
+    const width = $window.innerWidth
+      ? $window.innerWidth
+      : docElem.clientWidth
+        ? docElem.clientWidth
+        : screen.width
+    const height = $window.innerHeight
+      ? $window.innerHeight
+      : docElem.clientHeight
+        ? docElem.clientHeight
+        : screen.height
+
+    this.popup.left = width / 2 - this.popup.width / 2 + dualScreenLeft
+    this.popup.top = height / 2 - this.popup.height / 2 + dualScreenTop
   },
 }
 </script>

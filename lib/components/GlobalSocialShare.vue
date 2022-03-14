@@ -8,10 +8,10 @@
       v-bind="$attrs"
     />
     <button
-      class="social-share-trigger social-share-btn"
+      @click="isActive = !isActive"
+      class="social-share-btn social-share-trigger"
       type="button"
       role="button"
-      @click="isActive = !isActive"
     >
       <span class="social-share-icon-svg">
         <svg
@@ -43,12 +43,6 @@ export default {
 
   inheritAttrs: false,
 
-  data () {
-    return {
-      isActive: false,
-    }
-  },
-
   computed: {
     visible () {
       return !(
@@ -57,12 +51,10 @@ export default {
     },
   },
 
-  mounted () {
-    document.addEventListener('click', this.handleClick)
-
-    this.$on('hook:beforeDestroy', () => {
-      document.removeEventListener('click', this.handleClick)
-    })
+  data () {
+    return {
+      isActive: false,
+    }
   },
 
   methods: {
@@ -74,6 +66,14 @@ export default {
 
       this.isActive = false
     },
+  },
+
+  mounted () {
+    document.addEventListener('click', this.handleClick)
+
+    this.$on('hook:beforeDestroy', () => {
+      document.removeEventListener('click', this.handleClick)
+    })
   },
 }
 </script>

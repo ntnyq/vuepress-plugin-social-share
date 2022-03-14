@@ -1,15 +1,13 @@
 module.exports = {
   root: true,
 
-  extends: ['@ntnyq/vue'],
+  extends: [`@ntnyq/vue`],
 
   rules: {
-    'vue/no-v-html': 'off',
-    'vue/one-component-per-file': 'off',
-  },
-
-  parserOptions: {
-    requireConfigFile: false,
+    'max-len': `off`,
+    'vue/no-v-html': `off`,
+    'vue/one-component-per-file': `off`,
+    'vue/require-name-property': `off`,
   },
 
   overrides: [

@@ -5,6 +5,7 @@
     role="option"
   >
     <button
+      @click="share"
       :data-link="
         network.type === 'popup' ? `#share-${network.name}` : shareUrl
       "
@@ -13,14 +14,13 @@
       class="social-share-btn"
       type="button"
       role="button"
-      @click="share"
     >
       <span
         v-if="isSvgIcon"
+        v-html="network.icon"
         :style="{ color: isPlain ? false : network.color }"
         class="social-share-icon-svg"
         focusable="false"
-        v-html="network.icon"
       />
 
       <span
@@ -36,8 +36,6 @@
 import { isSVG } from '../utils'
 
 export default {
-  name: 'SocialShareNetwork',
-
   props: {
     network: {
       type: Object,
@@ -46,6 +44,7 @@ export default {
         if ([`popup`].includes(network.type)) return Boolean(network.sharer)
         return true
       },
+
       required: true,
     },
 
