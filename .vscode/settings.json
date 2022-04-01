@@ -1,16 +1,1 @@
-{
-  "editor.formatOnSave": true,
-  "eslint.validate": ["javascript", "vue", "vue-html"],
-  "editor.codeActionsOnSave": {
-    "source.eslint.fixAll": true
-  },
-  "vetur.format.defaultFormatterOptions": {
-    "js-beautify-html": {
-      "wrap_attributes": "force-expand-multiline"
-    }
-  },
-  "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
-  "[javascript]": {
-    "editor.formatOnSave": false
-  }
-}
+{}
