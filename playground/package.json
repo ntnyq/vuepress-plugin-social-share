@@ -1,0 +1,12 @@
+{
+  "name": "playground",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vuepress dev docs --no-clear-screen --debug",
+    "build": "vuepress build docs"
+  },
+  "devDependencies": {
+    "vuepress-plugin-social-share": "workspace:*"
+  }
+}

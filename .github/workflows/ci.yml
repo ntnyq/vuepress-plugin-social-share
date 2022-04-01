@@ -10,16 +10,13 @@ on:
       - main
 
 jobs:
-  deploy:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
       - uses: actions/setup-node@v2
-      - run: yarn install
-      - run: yarn lint
-      - run: yarn test
-      - run: yarn build
-      - uses: peaceiris/actions-gh-pages@v3
+      - uses: pnpm/action-setup@v2.0.1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./site
+          version: latest
+          run_install: true
+      - run: pnpm run lint
