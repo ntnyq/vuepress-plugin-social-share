@@ -2,7 +2,7 @@
  * @file types
  */
 
-export type SocialShareType = `popup` | `qrcode`
+export type SocialShareType = `popup` | `qrcode` | `direct`
 
 export interface SocialShareNetwork {
   sharer?: string
@@ -11,6 +11,8 @@ export interface SocialShareNetwork {
   icon?: string
   action?: string
 }
+
+export type SocialShareNetworkItem = SocialShareNetwork & { name: string }
 
 export interface SocialShareNetworkData {
   [key: string]: SocialShareNetwork

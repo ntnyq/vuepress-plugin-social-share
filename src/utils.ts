@@ -5,12 +5,7 @@
 import deepmerge from 'deepmerge'
 import type { SocialSharePluginOptions } from './types'
 import { BASE_NETWORKS } from './networks'
-import {
-  RE_EMAIL,
-  RE_EXTERNAL_LINK,
-  RE_SVG_SOURCE,
-  ICON_EMAIL,
-} from './constants'
+import { RE_EMAIL, RE_EXTERNAL_LINK, RE_SVG_SOURCE } from './constants'
 
 /**
  * Check if given val is valid email address
@@ -48,4 +43,17 @@ export function getMetaContentByName(name: string) {
   return tag.getAttribute(`content`) || ``
 }
 
-export const createNetworksData = (options: SocialSharePluginOptions = {}) => {}
+export const createNetworksData = (options: SocialSharePluginOptions = {}) => {
+  const { email = ``, extendsNetworks = {} } = options
+
+  if (isEmail(email)) {
+    BASE_NETWORKS.email.sharer = BASE_NETWORKS.email.sharer!.replace(
+      `@email`,
+      email
+    )
+  } else {
+    delete BASE_NETWORKS.email
+  }
+
+  return deepmerge(BASE_NETWORKS, extendsNetworks)
+}

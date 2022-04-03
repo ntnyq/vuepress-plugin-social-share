@@ -1,13 +1,15 @@
 import Vue, { ComponentOptions, VNode } from 'vue'
+import SocialShare from './SocialShare'
+import { SVG_ICON_SHARE, SVG_ICON_CLOSE } from '../constants'
 
 interface GlobalSocialShareComponent extends Vue {
   isActive: boolean
   visible: boolean
-  // FIXME: any type
-  handleClick: (this: any, evt: MouseEvent) => void
+  handleClick: (evt: MouseEvent) => void
+  toggle: () => void
 }
 
-const GlobalSocialShare: ComponentOptions<Vue> = {
+const GlobalSocialShare: ComponentOptions<GlobalSocialShareComponent> = {
   name: `GlobalSocialShare`,
 
   inheritAttrs: false,
@@ -27,16 +29,54 @@ const GlobalSocialShare: ComponentOptions<Vue> = {
   },
 
   methods: {
-    handleClick(this: any, evt: MouseEvent): void {
+    handleClick(this: GlobalSocialShareComponent, evt: MouseEvent): void {
       const { target } = evt
       if (!this.$el.contains) return
       if (this.$el.contains(target as Node)) return
       this.isActive = false
     },
+
+    toggle(this: GlobalSocialShareComponent, evt: MouseEvent): void {
+      this.isActive = !this.isActive
+      evt.stopPropagation()
+    },
   },
 
   render(this: GlobalSocialShareComponent, h) {
-    return h(`div`, { attrs: { class: `social-share-global` } }, [])
+    if (!this.visible) return null as unknown as VNode
+
+    const renderButtonIcon = () =>
+      h(`span`, {
+        class: `social-share-icon-svg`,
+        domProps: {
+          innerHTML: this.isActive ? SVG_ICON_CLOSE : SVG_ICON_SHARE,
+        },
+      })
+    const renderGlobalButton = () =>
+      h(
+        `button`,
+        {
+          attrs: {
+            class: `social-share-btn social-share-trigger`,
+            type: `button`,
+            role: `button`,
+          },
+          on: {
+            click: this.toggle,
+          },
+        },
+        [renderButtonIcon()]
+      )
+    const renderSocialShare = () =>
+      h(SocialShare, {
+        style: { display: this.isActive ? `block` : `none` },
+        props: { ...this.$attrs },
+      })
+
+    return h(`div`, { attrs: { class: `social-share-global` } }, [
+      renderSocialShare(),
+      renderGlobalButton(),
+    ])
   },
 
   mounted(this: GlobalSocialShareComponent) {
