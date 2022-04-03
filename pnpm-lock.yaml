@@ -37,7 +37,7 @@ importers:
       vuepress: 1.9.7
       vuepress-types: 0.9.4_vuepress@1.9.7
 
-  playground:
+  docs:
     specifiers:
       vuepress-plugin-social-share: workspace:*
     devDependencies:

@@ -90,10 +90,11 @@ typings/
 # OSX
 .DS_Store
 
-# Site files
-/site
 # Output
 /lib
+
+# Docs
+/docs-dist
 
 /tests/dist
 /tests/.temp

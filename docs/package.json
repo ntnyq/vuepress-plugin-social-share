@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "vuepress dev docs --no-clear-screen --debug",
-    "build": "vuepress build docs"
+    "dev": "vuepress dev . --no-clear-screen --debug",
+    "build": "vuepress build . --dest ../docs-dist"
   },
   "devDependencies": {
     "vuepress-plugin-social-share": "workspace:*"

@@ -12,6 +12,7 @@
     "serializers",
     "styl",
     "tsbuildinfo",
+    "vetur",
     "vuepress",
     "weibo"
   ],
