@@ -18,7 +18,7 @@ interface SocialShareComponent extends Vue {
     height: number
     top: number
     left: number
-    interval: NodeJS.Timer
+    interval: number | undefined
   }
 
   // props
@@ -208,7 +208,7 @@ const SocialShare: ComponentOptions<SocialShareComponent> = {
       popupWindow = window.open(shareUrl, 'sharer', shareParams.join(','))
       popupWindow?.focus?.()
       // Create an interval to detect popup closing event
-      this.popup.interval = setInterval(() => {
+      this.popup.interval = window.setInterval(() => {
         if (popupWindow && popupWindow.closed) {
           clearInterval(this.popup.interval)
           popupWindow = null

@@ -97,16 +97,18 @@ Currently, networks below are built-in supported:
 -   **type:** `string`
 -   **default** `undefined`
 
+Your email address.
+
 ::: warning Note
 There is no single, standard way in which browsers/email clients handle mailto links (e.g. subject and body fields may be discarded without a warning). Also there is a risk that popup and ad blockers, anti-virus software etc. may silently block forced opening of mailto links.
 
 Mailto only launches the MUA(Mail User Agent) which is configured as the default in the system-settings.
+:::
+
+**Reference**:
 
 -   [Automatically open default email client and pre-populate content](https://stackoverflow.com/questions/13231125/automatically-open-default-email-client-and-pre-populate-content)
 -   [Open email client through javascript](https://stackoverflow.com/questions/22941457/open-email-client-through-javascript)
-    :::
-
-Your email address.
 
 ### twitterUser
 
