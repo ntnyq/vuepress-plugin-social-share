@@ -1,5 +1,5 @@
-import Vue, { ComponentOptions, VNode } from 'vue'
-import type { SocialShareNetworkItem } from '../types'
+import Vue, { ComponentOptions } from 'vue'
+import { type SocialShareNetworkItem } from '../types'
 import { isSVG } from '../utils'
 
 interface SocialShareNetworkComponent extends Vue {
@@ -74,7 +74,7 @@ const SocialShareNetwork: ComponentOptions<SocialShareNetworkComponent> = {
      */
     generateHashTags(
       this: SocialShareNetworkComponent,
-      hashtags: string = ``
+      hashtags: string = ``,
     ): string {
       const { name } = this.network
       if ([`facebook`].includes(name) && hashtags.length) {
@@ -88,15 +88,13 @@ const SocialShareNetwork: ComponentOptions<SocialShareNetworkComponent> = {
      */
     share(this: SocialShareNetworkComponent) {
       const { name, type } = this.network
-      const { url } = this.$parent as any
+      const parent = this.$parent as any
       switch (type) {
         case `popup`:
-          ;(this.$parent as any).openSharer &&
-            (this.$parent as any).openSharer(this.shareUrl, { name, url })
+          parent.openSharer?.(this.shareUrl, { name, url: parent.url })
           break
         case `qrcode`:
-          ;(this.$parent as any).showQRCode &&
-            (this.$parent as any).showQRCode()
+          parent?.showQRCode()
           break
         case `direct`:
           window.open(this.shareUrl, `_self`)
@@ -104,7 +102,7 @@ const SocialShareNetwork: ComponentOptions<SocialShareNetworkComponent> = {
         default:
           break
       }
-      this.$root.$emit('social-share-open', { name, url })
+      this.$root.$emit(`social-share-open`, { name, url: parent.url })
     },
   },
 
@@ -141,12 +139,12 @@ const SocialShareNetwork: ComponentOptions<SocialShareNetworkComponent> = {
           },
           on: { click: this.share },
         },
-        [renderShareIcon(network)]
+        [renderShareIcon(network)],
       )
     return h(
       `li`,
       { attrs: { class: `social-share-network`, role: `option` } },
-      [renderShareButton(this.network)]
+      [renderShareButton(this.network)],
     )
   },
 }

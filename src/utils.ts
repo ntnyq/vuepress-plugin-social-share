@@ -3,7 +3,7 @@
  */
 
 import deepmerge from 'deepmerge'
-import type { SocialSharePluginOptions } from './types'
+import { type SocialSharePluginOptions } from './types'
 import { BASE_NETWORKS } from './networks'
 import { RE_EMAIL, RE_EXTERNAL_LINK, RE_SVG_SOURCE } from './constants'
 
@@ -49,7 +49,7 @@ export const createNetworksData = (options: SocialSharePluginOptions = {}) => {
   if (isEmail(email)) {
     BASE_NETWORKS.email.sharer = BASE_NETWORKS.email.sharer!.replace(
       `@email`,
-      email
+      email,
     )
   } else {
     delete BASE_NETWORKS.email

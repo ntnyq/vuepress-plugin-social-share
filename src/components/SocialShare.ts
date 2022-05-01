@@ -1,7 +1,17 @@
 import Vue, { ComponentOptions, VNode } from 'vue'
-import { SocialShareNetworkItem, SocialShareNetworkData } from '../types'
+import type {
+  MayBe,
+  QRCodeOptions,
+  SocialShareNetworkItem,
+  SocialShareNetworkData,
+} from '../types'
 import { inBrowser, isExternalUrl, getMetaContentByName } from '../utils'
 import SocialShareNetwork from './SocialShareNetwork'
+
+interface SharerOpenOptions {
+  name: string
+  url: string
+}
 
 interface SocialShareComponent extends Vue {
   // data
@@ -28,6 +38,7 @@ interface SocialShareComponent extends Vue {
   fallbackImage: string
   autoQuote: boolean
   isPlain: boolean
+  qrcodeOptions: QRCodeOptions
   networksData: SocialShareNetworkData
 
   // computed
@@ -38,6 +49,7 @@ interface SocialShareComponent extends Vue {
   media: string
   quote: string
   hashtags: string
+  qrcodeRenderOptions: QRCodeOptions
 }
 
 const SocialShare: ComponentOptions<SocialShareComponent> = {
@@ -70,6 +82,11 @@ const SocialShare: ComponentOptions<SocialShareComponent> = {
     isPlain: {
       type: Boolean,
       default: false,
+    },
+
+    qrcodeOptions: {
+      type: Object,
+      default: () => ({}),
     },
 
     networksData: {
@@ -148,6 +165,13 @@ const SocialShare: ComponentOptions<SocialShareComponent> = {
       }
       return ''
     },
+
+    qrcodeRenderOptions(this: SocialShareComponent) {
+      return Object.assign(
+        { errorCorrectionLevel: `H`, width: 250, scale: 1, margin: 1.5 },
+        this.qrcodeOptions,
+      )
+    },
   },
 
   data(this: SocialShareComponent) {
@@ -158,7 +182,7 @@ const SocialShare: ComponentOptions<SocialShareComponent> = {
       .filter(network => networks.includes(network.name))
       .sort(
         (prev, next) =>
-          networks.indexOf(prev.name) - networks.indexOf(next.name)
+          networks.indexOf(prev.name) - networks.indexOf(next.name),
       )
     return {
       userNetworks,
@@ -183,13 +207,12 @@ const SocialShare: ComponentOptions<SocialShareComponent> = {
     /**
      * Opens sharer popup
      *
-     * @param {string} shareUrl target sharer url
-     * @param {string} name sharer name
-     * @param {string} url current page url
+     * @param shareUrl target sharer url
+     * @param options sharer Options `name` and `url`
      */
-    openSharer(shareUrl, { name, url }) {
+    openSharer(shareUrl: string, options: SharerOpenOptions) {
       // If a popup window already exist it will be replaced, trigger a close event
-      let popupWindow: Window | null = null
+      let popupWindow: MayBe<Window> = null
       const shareParams = [
         `status=${this.popup.status ? 'yes' : 'no'}`,
         `height=${this.popup.height}`,
@@ -205,21 +228,21 @@ const SocialShare: ComponentOptions<SocialShareComponent> = {
         `location=${this.popup.location ? 'yes' : 'no'}`,
         `directories=${this.popup.directories ? 'yes' : 'no'}`,
       ]
-      popupWindow = window.open(shareUrl, 'sharer', shareParams.join(','))
+      popupWindow = window.open(shareUrl, `sharer`, shareParams.join(','))
       popupWindow?.focus?.()
       // Create an interval to detect popup closing event
       this.popup.interval = window.setInterval(() => {
         if (popupWindow && popupWindow.closed) {
           clearInterval(this.popup.interval)
           popupWindow = null
-          this.$root.$emit('social-share-close', { name, url })
+          this.$root.$emit(`social-share-close`, options)
         }
       }, 500)
     },
     /**
      * Show QRCode modal
      */
-    showQRCode() {
+    async showQRCode() {
       const body = document.body
       const socialShareEl = document.querySelector(`#__VUEPRESS_SOCIAL_SHARE__`)
       const socialShareOverlay = document.createElement(`div`)
@@ -228,23 +251,20 @@ const SocialShare: ComponentOptions<SocialShareComponent> = {
       if (socialShareEl && socialShareEl.parentNode) {
         socialShareEl.parentNode.removeChild(socialShareEl)
       }
-      // import('qrcode').then(QRCode => {
-      //   QRCode.toDataURL(this.url, {
-      //     errorCorrectionLevel: `H`,
-      //     width: 250,
-      //     scale: 1,
-      //     margin: 1.5,
-      //   }).then(url => {
-      //     socialShareOverlay.innerHTML = `<img class="social-share-qrcode" src="${url}" />`
-      //     body.appendChild(socialShareOverlay)
-      //     socialShareOverlay.classList.add('show')
-      //     socialShareOverlay.addEventListener('click', evt => {
-      //       socialShareOverlay.classList.remove('show')
-      //       body.removeChild(socialShareOverlay)
-      //       evt.stopPropagation()
-      //     })
-      //   })
-      // })
+      try {
+        const QRCode = await import('qrcode')
+        const url = await QRCode.toDataURL(this.url, this.qrcodeRenderOptions)
+        socialShareOverlay.innerHTML = `<img class="social-share-qrcode" src="${url}" />`
+        body.appendChild(socialShareOverlay)
+        socialShareOverlay.classList.add(`show`)
+        socialShareOverlay.addEventListener(`click`, evt => {
+          socialShareOverlay.classList.remove(`show`)
+          body.removeChild(socialShareOverlay)
+          evt.stopPropagation()
+        })
+      } catch (err) {
+        console.log(err)
+      }
     },
   },
 
@@ -252,14 +272,14 @@ const SocialShare: ComponentOptions<SocialShareComponent> = {
     if (!this.visible) return null as unknown as VNode
 
     const renderSocialNetworkList = (
-      networks: SocialShareNetworkItem[]
+      networks: SocialShareNetworkItem[],
     ): VNode =>
       h(
         `ul`,
         { attrs: { class: `social-share-list`, role: `listbox` } },
         networks.map(network =>
-          h(SocialShareNetwork, { props: { network, isPlain: this.isPlain } })
-        )
+          h(SocialShareNetwork, { props: { network, isPlain: this.isPlain } }),
+        ),
       )
 
     return h(`div`, { attrs: { class: `social-share` } }, [
@@ -274,20 +294,20 @@ const SocialShare: ComponentOptions<SocialShareComponent> = {
      * Center the popup on dual screens
      * http://stackoverflow.com/questions/4068373/center-a-popup-window-on-screen/32261263
      */
-    const docElem = document.documentElement
+    const rootEl = document.documentElement
     const dualScreenLeft =
       window.screenLeft !== undefined ? window.screenLeft : window.screenX
     const dualScreenTop =
       window.screenTop !== undefined ? window.screenTop : window.screenY
     const width = window.innerWidth
       ? window.innerWidth
-      : docElem.clientWidth
-      ? docElem.clientWidth
+      : rootEl.clientWidth
+      ? rootEl.clientWidth
       : screen.width
     const height = window.innerHeight
       ? window.innerHeight
-      : docElem.clientHeight
-      ? docElem.clientHeight
+      : rootEl.clientHeight
+      ? rootEl.clientHeight
       : screen.height
     this.popup.left = width / 2 - this.popup.width / 2 + dualScreenLeft
     this.popup.top = height / 2 - this.popup.height / 2 + dualScreenTop

@@ -18,6 +18,7 @@ const enhanceApp: EnhanceApp = ({ Vue }) => {
     autoQuote,
     isPlain,
     networksData,
+    qrcodeOptions,
   } = socialShareOptions as SocialSharePluginOptionsWithDefaults
 
   Vue.component(`SocialShare`, {
@@ -49,6 +50,7 @@ const enhanceApp: EnhanceApp = ({ Vue }) => {
             fallbackImage,
             autoQuote,
             isPlain: props.isPlain || isPlain,
+            qrcodeOptions,
             networksData,
           },
         })

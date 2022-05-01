@@ -1,7 +1,7 @@
 import { resolve } from 'path'
-import type { Plugin } from 'vuepress-types'
+import { type Plugin } from 'vuepress-types'
 import { createNetworksData } from './utils'
-import type { SocialSharePluginOptions } from './types'
+import { type SocialSharePluginOptions } from './types'
 
 const SocialSharePlugin: Plugin<SocialSharePluginOptions> = (options = {}) => {
   const networksData = createNetworksData(options)

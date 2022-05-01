@@ -32,6 +32,9 @@ module.exports = {
         email: `ntnyq13@gmail.com`,
         twitterUser: `ntnyq`,
         fallbackImage: `/hero.png`,
+        qrcodeOptions: {
+          width: 240,
+        },
         extendsNetworks,
       },
     ],
