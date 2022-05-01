@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/ntnyq/vuepress-plugin-social-share/compare/v1.1.0...v1.2.0) (2022-05-01)
+
+### Features
+
+-   add sharer wechat ([652fc6f](https://github.com/ntnyq/vuepress-plugin-social-share/commit/652fc6fb3950e141009a536a14bf78241b13139b))
+-   qrcode options ([0368b03](https://github.com/ntnyq/vuepress-plugin-social-share/commit/0368b033561b3d81161250e662dbf92fb10fd0ad))
+-   remove vetur ([6dcd88c](https://github.com/ntnyq/vuepress-plugin-social-share/commit/6dcd88cfde3da459431a56204a1cb39669f098bc))
+
 ## [1.1.0](https://github.com/ntnyq/vuepress-plugin-social-share/compare/v1.0.0...v1.1.0) (2021-10-11)
 
 ### Features
