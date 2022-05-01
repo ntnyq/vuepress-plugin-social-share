@@ -64,6 +64,9 @@ module.exports = {
                 fallbackImage: '/social-share.png',
                 autoQuote: true,
                 isPlain: true,
+                qrcodeOptions: {
+                    width: 240,
+                },
                 extendsNetworks,
             },
         ],
@@ -91,6 +94,7 @@ Currently, networks below are built-in supported:
 -   qq <social-share class="list-demo-sns" :networks="['qq']"/>
 -   douban <social-share class="list-demo-sns" :networks="['douban']"/>
 -   whatsapp <social-share class="list-demo-sns" :networks="['whatsapp']"/>
+-   wechat <social-share class="list-demo-sns" :networks="['wechat']">
 
 ### email <badge>v0.3.0+</badge>
 
@@ -175,6 +179,15 @@ You can set `isPlain` to `true` if you don't like that all share icons have diff
 
 All share icon colors will be set as the [\$accentColor](/guide/#custom-style) by default.
 
+### qrcodeOptions
+
+-   **type:** `object`
+-   **default**: `{ errorCorrectionLevel: 'H', width: 250, scale: 1, margin: 1.5 }`
+
+We use [qrcode](https://github.com/soldair/node-qrcode) to generate the qrcode image.
+
+See it's [options](https://github.com/soldair/node-qrcode#qr-code-options) for more information.
+
 ### extendsNetworks
 
 -   **type:** `object`
@@ -251,6 +264,7 @@ You can use placeholders below in the sharer, it will be replaced by [Share Meta
 
 -   `popup` Open a new browser window for sharing service, mostly you need this
 -   `direct` Open the sharer in current window directly. For `mailto:`, `sms:` and other built-in protocol
+-   `qrcode` Open a model to show the qrcode of current page
 
 The plugin does nothing if you haven't config `type` properly.
 
