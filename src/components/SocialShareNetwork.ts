@@ -94,7 +94,7 @@ const SocialShareNetwork: ComponentOptions<SocialShareNetworkComponent> = {
           parent.openSharer?.(this.shareUrl, { name, url: parent.url })
           break
         case `qrcode`:
-          parent?.showQRCode()
+          parent.showQRCode?.()
           break
         case `direct`:
           window.open(this.shareUrl, `_self`)

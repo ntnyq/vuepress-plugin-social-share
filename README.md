@@ -9,6 +9,12 @@
 
 :book: [Live Demo and Docs](https://sns.goyfe.com)
 
+## ⚠️ Note
+
+Looking for VuePress v2 support?
+
+Please checkout branch [next](https://github.com/ntnyq/vuepress-plugin-social-share/tree/next) for detail.
+
 ## Install
 
 ```bash

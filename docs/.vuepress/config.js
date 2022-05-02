@@ -60,7 +60,7 @@ module.exports = {
           { text: `Demo`, link: `/demo/` },
           {
             text: `Changelog`,
-            link: `https://github.com/ntnyq/vuepress-plugin-social-share/blob/master/CHANGELOG.md`,
+            link: `https://github.com/ntnyq/vuepress-plugin-social-share/blob/main/CHANGELOG.md`,
           },
         ],
         sidebar: [`/guide/`],

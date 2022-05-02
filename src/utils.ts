@@ -28,7 +28,7 @@ export const isExternalUrl = (url: string) => RE_EXTERNAL_LINK.test(url)
  */
 export const isSVG = (source: string) => RE_SVG_SOURCE.test(source)
 
-export const inBrowser = typeof window !== 'undefined'
+export const inBrowser = typeof window !== `undefined`
 
 /**
  * Return meta tag's content in browser by name
@@ -37,9 +37,9 @@ export const inBrowser = typeof window !== 'undefined'
  * @returns meta tag's content if exists, or `''`
  */
 export function getMetaContentByName(name: string) {
-  if (!inBrowser) return ''
+  if (!inBrowser) return ``
   const tag = document.getElementsByName(name)[0]
-  if (!tag) return ''
+  if (!tag) return ``
   return tag.getAttribute(`content`) || ``
 }
 
