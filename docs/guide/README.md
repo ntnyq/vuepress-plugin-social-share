@@ -9,9 +9,9 @@ sidebarDepth: 3
 ## Install
 
 ```bash
-$ npm install vuepress-plugin-social-share -D
+$ npm install vuepress-plugin-social-share@next -D
 # or
-$ yarn add vuepress-plugin-social-share -D
+$ yarn add vuepress-plugin-social-share@next -D
 ```
 
 ## Usage
