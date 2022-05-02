@@ -19,12 +19,25 @@ $ yarn add vuepress-plugin-social-share -D
 
 ## Usage
 
-Add config to `.vuepress/config.js`:
+For `.vuepress/config.js`:
 
 ```js
+const { socialSharePlugin } = require('vuepress-plugin-social-share')
+
 module.exports = {
-    plugins: ['social-share'],
+    plugins: [socialSharePlugin()],
 }
+```
+
+For `.vuepress/config.ts`:
+
+```ts
+import { defineUserConfig } from '@vuepress/cli'
+import { socialSharePlugin } from 'vuepress-plugin-social-share'
+
+export default defineUserConfig({
+    plugins: [socialSharePlugin()],
+})
 ```
 
 :mag: [Custom options detail](https://sns.goyfe.com/guide)

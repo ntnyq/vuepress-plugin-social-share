@@ -1,8 +1,11 @@
 import { defineUserConfig } from '@vuepress/cli'
 import { defaultTheme } from '@vuepress/theme-default'
-import { socialSharePlugin } from 'vuepress-plugin-social-share'
+import {
+  socialSharePlugin,
+  type SocialShareNetworkData,
+} from 'vuepress-plugin-social-share'
 
-const extendsNetworks = {
+const extendsNetworks: SocialShareNetworkData = {
   pinterest: {
     sharer: `https://pinterest.com/pin/create/button/?url=@url&media=@media&description=@title`,
     type: `popup`,
@@ -60,6 +63,7 @@ export default defineUserConfig({
       twitterUser: `ntnyq`,
       email: `ntnyq13@gmail.com`,
       fallbackImage: `/hero.png`,
+      extendsNetworks,
     }),
   ],
 })
