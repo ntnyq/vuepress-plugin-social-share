@@ -94,7 +94,7 @@ Currently, networks below are built-in supported:
 -   qq <social-share class="list-demo-sns" :networks="['qq']"/>
 -   douban <social-share class="list-demo-sns" :networks="['douban']"/>
 -   whatsapp <social-share class="list-demo-sns" :networks="['whatsapp']"/>
--   wechat <social-share class="list-demo-sns" :networks="['wechat']">
+-   wechat <social-share class="list-demo-sns" :networks="['wechat']" />
 
 ### email <badge>v0.3.0+</badge>
 
@@ -121,7 +121,7 @@ Mailto only launches the MUA(Mail User Agent) which is configured as the default
 
 Your Twitter profile username.
 
-### weiboAppKey <badge type="error">Removed since v0.3.0</badge>
+### weiboAppKey <badge type="danger">Removed since v0.3.0</badge>
 
 -   **type:** `string`
 -   **default** `undefined`

@@ -1,7 +1,3 @@
-/**
- * @file Networks
- */
-
 import { type SocialShareNetworkData } from './types'
 
 export const BASE_NETWORKS: SocialShareNetworkData = {

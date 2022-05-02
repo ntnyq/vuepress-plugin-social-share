@@ -1,3 +1,7 @@
+import { defineUserConfig } from '@vuepress/cli'
+import { defaultTheme } from '@vuepress/theme-default'
+import { socialSharePlugin } from 'vuepress-plugin-social-share'
+
 const extendsNetworks = {
   pinterest: {
     sharer: `https://pinterest.com/pin/create/button/?url=@url&media=@media&description=@title`,
@@ -12,34 +16,12 @@ const extendsNetworks = {
   },
 }
 
-module.exports = {
+export default defineUserConfig({
   title: `vuepress-plugin-social-share`,
+
   description: `Social sharing plugin for VuePress`,
-  dest: `site`,
-  plugins: [
-    [
-      `social-share`,
-      {
-        networks: [
-          `qq`,
-          `twitter`,
-          `weibo`,
-          `email`,
-          `linkedin`,
-          `pinterest`,
-          `wechat`,
-        ],
-        email: `ntnyq13@gmail.com`,
-        twitterUser: `ntnyq`,
-        fallbackImage: `/hero.png`,
-        qrcodeOptions: {
-          width: 240,
-        },
-        extendsNetworks,
-      },
-    ],
-  ],
-  themeConfig: {
+
+  theme: defaultTheme({
     repo: `ntnyq/vuepress-plugin-social-share`,
     docsRepo: `ntnyq/vuepress-plugin-social-share`,
     docsDir: `docs`,
@@ -48,23 +30,36 @@ module.exports = {
     editLinks: true,
     lastUpdated: true,
     displayAllHeaders: true,
-    locales: {
-      '/': {
-        label: `English`,
-        selectText: `Languages`,
-        editLinkText: `Edit this page on GitHub`,
-        lastUpdated: `Last Updated`,
-        nav: [
-          { text: `Home`, link: `/` },
-          { text: `Guide`, link: `/guide/` },
-          { text: `Demo`, link: `/demo/` },
-          {
-            text: `Changelog`,
-            link: `https://github.com/ntnyq/vuepress-plugin-social-share/blob/master/CHANGELOG.md`,
-          },
-        ],
-        sidebar: [`/guide/`],
+    editLinkText: `Edit this page on GitHub`,
+    lastUpdatedText: `Last Updated at`,
+
+    navbar: [
+      { text: `Home`, link: `/` },
+      { text: `Guide`, link: `/guide/` },
+      { text: `Demo`, link: `/demo/` },
+      {
+        text: `Changelog`,
+        link: `https://github.com/ntnyq/vuepress-plugin-social-share/blob/main/CHANGELOG.md`,
       },
-    },
-  },
-}
+    ],
+
+    sidebar: [`/guide/`],
+  }),
+
+  plugins: [
+    socialSharePlugin({
+      networks: [
+        `qq`,
+        `twitter`,
+        `weibo`,
+        `email`,
+        `linkedin`,
+        `pinterest`,
+        `wechat`,
+      ],
+      twitterUser: `ntnyq`,
+      email: `ntnyq13@gmail.com`,
+      fallbackImage: `/hero.png`,
+    }),
+  ],
+})

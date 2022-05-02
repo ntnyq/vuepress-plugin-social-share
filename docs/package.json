@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "vuepress dev . --no-clear-screen --debug",
+    "dev": "vuepress dev .",
     "build": "vuepress build . --dest ../docs-dist"
   },
   "devDependencies": {

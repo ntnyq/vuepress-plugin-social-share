@@ -1,6 +1,3 @@
-/**
- * @file types
- */
 import { type QRCodeToDataURLOptions } from 'qrcode'
 
 export type MayBe<T> = T | null | undefined
@@ -9,9 +6,9 @@ export type SocialShareType = `popup` | `qrcode` | `direct`
 
 export interface SocialShareNetwork {
   sharer?: string
-  type?: SocialShareType
+  icon: string
+  type: SocialShareType
   color?: string
-  icon?: string
   action?: string
 }
 
@@ -30,7 +27,15 @@ export interface SocialSharePluginOptions {
   fallbackImage?: string
   isPlain?: boolean
   autoQuote?: boolean
-  qrcodeOptions?: QRCodeToDataURLOptions
+  componentName?: string
   noGlobalSocialShare?: boolean
+  qrcodeOptions?: QRCodeToDataURLOptions
   extendsNetworks?: Record<string, SocialShareNetwork>
 }
+
+export type SocialSharePluginOptionsWithDefaults = Omit<
+  SocialSharePluginOptions & {
+    networksData: SocialShareNetworkData
+  },
+  `email`
+>
