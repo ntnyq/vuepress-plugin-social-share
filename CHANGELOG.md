@@ -1,3 +1,9 @@
+# [2.0.0-beta.3](https://github.com/ntnyq/vuepress-plugin-social-share/compare/v2.0.0-beta.2...v2.0.0-beta.3) (2022-05-05)
+
+### Features
+
+-   dark mode ([a6a3a2a](https://github.com/ntnyq/vuepress-plugin-social-share/commit/a6a3a2a70d77f4558281a5629cc41edf5cc8618b))
+
 # [2.0.0-beta.2](https://github.com/ntnyq/vuepress-plugin-social-share/compare/v1.2.0...v2.0.0-beta.2) (2022-05-05)
 
 ### Bug Fixes
