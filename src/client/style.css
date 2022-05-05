@@ -1,6 +1,7 @@
 :root {
-  --social-share-trigger-color: var(--c-text-lightest);
-  --social-share-plain-color: var(--c-brand);
+  --c-social-share-trigger: var(--c-text-lightest);
+  --c-social-share-plain: var(--c-brand);
+  --c-bg-global-social-share: var(--c-bg);
 }
 
 .social-share {
@@ -78,8 +79,8 @@
   right: 0;
   bottom: 50%;
   z-index: 99999;
-  background-color: #fff;
-  border: 1px solid #efefef;
+  background-color: var(--c-bg-global-social-share);
+  border: 1px solid var(--c-border);
   border-right: none;
   border-radius: 8px 0 0 8px;
   transform: translate(0, 50%);

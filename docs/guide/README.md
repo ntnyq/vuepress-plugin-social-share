@@ -393,10 +393,16 @@ Each meta data are listed following its priority.
 
 By default, those variables are set to **vuepress-plugin-social-share**.
 
-```css
+```scss
 :root {
-    --social-share-trigger-color: var(--c-text-lightest);
-    --social-share-plain-color: var(--c-brand);
+    // global trigger color
+    --c-social-share-trigger: var(--c-text-lightest);
+
+    // plain mode icon color
+    --c-social-share-plain: var(--c-brand);
+
+    // global bgColor
+    --c-bg-global-social-share: var(--c-bg);
 }
 ```
 
