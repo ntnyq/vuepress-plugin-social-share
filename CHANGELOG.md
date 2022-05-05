@@ -1,3 +1,9 @@
+# [2.0.0-beta.4](https://github.com/ntnyq/vuepress-plugin-social-share/compare/v2.0.0-beta.3...v2.0.0-beta.4) (2022-05-05)
+
+### Bug Fixes
+
+-   no social share ([96ca3d2](https://github.com/ntnyq/vuepress-plugin-social-share/commit/96ca3d2224250b77b8a98977abfafcef141a19c7))
+
 # [2.0.0-beta.3](https://github.com/ntnyq/vuepress-plugin-social-share/compare/v2.0.0-beta.2...v2.0.0-beta.3) (2022-05-05)
 
 ### Features
