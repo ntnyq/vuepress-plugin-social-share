@@ -22,7 +22,7 @@ import { inBrowser, isExternalUrl, getMetaContentByName } from '../utils'
 export const SocialShare = defineComponent({
   name: `SocialShare`,
 
-  inheritAttrs: false,
+  inheritAttrs: true,
 
   props: {
     networks: {
@@ -64,7 +64,7 @@ export const SocialShare = defineComponent({
     },
   },
 
-  setup(props) {
+  setup(props, { attrs }) {
     const networks = [...new Set(props.networks)]
     const networkList = Object.keys(props.networksData)
       .map(name => ({ name, ...props.networksData[name] }))

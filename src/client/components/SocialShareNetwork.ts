@@ -5,6 +5,8 @@ import { type SocialShareNetworkItem } from '../../shared'
 export const SocialShareNetwork = defineComponent({
   name: `SocialShareNetwork`,
 
+  inheritAttrs: true,
+
   props: {
     network: {
       type: Object as PropType<SocialShareNetworkItem>,

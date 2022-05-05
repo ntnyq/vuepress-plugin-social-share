@@ -17,6 +17,8 @@ import { socialShareOptions } from '@vuepress/plugin-social-share/temp'
 export const GlobalSocialShare = defineComponent({
   name: `GlobalSocialShare`,
 
+  inheritAttrs: true,
+
   setup() {
     const isActive = ref(false)
     const vm = getCurrentInstance() as any

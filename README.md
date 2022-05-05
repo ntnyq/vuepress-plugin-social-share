@@ -1,13 +1,19 @@
 # vuepress-plugin-social-share
 
 [![CI](https://github.com/ntnyq/vuepress-plugin-social-share/workflows/CI/badge.svg)](https://github.com/ntnyq/vuepress-plugin-social-share/actions)
-[![NPM VERSION](https://img.shields.io/npm/v/vuepress-plugin-social-share.svg)](https://www.npmjs.com/package/vuepress-plugin-social-share)
+[![NPM VERSION](https://img.shields.io/npm/v/vuepress-plugin-social-share/next.svg)](https://www.npmjs.com/package/vuepress-plugin-social-share/v/next)
 [![NPM DOWNLOADS](https://img.shields.io/npm/dy/vuepress-plugin-social-share.svg)](https://www.npmjs.com/package/vuepress-plugin-social-share)
-[![LICENSE](https://img.shields.io/github/license/ntnyq/vuepress-plugin-social-share.svg)](https://github.com/ntnyq/vuepress-plugin-social-share/blob/master/LICENSE)
+[![LICENSE](https://img.shields.io/github/license/ntnyq/vuepress-plugin-social-share.svg)](https://github.com/ntnyq/vuepress-plugin-social-share/blob/main/LICENSE)
 
 :mega: Social sharing plugin for [VuePress](https://vuepress.vuejs.org)
 
-:book: [Live Demo and Docs](https://sns.goyfe.com)
+:book: [Docs for Guide](./docs/guide/README.md)
+
+## ⚠️ Note
+
+Still using VuePress v1?
+
+Please Checkout branch [main](https://github.com/ntnyq/vuepress-plugin-social-share/tree/main) for detail
 
 ## Install
 
@@ -40,7 +46,7 @@ export default defineUserConfig({
 })
 ```
 
-:mag: [Custom options detail](https://sns.goyfe.com/guide)
+:mag: [Custom options detail](./docs/guide/README.md)
 
 ## Prior Art
 

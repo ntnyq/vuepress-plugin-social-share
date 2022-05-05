@@ -1,7 +1,9 @@
 ---
 home: true
-actionText: Get Started
-actionLink: /guide/
+actions:
+    - text: Get Started
+      link: /guide/
+      type: primary
 footer: MIT Licensed | Copyright © 2019-present ntnyq
 pageClass: site-home
 shareDescription: A VuePress plugin which provides social sharing services
