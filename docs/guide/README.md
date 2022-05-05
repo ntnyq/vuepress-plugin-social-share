@@ -39,7 +39,7 @@ export default defineUserConfig({
 })
 ```
 
-## Configurations
+## Options
 
 For advanced usage.
 

@@ -13,6 +13,7 @@ import { SocialShare } from './SocialShare'
 import { SVG_ICON_CLOSE, SVG_ICON_SHARE } from '../utils'
 // @ts-expect-error virtual module
 import { socialShareOptions } from '@vuepress/plugin-social-share/temp'
+import { type SocialSharePluginOptionsWithDefaults } from '../../shared'
 
 export const GlobalSocialShare = defineComponent({
   name: `GlobalSocialShare`,
@@ -20,12 +21,14 @@ export const GlobalSocialShare = defineComponent({
   inheritAttrs: true,
 
   setup() {
+    const options = socialShareOptions as SocialSharePluginOptionsWithDefaults
     const isActive = ref(false)
     const vm = getCurrentInstance() as any
     const frontmatter = usePageFrontmatter()
     const visible = computed(
       () =>
         !(
+          options.noGlobalSocialShare ||
           frontmatter.value.noGlobalSocialShare ||
           frontmatter.value.noSocialShare
         ),
@@ -70,13 +73,13 @@ export const GlobalSocialShare = defineComponent({
     const renderSocialShare = () => {
       if (!isActive.value) return null as unknown as VNode
       return h(SocialShare, {
-        networks: socialShareOptions.networks,
-        isPlain: socialShareOptions.isPlain,
-        twitterUser: socialShareOptions.twitterUser,
-        fallbackImage: socialShareOptions.fallbackImage,
-        autoQuote: socialShareOptions.autoQuote,
-        qrcodeOptions: socialShareOptions.qrcodeOptions,
-        networksData: socialShareOptions.networksData,
+        networks: options.networks,
+        isPlain: options.isPlain,
+        twitterUser: options.twitterUser,
+        fallbackImage: options.fallbackImage,
+        autoQuote: options.autoQuote,
+        qrcodeOptions: options.qrcodeOptions,
+        networksData: options.networksData,
       })
     }
 

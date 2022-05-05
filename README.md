@@ -5,9 +5,9 @@
 [![NPM DOWNLOADS](https://img.shields.io/npm/dy/vuepress-plugin-social-share.svg)](https://www.npmjs.com/package/vuepress-plugin-social-share)
 [![LICENSE](https://img.shields.io/github/license/ntnyq/vuepress-plugin-social-share.svg)](https://github.com/ntnyq/vuepress-plugin-social-share/blob/main/LICENSE)
 
-:mega: Social sharing plugin for [VuePress](https://vuepress.vuejs.org)
+:mega: Social sharing plugin for [VuePress](https://v2.vuepress.vuejs.org)
 
-:book: [Docs for Guide](./docs/guide/README.md)
+:book: [Online demo and Docs](https://social-share.ntnyq.com)
 
 ## ⚠️ Note
 
@@ -46,7 +46,7 @@ export default defineUserConfig({
 })
 ```
 
-:mag: [Custom options detail](./docs/guide/README.md)
+:mag: [Custom options detail](https://social-share.ntnyq.com/guide/#options)
 
 ## Prior Art
 

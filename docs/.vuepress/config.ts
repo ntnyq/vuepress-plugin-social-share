@@ -28,7 +28,7 @@ export default defineUserConfig({
     repo: `ntnyq/vuepress-plugin-social-share`,
     docsRepo: `ntnyq/vuepress-plugin-social-share`,
     docsDir: `docs`,
-    docsBranch: `main`,
+    docsBranch: `next`,
     search: false,
     editLinks: true,
     lastUpdated: true,
@@ -42,7 +42,7 @@ export default defineUserConfig({
       { text: `Demo`, link: `/demo/` },
       {
         text: `Changelog`,
-        link: `https://github.com/ntnyq/vuepress-plugin-social-share/blob/main/CHANGELOG.md`,
+        link: `https://github.com/ntnyq/vuepress-plugin-social-share/blob/next/CHANGELOG.md`,
       },
     ],
 

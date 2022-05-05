@@ -23,7 +23,7 @@
 }
 
 .social-share-trigger {
-  color: var(--social-share-trigger-color);
+  color: var(--c-social-share-trigger);
 }
 
 .social-share-btn {
@@ -46,7 +46,7 @@
 }
 
 .social-share-btn:not(.social-share-trigger) {
-  color: var(--social-share-plain-color);
+  color: var(--c-social-share-plain);
 }
 
 .social-share-btn:not(.social-share-trigger):hover {

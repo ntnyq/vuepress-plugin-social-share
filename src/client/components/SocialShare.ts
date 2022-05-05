@@ -116,7 +116,7 @@ export const SocialShare = defineComponent({
 
     // Computed
     const visible = computed(
-      () => networks.length && !frontmatter.value.noGlobalSocialShare,
+      () => networks.length && !frontmatter.value.noSocialShare,
     )
     const url = computed(
       () =>
