@@ -1,6 +1,6 @@
 {
   "name": "vuepress-plugin-social-share",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0-beta.2",
   "packageManager": "pnpm@7.0.0",
   "description": "Social sharing plugin for VuePress",
   "keywords": [
