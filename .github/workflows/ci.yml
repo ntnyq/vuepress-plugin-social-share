@@ -13,15 +13,20 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-node@v3
-      - uses: pnpm/action-setup@v2.0.1
+      - uses: actions/checkout@v3
+
+      - uses: pnpm/action-setup@v2
         with:
-          version: latest
           run_install: true
+
+      - uses: actions/setup-node@v3
+        with:
+          cache: pnpm
+
       - run: pnpm run lint
       - run: pnpm run build
       - run: pnpm run build:docs
+
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

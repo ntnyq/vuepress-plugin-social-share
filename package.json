@@ -2,6 +2,7 @@
   "name": "vuepress-plugin-social-share",
   "version": "1.2.0",
   "description": "Social sharing plugin for VuePress",
+  "packageManager": "pnpm@7.0.0",
   "keywords": [
     "vuepress",
     "vuepress-plugin",
@@ -41,8 +42,7 @@
     "dev:docs": "npm -C docs run dev",
     "build:docs": "npm -C docs run build",
     "lint": "run-p lint:*",
-    "test": "jest",
-    "lint:cspell": "cspell **",
+    "lint:cspell": "cspell \"**\"",
     "prepare": "husky install",
     "prepublishOnly": "npm run build"
   },
