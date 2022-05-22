@@ -1,5 +1,5 @@
 /**
- * @file
+ * @file Constants
  */
 
 export const RE_SVG_SOURCE = /<svg (.*?)>(.*?)<\/svg>/i

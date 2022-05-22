@@ -1,8 +1,8 @@
 {
   "name": "vuepress-plugin-social-share",
   "version": "1.2.0",
+  "packageManager": "pnpm@7.1.3",
   "description": "Social sharing plugin for VuePress",
-  "packageManager": "pnpm@7.0.0",
   "keywords": [
     "vuepress",
     "vuepress-plugin",
@@ -19,14 +19,14 @@
   "bugs": {
     "url": "https://github.com/ntnyq/vuepress-plugin-social-share/issues"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ntnyq/vuepress-plugin-social-share.git"
-  },
   "license": "MIT",
   "author": {
     "name": "ntnyq",
     "email": "ntnyq13@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ntnyq/vuepress-plugin-social-share.git"
   },
   "main": "lib/index.js",
   "files": [
@@ -39,30 +39,31 @@
     "build": "run-s clean build:lib copy",
     "dev:lib": "tsc-watch --onSuccess \"npm run copy\"",
     "build:lib": "tsc --build",
-    "dev:docs": "npm -C docs run dev",
-    "build:docs": "npm -C docs run build",
+    "dev:docs": "pnpm --filter=docs run dev",
+    "build:docs": "pnpm --filter=docs run build",
     "lint": "run-p lint:*",
+    "lint:script": "eslint .",
     "lint:cspell": "cspell \"**\"",
     "prepare": "husky install",
     "prepublishOnly": "npm run build"
   },
-  "lint-staged": {
-    "*.{md,json}": "prettier --write"
+  "peerDependencies": {
+    "vuepress": "^1.0.3"
   },
-  "prettier": "@ntnyq/prettier-config",
   "dependencies": {
     "deepmerge": "^4.2.2",
     "qrcode": "^1.5.0"
   },
   "devDependencies": {
-    "@ntnyq/prettier-config": "^0.3.1",
+    "@ntnyq/eslint-config-typescript": "^1.0.2",
     "@types/qrcode": "^1.4.2",
     "copyfiles": "^2.4.1",
-    "cspell": "^5.20.0",
-    "husky": "^7.0.4",
+    "cspell": "^6.0.0",
+    "eslint": "^8.16.0",
+    "husky": "^8.0.1",
     "lint-staged": "^12.4.1",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.6.2",
+    "pnpm": "^7.1.3",
     "rimraf": "^3.0.2",
     "tsc-watch": "^5.0.3",
     "typescript": "^4.6.4",
@@ -70,9 +71,16 @@
     "vuepress": "^1.9.7",
     "vuepress-types": "^0.9.4"
   },
-  "peerDependencies": {
-    "vuepress": "^1.0.3"
+  "lint-staged": {
+    "*.{js,ts,yaml,md,json}": "eslint --fix"
   },
+  "eslintConfig": {
+    "root": true,
+    "extends": "@ntnyq/typescript"
+  },
+  "eslintIgnore": [
+    "lib"
+  ],
   "pnpm": {
     "peerDependencyRules": {
       "ignoreMissing": [

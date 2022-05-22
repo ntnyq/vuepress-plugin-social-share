@@ -3,7 +3,7 @@
  */
 
 import deepmerge from 'deepmerge'
-import { type SocialSharePluginOptions } from './types'
+import type { SocialSharePluginOptions } from './types'
 import { BASE_NETWORKS } from './networks'
 import { RE_EMAIL, RE_EXTERNAL_LINK, RE_SVG_SOURCE } from './constants'
 
@@ -36,7 +36,7 @@ export const inBrowser = typeof window !== `undefined`
  *
  * @returns meta tag's content if exists, or `''`
  */
-export function getMetaContentByName(name: string) {
+export function getMetaContentByName (name: string) {
   if (!inBrowser) return ``
   const tag = document.getElementsByName(name)[0]
   if (!tag) return ``

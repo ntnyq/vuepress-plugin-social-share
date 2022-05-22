@@ -29,7 +29,7 @@ Add config to `.vuepress/config.js`:
 
 ```js
 module.exports = {
-    plugins: ['social-share'],
+  plugins: [`social-share`],
 }
 ```
 

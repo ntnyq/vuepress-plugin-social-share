@@ -1,8 +1,8 @@
 import './style.styl'
-import { EnhanceApp } from 'vuepress-types'
-import type { SocialShareNetworkData, SocialSharePluginOptions } from './types'
+import type { EnhanceApp } from 'vuepress-types'
 // @ts-expect-error virtual modules
 import socialShareOptions from '@dynamic/social-share'
+import type { SocialShareNetworkData, SocialSharePluginOptions } from './types'
 import SocialShare from './components/SocialShare'
 import GlobalSocialShare from './components/GlobalSocialShare'
 
@@ -38,7 +38,7 @@ const enhanceApp: EnhanceApp = ({ Vue }) => {
       },
     },
 
-    render(h, { props, data, parent }) {
+    render (h, { props, data, parent }) {
       // @ts-expect-error private property
       if (parent._isMounted) {
         return h(SocialShare, {
@@ -66,7 +66,7 @@ const enhanceApp: EnhanceApp = ({ Vue }) => {
   Vue.component(`GlobalSocialShare`, {
     functional: true,
 
-    render(h, { parent }) {
+    render (h, { parent }) {
       // @ts-expect-error private property
       if (parent._isMounted) {
         return h(GlobalSocialShare, {

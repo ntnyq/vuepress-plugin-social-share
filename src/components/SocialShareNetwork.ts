@@ -1,5 +1,6 @@
-import Vue, { ComponentOptions } from 'vue'
-import { type SocialShareNetworkItem } from '../types'
+import type Vue from 'vue'
+import type { ComponentOptions } from 'vue'
+import type { SocialShareNetworkItem } from '../types'
 import { isSVG } from '../utils'
 
 interface SocialShareNetworkComponent extends Vue {
@@ -39,19 +40,19 @@ const SocialShareNetwork: ComponentOptions<SocialShareNetworkComponent> = {
   },
 
   computed: {
-    isSvgIcon(this: SocialShareNetworkComponent) {
+    isSvgIcon (this: SocialShareNetworkComponent) {
       return isSVG(this.network.icon!)
     },
 
-    shareUrl(this: SocialShareNetworkComponent) {
-      let { name, sharer = `` } = this.network
-      const { url, title, quote, media, hashtags, description, twitterUser } =
-        this.$parent as any
+    shareUrl (this: SocialShareNetworkComponent) {
+      let { sharer = `` } = this.network
+      const { url, title, quote, media, hashtags, description, twitterUser }
+        = this.$parent as any
       /**
        * On IOS, Twitter sharing should't have a empty hashtag parameter
        * See https://github.com/nicolasbeauvais/vue-social-sharing/issues/143
        */
-      if ([`twitter`].includes(name) && !hashtags.length) {
+      if ([`twitter`].includes(this.network.name) && !hashtags.length) {
         sharer = sharer.replace(`&hashtags=@hashtags`, ``)
       }
       return sharer
@@ -72,9 +73,9 @@ const SocialShareNetwork: ComponentOptions<SocialShareNetworkComponent> = {
      *
      * @returns {string} hashtags string
      */
-    generateHashTags(
+    generateHashTags (
       this: SocialShareNetworkComponent,
-      hashtags: string = ``,
+      hashtags = ``,
     ): string {
       const { name } = this.network
       if ([`facebook`].includes(name) && hashtags.length) {
@@ -86,7 +87,7 @@ const SocialShareNetwork: ComponentOptions<SocialShareNetworkComponent> = {
     /**
      * Shares URL in specified network
      */
-    share(this: SocialShareNetworkComponent) {
+    share (this: SocialShareNetworkComponent) {
       const { name, type } = this.network
       const parent = this.$parent as any
       switch (type) {
@@ -106,30 +107,30 @@ const SocialShareNetwork: ComponentOptions<SocialShareNetworkComponent> = {
     },
   },
 
-  render(this: SocialShareNetworkComponent, h) {
+  render (this: SocialShareNetworkComponent, h) {
     const renderShareIcon = (network: SocialShareNetworkItem) =>
       this.isSvgIcon
         ? h(`span`, {
-            style: { color: !this.isPlain && network.color },
-            attrs: {
-              class: `social-share-icon-svg`,
-              focusable: `false`,
-            },
-            domProps: {
-              innerHTML: this.network.icon,
-            },
-          })
+          style: { color: !this.isPlain && network.color },
+          attrs: {
+            class: `social-share-icon-svg`,
+            focusable: `false`,
+          },
+          domProps: {
+            innerHTML: this.network.icon,
+          },
+        })
         : h(`span`, {
-            style: { backgroundImage: `url(${network.icon})` },
-            attrs: { class: `social-share-icon-img` },
-          })
+          style: { backgroundImage: `url(${network.icon})` },
+          attrs: { class: `social-share-icon-img` },
+        })
     const renderShareButton = (network: SocialShareNetworkItem) =>
       h(
         `button`,
         {
           attrs: {
             'data-link':
-              network.type === 'popup'
+              network.type === `popup`
                 ? `#share-${network.name}`
                 : this.shareUrl,
             class: `social-share-btn`,

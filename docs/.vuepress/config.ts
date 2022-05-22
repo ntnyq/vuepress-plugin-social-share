@@ -1,3 +1,5 @@
+import { defineConfig } from 'vuepress/config'
+
 const extendsNetworks = {
   pinterest: {
     sharer: `https://pinterest.com/pin/create/button/?url=@url&media=@media&description=@title`,
@@ -12,32 +14,30 @@ const extendsNetworks = {
   },
 }
 
-module.exports = {
+export default defineConfig({
   title: `vuepress-plugin-social-share`,
   description: `Social sharing plugin for VuePress`,
   dest: `site`,
   plugins: [
-    [
-      `social-share`,
-      {
-        networks: [
-          `qq`,
-          `twitter`,
-          `weibo`,
-          `email`,
-          `linkedin`,
-          `pinterest`,
-          `wechat`,
-        ],
-        email: `ntnyq13@gmail.com`,
-        twitterUser: `ntnyq`,
-        fallbackImage: `/hero.png`,
-        qrcodeOptions: {
-          width: 240,
-        },
-        extendsNetworks,
+    // @ts-expect-error not in official three party plugin list
+    [`social-share`, {
+      networks: [
+        `qq`,
+        `twitter`,
+        `weibo`,
+        `email`,
+        `linkedin`,
+        `pinterest`,
+        `wechat`,
+      ],
+      email: `ntnyq13@gmail.com`,
+      twitterUser: `ntnyq`,
+      fallbackImage: `/hero.png`,
+      qrcodeOptions: {
+        width: 240,
       },
-    ],
+      extendsNetworks,
+    }],
   ],
   themeConfig: {
     repo: `ntnyq/vuepress-plugin-social-share`,
@@ -46,25 +46,17 @@ module.exports = {
     docsBranch: `main`,
     search: false,
     editLinks: true,
-    lastUpdated: true,
-    displayAllHeaders: true,
-    locales: {
-      '/': {
-        label: `English`,
-        selectText: `Languages`,
-        editLinkText: `Edit this page on GitHub`,
-        lastUpdated: `Last Updated`,
-        nav: [
-          { text: `Home`, link: `/` },
-          { text: `Guide`, link: `/guide/` },
-          { text: `Demo`, link: `/demo/` },
-          {
-            text: `Changelog`,
-            link: `https://github.com/ntnyq/vuepress-plugin-social-share/blob/main/CHANGELOG.md`,
-          },
-        ],
-        sidebar: [`/guide/`],
+    editLinkText: `Edit this page on GitHub`,
+    lastUpdated: `Last Updated`,
+    nav: [
+      { text: `Home`, link: `/` },
+      { text: `Guide`, link: `/guide/` },
+      { text: `Demo`, link: `/demo/` },
+      {
+        text: `Changelog`,
+        link: `https://github.com/ntnyq/vuepress-plugin-social-share/blob/main/CHANGELOG.md`,
       },
-    },
+    ],
+    sidebar: [`/guide/`],
   },
-}
+})

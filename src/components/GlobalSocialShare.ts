@@ -1,6 +1,7 @@
-import Vue, { ComponentOptions, VNode } from 'vue'
+import type { ComponentOptions, VNode } from 'vue'
+import type Vue from 'vue'
+import { SVG_ICON_CLOSE, SVG_ICON_SHARE } from '../constants'
 import SocialShare from './SocialShare'
-import { SVG_ICON_SHARE, SVG_ICON_CLOSE } from '../constants'
 
 interface GlobalSocialShareComponent extends Vue {
   isActive: boolean
@@ -15,34 +16,34 @@ const GlobalSocialShare: ComponentOptions<GlobalSocialShareComponent> = {
   inheritAttrs: false,
 
   computed: {
-    visible(this: GlobalSocialShareComponent) {
+    visible (this: GlobalSocialShareComponent) {
       return !(
         this.$frontmatter.noGlobalSocialShare || this.$frontmatter.noSocialShare
       )
     },
   },
 
-  data(this: GlobalSocialShareComponent) {
+  data (this: GlobalSocialShareComponent) {
     return {
       isActive: false,
     }
   },
 
   methods: {
-    handleClick(this: GlobalSocialShareComponent, evt: MouseEvent): void {
+    handleClick (this: GlobalSocialShareComponent, evt: MouseEvent): void {
       const { target } = evt
       if (!this.$el.contains) return
       if (this.$el.contains(target as Node)) return
       this.isActive = false
     },
 
-    toggle(this: GlobalSocialShareComponent, evt: MouseEvent): void {
+    toggle (this: GlobalSocialShareComponent, evt: MouseEvent): void {
       this.isActive = !this.isActive
       evt.stopPropagation()
     },
   },
 
-  render(this: GlobalSocialShareComponent, h) {
+  render (this: GlobalSocialShareComponent, h) {
     if (!this.visible) return null as unknown as VNode
 
     const renderButtonIcon = () =>
@@ -65,7 +66,7 @@ const GlobalSocialShare: ComponentOptions<GlobalSocialShareComponent> = {
             click: this.toggle,
           },
         },
-        [renderButtonIcon()]
+        [renderButtonIcon()],
       )
     const renderSocialShare = () =>
       h(SocialShare, {
@@ -79,7 +80,7 @@ const GlobalSocialShare: ComponentOptions<GlobalSocialShareComponent> = {
     ])
   },
 
-  mounted(this: GlobalSocialShareComponent) {
+  mounted (this: GlobalSocialShareComponent) {
     document.addEventListener(`click`, this.handleClick)
     this.$once(`hook:beforeDestroy`, () => {
       document.removeEventListener(`click`, this.handleClick)
