@@ -1,3 +1,17 @@
+# [2.0.0-beta.5](https://github.com/ntnyq/vuepress-plugin-social-share/compare/v2.0.0-beta.4...v2.0.0-beta.5) (2022-05-22)
+
+
+### Bug Fixes
+
+* focus style of a11y (close [#56](https://github.com/ntnyq/vuepress-plugin-social-share/issues/56)) ([a25c987](https://github.com/ntnyq/vuepress-plugin-social-share/commit/a25c987430b0599233e05e1ad9b07965ae4c4af3))
+
+
+### Features
+
+* bump vuepress-next ([ae25ac0](https://github.com/ntnyq/vuepress-plugin-social-share/commit/ae25ac0b28c02cc297245104fd93170a2a80d1c4))
+
+
+
 # [2.0.0-beta.4](https://github.com/ntnyq/vuepress-plugin-social-share/compare/v2.0.0-beta.3...v2.0.0-beta.4) (2022-05-05)
 
 ### Bug Fixes
