@@ -1,6 +1,11 @@
-import { h, computed, defineComponent, type PropType } from 'vue'
+import { computed, defineComponent, h } from 'vue'
+import type { PropType } from 'vue'
 import { isSVG } from '../utils'
-import { type SocialShareNetworkItem } from '../../shared'
+import type { SocialShareNetworkItem } from '../../shared'
+
+export enum Event {
+  Share = `share`,
+}
 
 export const SocialShareNetwork = defineComponent({
   name: `SocialShareNetwork`,
@@ -29,47 +34,33 @@ export const SocialShareNetwork = defineComponent({
     },
   },
 
-  emits: [`share`],
+  emits: [Event.Share],
 
-  setup(props, ctx) {
+  setup (props, ctx) {
     const isSvgIcon = computed(() => isSVG(props.network.icon))
-    const renderShareIcon = (network: SocialShareNetworkItem) =>
-      isSvgIcon.value
-        ? h(`span`, {
-            class: `social-share-icon-svg`,
-            focusable: false,
-            style: { color: !props.isPlain && network.color },
-            innerHTML: network.icon,
-          })
-        : h(`span`, {
-            style: { backgroundImage: `url(${network.icon})` },
-            class: `social-share-icon-img`,
-          })
-    const renderShareButton = (network: SocialShareNetworkItem) =>
-      h(
-        `button`,
-        {
-          class: `social-share-btn`,
-          title: network.name,
-          type: `button`,
-          role: `button`,
-          onClick: () => ctx.emit(`share`, network.name),
-          'data-link':
-            network.type === `popup`
-              ? `#share-${network.name}`
-              : props.shareURL,
-        },
-        [renderShareIcon(network)],
-      )
+    const renderShareIcon = (network: SocialShareNetworkItem) => isSvgIcon.value
+      ? h(`span`, {
+        class: `social-share-icon-svg`,
+        focusable: false,
+        style: { color: !props.isPlain && network.color },
+        innerHTML: network.icon,
+      })
+      : h(`span`, {
+        style: { backgroundImage: `url(${network.icon})` },
+        class: `social-share-icon-img`,
+      })
+    const renderShareButton = (network: SocialShareNetworkItem) => h(`button`, {
+      class: `social-share-btn`,
+      title: network.name,
+      type: `button`,
+      role: `button`,
+      onClick: () => ctx.emit(Event.Share, network.name),
+      'data-link': network.type === `popup` ? `#share-${network.name}` : props.shareURL,
+    }, [renderShareIcon(network)])
 
-    return () =>
-      h(
-        `li`,
-        {
-          class: `social-share-network`,
-          role: `option`,
-        },
-        [renderShareButton(props.network)],
-      )
+    return () => h(`li`, {
+      class: `social-share-network`,
+      role: `option`,
+    }, [renderShareButton(props.network)])
   },
 })

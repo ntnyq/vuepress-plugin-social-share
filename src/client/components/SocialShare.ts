@@ -1,23 +1,22 @@
 import {
-  h,
-  ref,
-  reactive,
   computed,
-  onMounted,
   defineComponent,
-  type VNode,
-  type PropType,
+  h,
+  onMounted,
+  reactive,
+  ref,
 } from 'vue'
-import { withBase, usePageFrontmatter } from '@vuepress/client'
-import { SocialShareNetwork } from './SocialShareNetwork'
+import type { PropType, VNode } from 'vue'
+import { usePageFrontmatter, withBase } from '@vuepress/client'
 import type {
   MayBe,
-  QRCodeOptions,
   SocialShareNetwork as Network,
+  QRCodeOptions,
   SocialShareNetworkData,
   SocialShareNetworkItem,
 } from '../../shared'
-import { inBrowser, isExternalUrl, getMetaContentByName } from '../utils'
+import { getMetaContentByName, inBrowser, isExternalUrl } from '../utils'
+import { SocialShareNetwork } from './SocialShareNetwork'
 
 export const SocialShare = defineComponent({
   name: `SocialShare`,
@@ -64,15 +63,13 @@ export const SocialShare = defineComponent({
     },
   },
 
-  setup(props, { attrs }) {
+  // eslint-disable-next-line max-lines-per-function
+  setup (props) {
     const networks = [...new Set(props.networks)]
     const networkList = Object.keys(props.networksData)
       .map(name => ({ name, ...props.networksData[name] }))
       .filter(network => networks.includes(network.name))
-      .sort(
-        (prev, next) =>
-          networks.indexOf(prev.name) - networks.indexOf(next.name),
-      )
+      .sort((prev, next) => networks.indexOf(prev.name) - networks.indexOf(next.name))
     const frontmatter = usePageFrontmatter()
     const timer = ref<MayBe<number>>(null)
     const popup = reactive({
@@ -96,20 +93,20 @@ export const SocialShare = defineComponent({
        * http://stackoverflow.com/questions/4068373/center-a-popup-window-on-screen/32261263
        */
       const rootEl = document.documentElement
-      const dualScreenLeft =
-        window.screenLeft !== undefined ? window.screenLeft : window.screenX
-      const dualScreenTop =
-        window.screenTop !== undefined ? window.screenTop : window.screenY
+      const dualScreenLeft
+        = window.screenLeft !== undefined ? window.screenLeft : window.screenX
+      const dualScreenTop
+        = window.screenTop !== undefined ? window.screenTop : window.screenY
       const width = window.innerWidth
         ? window.innerWidth
         : rootEl.clientWidth
-        ? rootEl.clientWidth
-        : screen.width
+          ? rootEl.clientWidth
+          : screen.width
       const height = window.innerHeight
         ? window.innerHeight
         : rootEl.clientHeight
-        ? rootEl.clientHeight
-        : screen.height
+          ? rootEl.clientHeight
+          : screen.height
       popup.left = width / 2 - popup.width / 2 + dualScreenLeft
       popup.top = height / 2 - popup.height / 2 + dualScreenTop
     })
@@ -120,30 +117,30 @@ export const SocialShare = defineComponent({
     )
     const url = computed(
       () =>
-        (frontmatter.value.$shareUrl ??
-          frontmatter.value.shareUrl ??
-          frontmatter.value.permalink ??
-          (inBrowser ? location.href : ``)) as string,
+        (frontmatter.value.$shareUrl
+          ?? frontmatter.value.shareUrl
+          ?? frontmatter.value.permalink
+          ?? (inBrowser ? location.href : ``)) as string,
     )
     const title = computed(
       () =>
-        (frontmatter.value.$shareTitle ??
-          frontmatter.value.shareTitle ??
-          frontmatter.value.title ??
-          (inBrowser ? document.title : ``)) as string,
+        (frontmatter.value.$shareTitle
+          ?? frontmatter.value.shareTitle
+          ?? frontmatter.value.title
+          ?? (inBrowser ? document.title : ``)) as string,
     )
     const description = computed(
       () =>
-        (frontmatter.value.$shareDescription ??
-          frontmatter.value.shareDescription ??
-          frontmatter.value.description ??
-          getMetaContentByName(`description`)) as string,
+        (frontmatter.value.$shareDescription
+          ?? frontmatter.value.shareDescription
+          ?? frontmatter.value.description
+          ?? getMetaContentByName(`description`)) as string,
     )
     const media = computed(() => {
-      const mediaURL = (frontmatter.value.$shareImage ??
-        frontmatter.value.shareImage ??
-        frontmatter.value.image ??
-        props.fallbackImage) as string
+      const mediaURL = (frontmatter.value.$shareImage
+        ?? frontmatter.value.shareImage
+        ?? frontmatter.value.image
+        ?? props.fallbackImage) as string
 
       if (!mediaURL) return ``
       if (isExternalUrl(mediaURL)) return mediaURL
@@ -152,18 +149,18 @@ export const SocialShare = defineComponent({
     })
     const quote = computed(
       () =>
-        (frontmatter.value.$shareQuote ??
-          frontmatter.value.shareQuote ??
-          (props.autoQuote ? description.value : ``)) as string,
+        (frontmatter.value.$shareQuote
+          ?? frontmatter.value.shareQuote
+          ?? (props.autoQuote ? description.value : ``)) as string,
     )
     const hashtags = computed(() => {
-      const tags =
-        frontmatter.value.$shareTags ??
-        frontmatter.value.shareTags ??
-        frontmatter.value.tags ??
-        frontmatter.value.tag ??
-        props.tags ??
-        getMetaContentByName(`keywords`)
+      const tags
+        = frontmatter.value.$shareTags
+        ?? frontmatter.value.shareTags
+        ?? frontmatter.value.tags
+        ?? frontmatter.value.tag
+        ?? props.tags
+        ?? getMetaContentByName(`keywords`)
       if (Array.isArray(tags)) {
         return tags.join(`,`)
       }
@@ -189,19 +186,19 @@ export const SocialShare = defineComponent({
     const openSharer = (shareURL: string) => {
       let popWindow: MayBe<Window> = null
       const shareParams: string[] = [
-        `status=${popup.status ? 'yes' : 'no'}`,
+        `status=${popup.status ? `yes` : `no`}`,
         `height=${popup.height}`,
         `width=${popup.width}`,
-        `resizable=${popup.resizable ? 'yes' : 'no'}`,
+        `resizable=${popup.resizable ? `yes` : `no`}`,
         `left=${popup.left}`,
         `top=${popup.top}`,
         `screenX=${popup.left}`,
         `screenY=${popup.top}`,
-        `toolbar=${popup.toolbar ? 'yes' : 'no'}`,
-        `menubar=${popup.menubar ? 'yes' : 'no'}`,
-        `scrollbars=${popup.scrollbars ? 'yes' : 'no'}`,
-        `location=${popup.location ? 'yes' : 'no'}`,
-        `directories=${popup.directories ? 'yes' : 'no'}`,
+        `toolbar=${popup.toolbar ? `yes` : `no`}`,
+        `menubar=${popup.menubar ? `yes` : `no`}`,
+        `scrollbars=${popup.scrollbars ? `yes` : `no`}`,
+        `location=${popup.location ? `yes` : `no`}`,
+        `directories=${popup.directories ? `yes` : `no`}`,
       ]
       popWindow = window.open(shareURL, `sharer`, shareParams.join(`,`))
       popWindow?.focus?.()
@@ -222,11 +219,9 @@ export const SocialShare = defineComponent({
         socialShareEl.parentNode.removeChild(socialShareEl)
       }
       try {
+        // eslint-disable-next-line @typescript-eslint/quotes
         const QRCode = await import('qrcode')
-        const dataURL = await QRCode.toDataURL(
-          url.value,
-          qrcodeRenderOptions.value,
-        )
+        const dataURL = await QRCode.toDataURL(url.value, qrcodeRenderOptions.value)
         socialShareOverlay.innerHTML = `<img class="social-share-qrcode" src="${dataURL}" />`
         body.appendChild(socialShareOverlay)
         socialShareOverlay.classList.add(`show`)
@@ -260,10 +255,7 @@ export const SocialShare = defineComponent({
         .replace(/@description/g, encodeURIComponent(description.value))
         .replace(/@quote/g, encodeURIComponent(quote.value))
         .replace(/@hashtags/g, generateHashTags(hashtags.value, name))
-        .replace(
-          /@twitteruser/g,
-          props.twitterUser ? `&via=${props.twitterUser}` : ``,
-        )
+        .replace(/@twitteruser/g, props.twitterUser ? `&via=${props.twitterUser}` : ``)
     }
     const onShare = (name: string) => {
       const network = props.networksData[name]
@@ -282,22 +274,17 @@ export const SocialShare = defineComponent({
           break
       }
     }
-    const renderNetworkList = (networks: SocialShareNetworkItem[]) =>
-      h(
-        `ul`,
-        {
-          class: `social-share-list`,
-          role: `listbox`,
-        },
-        networks.map(network =>
-          h(SocialShareNetwork, {
-            network,
-            isPlain: props.isPlain,
-            shareURL: createShareURL(network.name, network),
-            onShare: (name: string) => onShare(name),
-          }),
-        ),
-      )
+    const renderNetworkList = (networks: SocialShareNetworkItem[]) => h(`ul`, {
+      class: `social-share-list`,
+      role: `listbox`,
+    }, networks.map(network =>
+      h(SocialShareNetwork, {
+        network,
+        isPlain: props.isPlain,
+        shareURL: createShareURL(network.name, network),
+        onShare: (name: string) => onShare(name),
+      }),
+    ))
 
     return () => {
       if (!visible.value) return null as unknown as VNode

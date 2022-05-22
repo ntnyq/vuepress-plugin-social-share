@@ -28,10 +28,10 @@ $ yarn add vuepress-plugin-social-share@next -D
 For `.vuepress/config.js`:
 
 ```js
-const { socialSharePlugin } = require('vuepress-plugin-social-share')
+const { socialSharePlugin } = require(`vuepress-plugin-social-share`)
 
 module.exports = {
-    plugins: [socialSharePlugin()],
+  plugins: [socialSharePlugin()],
 }
 ```
 
@@ -42,7 +42,7 @@ import { defineUserConfig } from '@vuepress/cli'
 import { socialSharePlugin } from 'vuepress-plugin-social-share'
 
 export default defineUserConfig({
-    plugins: [socialSharePlugin()],
+  plugins: [socialSharePlugin()],
 })
 ```
 

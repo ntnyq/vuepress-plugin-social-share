@@ -1,26 +1,26 @@
 import {
-  h,
-  ref,
   computed,
-  onMounted,
-  onUnmounted,
   defineComponent,
   getCurrentInstance,
-  type VNode,
+  h,
+  onMounted,
+  onUnmounted,
+  ref,
 } from 'vue'
+import type { VNode } from 'vue'
 import { usePageFrontmatter } from '@vuepress/client'
-import { SocialShare } from './SocialShare'
-import { SVG_ICON_CLOSE, SVG_ICON_SHARE } from '../utils'
 // @ts-expect-error virtual module
 import { socialShareOptions } from '@vuepress/plugin-social-share/temp'
-import { type SocialSharePluginOptionsWithDefaults } from '../../shared'
+import { SVG_ICON_CLOSE, SVG_ICON_SHARE } from '../utils'
+import type { SocialSharePluginOptionsWithDefaults } from '../../shared'
+import { SocialShare } from './SocialShare'
 
 export const GlobalSocialShare = defineComponent({
   name: `GlobalSocialShare`,
 
   inheritAttrs: true,
 
-  setup() {
+  setup () {
     const options = socialShareOptions as SocialSharePluginOptionsWithDefaults
     const isActive = ref(false)
     const vm = getCurrentInstance() as any
@@ -28,9 +28,9 @@ export const GlobalSocialShare = defineComponent({
     const visible = computed(
       () =>
         !(
-          options.noGlobalSocialShare ||
-          frontmatter.value.noGlobalSocialShare ||
-          frontmatter.value.noSocialShare
+          options.noGlobalSocialShare
+          || frontmatter.value.noGlobalSocialShare
+          || frontmatter.value.noSocialShare
         ),
     )
 
@@ -59,17 +59,12 @@ export const GlobalSocialShare = defineComponent({
         class: `social-share-icon-svg`,
         innerHTML: isActive.value ? SVG_ICON_CLOSE : SVG_ICON_SHARE,
       })
-    const renderGlobalButton = () =>
-      h(
-        `button`,
-        {
-          class: `social-share-btn social-share-trigger`,
-          type: `button`,
-          role: `button`,
-          onClick: (evt: MouseEvent) => onClick(evt),
-        },
-        [renderButtonIcon()],
-      )
+    const renderGlobalButton = () => h(`button`, {
+      class: `social-share-btn social-share-trigger`,
+      type: `button`,
+      role: `button`,
+      onClick: (evt: MouseEvent) => onClick(evt),
+    }, [renderButtonIcon()])
     const renderSocialShare = () => {
       if (!isActive.value) return null as unknown as VNode
       return h(SocialShare, {

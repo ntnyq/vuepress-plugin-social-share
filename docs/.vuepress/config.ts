@@ -1,8 +1,8 @@
 import { defineUserConfig } from '@vuepress/cli'
 import { defaultTheme } from '@vuepress/theme-default'
 import {
-  socialSharePlugin,
   type SocialShareNetworkData,
+  socialSharePlugin,
 } from 'vuepress-plugin-social-share'
 
 const extendsNetworks: SocialShareNetworkData = {

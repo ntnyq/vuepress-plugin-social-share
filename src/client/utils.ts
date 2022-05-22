@@ -31,7 +31,7 @@ export const isExternalUrl = (url: string) => RE_EXTERNAL_LINK.test(url)
  *
  * @returns meta tag's content if exists, or `''`
  */
-export function getMetaContentByName(name: string) {
+export function getMetaContentByName (name: string) {
   if (!inBrowser) return ``
   const tag = document.getElementsByName(name)[0]
   if (!tag) return ``

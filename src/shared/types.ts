@@ -1,4 +1,4 @@
-import { type QRCodeToDataURLOptions } from 'qrcode'
+import type { QRCodeToDataURLOptions } from 'qrcode'
 
 export type MayBe<T> = T | null | undefined
 
@@ -14,9 +14,7 @@ export interface SocialShareNetwork {
 
 export type SocialShareNetworkItem = SocialShareNetwork & { name: string }
 
-export interface SocialShareNetworkData {
-  [key: string]: SocialShareNetwork
-}
+export type SocialShareNetworkData = Record<string, SocialShareNetwork>
 
 export type QRCodeOptions = QRCodeToDataURLOptions
 
