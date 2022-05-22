@@ -52,6 +52,7 @@ export default defineConfig({
       { text: `Home`, link: `/` },
       { text: `Guide`, link: `/guide/` },
       { text: `Demo`, link: `/demo/` },
+      { text: `VuePress v2`, link: `https://social-share.ntnyq.com` },
       {
         text: `Changelog`,
         link: `https://github.com/ntnyq/vuepress-plugin-social-share/blob/main/CHANGELOG.md`,
