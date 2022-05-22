@@ -1,9 +1,7 @@
 import { defineUserConfig } from '@vuepress/cli'
 import { defaultTheme } from '@vuepress/theme-default'
-import {
-  type SocialShareNetworkData,
-  socialSharePlugin,
-} from 'vuepress-plugin-social-share'
+import { socialSharePlugin } from 'vuepress-plugin-social-share'
+import type { SocialShareNetworkData } from 'vuepress-plugin-social-share'
 
 const extendsNetworks: SocialShareNetworkData = {
   pinterest: {
@@ -40,6 +38,7 @@ export default defineUserConfig({
       { text: `Home`, link: `/` },
       { text: `Guide`, link: `/guide/` },
       { text: `Demo`, link: `/demo/` },
+      { text: `VuePress v1`, link: `https://sns.goyfe.com` },
       {
         text: `Changelog`,
         link: `https://github.com/ntnyq/vuepress-plugin-social-share/blob/next/CHANGELOG.md`,
