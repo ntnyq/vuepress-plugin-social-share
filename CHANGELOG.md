@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://github.com/ntnyq/vuepress-plugin-social-share/compare/v1.2.0...v1.2.1) (2022-05-22)
+
+
+### Bug Fixes
+
+* focus style of a11y ([d4bf92d](https://github.com/ntnyq/vuepress-plugin-social-share/commit/d4bf92daeeb33cf7f3f6d2835559d53f52d6c25c))
+
 ## [1.2.0](https://github.com/ntnyq/vuepress-plugin-social-share/compare/v1.1.0...v1.2.0) (2022-05-01)
 
 ### Features
