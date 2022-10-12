@@ -1,3 +1,12 @@
+# [2.0.0-beta.6](https://github.com/ntnyq/vuepress-plugin-social-share/compare/v2.0.0-beta.5...v2.0.0-beta.6) (2022-10-12)
+
+
+### Features
+
+* migrate to pure ESM ([b48ba05](https://github.com/ntnyq/vuepress-plugin-social-share/commit/b48ba05aff228b65a57b8d98e129f9499dddbc93))
+
+
+
 # [2.0.0-beta.5](https://github.com/ntnyq/vuepress-plugin-social-share/compare/v2.0.0-beta.4...v2.0.0-beta.5) (2022-05-22)
 
 
