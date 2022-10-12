@@ -1,16 +1,22 @@
+
 {
   "compilerOptions": {
-    "module": "CommonJS",
+    "module": "ESNext",
     "target": "ES2020",
-    "moduleResolution": "node",
+    "moduleResolution": "NodeNext",
     "esModuleInterop": true,
     "sourceMap": false,
     "strict": true,
     "declaration": true,
-    "composite": true,
     "noImplicitAny": true,
+    "skipLibCheck": true,
     "noEmitOnError": true,
-    "types": ["node"],
-    "lib": ["DOM", "ES2020"]
+    "types": [
+      "node"
+    ],
+    "lib": [
+      "DOM",
+      "ES2020"
+    ]
   }
 }

@@ -7,5 +7,23 @@
   },
   "[typescript]": {
     "editor.formatOnSave": false
-  }
+  },
+  "cSpell.words": [
+    "bumpp",
+    "customed",
+    "goyfe",
+    "linkedin",
+    "ntnyq",
+    "pathe",
+    "pnpm",
+    "qrcode",
+    "rgba",
+    "serializers",
+    "styl",
+    "tsbuildinfo",
+    "vetur",
+    "vuepress",
+    "weibo"
+  ],
+  "cSpell.allowCompoundWords": true
 }

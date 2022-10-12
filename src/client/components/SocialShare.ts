@@ -14,9 +14,9 @@ import type {
   QRCodeOptions,
   SocialShareNetworkData,
   SocialShareNetworkItem,
-} from '../../shared'
-import { getMetaContentByName, inBrowser, isExternalUrl } from '../utils'
-import { SocialShareNetwork } from './SocialShareNetwork'
+} from '../../shared/index.js'
+import { getMetaContentByName, inBrowser, isExternalUrl } from '../utils.js'
+import { SocialShareNetwork } from './SocialShareNetwork.js'
 
 export const SocialShare = defineComponent({
   name: `SocialShare`,
@@ -219,7 +219,6 @@ export const SocialShare = defineComponent({
         socialShareEl.parentNode.removeChild(socialShareEl)
       }
       try {
-        // eslint-disable-next-line @typescript-eslint/quotes
         const QRCode = await import('qrcode')
         const dataURL = await QRCode.toDataURL(url.value, qrcodeRenderOptions.value)
         socialShareOverlay.innerHTML = `<img class="social-share-qrcode" src="${dataURL}" />`

@@ -27,10 +27,8 @@ export default defineUserConfig({
     docsRepo: `ntnyq/vuepress-plugin-social-share`,
     docsDir: `docs`,
     docsBranch: `next`,
-    search: false,
-    editLinks: true,
+    editLink: true,
     lastUpdated: true,
-    displayAllHeaders: true,
     editLinkText: `Edit this page on GitHub`,
     lastUpdatedText: `Last Updated at`,
 

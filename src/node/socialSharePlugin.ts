@@ -1,12 +1,15 @@
-import path from 'path'
+import { URL, fileURLToPath } from 'node:url'
+import { resolve } from 'pathe'
 import type { Plugin } from '@vuepress/core'
-import { createNetworksData } from '../shared'
-import type { SocialSharePluginOptions } from '../shared'
+import { createNetworksData } from '../shared/index.js'
+import type { SocialSharePluginOptions } from '../shared/index.js'
+
+const __dirname = fileURLToPath(new URL(`.`, import.meta.url))
 
 export const socialSharePlugin = (options: SocialSharePluginOptions = {}): Plugin => ({
   name: `social-share`,
 
-  clientConfigFile: path.resolve(__dirname, `../client/config.js`),
+  clientConfigFile: resolve(__dirname, `../client/config.js`),
 
   alias: app => ({
     '@vuepress/plugin-social-share/temp': app.dir.temp(

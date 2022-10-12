@@ -1,6 +1,6 @@
 import deepmerge from 'deepmerge'
-import type { SocialSharePluginOptions } from './types'
-import { BASE_NETWORKS } from './networks'
+import type { SocialSharePluginOptions } from './types.js'
+import { BASE_NETWORKS } from './networks.js'
 
 export const RE_EMAIL = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
 

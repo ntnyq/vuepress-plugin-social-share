@@ -3,8 +3,8 @@ import { h } from 'vue'
 import { defineClientConfig } from '@vuepress/client'
 // @ts-expect-error virtual module
 import { socialShareOptions } from '@vuepress/plugin-social-share/temp'
-import { type SocialSharePluginOptionsWithDefaults } from '../shared'
-import { GlobalSocialShare, SocialShare } from './components'
+import { type SocialSharePluginOptionsWithDefaults } from '../shared/index.js'
+import { GlobalSocialShare, SocialShare } from './components/index.js'
 
 declare const __SOCIAL_SHARE_COMPONENT_NAME__: string
 

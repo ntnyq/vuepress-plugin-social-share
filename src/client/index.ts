@@ -1,3 +1,3 @@
-export * from './utils'
-export * from './components/SocialShare'
-export * from './components/SocialShareNetwork'
+export * from './utils.js'
+export * from './components/SocialShare.js'
+export * from './components/SocialShareNetwork.js'

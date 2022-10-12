@@ -1,2 +1,2 @@
-export * from './SocialShare'
-export * from './GlobalSocialShare'
+export * from './SocialShare.js'
+export * from './GlobalSocialShare.js'

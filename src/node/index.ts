@@ -1,6 +1,6 @@
-import { socialSharePlugin } from './socialSharePlugin'
+import { socialSharePlugin } from './socialSharePlugin.js'
 
-export * from '../shared'
-export * from './socialSharePlugin'
+export * from '../shared/index.js'
+export * from './socialSharePlugin.js'
 
 export default socialSharePlugin
