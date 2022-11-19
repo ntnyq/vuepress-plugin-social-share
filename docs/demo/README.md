@@ -19,8 +19,8 @@ Some demos.
 
 ```vue
 <social-share
-    :networks="['facebook', 'qq', 'twitter', 'line', 'reddit']"
-    is-plain
+  :networks="['facebook', 'qq', 'twitter', 'line', 'reddit']"
+  is-plain
 />
 ```
 
@@ -30,8 +30,8 @@ Some demos.
 
 ```vue
 <social-share
-    :networks="['twitter', 'facebook']"
-    :tags="['SocialShare', 'VuePress']"
+  :networks="['twitter', 'facebook']"
+  :tags="['SocialShare', 'VuePress']"
 />
 ```
 
@@ -53,18 +53,18 @@ Some demos.
 
 ```vue
 <social-share
-    :networks="[
-        'facebook',
-        'qq',
-        'twitter',
-        'line',
-        'reddit',
-        'skype',
-        'douban',
-        'whatsapp',
-        'telegram',
-        'weibo',
-    ]"
+  :networks="[
+    'facebook',
+    'qq',
+    'twitter',
+    'line',
+    'reddit',
+    'skype',
+    'douban',
+    'whatsapp',
+    'telegram',
+    'weibo',
+  ]"
 />
 ```
 
