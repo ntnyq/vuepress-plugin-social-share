@@ -1,6 +1,7 @@
-
 {
   "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./lib",
     "module": "ESNext",
     "target": "ES2020",
     "moduleResolution": "NodeNext",
@@ -18,5 +19,8 @@
       "DOM",
       "ES2020"
     ]
-  }
+  },
+  "include": [
+    "./src"
+  ]
 }

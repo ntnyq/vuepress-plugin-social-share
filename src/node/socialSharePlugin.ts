@@ -1,5 +1,5 @@
 import { URL, fileURLToPath } from 'node:url'
-import { resolve } from 'pathe'
+import { resolve } from 'node:path'
 import type { Plugin } from '@vuepress/core'
 import { createNetworksData } from '../shared/index.js'
 import type { SocialSharePluginOptions } from '../shared/index.js'
@@ -12,9 +12,7 @@ export const socialSharePlugin = (options: SocialSharePluginOptions = {}): Plugi
   clientConfigFile: resolve(__dirname, `../client/config.js`),
 
   alias: app => ({
-    '@vuepress/plugin-social-share/temp': app.dir.temp(
-      `social-share/social-share`,
-    ),
+    '@vuepress/plugin-social-share/temp': app.dir.temp(`social-share/social-share`),
   }),
 
   define: {
@@ -24,9 +22,7 @@ export const socialSharePlugin = (options: SocialSharePluginOptions = {}): Plugi
   onPrepared (app) {
     const networksData = createNetworksData(options)
     const socialShareOptions = { ...options, networksData }
-    app.writeTemp(
-      `social-share/social-share.js`,
-      `export const socialShareOptions = ${JSON.stringify(socialShareOptions)}`,
-    )
+    const content = `export const socialShareOptions = ${JSON.stringify(socialShareOptions)}`
+    app.writeTemp(`social-share/social-share.js`, content)
   },
 })

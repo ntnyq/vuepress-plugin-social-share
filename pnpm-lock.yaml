@@ -15,7 +15,6 @@ importers:
       husky: ^8.0.2
       lint-staged: ^13.0.3
       npm-run-all: ^4.1.5
-      pathe: ^1.0.0
       pnpm: ^7.16.1
       qrcode: ^1.5.1
       rimraf: ^3.0.2
@@ -25,7 +24,6 @@ importers:
       vuepress: ^2.0.0-beta.53
     dependencies:
       deepmerge: 4.2.2
-      pathe: 1.0.0
       qrcode: 1.5.1
     devDependencies:
       '@ntnyq/eslint-config': 1.0.9_hsf322ms6xhhd4b5ne6lb74y4a
@@ -3307,10 +3305,6 @@ packages:
     resolution: {integrity: sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==}
     engines: {node: '>=8'}
     dev: true
-
-  /pathe/1.0.0:
-    resolution: {integrity: sha512-nPdMG0Pd09HuSsr7QOKUXO2Jr9eqaDiZvDwdyIhNG5SHYujkQHYKDfGQkulBxvbDHz8oHLsTgKN86LSwYzSHAg==}
-    dev: false
 
   /pause-stream/0.0.11:
     resolution: {integrity: sha512-e3FBlXLmN/D1S+zHzanP4E/4Z60oFAa3O051qt1pxa7DEJWKAyil6upYVXCWadEnuoqa4Pkc9oUx9zsxYeRv8A==}
