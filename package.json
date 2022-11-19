@@ -51,11 +51,9 @@
     "lint": "eslint .",
     "prepare": "husky install",
     "typecheck": "tsc -p tsconfig.build.json --noEmit",
-    "release": "run-s release:check release:version release:publish",
-    "release:changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "release": "run-s release:check release:publish",
     "release:check": "run-s lint typecheck clean build",
-    "release:publish": "pnpm -r publish --tag next",
-    "release:version": "bumpp package.json --all --execute=\"pnpm release:changelog\""
+    "release:publish": "bumpp && pnpm publish --tag next"
   },
   "peerDependencies": {
     "vuepress": "^2.0.0-beta.51"
@@ -66,13 +64,11 @@
     "qrcode": "^1.5.1"
   },
   "devDependencies": {
-    "@babel/types": "^7.20.2",
     "@ntnyq/eslint-config": "^1.0.9",
     "@types/node": "^18.11.9",
     "@types/qrcode": "^1.5.0",
     "@vuepress/client": "^2.0.0-beta.53",
     "bumpp": "^8.2.1",
-    "conventional-changelog-cli": "^2.2.2",
     "copyfiles": "^2.4.1",
     "eslint": "^8.28.0",
     "husky": "^8.0.2",
@@ -86,6 +82,6 @@
     "vuepress": "^2.0.0-beta.53"
   },
   "lint-staged": {
-    "*.{js,ts,vue,yaml,md,json}": "eslint --fix"
+    "*.{js,ts,vue,yml,yaml,md,json}": "eslint --fix"
   }
 }
