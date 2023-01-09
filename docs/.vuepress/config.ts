@@ -1,5 +1,4 @@
-import { defineUserConfig } from '@vuepress/cli'
-import { defaultTheme } from '@vuepress/theme-default'
+import { defaultTheme, defineUserConfig } from 'vuepress'
 import { socialSharePlugin } from 'vuepress-plugin-social-share'
 import type { SocialShareNetworkData } from 'vuepress-plugin-social-share'
 

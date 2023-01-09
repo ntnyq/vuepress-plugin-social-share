@@ -19,7 +19,7 @@ $ yarn add vuepress-plugin-social-share@next -D
 > See [Official Docs](https://v2.vuepress.vuejs.org/guide/plugin.html#plugin) about how to use a plugin in VuePress.
 
 ```js
-import { defineUserConfig } from '@vuepress/cli'
+import { defineUserConfig } from 'vuepress'
 import { socialSharePlugin } from 'vuepress-plugin-social-share'
 
 export default defineUserConfig({
@@ -32,7 +32,7 @@ export default defineUserConfig({
 For advanced usage.
 
 ```ts
-import { defineUserConfig } from '@vuepress/cli'
+import { defineUserConfig } from 'vuepress'
 import {
   type SocialShareNetworkData,
   socialSharePlugin,
@@ -141,7 +141,7 @@ A fallback share image if the page has no share image specified.
 You can provide a network image url or an absolute path resolve based on `.vuepress/public`.
 
 ```ts
-import { defineUserConfig } from '@vuepress/cli'
+import { defineUserConfig } from 'vuepress'
 import { socialSharePlugin } from 'vuepress-plugin-social-share'
 
 // Network image
@@ -155,7 +155,7 @@ export default defineUserConfig({
 ```
 
 ```ts
-import { defineUserConfig } from '@vuepress/cli'
+import { defineUserConfig } from 'vuepress'
 import { socialSharePlugin } from 'vuepress-plugin-social-share'
 
 // Public image file
@@ -205,7 +205,7 @@ With this option, you can add your custom sharer or override the [built-in netwo
 i.e:
 
 ```ts
-import { defineUserConfig } from '@vuepress/cli'
+import { defineUserConfig } from 'vuepress'
 import { socialSharePlugin, } from 'vuepress-plugin-social-share'
 import type { SocialShareNetworkData } from 'vuepress-plugin-social-share'
 

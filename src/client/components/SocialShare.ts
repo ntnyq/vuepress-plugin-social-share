@@ -12,6 +12,7 @@ import type {
   MayBe,
   SocialShareNetwork as Network,
   QRCodeOptions,
+  SocialShareFrontmatter,
   SocialShareNetworkData,
   SocialShareNetworkItem,
 } from '../../shared/index.js'
@@ -35,7 +36,7 @@ export const SocialShare = defineComponent({
     },
 
     tags: {
-      type: Array,
+      type: Array as PropType<string[]>,
       default: () => [],
     },
 
@@ -70,7 +71,7 @@ export const SocialShare = defineComponent({
       .map(name => ({ name, ...props.networksData[name] }))
       .filter(network => networks.includes(network.name))
       .sort((prev, next) => networks.indexOf(prev.name) - networks.indexOf(next.name))
-    const frontmatter = usePageFrontmatter()
+    const frontmatter = usePageFrontmatter<SocialShareFrontmatter>()
     const timer = ref<MayBe<number>>(null)
     const popup = reactive({
       status: false,
@@ -113,49 +114,40 @@ export const SocialShare = defineComponent({
 
     // Computed
     const visible = computed(
-      () => networks.length && !frontmatter.value.noSocialShare,
+      () => Boolean(networks.length) && !frontmatter.value.noSocialShare,
     )
-    const url = computed(
-      () =>
-        (frontmatter.value.$shareUrl
-          ?? frontmatter.value.shareUrl
-          ?? frontmatter.value.permalink
-          ?? (inBrowser ? location.href : ``)) as string,
+    const url = computed(() => frontmatter.value.$shareUrl
+      ?? frontmatter.value.shareUrl
+      ?? frontmatter.value.permalink
+      ?? (inBrowser ? location.href : ``),
     )
-    const title = computed(
-      () =>
-        (frontmatter.value.$shareTitle
-          ?? frontmatter.value.shareTitle
-          ?? frontmatter.value.title
-          ?? (inBrowser ? document.title : ``)) as string,
+    const title = computed(() => frontmatter.value.$shareTitle
+      ?? frontmatter.value.shareTitle
+      ?? frontmatter.value.title
+      ?? (inBrowser ? document.title : ``),
     )
-    const description = computed(
-      () =>
-        (frontmatter.value.$shareDescription
-          ?? frontmatter.value.shareDescription
-          ?? frontmatter.value.description
-          ?? getMetaContentByName(`description`)) as string,
+    const description = computed(() => frontmatter.value.$shareDescription
+      ?? frontmatter.value.shareDescription
+      ?? frontmatter.value.description
+      ?? getMetaContentByName(`description`),
     )
     const media = computed(() => {
-      const mediaURL = (frontmatter.value.$shareImage
+      const mediaURL = frontmatter.value.$shareImage
         ?? frontmatter.value.shareImage
         ?? frontmatter.value.image
-        ?? props.fallbackImage) as string
+        ?? props.fallbackImage
 
       if (!mediaURL) return ``
       if (isExternalUrl(mediaURL)) return mediaURL
       const realURL = inBrowser ? `${location.origin}${withBase(mediaURL)}` : ``
       return realURL
     })
-    const quote = computed(
-      () =>
-        (frontmatter.value.$shareQuote
-          ?? frontmatter.value.shareQuote
-          ?? (props.autoQuote ? description.value : ``)) as string,
+    const quote = computed(() => frontmatter.value.$shareQuote
+      ?? frontmatter.value.shareQuote
+      ?? (props.autoQuote ? description.value : ``),
     )
     const hashtags = computed(() => {
-      const tags
-        = frontmatter.value.$shareTags
+      const tags = frontmatter.value.$shareTags
         ?? frontmatter.value.shareTags
         ?? frontmatter.value.tags
         ?? frontmatter.value.tag

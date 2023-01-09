@@ -26,7 +26,7 @@ $ yarn add vuepress-plugin-social-share@next -D
 ## Usage
 
 ```js
-import { defineUserConfig } from '@vuepress/cli'
+import { defineUserConfig } from 'vuepress'
 import { socialSharePlugin } from 'vuepress-plugin-social-share'
 
 export default defineUserConfig({
