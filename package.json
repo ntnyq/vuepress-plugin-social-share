@@ -2,7 +2,7 @@
   "name": "vuepress-plugin-social-share",
   "type": "module",
   "version": "2.0.0-beta.7",
-  "packageManager": "pnpm@7.16.1",
+  "packageManager": "pnpm@7.23.0",
   "description": "Social sharing plugin for VuePress",
   "keywords": [
     "vuepress",
@@ -25,35 +25,34 @@
     "name": "ntnyq",
     "email": "ntnyq13@gmail.com"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ntnyq/vuepress-plugin-social-share.git"
-  },
+  "repository": "ntnyq/vuepress-plugin-social-share",
   "main": "./lib/node/index.js",
+  "module": "./lib/node/index.js",
   "types": "./lib/node/index.d.ts",
   "exports": {
     ".": "./lib/node/index.js",
     "./client": "./lib/client/index.js",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./*": "./*"
   },
   "files": [
     "lib"
   ],
   "scripts": {
+    "build": "run-s clean build:lib copy",
+    "build:docs": "pnpm --filter=docs run build",
+    "build:lib": "tsc",
     "clean": "rimraf lib *.tsbuildinfo",
     "copy": "copyfiles -a -u 1 -V src/**/*.css lib",
     "dev": "run-s clean dev:lib",
-    "build": "run-s clean build:lib copy",
-    "dev:lib": "tsc-watch --onSuccess \"npm run copy\"",
-    "build:lib": "tsc",
     "dev:docs": "pnpm --filter=docs run dev",
-    "build:docs": "pnpm --filter=docs run build",
+    "dev:lib": "tsc-watch --onSuccess \"npm run copy\"",
     "lint": "eslint .",
     "prepare": "husky install",
-    "typecheck": "tsc --noEmit",
     "release": "run-s release:check release:publish",
     "release:check": "run-s lint typecheck clean build",
-    "release:publish": "bumpp && pnpm publish --tag next"
+    "release:publish": "bumpp && pnpm publish --tag next",
+    "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
     "vuepress": "^2.0.0-beta.51"
@@ -63,24 +62,24 @@
     "qrcode": "^1.5.1"
   },
   "devDependencies": {
-    "@ntnyq/eslint-config": "^1.0.9",
-    "@types/node": "^18.11.9",
+    "@ntnyq/eslint-config": "^1.2.1",
+    "@types/node": "^18.11.18",
     "@types/qrcode": "^1.5.0",
     "@vuepress/client": "^2.0.0-beta.53",
     "bumpp": "^8.2.1",
     "copyfiles": "^2.4.1",
-    "eslint": "^8.28.0",
-    "husky": "^8.0.2",
-    "lint-staged": "^13.0.3",
+    "eslint": "^8.31.0",
+    "husky": "^8.0.3",
+    "nano-staged": "^0.8.0",
     "npm-run-all": "^4.1.5",
-    "pnpm": "^7.16.1",
+    "pnpm": "^7.23.0",
     "rimraf": "^3.0.2",
-    "tsc-watch": "^5.0.3",
-    "typescript": "^4.9.3",
+    "tsc-watch": "^6.0.0",
+    "typescript": "^4.9.4",
     "vue": "^3.2.45",
     "vuepress": "^2.0.0-beta.53"
   },
-  "lint-staged": {
+  "nano-staged": {
     "*.{js,ts,vue,yml,yaml,md,json}": "eslint --fix"
   }
 }

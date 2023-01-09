@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "vuepress dev .",
-    "build": "vuepress build . --dest ../docs-dist"
+    "build": "vuepress build . --dest ../docs-dist",
+    "dev": "vuepress dev ."
   },
   "devDependencies": {
     "vuepress-plugin-social-share": "workspace:*"
