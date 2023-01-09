@@ -2,8 +2,5 @@
   "root": true,
   "extends": [
     "@ntnyq"
-  ],
-  "ignorePatterns": [
-    "lib"
   ]
 }

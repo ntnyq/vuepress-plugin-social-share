@@ -26,23 +26,23 @@
     "email": "ntnyq13@gmail.com"
   },
   "repository": "ntnyq/vuepress-plugin-social-share",
-  "main": "./lib/node/index.js",
-  "module": "./lib/node/index.js",
-  "types": "./lib/node/index.d.ts",
+  "main": "./dist/node/index.js",
+  "module": "./dist/node/index.js",
+  "types": "./dist/node/index.d.ts",
   "exports": {
-    ".": "./lib/node/index.js",
-    "./client": "./lib/client/index.js",
+    ".": "./dist/node/index.js",
+    "./client": "./dist/client/index.js",
     "./*": "./*"
   },
   "files": [
-    "lib"
+    "dist"
   ],
   "scripts": {
     "build": "run-s clean build:lib copy",
     "build:docs": "pnpm --filter=docs run build",
     "build:lib": "tsc",
     "clean": "rimraf lib *.tsbuildinfo",
-    "copy": "copyfiles -a -u 1 -V src/**/*.css lib",
+    "copy": "copyfiles -a -u 1 -V src/**/*.css dist",
     "dev": "run-s clean dev:lib",
     "dev:docs": "pnpm --filter=docs run dev",
     "dev:lib": "tsc-watch --onSuccess \"npm run copy\"",

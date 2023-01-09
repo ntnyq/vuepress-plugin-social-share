@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "vuepress build . --dest ../docs-dist",
+    "build": "vuepress build .",
     "dev": "vuepress dev ."
   },
   "devDependencies": {
