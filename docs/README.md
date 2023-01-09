@@ -1,5 +1,6 @@
 ---
 home: true
+title: home
 actions:
   - text: Get Started
     link: /guide/
