@@ -2,7 +2,10 @@ import './style.styl'
 import type { EnhanceApp } from 'vuepress-types'
 // @ts-expect-error virtual modules
 import socialShareOptions from '@dynamic/social-share'
-import type { SocialShareNetworkData, SocialSharePluginOptions } from './types'
+import type {
+  SocialShareNetworkData,
+  SocialSharePluginOptions,
+} from './types'
 import SocialShare from './components/SocialShare'
 import GlobalSocialShare from './components/GlobalSocialShare'
 

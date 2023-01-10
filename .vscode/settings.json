@@ -6,6 +6,22 @@
     "editor.formatOnSave": false
   },
   "[markdown]": {
-    "editor.formatOnSave": false
-  }
+    "editor.formatOnSave": true
+  },
+  "cSpell.words": [
+    "customed",
+    "goyfe",
+    "linkedin",
+    "ntnyq",
+    "pnpm",
+    "qrcode",
+    "rgba",
+    "serializers",
+    "styl",
+    "tsbuildinfo",
+    "vetur",
+    "vuepress",
+    "weibo"
+  ],
+  "cSpell.allowCompoundWords": true
 }

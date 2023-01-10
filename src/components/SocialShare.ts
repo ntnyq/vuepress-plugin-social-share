@@ -6,7 +6,11 @@ import type {
   SocialShareNetworkData,
   SocialShareNetworkItem,
 } from '../types'
-import { getMetaContentByName, inBrowser, isExternalUrl } from '../utils'
+import {
+  getMetaContentByName,
+  inBrowser,
+  isExternalUrl,
+} from '../utils'
 import SocialShareNetwork from './SocialShareNetwork'
 
 interface SharerOpenOptions {
@@ -151,8 +155,7 @@ const SocialShare: ComponentOptions<SocialShareComponent> = {
     },
 
     hashtags (this: SocialShareComponent) {
-      const shareTags
-        = this.$frontmatter.$shareTags
+      const shareTags = this.$frontmatter.$shareTags
         || this.$frontmatter.shareTags
         || this.$frontmatter.tags
         || this.$frontmatter.tag
@@ -272,16 +275,10 @@ const SocialShare: ComponentOptions<SocialShareComponent> = {
   render (this: SocialShareComponent, h) {
     if (!this.visible) return null as unknown as VNode
 
-    const renderSocialNetworkList = (
-      networks: SocialShareNetworkItem[],
-    ): VNode =>
-      h(
-        `ul`,
-        { attrs: { class: `social-share-list`, role: `listbox` } },
-        networks.map(network =>
-          h(SocialShareNetwork, { props: { network, isPlain: this.isPlain } }),
-        ),
-      )
+    const renderSocialNetworkList = (networks: SocialShareNetworkItem[]): VNode => h(`ul`, { attrs: { class: `social-share-list`, role: `listbox` } },
+      networks.map(network =>
+        h(SocialShareNetwork, { props: { network, isPlain: this.isPlain } }),
+      ))
 
     return h(`div`, { attrs: { class: `social-share` } }, [
       renderSocialNetworkList(this.userNetworks),
@@ -296,10 +293,12 @@ const SocialShare: ComponentOptions<SocialShareComponent> = {
      * http://stackoverflow.com/questions/4068373/center-a-popup-window-on-screen/32261263
      */
     const rootEl = document.documentElement
-    const dualScreenLeft
-      = window.screenLeft !== undefined ? window.screenLeft : window.screenX
-    const dualScreenTop
-      = window.screenTop !== undefined ? window.screenTop : window.screenY
+    const dualScreenLeft = window.screenLeft !== undefined
+      ? window.screenLeft
+      : window.screenX
+    const dualScreenTop = window.screenTop !== undefined
+      ? window.screenTop
+      : window.screenY
     const width = window.innerWidth
       ? window.innerWidth
       : rootEl.clientWidth

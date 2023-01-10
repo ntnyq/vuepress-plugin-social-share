@@ -17,9 +17,7 @@ const GlobalSocialShare: ComponentOptions<GlobalSocialShareComponent> = {
 
   computed: {
     visible (this: GlobalSocialShareComponent) {
-      return !(
-        this.$frontmatter.noGlobalSocialShare || this.$frontmatter.noSocialShare
-      )
+      return !(this.$frontmatter.noGlobalSocialShare || this.$frontmatter.noSocialShare)
     },
   },
 
@@ -53,21 +51,16 @@ const GlobalSocialShare: ComponentOptions<GlobalSocialShareComponent> = {
           innerHTML: this.isActive ? SVG_ICON_CLOSE : SVG_ICON_SHARE,
         },
       })
-    const renderGlobalButton = () =>
-      h(
-        `button`,
-        {
-          attrs: {
-            class: `social-share-btn social-share-trigger`,
-            type: `button`,
-            role: `button`,
-          },
-          on: {
-            click: this.toggle,
-          },
-        },
-        [renderButtonIcon()],
-      )
+    const renderGlobalButton = () => h(`button`, {
+      attrs: {
+        class: `social-share-btn social-share-trigger`,
+        type: `button`,
+        role: `button`,
+      },
+      on: {
+        click: this.toggle,
+      },
+    }, [renderButtonIcon()])
     const renderSocialShare = () =>
       h(SocialShare, {
         style: { display: this.isActive ? `block` : `none` },

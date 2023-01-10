@@ -25,8 +25,8 @@ const SocialShareNetwork: ComponentOptions<SocialShareNetworkComponent> = {
   props: {
     network: {
       type: Object,
-      validator: network => {
-        if (!network.icon) return false
+      validator: (network: SocialShareNetworkItem) => {
+        if (!network.icon || !network.type) return false
         if ([`popup`].includes(network.type)) return Boolean(network.sharer)
         return true
       },
@@ -46,8 +46,15 @@ const SocialShareNetwork: ComponentOptions<SocialShareNetworkComponent> = {
 
     shareUrl (this: SocialShareNetworkComponent) {
       let { sharer = `` } = this.network
-      const { url, title, quote, media, hashtags, description, twitterUser }
-        = this.$parent as any
+      const {
+        url,
+        title,
+        quote,
+        media,
+        hashtags,
+        description,
+        twitterUser,
+      } = this.$parent as any
       /**
        * On IOS, Twitter sharing should't have a empty hashtag parameter
        * See https://github.com/nicolasbeauvais/vue-social-sharing/issues/143
@@ -111,7 +118,7 @@ const SocialShareNetwork: ComponentOptions<SocialShareNetworkComponent> = {
     const renderShareIcon = (network: SocialShareNetworkItem) =>
       this.isSvgIcon
         ? h(`span`, {
-          style: { color: !this.isPlain && network.color },
+          style: { color: !this.isPlain ? network.color : `` },
           attrs: {
             class: `social-share-icon-svg`,
             focusable: `false`,
@@ -125,28 +132,22 @@ const SocialShareNetwork: ComponentOptions<SocialShareNetworkComponent> = {
           attrs: { class: `social-share-icon-img` },
         })
     const renderShareButton = (network: SocialShareNetworkItem) =>
-      h(
-        `button`,
-        {
-          attrs: {
-            'data-link':
-              network.type === `popup`
-                ? `#share-${network.name}`
-                : this.shareUrl,
-            class: `social-share-btn`,
-            title: network.name,
-            type: `button`,
-            role: `button`,
-          },
-          on: { click: this.share },
+      h(`button`, {
+        attrs: {
+          'data-link': network.type === `popup` ? `#share-${network.name}` : this.shareUrl,
+          class: `social-share-btn`,
+          title: network.name,
+          type: `button`,
+          role: `button`,
         },
-        [renderShareIcon(network)],
-      )
-    return h(
-      `li`,
-      { attrs: { class: `social-share-network`, role: `option` } },
-      [renderShareButton(this.network)],
-    )
+        on: { click: this.share },
+      },
+      [renderShareIcon(network)])
+    return h(`li`, {
+      attrs:
+      { class: `social-share-network`, role: `option` },
+    },
+    [renderShareButton(this.network)])
   },
 }
 
