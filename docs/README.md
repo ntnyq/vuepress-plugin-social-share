@@ -12,4 +12,4 @@ shareImage: /hero.png
 tags: VuePress, plugin, SocialShare
 ---
 
-<social-share :networks="['wechat', 'qq', 'twitter', 'facebook', 'weibo', 'email', 'pinterest']" />
+<social-share :networks="['qrcode', 'wechat', 'qq', 'twitter', 'facebook', 'weibo', 'email', 'pinterest']" />

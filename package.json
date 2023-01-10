@@ -41,7 +41,7 @@
     "build": "run-s clean build:lib copy",
     "build:docs": "pnpm --filter=docs run build",
     "build:lib": "tsc",
-    "clean": "rimraf lib *.tsbuildinfo",
+    "clean": "rimraf dist *.tsbuildinfo",
     "copy": "copyfiles -a -u 1 -V src/**/*.css dist",
     "dev": "run-s clean dev:lib",
     "dev:docs": "pnpm --filter=docs run dev",
