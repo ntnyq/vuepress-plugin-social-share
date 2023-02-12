@@ -76,9 +76,7 @@ Some demos.
 <social-share :networks="['pinterest', 'linkedin']" />
 ```
 
-<social-share 
-  :networks="['pinterest', 'linkedin']" 
-/>
+<social-share :networks="['pinterest', 'linkedin']" />
 
 ## No global UI
 

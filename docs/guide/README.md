@@ -23,7 +23,9 @@ import { defineUserConfig } from 'vuepress'
 import { socialSharePlugin } from 'vuepress-plugin-social-share'
 
 export default defineUserConfig({
-  plugins: [socialSharePlugin()],
+  plugins: [
+    socialSharePlugin(),
+  ],
 })
 ```
 
@@ -33,10 +35,8 @@ For advanced usage.
 
 ```ts
 import { defineUserConfig } from 'vuepress'
-import {
-  type SocialShareNetworkData,
-  socialSharePlugin,
-} from 'vuepress-plugin-social-share'
+import { socialSharePlugin, } from 'vuepress-plugin-social-share'
+import type { SocialShareNetworkData } from 'vuepress-plugin-social-share'
 
 const extendsNetworks: SocialShareNetworkData = {
   pinterest: {
@@ -94,6 +94,7 @@ Currently, networks below are built-in supported:
 - douban <social-share class="list-demo-sns" :networks="['douban']"/>
 - whatsapp <social-share class="list-demo-sns" :networks="['whatsapp']"/>
 - wechat <social-share class="list-demo-sns" :networks="['wechat']" />
+- qrcode <social-share class="list-demo-sns" :networks="['qrcode']" />
 
 ### email
 
@@ -121,15 +122,6 @@ Mailto only launches the MUA(Mail User Agent) which is configured as the default
 - **default** `undefined`
 
 Your Twitter profile username.
-
-### weiboAppKey
-
-<badge type="danger">Removed since v0.3.0</badge>
-
-- **type:** `string`
-- **default** `undefined`
-
-Your Weibo app key.
 
 ### fallbackImage
 
