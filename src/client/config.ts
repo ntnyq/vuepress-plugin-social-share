@@ -11,7 +11,7 @@ declare const __SOCIAL_SHARE_COMPONENT_NAME__: string
 const options = socialShareOptions as SocialSharePluginOptionsWithDefaults
 
 export default defineClientConfig({
-  enhance ({ app }) {
+  enhance({ app }) {
     app.component(__SOCIAL_SHARE_COMPONENT_NAME__, {
       props: {
         tags: {
@@ -27,7 +27,7 @@ export default defineClientConfig({
         },
       },
 
-      setup (props) {
+      setup(props) {
         return () =>
           h(SocialShare, {
             ...options,

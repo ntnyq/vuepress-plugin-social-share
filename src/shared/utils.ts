@@ -12,10 +12,10 @@ export const RE_EMAIL = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
 export const isEmail = (val: string) => RE_EMAIL.test(val)
 
 export const createNetworksData = (options: SocialSharePluginOptions = {}) => {
-  const { email = ``, extendsNetworks = {} } = options
+  const { email = '', extendsNetworks = {} } = options
 
   if (isEmail(email)) {
-    BASE_NETWORKS.email.sharer = BASE_NETWORKS.email.sharer!.replace(`@email`, email)
+    BASE_NETWORKS.email.sharer = BASE_NETWORKS.email.sharer!.replace('@email', email)
   } else {
     delete BASE_NETWORKS.email
   }

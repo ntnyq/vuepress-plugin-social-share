@@ -20,14 +20,14 @@ import { getMetaContentByName, inBrowser, isExternalUrl } from '../utils.js'
 import { SocialShareNetwork } from './SocialShareNetwork.js'
 
 export const SocialShare = defineComponent({
-  name: `SocialShare`,
+  name: 'SocialShare',
 
   inheritAttrs: true,
 
   props: {
     networks: {
       type: Array,
-      default: () => [`twitter`, `facebook`, `reddit`],
+      default: () => ['twitter', 'facebook', 'reddit'],
     },
 
     isPlain: {
@@ -65,7 +65,7 @@ export const SocialShare = defineComponent({
   },
 
   // eslint-disable-next-line max-lines-per-function
-  setup (props) {
+  setup(props) {
     const networks = [...new Set(props.networks)]
     const networkList = Object.keys(props.networksData)
       .map(name => ({ name, ...props.networksData[name] }))
@@ -119,17 +119,17 @@ export const SocialShare = defineComponent({
     const url = computed(() => frontmatter.value.$shareUrl
       ?? frontmatter.value.shareUrl
       ?? frontmatter.value.permalink
-      ?? (inBrowser ? location.href : ``),
+      ?? (inBrowser ? location.href : ''),
     )
     const title = computed(() => frontmatter.value.$shareTitle
       ?? frontmatter.value.shareTitle
       ?? frontmatter.value.title
-      ?? (inBrowser ? document.title : ``),
+      ?? (inBrowser ? document.title : ''),
     )
     const description = computed(() => frontmatter.value.$shareDescription
       ?? frontmatter.value.shareDescription
       ?? frontmatter.value.description
-      ?? getMetaContentByName(`description`),
+      ?? getMetaContentByName('description'),
     )
     const media = computed(() => {
       const mediaURL = frontmatter.value.$shareImage
@@ -137,14 +137,14 @@ export const SocialShare = defineComponent({
         ?? frontmatter.value.image
         ?? props.fallbackImage
 
-      if (!mediaURL) return ``
+      if (!mediaURL) return ''
       if (isExternalUrl(mediaURL)) return mediaURL
-      const realURL = inBrowser ? `${location.origin}${withBase(mediaURL)}` : ``
+      const realURL = inBrowser ? `${location.origin}${withBase(mediaURL)}` : ''
       return realURL
     })
     const quote = computed(() => frontmatter.value.$shareQuote
       ?? frontmatter.value.shareQuote
-      ?? (props.autoQuote ? description.value : ``),
+      ?? (props.autoQuote ? description.value : ''),
     )
     const hashtags = computed(() => {
       const tags = frontmatter.value.$shareTags
@@ -152,18 +152,18 @@ export const SocialShare = defineComponent({
         ?? frontmatter.value.tags
         ?? frontmatter.value.tag
         ?? props.tags
-        ?? getMetaContentByName(`keywords`)
+        ?? getMetaContentByName('keywords')
       if (Array.isArray(tags)) {
-        return tags.join(`,`)
+        return tags.join(',')
       }
-      if (typeof tags === `string`) {
-        return tags.replace(/\s/g, ``)
+      if (typeof tags === 'string') {
+        return tags.replace(/\s/g, '')
       }
-      return ``
+      return ''
     })
     const qrcodeRenderOptions = computed<QRCodeOptions>(() => {
       const defaultOptions: QRCodeOptions = {
-        errorCorrectionLevel: `H`,
+        errorCorrectionLevel: 'H',
         width: 250,
         scale: 1,
         margin: 1.5,
@@ -178,21 +178,21 @@ export const SocialShare = defineComponent({
     const openSharer = (shareURL: string) => {
       let popWindow: MayBe<Window> = null
       const shareParams: string[] = [
-        `status=${popup.status ? `yes` : `no`}`,
+        `status=${popup.status ? 'yes' : 'no'}`,
         `height=${popup.height}`,
         `width=${popup.width}`,
-        `resizable=${popup.resizable ? `yes` : `no`}`,
+        `resizable=${popup.resizable ? 'yes' : 'no'}`,
         `left=${popup.left}`,
         `top=${popup.top}`,
         `screenX=${popup.left}`,
         `screenY=${popup.top}`,
-        `toolbar=${popup.toolbar ? `yes` : `no`}`,
-        `menubar=${popup.menubar ? `yes` : `no`}`,
-        `scrollbars=${popup.scrollbars ? `yes` : `no`}`,
-        `location=${popup.location ? `yes` : `no`}`,
-        `directories=${popup.directories ? `yes` : `no`}`,
+        `toolbar=${popup.toolbar ? 'yes' : 'no'}`,
+        `menubar=${popup.menubar ? 'yes' : 'no'}`,
+        `scrollbars=${popup.scrollbars ? 'yes' : 'no'}`,
+        `location=${popup.location ? 'yes' : 'no'}`,
+        `directories=${popup.directories ? 'yes' : 'no'}`,
       ]
-      popWindow = window.open(shareURL, `sharer`, shareParams.join(`,`))
+      popWindow = window.open(shareURL, 'sharer', shareParams.join(','))
       popWindow?.focus?.()
       timer.value = window.setInterval(() => {
         if (popWindow?.closed) {
@@ -203,10 +203,10 @@ export const SocialShare = defineComponent({
     }
     const showQRCode = async () => {
       const body = document.body
-      const socialShareEl = document.querySelector(`#__VUEPRESS_SOCIAL_SHARE__`)
-      const socialShareOverlay = document.createElement(`div`)
-      socialShareOverlay.id = `__VUEPRESS_SOCIAL_SHARE__`
-      socialShareOverlay.classList.add(`social-share-overlay`)
+      const socialShareEl = document.querySelector('#__VUEPRESS_SOCIAL_SHARE__')
+      const socialShareOverlay = document.createElement('div')
+      socialShareOverlay.id = '__VUEPRESS_SOCIAL_SHARE__'
+      socialShareOverlay.classList.add('social-share-overlay')
       if (socialShareEl && socialShareEl.parentNode) {
         socialShareEl.parentNode.removeChild(socialShareEl)
       }
@@ -215,9 +215,9 @@ export const SocialShare = defineComponent({
         const dataURL = await QRCode.toDataURL(url.value, qrcodeRenderOptions.value)
         socialShareOverlay.innerHTML = `<img class="social-share-qrcode" src="${dataURL}" />`
         body.appendChild(socialShareOverlay)
-        socialShareOverlay.classList.add(`show`)
-        socialShareOverlay.addEventListener(`click`, evt => {
-          socialShareOverlay.classList.remove(`show`)
+        socialShareOverlay.classList.add('show')
+        socialShareOverlay.addEventListener('click', evt => {
+          socialShareOverlay.classList.remove('show')
           body.removeChild(socialShareOverlay)
           evt.stopPropagation()
         })
@@ -226,18 +226,18 @@ export const SocialShare = defineComponent({
       }
     }
     const openWindow = (shareURL: string) => {
-      window.open(shareURL, `_blank`)
+      window.open(shareURL, '_blank')
     }
     const generateHashTags = (hashtags: string, name: string) => {
-      if ([`facebook`].includes(name) && hashtags.length) {
-        return `%23${hashtags.split(`,`)[0]}`
+      if (['facebook'].includes(name) && hashtags.length) {
+        return `%23${hashtags.split(',')[0]}`
       }
       return hashtags
     }
     const createShareURL = (name: string, network: Network) => {
-      let { sharer = `` } = network
-      if ([`twitter`].includes(name) && !hashtags.value.length) {
-        sharer = sharer.replace(`&hashtags=@hashtags`, ``)
+      let { sharer = '' } = network
+      if (['twitter'].includes(name) && !hashtags.value.length) {
+        sharer = sharer.replace('&hashtags=@hashtags', '')
       }
       return sharer
         .replace(/@url/g, encodeURIComponent(url.value))
@@ -246,28 +246,28 @@ export const SocialShare = defineComponent({
         .replace(/@description/g, encodeURIComponent(description.value))
         .replace(/@quote/g, encodeURIComponent(quote.value))
         .replace(/@hashtags/g, generateHashTags(hashtags.value, name))
-        .replace(/@twitteruser/g, props.twitterUser ? `&via=${props.twitterUser}` : ``)
+        .replace(/@twitteruser/g, props.twitterUser ? `&via=${props.twitterUser}` : '')
     }
     const onShare = (name: string) => {
       const network = props.networksData[name]
       const shareURL = createShareURL(name, network)
       switch (network.type) {
-        case `popup`:
+        case 'popup':
           openSharer(shareURL)
           break
-        case `qrcode`:
+        case 'qrcode':
           showQRCode()
           break
-        case `direct`:
+        case 'direct':
           openWindow(shareURL)
           break
         default:
           break
       }
     }
-    const renderNetworkList = (networks: SocialShareNetworkItem[]) => h(`ul`, {
-      class: `social-share-list`,
-      role: `listbox`,
+    const renderNetworkList = (networks: SocialShareNetworkItem[]) => h('ul', {
+      class: 'social-share-list',
+      role: 'listbox',
     }, networks.map(network =>
       h(SocialShareNetwork, {
         network,
@@ -279,7 +279,7 @@ export const SocialShare = defineComponent({
 
     return () => {
       if (!visible.value) return null as unknown as VNode
-      return h(`div`, { class: `social-share` }, [
+      return h('div', { class: 'social-share' }, [
         renderNetworkList(networkList),
       ])
     }

@@ -19,11 +19,11 @@ import type {
 import { SocialShare } from './SocialShare.js'
 
 export const GlobalSocialShare = defineComponent({
-  name: `GlobalSocialShare`,
+  name: 'GlobalSocialShare',
 
   inheritAttrs: true,
 
-  setup () {
+  setup() {
     const options = socialShareOptions as SocialSharePluginOptionsWithDefaults
     const isActive = ref(false)
     const vm = getCurrentInstance() as any
@@ -47,22 +47,22 @@ export const GlobalSocialShare = defineComponent({
     }
 
     onMounted(() => {
-      document.addEventListener(`click`, onClickOutside)
+      document.addEventListener('click', onClickOutside)
     })
 
     onUnmounted(() => {
-      document.removeEventListener(`click`, onClickOutside)
+      document.removeEventListener('click', onClickOutside)
     })
 
     const renderButtonIcon = () =>
-      h(`span`, {
-        class: `social-share-icon-svg`,
+      h('span', {
+        class: 'social-share-icon-svg',
         innerHTML: isActive.value ? SVG_ICON_CLOSE : SVG_ICON_SHARE,
       })
-    const renderGlobalButton = () => h(`button`, {
-      class: `social-share-btn social-share-trigger`,
-      type: `button`,
-      role: `button`,
+    const renderGlobalButton = () => h('button', {
+      class: 'social-share-btn social-share-trigger',
+      type: 'button',
+      role: 'button',
       onClick: (evt: MouseEvent) => onClick(evt),
     }, [renderButtonIcon()])
     const renderSocialShare = () => {
@@ -80,7 +80,7 @@ export const GlobalSocialShare = defineComponent({
 
     return () => {
       if (!visible.value) return null as unknown as VNode
-      return h(`div`, { class: `social-share-global` }, [
+      return h('div', { class: 'social-share-global' }, [
         renderSocialShare(),
         renderGlobalButton(),
       ])
