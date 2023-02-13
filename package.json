@@ -54,7 +54,20 @@
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
-    "vuepress": "2.0.0-beta.60"
+    "vuepress": "2.0.0-beta.60",
+    "vuepress-vite": "2.0.0-beta.60",
+    "vuepress-webpack": "2.0.0-beta.60"
+  },
+  "peerDependenciesMeta": {
+    "vuepress": {
+      "optional": true
+    },
+    "vuepress-vite": {
+      "optional": true
+    },
+    "vuepress-webpack": {
+      "optional": true
+    }
   },
   "dependencies": {
     "deepmerge": "^4.3.0",
