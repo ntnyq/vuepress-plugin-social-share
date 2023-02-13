@@ -6,7 +6,7 @@ import {
   reactive,
   ref,
 } from 'vue'
-import type { PropType, VNode } from 'vue'
+import type { PropType } from 'vue'
 import { usePageFrontmatter, withBase } from '@vuepress/client'
 import type {
   MayBe,
@@ -285,10 +285,9 @@ export const SocialShare = defineComponent({
     ))
 
     return () => {
-      if (!visible.value) return null as unknown as VNode
-      return h('div', { class: 'social-share' }, [
-        renderNetworkList(networkList.value),
-      ])
+      return visible.value
+        ? h('div', { class: 'social-share' }, [renderNetworkList(networkList)])
+        : null
     }
   },
 })
