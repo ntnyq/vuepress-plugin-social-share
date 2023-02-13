@@ -66,11 +66,18 @@ export const SocialShare = defineComponent({
 
   // eslint-disable-next-line max-lines-per-function
   setup(props) {
-    const networks = [...new Set(props.networks)]
-    const networkList = Object.keys(props.networksData)
-      .map(name => ({ name, ...props.networksData[name] }))
-      .filter(network => networks.includes(network.name))
-      .sort((prev, next) => networks.indexOf(prev.name) - networks.indexOf(next.name))
+    const networks = computed(() => [...new Set(props.networks)])
+
+    const networkList = computed(() =>
+      Object.keys(props.networksData)
+        .map(name => ({ name, ...props.networksData[name] }))
+        .filter(network => networks.value.includes(network.name))
+        .sort(
+          (prev, next) =>
+            networks.value.indexOf(prev.name) - networks.value.indexOf(next.name),
+        ),
+    )
+
     const frontmatter = usePageFrontmatter<SocialShareFrontmatter>()
     const timer = ref<MayBe<number>>(null)
     const popup = reactive({
@@ -114,7 +121,7 @@ export const SocialShare = defineComponent({
 
     // Computed
     const visible = computed(
-      () => Boolean(networks.length) && !frontmatter.value.noSocialShare,
+      () => Boolean(networks.value.length) && !frontmatter.value.noSocialShare,
     )
     const url = computed(() => frontmatter.value.$shareUrl
       ?? frontmatter.value.shareUrl
@@ -279,7 +286,7 @@ export const SocialShare = defineComponent({
 
     return () => {
       return visible.value
-        ? h('div', { class: 'social-share' }, [renderNetworkList(networkList)])
+        ? h('div', { class: 'social-share' }, [renderNetworkList(networkList.value)])
         : null
     }
   },
