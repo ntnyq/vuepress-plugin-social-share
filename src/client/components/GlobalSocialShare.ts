@@ -7,7 +7,6 @@ import {
   onUnmounted,
   ref,
 } from 'vue'
-import type { VNode } from 'vue'
 import { usePageFrontmatter } from '@vuepress/client'
 // @ts-expect-error virtual module
 import { socialShareOptions } from '@vuepress/plugin-social-share/temp'
@@ -65,25 +64,26 @@ export const GlobalSocialShare = defineComponent({
       role: 'button',
       onClick: (evt: MouseEvent) => onClick(evt),
     }, [renderButtonIcon()])
-    const renderSocialShare = () => {
-      if (!isActive.value) return null as unknown as VNode
-      return h(SocialShare, {
-        networks: options.networks,
-        isPlain: options.isPlain,
-        twitterUser: options.twitterUser,
-        fallbackImage: options.fallbackImage,
-        autoQuote: options.autoQuote,
-        qrcodeOptions: options.qrcodeOptions,
-        networksData: options.networksData,
-      })
-    }
+    const renderSocialShare = () =>
+      isActive.value
+        ? h(SocialShare, {
+          networks: options.networks,
+          isPlain: options.isPlain,
+          twitterUser: options.twitterUser,
+          fallbackImage: options.fallbackImage,
+          autoQuote: options.autoQuote,
+          qrcodeOptions: options.qrcodeOptions,
+          networksData: options.networksData,
+        })
+        : null
 
     return () => {
-      if (!visible.value) return null as unknown as VNode
-      return h('div', { class: 'social-share-global' }, [
-        renderSocialShare(),
-        renderGlobalButton(),
-      ])
+      return visible.value
+        ? h('div', { class: 'social-share-global' }, [
+          renderSocialShare(),
+          renderGlobalButton(),
+        ])
+        : null
     }
   },
 })
