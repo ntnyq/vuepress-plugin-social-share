@@ -38,7 +38,7 @@ export default defineUserConfig({
       { text: 'VuePress v1', link: 'https://sns.goyfe.com' },
       {
         text: 'Changelog',
-        link: 'https://github.com/ntnyq/vuepress-plugin-social-share/blob/next/CHANGELOG.md',
+        link: 'https://github.com/ntnyq/vuepress-plugin-social-share/releases',
       },
     ],
 

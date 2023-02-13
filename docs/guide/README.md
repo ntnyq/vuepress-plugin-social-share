@@ -98,8 +98,6 @@ Currently, networks below are built-in supported:
 
 ### email
 
-<badge>v0.3.0+</badge>
-
 - **type:** `string`
 - **default** `undefined`
 
@@ -277,8 +275,6 @@ Set the svg element color if you use it as sharer's icon.
 You can set `icon` with a **network image**, an **image in your public folder with an absolute path** or an **svg element**.
 
 ### noGlobalSocialShare
-
-<badge>v0.2.0+</badge>
 
 - **type:** `boolean`
 - **default** `false`
