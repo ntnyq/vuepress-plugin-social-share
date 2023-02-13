@@ -286,7 +286,7 @@ export const SocialShare = defineComponent({
 
     return () => {
       return visible.value
-        ? h('div', { class: 'social-share' }, [renderNetworkList(networkList)])
+        ? h('div', { class: 'social-share' }, [renderNetworkList(networkList.value)])
         : null
     }
   },
