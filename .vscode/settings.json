@@ -11,19 +11,13 @@
     "jsonc",
     "json5"
   ],
-  "[markdown]": {
-    "editor.formatOnSave": false
-  },
-  "[javascript]": {
-    "editor.formatOnSave": false
-  },
-  "[typescript]": {
-    "editor.formatOnSave": false
-  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "cSpell.words": [
     "bumpp",
     "changelogithub",
     "customed",
+    "dbaeumer",
+    "esbenp",
     "goyfe",
     "linkedin",
     "ntnyq",

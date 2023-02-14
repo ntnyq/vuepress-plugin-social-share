@@ -38,29 +38,40 @@ export const SocialShareNetwork = defineComponent({
 
   setup(props, ctx) {
     const isSvgIcon = computed(() => isSVG(props.network.icon))
-    const renderShareIcon = (network: SocialShareNetworkItem) => isSvgIcon.value
-      ? h('span', {
-        class: 'social-share-icon-svg',
-        focusable: false,
-        style: { color: !props.isPlain && network.color },
-        innerHTML: network.icon,
-      })
-      : h('span', {
-        style: { backgroundImage: `url(${network.icon})` },
-        class: 'social-share-icon-img',
-      })
-    const renderShareButton = (network: SocialShareNetworkItem) => h('button', {
-      class: 'social-share-btn',
-      title: network.name,
-      type: 'button',
-      role: 'button',
-      onClick: () => ctx.emit(Event.Share, network.name),
-      'data-link': network.type === 'popup' ? `#share-${network.name}` : props.shareURL,
-    }, [renderShareIcon(network)])
+    const renderShareIcon = (network: SocialShareNetworkItem) =>
+      isSvgIcon.value
+        ? h('span', {
+            class: 'social-share-icon-svg',
+            focusable: false,
+            style: { color: !props.isPlain && network.color },
+            innerHTML: network.icon,
+          })
+        : h('span', {
+            style: { backgroundImage: `url(${network.icon})` },
+            class: 'social-share-icon-img',
+          })
+    const renderShareButton = (network: SocialShareNetworkItem) =>
+      h(
+        'button',
+        {
+          class: 'social-share-btn',
+          title: network.name,
+          type: 'button',
+          role: 'button',
+          onClick: () => ctx.emit(Event.Share, network.name),
+          'data-link': network.type === 'popup' ? `#share-${network.name}` : props.shareURL,
+        },
+        [renderShareIcon(network)],
+      )
 
-    return () => h('li', {
-      class: 'social-share-network',
-      role: 'option',
-    }, [renderShareButton(props.network)])
+    return () =>
+      h(
+        'li',
+        {
+          class: 'social-share-network',
+          role: 'option',
+        },
+        [renderShareButton(props.network)],
+      )
   },
 })

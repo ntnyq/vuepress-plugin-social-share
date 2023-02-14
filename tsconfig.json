@@ -12,15 +12,8 @@
     "noImplicitAny": true,
     "skipLibCheck": true,
     "noEmitOnError": true,
-    "types": [
-      "node"
-    ],
-    "lib": [
-      "DOM",
-      "ES2020"
-    ]
+    "types": ["node"],
+    "lib": ["DOM", "ES2020"]
   },
-  "include": [
-    "./src"
-  ]
+  "include": ["./src"]
 }

@@ -1,11 +1,4 @@
-import {
-  computed,
-  defineComponent,
-  h,
-  onMounted,
-  reactive,
-  ref,
-} from 'vue'
+import { computed, defineComponent, h, onMounted, reactive, ref } from 'vue'
 import type { PropType } from 'vue'
 import { usePageFrontmatter, withBase } from '@vuepress/client'
 import type {
@@ -73,8 +66,7 @@ export const SocialShare = defineComponent({
         .map(name => ({ name, ...props.networksData[name] }))
         .filter(network => networks.value.includes(network.name))
         .sort(
-          (prev, next) =>
-            networks.value.indexOf(prev.name) - networks.value.indexOf(next.name),
+          (prev, next) => networks.value.indexOf(prev.name) - networks.value.indexOf(next.name),
         ),
     )
 
@@ -101,20 +93,18 @@ export const SocialShare = defineComponent({
        * http://stackoverflow.com/questions/4068373/center-a-popup-window-on-screen/32261263
        */
       const rootEl = document.documentElement
-      const dualScreenLeft
-        = window.screenLeft !== undefined ? window.screenLeft : window.screenX
-      const dualScreenTop
-        = window.screenTop !== undefined ? window.screenTop : window.screenY
+      const dualScreenLeft = window.screenLeft !== undefined ? window.screenLeft : window.screenX
+      const dualScreenTop = window.screenTop !== undefined ? window.screenTop : window.screenY
       const width = window.innerWidth
         ? window.innerWidth
         : rootEl.clientWidth
-          ? rootEl.clientWidth
-          : screen.width
+        ? rootEl.clientWidth
+        : screen.width
       const height = window.innerHeight
         ? window.innerHeight
         : rootEl.clientHeight
-          ? rootEl.clientHeight
-          : screen.height
+        ? rootEl.clientHeight
+        : screen.height
       popup.left = width / 2 - popup.width / 2 + dualScreenLeft
       popup.top = height / 2 - popup.height / 2 + dualScreenTop
     })
@@ -123,43 +113,53 @@ export const SocialShare = defineComponent({
     const visible = computed(
       () => Boolean(networks.value.length) && !frontmatter.value.noSocialShare,
     )
-    const url = computed(() => frontmatter.value.$shareUrl
-      ?? frontmatter.value.shareUrl
-      ?? frontmatter.value.permalink
-      ?? (inBrowser ? location.href : ''),
+    const url = computed(
+      () =>
+        frontmatter.value.$shareUrl ??
+        frontmatter.value.shareUrl ??
+        frontmatter.value.permalink ??
+        (inBrowser ? location.href : ''),
     )
-    const title = computed(() => frontmatter.value.$shareTitle
-      ?? frontmatter.value.shareTitle
-      ?? frontmatter.value.title
-      ?? (inBrowser ? document.title : ''),
+    const title = computed(
+      () =>
+        frontmatter.value.$shareTitle ??
+        frontmatter.value.shareTitle ??
+        frontmatter.value.title ??
+        (inBrowser ? document.title : ''),
     )
-    const description = computed(() => frontmatter.value.$shareDescription
-      ?? frontmatter.value.shareDescription
-      ?? frontmatter.value.description
-      ?? getMetaContentByName('description'),
+    const description = computed(
+      () =>
+        frontmatter.value.$shareDescription ??
+        frontmatter.value.shareDescription ??
+        frontmatter.value.description ??
+        getMetaContentByName('description'),
     )
     const media = computed(() => {
-      const mediaURL = frontmatter.value.$shareImage
-        ?? frontmatter.value.shareImage
-        ?? frontmatter.value.image
-        ?? props.fallbackImage
+      const mediaURL =
+        frontmatter.value.$shareImage ??
+        frontmatter.value.shareImage ??
+        frontmatter.value.image ??
+        props.fallbackImage
 
       if (!mediaURL) return ''
       if (isExternalUrl(mediaURL)) return mediaURL
       const realURL = inBrowser ? `${location.origin}${withBase(mediaURL)}` : ''
       return realURL
     })
-    const quote = computed(() => frontmatter.value.$shareQuote
-      ?? frontmatter.value.shareQuote
-      ?? (props.autoQuote ? description.value : ''),
+    const quote = computed(
+      () =>
+        frontmatter.value.$shareQuote ??
+        frontmatter.value.shareQuote ??
+        (props.autoQuote ? description.value : ''),
     )
     const hashtags = computed(() => {
-      const tags = frontmatter.value.$shareTags
-        ?? frontmatter.value.shareTags
-        ?? frontmatter.value.tags
-        ?? frontmatter.value.tag
-        ?? props.tags
-        ?? getMetaContentByName('keywords')
+      const tags =
+        frontmatter.value.$shareTags ??
+        frontmatter.value.shareTags ??
+        frontmatter.value.tags ??
+        frontmatter.value.tag ??
+        props.tags ??
+        getMetaContentByName('keywords')
       if (Array.isArray(tags)) {
         return tags.join(',')
       }
@@ -272,22 +272,26 @@ export const SocialShare = defineComponent({
           break
       }
     }
-    const renderNetworkList = (networks: SocialShareNetworkItem[]) => h('ul', {
-      class: 'social-share-list',
-      role: 'listbox',
-    }, networks.map(network =>
-      h(SocialShareNetwork, {
-        network,
-        isPlain: props.isPlain,
-        shareURL: createShareURL(network.name, network),
-        onShare: (name: string) => onShare(name),
-      }),
-    ))
+    const renderNetworkList = (networks: SocialShareNetworkItem[]) =>
+      h(
+        'ul',
+        {
+          class: 'social-share-list',
+          role: 'listbox',
+        },
+        networks.map(network =>
+          h(SocialShareNetwork, {
+            network,
+            isPlain: props.isPlain,
+            shareURL: createShareURL(network.name, network),
+            onShare: (name: string) => onShare(name),
+          }),
+        ),
+      )
 
-    return () => {
-      return visible.value
+    return () =>
+      visible.value
         ? h('div', { class: 'social-share' }, [renderNetworkList(networkList.value)])
         : null
-    }
   },
 })

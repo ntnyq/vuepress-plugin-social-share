@@ -1,12 +1,4 @@
-import {
-  computed,
-  defineComponent,
-  getCurrentInstance,
-  h,
-  onMounted,
-  onUnmounted,
-  ref,
-} from 'vue'
+import { computed, defineComponent, getCurrentInstance, h, onMounted, onUnmounted, ref } from 'vue'
 import { usePageFrontmatter } from '@vuepress/client'
 // @ts-expect-error virtual module
 import { socialShareOptions } from '@vuepress/plugin-social-share/temp'
@@ -27,11 +19,14 @@ export const GlobalSocialShare = defineComponent({
     const isActive = ref(false)
     const vm = getCurrentInstance() as any
     const frontmatter = usePageFrontmatter<SocialShareFrontmatter>()
-    const visible = computed(() => !(
-      options.noGlobalSocialShare
-          || frontmatter.value.noGlobalSocialShare
-          || frontmatter.value.noSocialShare
-    ))
+    const visible = computed(
+      () =>
+        !(
+          options.noGlobalSocialShare ||
+          frontmatter.value.noGlobalSocialShare ||
+          frontmatter.value.noSocialShare
+        ),
+    )
 
     const onClick = (evt: MouseEvent) => {
       isActive.value = !isActive.value
@@ -58,33 +53,34 @@ export const GlobalSocialShare = defineComponent({
         class: 'social-share-icon-svg',
         innerHTML: isActive.value ? SVG_ICON_CLOSE : SVG_ICON_SHARE,
       })
-    const renderGlobalButton = () => h('button', {
-      class: 'social-share-btn social-share-trigger',
-      type: 'button',
-      role: 'button',
-      onClick: (evt: MouseEvent) => onClick(evt),
-    }, [renderButtonIcon()])
+    const renderGlobalButton = () =>
+      h(
+        'button',
+        {
+          class: 'social-share-btn social-share-trigger',
+          type: 'button',
+          role: 'button',
+          onClick: (evt: MouseEvent) => onClick(evt),
+        },
+        [renderButtonIcon()],
+      )
     const renderSocialShare = () =>
       isActive.value
         ? h(SocialShare, {
-          networks: options.networks,
-          isPlain: options.isPlain,
-          twitterUser: options.twitterUser,
-          fallbackImage: options.fallbackImage,
-          autoQuote: options.autoQuote,
-          qrcodeOptions: options.qrcodeOptions,
-          networksData: options.networksData,
-        })
+            networks: options.networks,
+            isPlain: options.isPlain,
+            twitterUser: options.twitterUser,
+            fallbackImage: options.fallbackImage,
+            autoQuote: options.autoQuote,
+            qrcodeOptions: options.qrcodeOptions,
+            networksData: options.networksData,
+          })
         : null
 
-    return () => {
-      return visible.value
-        ? h('div', { class: 'social-share-global' }, [
-          renderSocialShare(),
-          renderGlobalButton(),
-        ])
+    return () =>
+      visible.value
+        ? h('div', { class: 'social-share-global' }, [renderSocialShare(), renderGlobalButton()])
         : null
-    }
   },
 })
 
