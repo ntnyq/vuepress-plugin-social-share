@@ -1,14 +1,12 @@
 import './style.css'
 import { h } from 'vue'
 import { defineClientConfig } from '@vuepress/client'
-// @ts-expect-error virtual module
-import { socialShareOptions } from '@vuepress/plugin-social-share/temp'
-import { type SocialSharePluginOptionsWithDefaults } from '../shared/index.js'
+import { socialShareOptions } from '@vuepress/plugin-social-share/options'
 import { GlobalSocialShare, SocialShare } from './components/index.js'
 
 declare const __SOCIAL_SHARE_COMPONENT_NAME__: string
 
-const options = socialShareOptions as SocialSharePluginOptionsWithDefaults
+const options = socialShareOptions
 
 export default defineClientConfig({
   enhance({ app }) {
