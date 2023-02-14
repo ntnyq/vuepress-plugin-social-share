@@ -1,4 +1,4 @@
-import { computed, defineComponent, getCurrentInstance, h, onMounted, onUnmounted, ref } from 'vue'
+import { computed, defineComponent, h, onMounted, onUnmounted, ref } from 'vue'
 import { usePageFrontmatter } from '@vuepress/client'
 import { socialShareOptions } from '@vuepress/plugin-social-share/options'
 import { SVG_ICON_CLOSE, SVG_ICON_SHARE } from '../utils.js'
@@ -13,7 +13,7 @@ export const GlobalSocialShare = defineComponent({
   setup() {
     const options = socialShareOptions
     const isActive = ref(false)
-    const vm = getCurrentInstance() as any
+    const globalRef = ref<HTMLElement>()
     const frontmatter = usePageFrontmatter<SocialShareFrontmatter>()
     const visible = computed(
       () =>
@@ -29,10 +29,9 @@ export const GlobalSocialShare = defineComponent({
       evt.stopPropagation()
     }
     const onClickOutside = (evt: MouseEvent) => {
-      const { target } = evt
-      const { proxy } = vm
-      if (!proxy.$el.contains) return
-      if (proxy.$el.contains(target as Node)) return
+      const target = evt.target as HTMLElement
+      if (!globalRef.value) return
+      if (globalRef.value.contains(target)) return
       isActive.value = false
     }
 
@@ -75,7 +74,10 @@ export const GlobalSocialShare = defineComponent({
 
     return () =>
       visible.value
-        ? h('div', { class: 'social-share-global' }, [renderSocialShare(), renderGlobalButton()])
+        ? h('div', { class: 'social-share-global', ref: globalRef }, [
+            renderSocialShare(),
+            renderGlobalButton(),
+          ])
         : null
   },
 })
