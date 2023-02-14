@@ -8,13 +8,9 @@ import {
   ref,
 } from 'vue'
 import { usePageFrontmatter } from '@vuepress/client'
-// @ts-expect-error virtual module
-import { socialShareOptions } from '@vuepress/plugin-social-share/temp'
+import { socialShareOptions } from '@vuepress/plugin-social-share/options'
 import { SVG_ICON_CLOSE, SVG_ICON_SHARE } from '../utils.js'
-import type {
-  SocialShareFrontmatter,
-  SocialSharePluginOptionsWithDefaults,
-} from '../../shared/index.js'
+import type { SocialShareFrontmatter } from '../../shared/index.js'
 import { SocialShare } from './SocialShare.js'
 
 export const GlobalSocialShare = defineComponent({
@@ -23,7 +19,7 @@ export const GlobalSocialShare = defineComponent({
   inheritAttrs: true,
 
   setup() {
-    const options = socialShareOptions as SocialSharePluginOptionsWithDefaults
+    const options = socialShareOptions
     const isActive = ref(false)
     const vm = getCurrentInstance() as any
     const frontmatter = usePageFrontmatter<SocialShareFrontmatter>()

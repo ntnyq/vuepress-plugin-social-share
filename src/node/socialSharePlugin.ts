@@ -12,7 +12,7 @@ export const socialSharePlugin = (options: SocialSharePluginOptions = {}): Plugi
   clientConfigFile: resolve(__dirname, '../client/config.js'),
 
   alias: app => ({
-    '@vuepress/plugin-social-share/temp': app.dir.temp('social-share/social-share'),
+    '@vuepress/plugin-social-share/options': app.dir.temp('social-share/social-share'),
   }),
 
   define: {
