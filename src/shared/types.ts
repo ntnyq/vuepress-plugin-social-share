@@ -9,7 +9,6 @@ export interface SocialShareNetwork {
   icon: string
   type: SocialShareType
   color?: string
-  action?: string
 }
 
 export type SocialShareNetworkItem = SocialShareNetwork & { name: string }
