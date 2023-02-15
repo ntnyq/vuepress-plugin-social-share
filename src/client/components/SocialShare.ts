@@ -95,7 +95,6 @@ export const SocialShare = defineComponent({
     })
 
     onMounted(() => {
-      if (!inBrowser) return false
       /**
        * Center the popup on dual screens
        * http://stackoverflow.com/questions/4068373/center-a-popup-window-on-screen/32261263
