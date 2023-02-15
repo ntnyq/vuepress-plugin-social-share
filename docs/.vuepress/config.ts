@@ -50,7 +50,6 @@ export default defineUserConfig({
     socialSharePlugin({
       networks: ['qq', 'twitter', 'weibo', 'email', 'linkedin', 'pinterest', 'wechat'],
       twitterUser: 'ntnyq',
-      email: 'ntnyq13@gmail.com',
       fallbackImage: '/hero.png',
       extendsNetworks,
     }),
