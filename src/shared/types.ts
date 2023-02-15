@@ -48,7 +48,6 @@ export interface SocialShareFrontmatter {
 
 export interface SocialSharePluginOptions {
   networks?: string[]
-  email?: string
   twitterUser?: string
   fallbackImage?: string
   isPlain?: boolean
@@ -59,9 +58,6 @@ export interface SocialSharePluginOptions {
   extendsNetworks?: Record<string, SocialShareNetwork>
 }
 
-export type SocialSharePluginOptionsWithDefaults = Omit<
-  SocialSharePluginOptions & {
-    networksData: SocialShareNetworkData
-  },
-  'email'
->
+export interface SocialSharePluginOptionsWithDefaults extends SocialSharePluginOptions {
+  networksData: SocialShareNetworkData
+}
