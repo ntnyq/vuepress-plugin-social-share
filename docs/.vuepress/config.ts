@@ -51,6 +51,7 @@ export default defineUserConfig({
       networks: ['qq', 'twitter', 'weibo', 'email', 'linkedin', 'pinterest', 'wechat'],
       twitterUser: 'ntnyq',
       fallbackImage: '/hero.png',
+      useCustomStyle: false,
       extendsNetworks,
     }),
   ],

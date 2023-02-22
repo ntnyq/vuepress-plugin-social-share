@@ -53,11 +53,13 @@ export interface SocialSharePluginOptions {
   isPlain?: boolean
   autoQuote?: boolean
   componentName?: string
+  useCustomStyle?: boolean
   noGlobalSocialShare?: boolean
   qrcodeOptions?: QRCodeToDataURLOptions
   extendsNetworks?: Record<string, SocialShareNetwork>
 }
 
-export interface SocialSharePluginOptionsWithDefaults extends SocialSharePluginOptions {
+export interface SocialSharePluginOptionsWithDefaults
+  extends Omit<SocialSharePluginOptions, 'componentName' | 'useCustomStyle'> {
   networksData: SocialShareNetworkData
 }

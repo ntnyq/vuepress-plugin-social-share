@@ -1,12 +1,16 @@
-import './style.css'
 import { h } from 'vue'
 import { defineClientConfig } from '@vuepress/client'
 import { socialShareOptions } from '@vuepress/plugin-social-share/options'
 import { GlobalSocialShare, SocialShare } from './components/index.js'
 
 declare const __SOCIAL_SHARE_COMPONENT_NAME__: string
+declare const __SOCIAL_SHARE_USE_CUSTOM_STYLE__: boolean
 
 const options = socialShareOptions
+
+if (!__SOCIAL_SHARE_USE_CUSTOM_STYLE__) {
+  import('./style.css')
+}
 
 export default defineClientConfig({
   enhance({ app }) {

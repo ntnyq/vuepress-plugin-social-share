@@ -168,6 +168,17 @@ All share icon colors will be set as the [--c-brand](/guide/#custom-style) by de
 
 Customize the color by setting [--c-social-share-plain](/guide/#custom-style).
 
+### useCustomStyle
+
+- **type:** `boolean`
+- **default** `false`
+
+You can disable the built-in style by setting `useCustomStyle` to `true`.
+
+Then you can write styles that suit your theme.
+
+You can take [built-in style](https://github.com/ntnyq/vuepress-plugin-social-share/blob/next/src/client/style.css) as a reference.
+
 ### qrcodeOptions
 
 - **type:** `object`
