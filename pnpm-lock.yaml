@@ -5,7 +5,7 @@ importers:
     specifiers:
       '@ntnyq/eslint-config': ^1.3.1
       '@ntnyq/prettier-config': ^1.3.1
-      '@types/node': ^18.13.0
+      '@types/node': ^18.14.0
       '@types/qrcode': ^1.5.0
       '@vuepress/client': 2.0.0-beta.60
       bumpp: ^8.2.1
@@ -18,7 +18,7 @@ importers:
       husky: ^8.0.3
       nano-staged: ^0.8.0
       npm-run-all: ^4.1.5
-      pnpm: ^7.27.0
+      pnpm: ^7.27.1
       prettier: ^2.8.4
       qrcode: ^1.5.1
       rimraf: ^4.1.2
@@ -34,7 +34,7 @@ importers:
     devDependencies:
       '@ntnyq/eslint-config': 1.3.1_7kw3g6rralp5ps6mg3uyzz6azm
       '@ntnyq/prettier-config': 1.3.1
-      '@types/node': 18.13.0
+      '@types/node': 18.14.0
       '@types/qrcode': 1.5.0
       bumpp: 8.2.1
       copyfiles: 2.4.1
@@ -45,12 +45,12 @@ importers:
       husky: 8.0.3
       nano-staged: 0.8.0
       npm-run-all: 4.1.5
-      pnpm: 7.27.0
+      pnpm: 7.27.1
       prettier: 2.8.4
       rimraf: 4.1.2
       tsc-watch: 6.0.0_typescript@4.9.5
       typescript: 4.9.5
-      vuepress: 2.0.0-beta.60_pt4cmc2hfcvieerac75qvg2npa
+      vuepress: 2.0.0-beta.60_f44a3lrb2tmksgr4hozgrif3xm
 
   docs:
     specifiers:
@@ -685,7 +685,7 @@ packages:
         integrity: sha512-nEnwB++1u5lVDM2UI4c1+5R+FYaKfaAzS4OococimjVm3nQw3TuzH5UNsocrcTBbhnerblyHj4A49qXbIiZdpA==,
       }
     dependencies:
-      '@types/node': 18.13.0
+      '@types/node': 18.14.0
     dev: true
 
   /@types/hash-sum/1.0.0:
@@ -758,10 +758,10 @@ packages:
       }
     dev: true
 
-  /@types/node/18.13.0:
+  /@types/node/18.14.0:
     resolution:
       {
-        integrity: sha512-gC3TazRzGoOnoKAhUx+Q0t8S9Tzs74z7m0ipwGpSqQrleP14hKxP4/JUeEQcD3W1/aIpnWl8pHowI7WokuZpXg==,
+        integrity: sha512-5EWrvLmglK+imbCJY0+INViFWUHg1AHel1sq4ZVSfdcNqGy9Edv3UB9IIzzg+xPaUcAgZYcfVs2fBcwDeZzU0A==,
       }
     dev: true
 
@@ -778,7 +778,7 @@ packages:
         integrity: sha512-x5ilHXRxUPIMfjtM+1vf/GPTRWZ81nqscursm5gMznJeK9M0YnZ1c3bEvRLQ0zSSgedLx1J6MGL231ObQGGhaA==,
       }
     dependencies:
-      '@types/node': 18.13.0
+      '@types/node': 18.14.0
     dev: true
 
   /@types/semver/7.3.13:
@@ -966,7 +966,7 @@ packages:
       vite: ^4.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 4.0.4_@types+node@18.13.0
+      vite: 4.0.4_@types+node@18.14.0
       vue: 3.2.47
     dev: true
 
@@ -1085,7 +1085,7 @@ packages:
         integrity: sha512-BHGyyGN3Q97EZx0taMQ+OLNuZcW3d37ZEVmEAyeoA9ERdGvm9Irc/0Fua8SNyOtV1w6BS4q25wbMzJujO9HIfQ==,
       }
 
-  /@vuepress/bundler-vite/2.0.0-beta.60_@types+node@18.13.0:
+  /@vuepress/bundler-vite/2.0.0-beta.60_@types+node@18.14.0:
     resolution:
       {
         integrity: sha512-nf+UAKNlAEZXZqu2Ztvr8Hg/5CtevWxvQGfYKV4lhw8UmoDjKKHoHPpPhF1QTUbnZ8W+jPLzIVz+hjunzsxl/A==,
@@ -1101,7 +1101,7 @@ packages:
       postcss: 8.4.21
       postcss-load-config: 4.0.1_postcss@8.4.21
       rollup: 3.9.1
-      vite: 4.0.4_@types+node@18.13.0
+      vite: 4.0.4_@types+node@18.14.0
       vue: 3.2.47
       vue-router: 4.1.6_vue@3.2.47
     transitivePeerDependencies:
@@ -4539,10 +4539,10 @@ packages:
     engines: { node: '>=10.13.0' }
     dev: false
 
-  /pnpm/7.27.0:
+  /pnpm/7.27.1:
     resolution:
       {
-        integrity: sha512-nvxGrxgu3oYyw7zg7DdotEnqp9r/c0/iLZHr6QewJPEkVFGSPdsxrm0HFKBkOqwCInoutFzz/mtGx+pbYV8UCw==,
+        integrity: sha512-IpBeZ+71slENbuOXwbV4U6yxOMfEWEvlVuT6+ChZ1D80oF0eHyN4h/hc13UrzVXpXI3bf7sPfRWGb8TYkrvJUA==,
       }
     engines: { node: '>=14.6' }
     hasBin: true
@@ -5569,7 +5569,7 @@ packages:
       spdx-expression-parse: 3.0.1
     dev: true
 
-  /vite/4.0.4_@types+node@18.13.0:
+  /vite/4.0.4_@types+node@18.14.0:
     resolution:
       {
         integrity: sha512-xevPU7M8FU0i/80DMR+YhgrzR5KS2ORy1B4xcX/cXLsvnUWvfHuqMmVU6N0YiJ4JWGRJJsLCgjEzKjG9/GKoSw==,
@@ -5597,7 +5597,7 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 18.13.0
+      '@types/node': 18.14.0
       esbuild: 0.16.16
       postcss: 8.4.21
       resolve: 1.22.1
@@ -5668,7 +5668,7 @@ packages:
       '@vue/server-renderer': 3.2.47_vue@3.2.47
       '@vue/shared': 3.2.47
 
-  /vuepress-vite/2.0.0-beta.60_pt4cmc2hfcvieerac75qvg2npa:
+  /vuepress-vite/2.0.0-beta.60_f44a3lrb2tmksgr4hozgrif3xm:
     resolution:
       {
         integrity: sha512-ljHvo419nbfYl/cQecVbYL4bwJjUOX0+z76v/4yX6ODeGIpdHIs7ARZ4t52mr0EEfwP6aZbZa+qFZTTQutxAuQ==,
@@ -5678,7 +5678,7 @@ packages:
       '@vuepress/client': 2.0.0-beta.60
       vue: ^3.2.45
     dependencies:
-      '@vuepress/bundler-vite': 2.0.0-beta.60_@types+node@18.13.0
+      '@vuepress/bundler-vite': 2.0.0-beta.60_@types+node@18.14.0
       '@vuepress/cli': 2.0.0-beta.60
       '@vuepress/client': 2.0.0-beta.60
       '@vuepress/core': 2.0.0-beta.60
@@ -5697,14 +5697,14 @@ packages:
       - ts-node
     dev: true
 
-  /vuepress/2.0.0-beta.60_pt4cmc2hfcvieerac75qvg2npa:
+  /vuepress/2.0.0-beta.60_f44a3lrb2tmksgr4hozgrif3xm:
     resolution:
       {
         integrity: sha512-evkv5PtX5pdlEyY5EcEV+rN/HTmi8iG7ZcvAnMFfYKWdvKiUjE+/DPwZfmE8emx33FEE2htbAKgtruABTocEjA==,
       }
     hasBin: true
     dependencies:
-      vuepress-vite: 2.0.0-beta.60_pt4cmc2hfcvieerac75qvg2npa
+      vuepress-vite: 2.0.0-beta.60_f44a3lrb2tmksgr4hozgrif3xm
     transitivePeerDependencies:
       - '@types/node'
       - '@vue/composition-api'

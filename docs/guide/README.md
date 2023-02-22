@@ -35,7 +35,7 @@ For advanced usage.
 
 ```ts
 import { defineUserConfig } from 'vuepress'
-import { socialSharePlugin, } from 'vuepress-plugin-social-share'
+import { socialSharePlugin } from 'vuepress-plugin-social-share'
 import type { SocialShareNetworkData } from 'vuepress-plugin-social-share'
 
 const extendsNetworks: SocialShareNetworkData = {
@@ -59,7 +59,6 @@ export default defineUserConfig({
   plugins: [
     socialSharePlugin({
       networks: ['twitter', 'facebook', 'email', 'pinterest', 'linkedin'],
-      email: 'ntnyq13@gmail.com',
       twitterUser: 'ntnyq',
       fallbackImage: '/social-share.png',
       autoQuote: true,
@@ -189,7 +188,7 @@ i.e:
 
 ```ts
 import { defineUserConfig } from 'vuepress'
-import { socialSharePlugin, } from 'vuepress-plugin-social-share'
+import { socialSharePlugin } from 'vuepress-plugin-social-share'
 import type { SocialShareNetworkData } from 'vuepress-plugin-social-share'
 
 const extendsNetworks: SocialShareNetworkData = {
@@ -405,3 +404,9 @@ Set `noSocialShare` to `true` if you want to disable all social share component.
 noSocialShare: true
 ---
 ```
+
+## Migration from v1
+
+- [New VuePress plugin API with better TypeScript support](#options)
+- [Use CSS variables to custom plugin style](#custom-style)
+- [Option `email` is deprecated, just remove it, see #71 for reasons](https://github.com/ntnyq/vuepress-plugin-social-share/pull/71)
