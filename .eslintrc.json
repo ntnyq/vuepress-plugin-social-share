@@ -1,10 +1,5 @@
 {
   "root": true,
-  "extends": ["@ntnyq", "plugin:yml/prettier"],
-  "plugins": ["prettier"],
-  "rules": {
-    "prettier/prettier": "error",
-    "operator-linebreak": "off",
-    "@typescript-eslint/indent": "off"
-  }
+  "extends": ["@ntnyq"],
+  "rules": {}
 }

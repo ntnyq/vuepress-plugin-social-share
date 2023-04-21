@@ -1,6 +1,6 @@
 import { computed, defineComponent, h } from 'vue'
-import type { PropType } from 'vue'
 import { isSVG } from '../utils.js'
+import type { PropType } from 'vue'
 import type { SocialShareNetworkItem } from '../../shared/index.js'
 
 export enum Event {

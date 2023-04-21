@@ -1,6 +1,7 @@
 import { computed, defineComponent, h, onMounted, reactive, ref } from 'vue'
-import type { PropType } from 'vue'
 import { usePageFrontmatter, withBase } from '@vuepress/client'
+import { getMetaContentByName, inBrowser, isExternalUrl } from '../utils.js'
+import { SocialShareNetwork } from './SocialShareNetwork.js'
 import type {
   MayBe,
   SocialShareNetwork as Network,
@@ -9,8 +10,7 @@ import type {
   SocialShareNetworkData,
   SocialShareNetworkItem,
 } from '../../shared/index.js'
-import { getMetaContentByName, inBrowser, isExternalUrl } from '../utils.js'
-import { SocialShareNetwork } from './SocialShareNetwork.js'
+import type { PropType } from 'vue'
 
 export const SocialShare = defineComponent({
   name: 'SocialShare',
@@ -109,9 +109,7 @@ export const SocialShare = defineComponent({
     })
 
     // Computed
-    const visible = computed(
-      () => Boolean(networks.value.length) && !frontmatter.value.noSocialShare,
-    )
+    const visible = computed(() => networks.value.length > 0 && !frontmatter.value.noSocialShare)
     const url = computed(
       () =>
         frontmatter.value.$shareUrl ??
@@ -214,17 +212,17 @@ export const SocialShare = defineComponent({
       socialShareOverlay.id = '__VUEPRESS_SOCIAL_SHARE__'
       socialShareOverlay.classList.add('social-share-overlay')
       if (socialShareEl && socialShareEl.parentNode) {
-        socialShareEl.parentNode.removeChild(socialShareEl)
+        socialShareEl.remove()
       }
       try {
         const QRCode = await import('qrcode')
         const dataURL = await QRCode.toDataURL(url.value, qrcodeRenderOptions.value)
         socialShareOverlay.innerHTML = `<img class="social-share-qrcode" src="${dataURL}" />`
-        body.appendChild(socialShareOverlay)
+        body.append(socialShareOverlay)
         socialShareOverlay.classList.add('show')
         socialShareOverlay.addEventListener('click', evt => {
           socialShareOverlay.classList.remove('show')
-          body.removeChild(socialShareOverlay)
+          socialShareOverlay.remove()
           evt.stopPropagation()
         })
       } catch (err) {
@@ -235,14 +233,14 @@ export const SocialShare = defineComponent({
       window.open(shareURL, '_blank')
     }
     const generateHashTags = (hashtags: string, name: string) => {
-      if (['facebook'].includes(name) && hashtags.length) {
+      if (['facebook'].includes(name) && hashtags.length > 0) {
         return `%23${hashtags.split(',')[0]}`
       }
       return hashtags
     }
     const createShareURL = (name: string, network: Network) => {
       let { sharer = '' } = network
-      if (['twitter'].includes(name) && !hashtags.value.length) {
+      if (['twitter'].includes(name) && hashtags.value.length === 0) {
         sharer = sharer.replace('&hashtags=@hashtags', '')
       }
       return sharer

@@ -2,8 +2,8 @@ import { computed, defineComponent, h, onMounted, onUnmounted, ref } from 'vue'
 import { usePageFrontmatter } from '@vuepress/client'
 import { socialShareOptions } from '@vuepress/plugin-social-share/options'
 import { SVG_ICON_CLOSE, SVG_ICON_SHARE } from '../utils.js'
-import type { SocialShareFrontmatter } from '../../shared/index.js'
 import { SocialShare } from './SocialShare.js'
+import type { SocialShareFrontmatter } from '../../shared/index.js'
 
 export const GlobalSocialShare = defineComponent({
   name: 'GlobalSocialShare',

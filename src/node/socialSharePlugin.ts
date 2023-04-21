@@ -1,7 +1,7 @@
 import { URL, fileURLToPath } from 'node:url'
 import { resolve } from 'node:path'
-import type { Plugin } from '@vuepress/core'
 import { createNetworksData } from '../shared/index.js'
+import type { Plugin } from '@vuepress/core'
 import type { SocialSharePluginOptions } from '../shared/index.js'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
