@@ -336,7 +336,7 @@ Each meta data are listed following its priority.
 
 - `$frontmatter.$shareTitle`
 
-- `s$frontmatter.shareTitle`
+- `$frontmatter.shareTitle`
 
 - `$frontmatter.title`
 
