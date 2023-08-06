@@ -57,6 +57,7 @@ export interface SocialSharePluginOptions {
   noGlobalSocialShare?: boolean
   qrcodeOptions?: QRCodeToDataURLOptions
   extendsNetworks?: Record<string, SocialShareNetwork>
+  hideWhenPrint?: boolean
 }
 
 export interface SocialSharePluginOptionsWithDefaults

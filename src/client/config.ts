@@ -2,6 +2,7 @@ import { h } from 'vue'
 import { defineClientConfig } from '@vuepress/client'
 import { socialShareOptions } from '@vuepress/plugin-social-share/options'
 import { GlobalSocialShare, SocialShare } from './components/index.js'
+import type { PropType } from 'vue'
 
 declare const __SOCIAL_SHARE_COMPONENT_NAME__: string
 declare const __SOCIAL_SHARE_USE_CUSTOM_STYLE__: boolean
@@ -17,11 +18,11 @@ export default defineClientConfig({
     app.component(__SOCIAL_SHARE_COMPONENT_NAME__, {
       props: {
         tags: {
-          type: Array,
+          type: Array as PropType<string[]>,
         },
 
         networks: {
-          type: Array,
+          type: Array as PropType<string[]>,
         },
 
         isPlain: {

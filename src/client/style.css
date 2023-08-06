@@ -145,3 +145,9 @@
     border-radius: 0.2rem;
   }
 }
+
+@media print {
+  .social-share-hide-when-print {
+    display: none !important;
+  }
+}

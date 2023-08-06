@@ -3,7 +3,10 @@ import { usePageFrontmatter } from '@vuepress/client'
 import { socialShareOptions } from '@vuepress/plugin-social-share/options'
 import { SVG_ICON_CLOSE, SVG_ICON_SHARE } from '../utils.js'
 import { SocialShare } from './SocialShare.js'
-import type { SocialShareFrontmatter } from '../../shared/index.js'
+import type {
+  SocialShareFrontmatter,
+  SocialSharePluginOptionsWithDefaults,
+} from '../../shared/index.js'
 
 export const GlobalSocialShare = defineComponent({
   name: 'GlobalSocialShare',
@@ -11,7 +14,7 @@ export const GlobalSocialShare = defineComponent({
   inheritAttrs: true,
 
   setup() {
-    const options = socialShareOptions
+    const options = socialShareOptions as SocialSharePluginOptionsWithDefaults
     const isActive = ref(false)
     const globalRef = ref<HTMLElement>()
     const frontmatter = usePageFrontmatter<SocialShareFrontmatter>()
@@ -74,10 +77,17 @@ export const GlobalSocialShare = defineComponent({
 
     return () =>
       visible.value
-        ? h('div', { class: 'social-share-global', ref: globalRef }, [
-            renderSocialShare(),
-            renderGlobalButton(),
-          ])
+        ? h(
+            'div',
+            {
+              class: [
+                'social-share-global',
+                options.hideWhenPrint && 'social-share-hide-when-print',
+              ],
+              ref: globalRef,
+            },
+            [renderSocialShare(), renderGlobalButton()],
+          )
         : null
   },
 })

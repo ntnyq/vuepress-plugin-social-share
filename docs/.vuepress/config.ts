@@ -52,6 +52,7 @@ export default defineUserConfig({
       twitterUser: 'ntnyq',
       fallbackImage: '/hero.png',
       useCustomStyle: false,
+      hideWhenPrint: true,
       extendsNetworks,
     }),
   ],

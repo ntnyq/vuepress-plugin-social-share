@@ -19,7 +19,7 @@ export const SocialShare = defineComponent({
 
   props: {
     networks: {
-      type: Array,
+      type: Array as PropType<string[]>,
       default: () => ['twitter', 'facebook', 'reddit'],
     },
 
@@ -44,6 +44,11 @@ export const SocialShare = defineComponent({
     autoQuote: {
       type: Boolean,
       default: true,
+    },
+
+    hideWhenPrint: {
+      type: Boolean,
+      default: false,
     },
 
     qrcodeOptions: {
@@ -288,7 +293,11 @@ export const SocialShare = defineComponent({
 
     return () =>
       visible.value
-        ? h('div', { class: 'social-share' }, [renderNetworkList(networkList.value)])
+        ? h(
+            'div',
+            { class: ['social-share', props.hideWhenPrint && 'social-share-hide-when-print'] },
+            [renderNetworkList(networkList.value)],
+          )
         : null
   },
 })

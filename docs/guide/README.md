@@ -184,6 +184,13 @@ Then you can write styles that suit your theme.
 
 You can take [built-in style](https://github.com/ntnyq/vuepress-plugin-social-share/blob/next/src/client/style.css) as a reference.
 
+### hideWhenPrint
+
+- **type:** `boolean`
+- **default** `false`
+
+Hide all SocialShare (global as well) when print.
+
 ### qrcodeOptions
 
 - **type:** `object`
