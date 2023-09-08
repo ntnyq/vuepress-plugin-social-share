@@ -7,20 +7,20 @@
 
 :mega: Social sharing plugin for [VuePress](https://vuepress.vuejs.org)
 
-:book: [Live Demo and Docs](https://sns.goyfe.com)
-
 ## ⚠️ Note
 
 Looking for VuePress v2 support?
 
-Please checkout branch [next](https://github.com/ntnyq/vuepress-plugin-social-share/tree/next) for detail.
+Please checkout branch [main](https://github.com/ntnyq/vuepress-plugin-social-share) for detail.
 
 ## Install
 
 ```bash
-$ npm install vuepress-plugin-social-share -D
+npm install vuepress-plugin-social-share -D
+
 # OR
-$ yarn add vuepress-plugin-social-share -D
+
+yarn add vuepress-plugin-social-share -D
 ```
 
 ## Usage
@@ -29,11 +29,11 @@ Add config to `.vuepress/config.js`:
 
 ```js
 module.exports = {
-  plugins: [`social-share`],
+  plugins: ['social-share'],
 }
 ```
 
-:mag: [Custom options detail](https://sns.goyfe.com/guide)
+:mag: [Custom options detail](./docs/guide/README.md)
 
 ## Prior Art
 
