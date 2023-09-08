@@ -53,9 +53,9 @@
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
-    "vuepress": "2.0.0-beta.66",
-    "vuepress-vite": "2.0.0-beta.66",
-    "vuepress-webpack": "2.0.0-beta.66"
+    "vuepress": "2.0.0-beta.67",
+    "vuepress-vite": "2.0.0-beta.67",
+    "vuepress-webpack": "2.0.0-beta.67"
   },
   "peerDependenciesMeta": {
     "vuepress": {
@@ -70,7 +70,7 @@
   },
   "dependencies": {
     "@types/qrcode": "^1.5.2",
-    "@vuepress/client": "2.0.0-beta.66",
+    "@vuepress/client": "2.0.0-beta.67",
     "deepmerge": "^4.3.1",
     "qrcode": "^1.5.3",
     "vue": "^3.3.4"
@@ -90,7 +90,7 @@
     "rimraf": "^5.0.1",
     "tsc-watch": "^6.0.4",
     "typescript": "^5.2.2",
-    "vuepress": "2.0.0-beta.66"
+    "vuepress": "2.0.0-beta.67"
   },
   "pnpm": {
     "peerDependencyRules": {
