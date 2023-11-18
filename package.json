@@ -1,7 +1,7 @@
 {
   "name": "vuepress-plugin-social-share",
   "version": "1.3.0",
-  "packageManager": "pnpm@7.23.0",
+  "packageManager": "pnpm@8.10.5",
   "description": "Social sharing plugin for VuePress",
   "keywords": [
     "vuepress",
@@ -15,14 +15,14 @@
     "twitter",
     "weibo"
   ],
-  "homepage": "https://sns.goyfe.com",
-  "bugs": {
-    "url": "https://github.com/ntnyq/vuepress-plugin-social-share/issues"
-  },
   "license": "MIT",
   "author": {
     "name": "ntnyq",
     "email": "ntnyq13@gmail.com"
+  },
+  "homepage": "https://social-share-v1.ntnyq.com",
+  "bugs": {
+    "url": "https://github.com/ntnyq/vuepress-plugin-social-share/issues"
   },
   "repository": {
     "type": "git",
@@ -49,27 +49,26 @@
     "vuepress": "^1.0.3"
   },
   "dependencies": {
-    "deepmerge": "^4.2.2",
-    "qrcode": "^1.5.1"
+    "deepmerge": "^4.3.1",
+    "qrcode": "^1.5.3"
   },
   "devDependencies": {
-    "@ntnyq/eslint-config-typescript": "^1.2.1",
-    "@types/qrcode": "^1.5.0",
+    "@ntnyq/eslint-config": "^1.19.0",
+    "@ntnyq/prettier-config": "^1.19.0",
+    "@types/qrcode": "^1.5.5",
     "copyfiles": "^2.4.1",
-    "eslint": "^8.31.0",
+    "eslint": "^8.54.0",
     "husky": "^8.0.3",
     "nano-staged": "^0.8.0",
     "npm-run-all": "^4.1.5",
-    "pnpm": "^7.23.0",
-    "rimraf": "^3.0.2",
-    "tsc-watch": "^6.0.0",
-    "typescript": "^4.9.4",
-    "vue": "^2.7.14",
-    "vuepress": "^1.9.8",
+    "pnpm": "^8.10.5",
+    "prettier": "^3.1.0",
+    "rimraf": "^5.0.5",
+    "tsc-watch": "^6.0.4",
+    "typescript": "^5.2.2",
+    "vue": "^2.7.15",
+    "vuepress": "^1.9.10",
     "vuepress-types": "^0.9.4"
-  },
-  "nano-staged": {
-    "*.{js,ts,yml,yaml,md,json}": "eslint --fix"
   },
   "pnpm": {
     "peerDependencyRules": {
@@ -77,5 +76,9 @@
         "css-loader"
       ]
     }
+  },
+  "prettier": "@ntnyq/prettier-config",
+  "nano-staged": {
+    "*.{js,ts,yml,yaml,md,json}": "eslint --fix"
   }
 }

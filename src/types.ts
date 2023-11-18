@@ -6,9 +6,7 @@ import type { QRCodeToDataURLOptions } from 'qrcode'
 
 export type MayBe<T> = T | null | undefined
 
-export const socialShareType = <const>[`popup`, `qrcode`, `direct`]
-
-export type SocialShareType = typeof socialShareType[number]
+export type SocialShareType = 'popup' | 'qrcode' | 'direct'
 
 export interface SocialShareNetwork {
   sharer?: string

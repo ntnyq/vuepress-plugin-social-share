@@ -1,30 +1,20 @@
 import './style.styl'
-import type { EnhanceApp } from 'vuepress-types'
 // @ts-expect-error virtual modules
 import socialShareOptions from '@dynamic/social-share'
-import type {
-  SocialShareNetworkData,
-  SocialSharePluginOptions,
-} from './types'
 import SocialShare from './components/SocialShare'
 import GlobalSocialShare from './components/GlobalSocialShare'
+import type { EnhanceApp } from 'vuepress-types'
+import type { SocialShareNetworkData, SocialSharePluginOptions } from './types'
 
 type SocialSharePluginOptionsWithDefaults = SocialSharePluginOptions & {
   networksData: SocialShareNetworkData
 }
 
 const enhanceApp: EnhanceApp = ({ Vue }) => {
-  const {
-    networks,
-    twitterUser,
-    fallbackImage,
-    autoQuote,
-    isPlain,
-    networksData,
-    qrcodeOptions,
-  } = socialShareOptions as SocialSharePluginOptionsWithDefaults
+  const { networks, twitterUser, fallbackImage, autoQuote, isPlain, networksData, qrcodeOptions } =
+    socialShareOptions as SocialSharePluginOptionsWithDefaults
 
-  Vue.component(`SocialShare`, {
+  Vue.component('SocialShare', {
     functional: true,
 
     props: {
@@ -41,7 +31,7 @@ const enhanceApp: EnhanceApp = ({ Vue }) => {
       },
     },
 
-    render (h, { props, data, parent }) {
+    render(h, { props, data, parent }) {
       // @ts-expect-error private property
       if (parent._isMounted) {
         return h(SocialShare, {
@@ -58,7 +48,7 @@ const enhanceApp: EnhanceApp = ({ Vue }) => {
           },
         })
       } else {
-        parent.$once(`hook:mounted`, () => {
+        parent.$once('hook:mounted', () => {
           parent.$forceUpdate()
         })
         return h()
@@ -66,10 +56,10 @@ const enhanceApp: EnhanceApp = ({ Vue }) => {
     },
   })
 
-  Vue.component(`GlobalSocialShare`, {
+  Vue.component('GlobalSocialShare', {
     functional: true,
 
-    render (h, { parent }) {
+    render(h, { parent }) {
       // @ts-expect-error private property
       if (parent._isMounted) {
         return h(GlobalSocialShare, {
@@ -83,7 +73,7 @@ const enhanceApp: EnhanceApp = ({ Vue }) => {
           },
         })
       } else {
-        parent.$once(`hook:mounted`, () => {
+        parent.$once('hook:mounted', () => {
           parent.$forceUpdate()
         })
         return h()

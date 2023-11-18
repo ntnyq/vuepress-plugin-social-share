@@ -1,9 +1,9 @@
 {
   "root": true,
-  "extends": [
-    "@ntnyq/typescript"
-  ],
-  "ignorePatterns": [
-    "lib"
-  ]
+  "extends": ["@ntnyq"],
+  "rules": {
+    "vue/one-component-per-file": "off",
+    "vue/require-typed-object-prop": "off"
+  },
+  "ignorePatterns": ["lib"]
 }

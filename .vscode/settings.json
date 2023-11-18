@@ -1,16 +1,21 @@
 {
-  "[typescript]": {
-    "editor.formatOnSave": false
-  },
-  "[javascript]": {
-    "editor.formatOnSave": false
-  },
-  "[markdown]": {
-    "editor.formatOnSave": true
-  },
+  "prettier.enable": true,
+  "eslint.enable": true,
+  "eslint.validate": [
+    "vue",
+    "yaml",
+    "html",
+    "json",
+    "jsonc",
+    "json5",
+    "markdown",
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact"
+  ],
   "cSpell.words": [
     "customed",
-    "goyfe",
     "linkedin",
     "ntnyq",
     "pnpm",

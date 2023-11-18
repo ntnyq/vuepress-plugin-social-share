@@ -10,15 +10,8 @@
     "strict": true,
     "skipLibCheck": true,
     "declaration": true,
-    "types": [
-      "vuepress-types"
-    ],
-    "lib": [
-      "DOM",
-      "DOM.Iterable"
-    ]
+    "types": ["vuepress-types"],
+    "lib": ["DOM", "DOM.Iterable", "ES2015"]
   },
-  "include": [
-    "./src"
-  ]
+  "include": ["./src"]
 }
