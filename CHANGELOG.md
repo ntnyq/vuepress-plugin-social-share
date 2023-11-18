@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.1](https://github.com/ntnyq/vuepress-plugin-social-share/compare/v1.3.0...v1.3.1) (2023-11-18)
+
+
+### Bug Fixes
+
+* fix homepage ([93c6916](https://github.com/ntnyq/vuepress-plugin-social-share/commit/93c69163c0996dcf77a3ef728045360529d8f190))
+
 ## [1.3.0](https://github.com/ntnyq/vuepress-plugin-social-share/compare/v1.2.1...v1.3.0) (2023-01-10)
 
 
