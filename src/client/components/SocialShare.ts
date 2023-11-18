@@ -102,13 +102,13 @@ export const SocialShare = defineComponent({
       const width = window.innerWidth
         ? window.innerWidth
         : rootEl.clientWidth
-        ? rootEl.clientWidth
-        : screen.width
+          ? rootEl.clientWidth
+          : screen.width
       const height = window.innerHeight
         ? window.innerHeight
         : rootEl.clientHeight
-        ? rootEl.clientHeight
-        : screen.height
+          ? rootEl.clientHeight
+          : screen.height
       popup.left = width / 2 - popup.width / 2 + dualScreenLeft
       popup.top = height / 2 - popup.height / 2 + dualScreenTop
     })

@@ -36,7 +36,7 @@ export default defineUserConfig({
       { text: 'Home', link: '/' },
       { text: 'Guide', link: '/guide/' },
       { text: 'Demo', link: '/demo/' },
-      { text: 'VuePress v1', link: 'https://sns.goyfe.com' },
+      { text: 'VuePress v1', link: 'https://social-share-v1.ntnyq.com' },
       {
         text: 'Changelog',
         link: 'https://github.com/ntnyq/vuepress-plugin-social-share/releases',
