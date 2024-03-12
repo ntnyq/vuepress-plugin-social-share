@@ -28,22 +28,22 @@
   "exports": {
     ".": "./dist/node/index.js",
     "./client": "./dist/client/index.js",
-    "./*": "./*"
+    "./client/*": "./dist/client/*",
+    "./package.json": "./package.json"
   },
   "main": "./dist/node/index.js",
-  "module": "./dist/node/index.js",
   "types": "./dist/node/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
     "build": "run-s clean build:lib copy",
-    "build:docs": "pnpm --filter=docs run build",
+    "build:docs": "pnpm -C docs run build",
     "build:lib": "tsc",
     "clean": "rimraf dist *.tsbuildinfo",
     "copy": "copyfiles -a -u 1 -V src/**/*.css dist",
     "dev": "run-s clean dev:lib",
-    "dev:docs": "pnpm --filter=docs run dev",
+    "dev:docs": "pnpm -C docs run dev",
     "dev:lib": "tsc-watch --onSuccess \"npm run copy\"",
     "lint": "eslint .",
     "prepare": "husky",
