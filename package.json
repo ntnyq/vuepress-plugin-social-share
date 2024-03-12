@@ -53,20 +53,7 @@
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
-    "vuepress": "2.0.0-rc.8",
-    "vuepress-vite": "2.0.0-rc.8",
-    "vuepress-webpack": "2.0.0-rc.8"
-  },
-  "peerDependenciesMeta": {
-    "vuepress": {
-      "optional": true
-    },
-    "vuepress-vite": {
-      "optional": true
-    },
-    "vuepress-webpack": {
-      "optional": true
-    }
+    "vuepress": "2.0.0-rc.8"
   },
   "dependencies": {
     "@types/qrcode": "^1.5.5",
