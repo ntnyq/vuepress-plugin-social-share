@@ -3,9 +3,9 @@ import type { QRCodeToDataURLOptions } from 'qrcode'
 export type SocialShareType = 'popup' | 'qrcode' | 'direct'
 
 export interface SocialShareNetwork {
-  sharer?: string
-  icon: string
   type: SocialShareType
+  icon: string
+  sharer?: string
   color?: string
 }
 
@@ -13,11 +13,12 @@ export type SocialShareNetworkItem = SocialShareNetwork & { name: string }
 
 export type SocialShareNetworkData = Record<string, SocialShareNetwork>
 
-export type QRCodeOptions = QRCodeToDataURLOptions
+export type SocialShareQRCodeOptions = QRCodeToDataURLOptions
 
 export interface SocialShareFrontmatter {
   noSocialShare?: boolean
   noGlobalSocialShare?: boolean
+
   // share meta
   shareUrl?: string
   $shareUrl?: string
@@ -45,15 +46,16 @@ export interface SocialShareFrontmatter {
 }
 
 export interface SocialSharePluginOptions {
+  componentName?: string
+  useCustomStyle?: boolean
+
   networks?: string[]
   twitterUser?: string
   fallbackImage?: string
   isPlain?: boolean
   autoQuote?: boolean
-  componentName?: string
-  useCustomStyle?: boolean
   noGlobalSocialShare?: boolean
-  qrcodeOptions?: QRCodeToDataURLOptions
+  qrcodeOptions?: SocialShareQRCodeOptions
   extendsNetworks?: Record<string, SocialShareNetwork>
   hideWhenPrint?: boolean
 }

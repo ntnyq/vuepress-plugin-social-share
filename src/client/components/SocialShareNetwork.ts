@@ -38,6 +38,7 @@ export const SocialShareNetwork = defineComponent({
 
   setup(props, ctx) {
     const isSvgIcon = computed(() => isSVG(props.network.icon))
+
     const renderShareIcon = (network: SocialShareNetworkItem) =>
       isSvgIcon.value
         ? h('span', {

@@ -1,12 +1,9 @@
 import { computed, defineComponent, h, onMounted, onUnmounted, ref } from 'vue'
 import { usePageFrontmatter } from 'vuepress/client'
-import { socialShareOptions } from '@vuepress/plugin-social-share/options'
 import { SVG_ICON_CLOSE, SVG_ICON_SHARE } from '../utils.js'
+import { useSocialShareOptions } from '../helpers/index.js'
 import { SocialShare } from './SocialShare.js'
-import type {
-  SocialShareFrontmatter,
-  SocialSharePluginOptionsWithDefaults,
-} from '../../shared/index.js'
+import type { SocialShareFrontmatter } from '../../shared/index.js'
 
 export const GlobalSocialShare = defineComponent({
   name: 'GlobalSocialShare',
@@ -14,7 +11,7 @@ export const GlobalSocialShare = defineComponent({
   inheritAttrs: true,
 
   setup() {
-    const options = socialShareOptions as SocialSharePluginOptionsWithDefaults
+    const options = useSocialShareOptions()
     const isActive = ref(false)
     const globalRef = ref<HTMLElement>()
     const frontmatter = usePageFrontmatter<SocialShareFrontmatter>()
@@ -62,18 +59,7 @@ export const GlobalSocialShare = defineComponent({
         },
         [renderButtonIcon()],
       )
-    const renderSocialShare = () =>
-      isActive.value
-        ? h(SocialShare, {
-            networks: options.networks,
-            isPlain: options.isPlain,
-            twitterUser: options.twitterUser,
-            fallbackImage: options.fallbackImage,
-            autoQuote: options.autoQuote,
-            qrcodeOptions: options.qrcodeOptions,
-            networksData: options.networksData,
-          })
-        : null
+    const renderSocialShare = () => (isActive.value ? h(SocialShare) : null)
 
     return () =>
       visible.value

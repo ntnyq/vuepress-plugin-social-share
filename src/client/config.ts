@@ -1,8 +1,7 @@
-import { h } from 'vue'
 import { defineClientConfig } from 'vuepress/client'
 import { socialShareOptions } from '@vuepress/plugin-social-share/options'
+import { injectSocialShareOptions } from './helpers/index.js'
 import { GlobalSocialShare, SocialShare } from './components/index.js'
-import type { PropType } from 'vue'
 import type { ClientConfig } from 'vuepress/client'
 
 declare const __SOCIAL_SHARE_COMPONENT_NAME__: string
@@ -16,31 +15,9 @@ if (!__SOCIAL_SHARE_USE_CUSTOM_STYLE__) {
 
 export default defineClientConfig({
   enhance({ app }) {
-    app.component(__SOCIAL_SHARE_COMPONENT_NAME__, {
-      props: {
-        tags: {
-          type: Array as PropType<string[]>,
-        },
+    injectSocialShareOptions(app, options)
 
-        networks: {
-          type: Array as PropType<string[]>,
-        },
-
-        isPlain: {
-          type: Boolean,
-        },
-      },
-
-      setup(props: any) {
-        return () =>
-          h(SocialShare, {
-            ...options,
-            tags: props.tags,
-            networks: props.networks ?? options.networks,
-            isPlain: props.isPlain ?? options.isPlain,
-          })
-      },
-    })
+    app.component(__SOCIAL_SHARE_COMPONENT_NAME__, SocialShare)
   },
 
   rootComponents: options.noGlobalSocialShare ? [] : [GlobalSocialShare],

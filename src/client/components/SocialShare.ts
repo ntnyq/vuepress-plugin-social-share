@@ -1,13 +1,13 @@
 import { computed, defineComponent, h, onMounted, reactive, ref } from 'vue'
 import { usePageFrontmatter, withBase } from 'vuepress/client'
 import { getMetaContentByName, inBrowser, isExternalUrl } from '../utils.js'
+import { useSocialShareOptions } from '../helpers/index.js'
 import { SocialShareNetwork } from './SocialShareNetwork.js'
 import type {
   SocialShareNetwork as Network,
-  QRCodeOptions,
   SocialShareFrontmatter,
-  SocialShareNetworkData,
   SocialShareNetworkItem,
+  SocialShareQRCodeOptions,
 } from '../../shared/index.js'
 import type { PropType } from 'vue'
 
@@ -19,55 +19,28 @@ export const SocialShare = defineComponent({
   props: {
     networks: {
       type: Array as PropType<string[]>,
-      default: () => ['twitter', 'facebook', 'reddit'],
     },
 
     isPlain: {
       type: Boolean,
-      default: false,
     },
 
     tags: {
       type: Array as PropType<string[]>,
       default: () => [],
     },
-
-    twitterUser: {
-      type: String,
-    },
-
-    fallbackImage: {
-      type: String,
-    },
-
-    autoQuote: {
-      type: Boolean,
-      default: true,
-    },
-
-    hideWhenPrint: {
-      type: Boolean,
-      default: false,
-    },
-
-    qrcodeOptions: {
-      type: Object as PropType<QRCodeOptions>,
-      default: () => ({}),
-    },
-
-    networksData: {
-      type: Object as PropType<SocialShareNetworkData>,
-      default: () => ({}),
-    },
   },
 
   // eslint-disable-next-line max-lines-per-function
   setup(props) {
-    const networks = computed(() => [...new Set(props.networks)])
+    const options = useSocialShareOptions()
 
+    const networks = computed(() => [
+      ...new Set(props.networks ?? options.networks ?? ['twitter', 'facebook', 'reddit']),
+    ])
     const networkList = computed(() =>
-      Object.keys(props.networksData)
-        .map(name => ({ name, ...props.networksData[name] }))
+      Object.keys(options.networksData)
+        .map(name => ({ name, ...options.networksData[name] }))
         .filter(network => networks.value.includes(network.name))
         .sort(
           (prev, next) => networks.value.indexOf(prev.name) - networks.value.indexOf(next.name),
@@ -140,7 +113,7 @@ export const SocialShare = defineComponent({
         frontmatter.value.$shareImage ??
         frontmatter.value.shareImage ??
         frontmatter.value.image ??
-        props.fallbackImage
+        options.fallbackImage
 
       if (!mediaURL) return ''
       if (isExternalUrl(mediaURL)) return mediaURL
@@ -151,7 +124,7 @@ export const SocialShare = defineComponent({
       () =>
         frontmatter.value.$shareQuote ??
         frontmatter.value.shareQuote ??
-        (props.autoQuote ? description.value : ''),
+        (options.autoQuote ? description.value : ''),
     )
     const hashtags = computed(() => {
       const tags =
@@ -169,8 +142,8 @@ export const SocialShare = defineComponent({
       }
       return ''
     })
-    const qrcodeRenderOptions = computed<QRCodeOptions>(() => {
-      const defaultOptions: QRCodeOptions = {
+    const qrcodeRenderOptions = computed<SocialShareQRCodeOptions>(() => {
+      const defaultOptions: SocialShareQRCodeOptions = {
         errorCorrectionLevel: 'H',
         width: 250,
         scale: 1,
@@ -178,7 +151,7 @@ export const SocialShare = defineComponent({
       }
       return {
         ...defaultOptions,
-        ...props.qrcodeOptions,
+        ...options.qrcodeOptions,
       }
     })
 
@@ -254,10 +227,10 @@ export const SocialShare = defineComponent({
         .replace(/@description/g, encodeURIComponent(description.value))
         .replace(/@quote/g, encodeURIComponent(quote.value))
         .replace(/@hashtags/g, generateHashTags(hashtags.value, name))
-        .replace(/@twitteruser/g, props.twitterUser ? `&via=${props.twitterUser}` : '')
+        .replace(/@twitteruser/g, options.twitterUser ? `&via=${options.twitterUser}` : '')
     }
     const onShare = (name: string) => {
-      const network = props.networksData[name]
+      const network = options.networksData[name]
       const shareURL = createShareURL(name, network)
       switch (network.type) {
         case 'popup':
@@ -283,7 +256,7 @@ export const SocialShare = defineComponent({
         networks.map(network =>
           h(SocialShareNetwork, {
             network,
-            isPlain: props.isPlain,
+            isPlain: props.isPlain || options.isPlain,
             shareURL: createShareURL(network.name, network),
             onShare: (name: string) => onShare(name),
           }),
@@ -294,7 +267,7 @@ export const SocialShare = defineComponent({
       visible.value
         ? h(
             'div',
-            { class: ['social-share', props.hideWhenPrint && 'social-share-hide-when-print'] },
+            { class: ['social-share', options.hideWhenPrint && 'social-share-hide-when-print'] },
             [renderNetworkList(networkList.value)],
           )
         : null
