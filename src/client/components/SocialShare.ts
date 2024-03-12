@@ -3,7 +3,6 @@ import { usePageFrontmatter, withBase } from 'vuepress/client'
 import { getMetaContentByName, inBrowser, isExternalUrl } from '../utils.js'
 import { SocialShareNetwork } from './SocialShareNetwork.js'
 import type {
-  MayBe,
   SocialShareNetwork as Network,
   QRCodeOptions,
   SocialShareFrontmatter,
@@ -76,7 +75,7 @@ export const SocialShare = defineComponent({
     )
 
     const frontmatter = usePageFrontmatter<SocialShareFrontmatter>()
-    const timer = ref<MayBe<number>>(null)
+    const timer = ref<number | undefined>()
     const popup = reactive({
       status: false,
       resizable: false,
@@ -185,7 +184,7 @@ export const SocialShare = defineComponent({
 
     // Methods
     const openSharer = (shareURL: string) => {
-      let popWindow: MayBe<Window> = null
+      let popWindow: Window | null = null
       const shareParams: string[] = [
         `status=${popup.status ? 'yes' : 'no'}`,
         `height=${popup.height}`,
@@ -205,7 +204,7 @@ export const SocialShare = defineComponent({
       popWindow?.focus?.()
       timer.value = window.setInterval(() => {
         if (popWindow?.closed) {
-          window.clearInterval(timer.value!)
+          window.clearInterval(timer.value)
           popWindow = null
         }
       }, 500)

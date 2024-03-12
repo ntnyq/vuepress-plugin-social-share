@@ -1,7 +1,5 @@
 import type { QRCodeToDataURLOptions } from 'qrcode'
 
-export type MayBe<T> = T | null | undefined
-
 export type SocialShareType = 'popup' | 'qrcode' | 'direct'
 
 export interface SocialShareNetwork {
