@@ -7,6 +7,8 @@
     "dev": "vuepress dev ."
   },
   "devDependencies": {
+    "@vuepress/bundler-vite": "2.0.0-rc.8",
+    "@vuepress/theme-default": "2.0.0-rc.20",
     "vuepress-plugin-social-share": "workspace:*"
   }
 }

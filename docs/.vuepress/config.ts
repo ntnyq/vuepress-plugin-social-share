@@ -1,4 +1,6 @@
-import { defaultTheme, defineUserConfig } from 'vuepress'
+import { defineUserConfig } from 'vuepress'
+import { viteBundler } from '@vuepress/bundler-vite'
+import { defaultTheme } from '@vuepress/theme-default'
 import { socialSharePlugin } from 'vuepress-plugin-social-share'
 import type { SocialShareNetworkData } from 'vuepress-plugin-social-share'
 
@@ -21,6 +23,8 @@ export default defineUserConfig({
   title: 'vuepress-plugin-social-share',
 
   description: 'Social sharing plugin for VuePress',
+
+  bundler: viteBundler(),
 
   theme: defaultTheme({
     repo: 'ntnyq/vuepress-plugin-social-share',
