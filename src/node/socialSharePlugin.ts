@@ -1,6 +1,6 @@
 import { URL, fileURLToPath } from 'node:url'
 import { resolve } from 'node:path'
-import { createNetworksData } from '../shared/index.js'
+import { mergeNetworksData } from './networks.js'
 import type { Plugin } from '@vuepress/core'
 import type { SocialSharePluginOptions } from '../shared/index.js'
 
@@ -23,7 +23,7 @@ export const socialSharePlugin = (options: SocialSharePluginOptions = {}): Plugi
     },
 
     onPrepared(app) {
-      const networksData = createNetworksData(restOptions)
+      const networksData = mergeNetworksData(restOptions)
       const socialShareOptions = { ...restOptions, networksData }
       const content = `export const socialShareOptions = ${JSON.stringify(socialShareOptions)}`
       app.writeTemp('social-share/options.js', content)
