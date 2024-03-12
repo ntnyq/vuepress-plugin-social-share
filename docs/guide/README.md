@@ -82,7 +82,7 @@ export default defineUserConfig({
 - **type:** `string[]`
 - **default** `['twitter', 'facebook', 'reddit']`
 
-Default networks set for all your social share component, no matter it's in global or local mode.
+Default networks set for all your social share components, no matter it's in global or local mode.
 
 Currently, networks below are built-in supported:
 

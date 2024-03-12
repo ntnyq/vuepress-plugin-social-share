@@ -124,7 +124,7 @@ export const SocialShare = defineComponent({
       () =>
         frontmatter.value.$shareQuote ??
         frontmatter.value.shareQuote ??
-        (options.autoQuote ? description.value : ''),
+        (options.autoQuote ?? true ? description.value : ''),
     )
     const hashtags = computed(() => {
       const tags =
