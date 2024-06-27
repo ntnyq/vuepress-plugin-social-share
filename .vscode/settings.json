@@ -1,5 +1,6 @@
 {
   "prettier.enable": true,
+  "eslint.enable": true,
   "eslint.validate": [
     "vue",
     "html",

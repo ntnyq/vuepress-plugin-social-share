@@ -2,7 +2,7 @@
   "name": "vuepress-plugin-social-share",
   "type": "module",
   "version": "2.0.0-beta.19",
-  "packageManager": "pnpm@8.15.4",
+  "packageManager": "pnpm@9.4.0",
   "description": "Social sharing plugin for VuePress",
   "keywords": [
     "vuepress",
@@ -53,39 +53,31 @@
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
-    "vuepress": "2.0.0-rc.8"
+    "vuepress": "^2.0.0-rc.14"
   },
   "dependencies": {
     "@types/qrcode": "^1.5.5",
-    "@vuepress/client": "2.0.0-rc.8",
-    "@vuepress/helper": "2.0.0-rc.19",
+    "@vuepress/helper": "^2.0.0-rc.37",
     "deepmerge": "^4.3.1",
     "qrcode": "^1.5.3",
-    "vue": "^3.4.21"
+    "vue": "^3.4.30"
   },
   "devDependencies": {
-    "@ntnyq/eslint-config": "^1.20.3",
-    "@ntnyq/prettier-config": "^1.20.3",
-    "@types/node": "^20.11.26",
-    "bumpp": "^9.4.0",
+    "@ntnyq/eslint-config": "^2.2.1",
+    "@ntnyq/prettier-config": "^1.21.2",
+    "@types/node": "^20.14.9",
+    "bumpp": "^9.4.1",
     "copyfiles": "^2.4.1",
-    "eslint": "^8.57.0",
+    "eslint": "^9.5.0",
     "husky": "^9.0.11",
     "nano-staged": "^0.8.0",
-    "npm-run-all2": "^6.1.2",
-    "pnpm": "^8.15.4",
-    "prettier": "^3.2.5",
-    "rimraf": "^5.0.5",
-    "tsc-watch": "^6.0.4",
-    "typescript": "^5.4.2",
-    "vuepress": "2.0.0-rc.8"
-  },
-  "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "webpack"
-      ]
-    }
+    "npm-run-all2": "^6.2.0",
+    "pnpm": "^9.4.0",
+    "prettier": "^3.3.2",
+    "rimraf": "^5.0.7",
+    "tsc-watch": "^6.2.0",
+    "typescript": "^5.5.2",
+    "vuepress": "^2.0.0-rc.14"
   },
   "prettier": "@ntnyq/prettier-config",
   "nano-staged": {

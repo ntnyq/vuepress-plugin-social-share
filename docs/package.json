@@ -1,5 +1,6 @@
 {
   "name": "docs",
+  "type": "module",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -7,8 +8,8 @@
     "dev": "vuepress dev ."
   },
   "devDependencies": {
-    "@vuepress/bundler-vite": "2.0.0-rc.8",
-    "@vuepress/theme-default": "2.0.0-rc.20",
+    "@vuepress/bundler-vite": "^2.0.0-rc.14",
+    "@vuepress/theme-default": "^2.0.0-rc.37",
     "vuepress-plugin-social-share": "workspace:*"
   }
 }
