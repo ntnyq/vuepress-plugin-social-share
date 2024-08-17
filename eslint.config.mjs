@@ -4,8 +4,6 @@
 
 import { ntnyq } from '@ntnyq/eslint-config'
 
-export default ntnyq([
-  {
-    ignores: ['**/.vuepress/.temp', '**/.vuepress/.cache'],
-  },
-])
+export default ntnyq({
+  ignores: ['**/.vuepress/.temp', '**/.vuepress/.cache'],
+})
