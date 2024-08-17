@@ -50,6 +50,7 @@
     "release": "run-s release:check release:publish",
     "release:check": "run-s lint typecheck clean build",
     "release:publish": "bumpp && pnpm publish --tag next",
+    "test": "vitest",
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
@@ -77,6 +78,7 @@
     "rimraf": "^6.0.1",
     "tsc-watch": "^6.2.0",
     "typescript": "^5.5.4",
+    "vitest": "^2.0.5",
     "vuepress": "^2.0.0-rc.14"
   },
   "prettier": "@ntnyq/prettier-config",
