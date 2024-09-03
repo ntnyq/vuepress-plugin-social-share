@@ -1,6 +1,7 @@
 import { defineUserConfig } from 'vuepress'
 import { viteBundler } from '@vuepress/bundler-vite'
 import { defaultTheme } from '@vuepress/theme-default'
+import { shikiPlugin } from '@vuepress/plugin-shiki'
 import { socialSharePlugin } from 'vuepress-plugin-social-share'
 import type { SocialShareNetworkData } from 'vuepress-plugin-social-share'
 
@@ -51,6 +52,26 @@ export default defineUserConfig({
   }),
 
   plugins: [
+    shikiPlugin({
+      langs: [
+        'js',
+        'ts',
+        'md',
+        'jsx',
+        'tsx',
+        'html',
+        'vue',
+        'css',
+        'scss',
+        'json',
+        'jsonc',
+        'yml',
+        'yaml',
+        'bash',
+        'shell',
+      ],
+      theme: 'one-dark-pro',
+    }),
     socialSharePlugin({
       networks: ['qq', 'twitter', 'weibo', 'email', 'linkedin', 'pinterest', 'wechat'],
       twitterUser: 'ntnyq',

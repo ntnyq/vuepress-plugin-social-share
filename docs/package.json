@@ -9,6 +9,7 @@
   },
   "devDependencies": {
     "@vuepress/bundler-vite": "^2.0.0-rc.15",
+    "@vuepress/plugin-shiki": "^2.0.0-rc.42",
     "@vuepress/theme-default": "^2.0.0-rc.42",
     "vuepress-plugin-social-share": "workspace:*"
   }
