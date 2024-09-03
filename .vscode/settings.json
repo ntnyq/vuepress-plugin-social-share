@@ -27,6 +27,7 @@
     "qrcode",
     "rgba",
     "serializers",
+    "shiki",
     "tsbuildinfo",
     "vuepress",
     "weibo"

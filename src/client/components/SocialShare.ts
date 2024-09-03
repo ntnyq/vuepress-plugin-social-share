@@ -31,7 +31,6 @@ export const SocialShare = defineComponent({
     },
   },
 
-  // eslint-disable-next-line max-lines-per-function
   setup(props) {
     const options = useSocialShareOptions()
 

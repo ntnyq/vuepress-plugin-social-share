@@ -1,1 +1,1 @@
-export * from './social-share'
+export * from './socialShare.js'
