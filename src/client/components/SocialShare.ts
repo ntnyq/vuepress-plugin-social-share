@@ -1,15 +1,15 @@
 import { computed, defineComponent, h, onMounted, reactive, ref } from 'vue'
 import { usePageFrontmatter, withBase } from 'vuepress/client'
-import { getMetaContentByName, inBrowser, isExternalUrl } from '../utils.js'
 import { useSocialShareOptions } from '../helpers/index.js'
+import { getMetaContentByName, inBrowser, isExternalUrl } from '../utils.js'
 import { SocialShareNetwork } from './SocialShareNetwork.js'
+import type { PropType } from 'vue'
 import type {
   SocialShareNetwork as Network,
   SocialShareFrontmatter,
   SocialShareNetworkItem,
   SocialShareQRCodeOptions,
 } from '../../shared/index.js'
-import type { PropType } from 'vue'
 
 export const SocialShare = defineComponent({
   name: 'SocialShare',

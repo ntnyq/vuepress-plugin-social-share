@@ -1,7 +1,7 @@
 import { computed, defineComponent, h, onMounted, onUnmounted, ref } from 'vue'
 import { usePageFrontmatter } from 'vuepress/client'
-import { SVG_ICON_CLOSE, SVG_ICON_SHARE } from '../utils.js'
 import { useSocialShareOptions } from '../helpers/index.js'
+import { SVG_ICON_CLOSE, SVG_ICON_SHARE } from '../utils.js'
 import { SocialShare } from './SocialShare.js'
 import type { SocialShareFrontmatter } from '../../shared/index.js'
 

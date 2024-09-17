@@ -1,7 +1,7 @@
-import { defineClientConfig } from 'vuepress/client'
 import { socialShareOptions } from '@vuepress/plugin-social-share/options'
-import { injectSocialShareOptions } from './helpers/index.js'
+import { defineClientConfig } from 'vuepress/client'
 import { GlobalSocialShare, SocialShare } from './components/index.js'
+import { injectSocialShareOptions } from './helpers/index.js'
 
 declare const __SOCIAL_SHARE_COMPONENT_NAME__: string
 declare const __SOCIAL_SHARE_USE_CUSTOM_STYLE__: boolean

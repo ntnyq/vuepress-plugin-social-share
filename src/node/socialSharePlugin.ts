@@ -1,6 +1,6 @@
-import { getDirname, path } from 'vuepress/utils'
 import { addViteSsrNoExternal } from '@vuepress/helper'
-import { PLUGIN_NAME, logger } from './logger.js'
+import { getDirname, path } from 'vuepress/utils'
+import { logger, PLUGIN_NAME } from './logger.js'
 import { mergeNetworksData } from './networks.js'
 import type { PluginFunction } from 'vuepress/core'
 import type { SocialSharePluginOptions } from '../shared/index.js'
@@ -13,7 +13,7 @@ export const socialSharePlugin =
     const {
       componentName = 'SocialShare',
       useCustomStyle = false,
-      // Options to client
+      // Options for client
       ...restOptions
     } = options
 
