@@ -2,7 +2,7 @@
   "name": "vuepress-plugin-social-share",
   "type": "module",
   "version": "2.0.0-beta.22",
-  "packageManager": "pnpm@9.10.0",
+  "packageManager": "pnpm@9.11.0",
   "description": "Social sharing plugin for VuePress",
   "keywords": [
     "vuepress",
@@ -54,26 +54,26 @@
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
-    "vuepress": "^2.0.0-rc.14"
+    "vuepress": "^2.0.0-rc.15"
   },
   "dependencies": {
     "@types/qrcode": "^1.5.5",
-    "@vuepress/helper": "^2.0.0-rc.42",
+    "@vuepress/helper": "^2.0.0-rc.47",
     "deepmerge": "^4.3.1",
     "qrcode": "^1.5.4",
-    "vue": "^3.5.6"
+    "vue": "^3.5.8"
   },
   "devDependencies": {
-    "@ntnyq/eslint-config": "^3.0.0-beta.13",
+    "@ntnyq/eslint-config": "^3.0.0-beta.17",
     "@ntnyq/prettier-config": "^1.21.3",
     "@types/node": "^22.5.5",
     "bumpp": "^9.5.2",
     "copyfiles": "^2.4.1",
-    "eslint": "^9.10.0",
+    "eslint": "^9.11.0",
     "husky": "^9.1.6",
     "nano-staged": "^0.8.0",
     "npm-run-all2": "^6.2.3",
-    "pnpm": "^9.10.0",
+    "pnpm": "^9.11.0",
     "prettier": "^3.3.3",
     "rimraf": "^6.0.1",
     "tsc-watch": "^6.2.0",
