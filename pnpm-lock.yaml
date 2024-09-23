@@ -82,8 +82,8 @@ importers:
         specifier: ^2.0.0-rc.47
         version: 2.0.0-rc.47(@vueuse/core@11.1.0(vue@3.5.8(typescript@5.6.2)))(typescript@5.6.2)(vuepress@2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@22.5.5)(jiti@1.21.6)(sass-embedded@1.79.3)(tsx@4.17.0)(typescript@5.6.2))(typescript@5.6.2))
       '@vuepress/theme-default':
-        specifier: ^2.0.0-rc.47
-        version: 2.0.0-rc.47(markdown-it@14.1.0)(sass-embedded@1.79.3)(typescript@5.6.2)(vuepress@2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@22.5.5)(jiti@1.21.6)(sass-embedded@1.79.3)(tsx@4.17.0)(typescript@5.6.2))(typescript@5.6.2))
+        specifier: ^2.0.0-rc.49
+        version: 2.0.0-rc.49(markdown-it@14.1.0)(sass-embedded@1.79.3)(typescript@5.6.2)(vuepress@2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@22.5.5)(jiti@1.21.6)(sass-embedded@1.79.3)(tsx@4.17.0)(typescript@5.6.2))(typescript@5.6.2))
       sass-embedded:
         specifier: ^1.79.3
         version: 1.79.3
@@ -1017,8 +1017,8 @@ packages:
     peerDependencies:
       vuepress: 2.0.0-rc.15
 
-  '@vuepress/plugin-prismjs@2.0.0-rc.47':
-    resolution: {integrity: sha512-s0otQmelu1Md0/JW2gIIFYE+AfhEsUa1JNyeiAYk/mGIhkS1DRG5818bfrD1O1AT3P+d2t2l4Dt53yar/ZTAAA==}
+  '@vuepress/plugin-prismjs@2.0.0-rc.49':
+    resolution: {integrity: sha512-cxzZYC827BNabyiUwV9m6cJKUWGdfJFzNHzE98uR9MRM1AuUmxKvzbAU3shDHcPCt9Z1xR38aZpaYi63zsbOVg==}
     peerDependencies:
       vuepress: 2.0.0-rc.15
 
@@ -1045,8 +1045,8 @@ packages:
   '@vuepress/shared@2.0.0-rc.15':
     resolution: {integrity: sha512-KLTTw0MWXrLw5XQ8h6y1iI11zJdlZcB8jXgAdOHFJ3a++InDYmUC0aCE0KbXyQTH46ODpMadJnz8/RewCftVXg==}
 
-  '@vuepress/theme-default@2.0.0-rc.47':
-    resolution: {integrity: sha512-a05MCg/BX9o0bYNQJM3w56FxwGGycaCkW1r949LfA5eJlpnICnrHm46icmIbBsKfi6RqcndO6Y5Uax7tNUpEHA==}
+  '@vuepress/theme-default@2.0.0-rc.49':
+    resolution: {integrity: sha512-eQCCBLB4M3adyFVApWASRKHPc1vQBtDWYW15XQJPTnPuMt4y/gdCJsXaQ2nRTTdZ1UJYQ8VSuszkCu/aJdRjPQ==}
     peerDependencies:
       sass: ^1.79.2
       sass-embedded: ^1.79.2
@@ -4461,7 +4461,7 @@ snapshots:
       - '@vue/composition-api'
       - typescript
 
-  '@vuepress/plugin-prismjs@2.0.0-rc.47(@vueuse/core@11.1.0(vue@3.5.8(typescript@5.6.2)))(typescript@5.6.2)(vuepress@2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@22.5.5)(jiti@1.21.6)(sass-embedded@1.79.3)(tsx@4.17.0)(typescript@5.6.2))(typescript@5.6.2))':
+  '@vuepress/plugin-prismjs@2.0.0-rc.49(@vueuse/core@11.1.0(vue@3.5.8(typescript@5.6.2)))(typescript@5.6.2)(vuepress@2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@22.5.5)(jiti@1.21.6)(sass-embedded@1.79.3)(tsx@4.17.0)(typescript@5.6.2))(typescript@5.6.2))':
     dependencies:
       '@vuepress/helper': 2.0.0-rc.47(typescript@5.6.2)(vuepress@2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@22.5.5)(jiti@1.21.6)(sass-embedded@1.79.3)(tsx@4.17.0)(typescript@5.6.2))(typescript@5.6.2))
       '@vuepress/highlighter-helper': 2.0.0-rc.46(@vueuse/core@11.1.0(vue@3.5.8(typescript@5.6.2)))(vuepress@2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@22.5.5)(jiti@1.21.6)(sass-embedded@1.79.3)(tsx@4.17.0)(typescript@5.6.2))(typescript@5.6.2))
@@ -4514,7 +4514,7 @@ snapshots:
     dependencies:
       '@mdit-vue/types': 2.1.0
 
-  '@vuepress/theme-default@2.0.0-rc.47(markdown-it@14.1.0)(sass-embedded@1.79.3)(typescript@5.6.2)(vuepress@2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@22.5.5)(jiti@1.21.6)(sass-embedded@1.79.3)(tsx@4.17.0)(typescript@5.6.2))(typescript@5.6.2))':
+  '@vuepress/theme-default@2.0.0-rc.49(markdown-it@14.1.0)(sass-embedded@1.79.3)(typescript@5.6.2)(vuepress@2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@22.5.5)(jiti@1.21.6)(sass-embedded@1.79.3)(tsx@4.17.0)(typescript@5.6.2))(typescript@5.6.2))':
     dependencies:
       '@vuepress/helper': 2.0.0-rc.47(typescript@5.6.2)(vuepress@2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@22.5.5)(jiti@1.21.6)(sass-embedded@1.79.3)(tsx@4.17.0)(typescript@5.6.2))(typescript@5.6.2))
       '@vuepress/plugin-active-header-links': 2.0.0-rc.47(typescript@5.6.2)(vuepress@2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@22.5.5)(jiti@1.21.6)(sass-embedded@1.79.3)(tsx@4.17.0)(typescript@5.6.2))(typescript@5.6.2))
@@ -4527,7 +4527,7 @@ snapshots:
       '@vuepress/plugin-medium-zoom': 2.0.0-rc.47(typescript@5.6.2)(vuepress@2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@22.5.5)(jiti@1.21.6)(sass-embedded@1.79.3)(tsx@4.17.0)(typescript@5.6.2))(typescript@5.6.2))
       '@vuepress/plugin-nprogress': 2.0.0-rc.47(typescript@5.6.2)(vuepress@2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@22.5.5)(jiti@1.21.6)(sass-embedded@1.79.3)(tsx@4.17.0)(typescript@5.6.2))(typescript@5.6.2))
       '@vuepress/plugin-palette': 2.0.0-rc.47(typescript@5.6.2)(vuepress@2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@22.5.5)(jiti@1.21.6)(sass-embedded@1.79.3)(tsx@4.17.0)(typescript@5.6.2))(typescript@5.6.2))
-      '@vuepress/plugin-prismjs': 2.0.0-rc.47(@vueuse/core@11.1.0(vue@3.5.8(typescript@5.6.2)))(typescript@5.6.2)(vuepress@2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@22.5.5)(jiti@1.21.6)(sass-embedded@1.79.3)(tsx@4.17.0)(typescript@5.6.2))(typescript@5.6.2))
+      '@vuepress/plugin-prismjs': 2.0.0-rc.49(@vueuse/core@11.1.0(vue@3.5.8(typescript@5.6.2)))(typescript@5.6.2)(vuepress@2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@22.5.5)(jiti@1.21.6)(sass-embedded@1.79.3)(tsx@4.17.0)(typescript@5.6.2))(typescript@5.6.2))
       '@vuepress/plugin-seo': 2.0.0-rc.47(typescript@5.6.2)(vuepress@2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@22.5.5)(jiti@1.21.6)(sass-embedded@1.79.3)(tsx@4.17.0)(typescript@5.6.2))(typescript@5.6.2))
       '@vuepress/plugin-sitemap': 2.0.0-rc.47(typescript@5.6.2)(vuepress@2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@22.5.5)(jiti@1.21.6)(sass-embedded@1.79.3)(tsx@4.17.0)(typescript@5.6.2))(typescript@5.6.2))
       '@vuepress/plugin-theme-data': 2.0.0-rc.47(typescript@5.6.2)(vuepress@2.0.0-rc.15(@vuepress/bundler-vite@2.0.0-rc.15(@types/node@22.5.5)(jiti@1.21.6)(sass-embedded@1.79.3)(tsx@4.17.0)(typescript@5.6.2))(typescript@5.6.2))
