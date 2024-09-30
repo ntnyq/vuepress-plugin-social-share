@@ -58,18 +58,18 @@
   },
   "dependencies": {
     "@types/qrcode": "^1.5.5",
-    "@vuepress/helper": "^2.0.0-rc.47",
+    "@vuepress/helper": "^2.0.0-rc.52",
     "deepmerge": "^4.3.1",
     "qrcode": "^1.5.4",
-    "vue": "^3.5.8"
+    "vue": "^3.5.10"
   },
   "devDependencies": {
     "@ntnyq/eslint-config": "^3.0.0-beta.17",
     "@ntnyq/prettier-config": "^1.21.3",
-    "@types/node": "^22.5.5",
-    "bumpp": "^9.5.2",
+    "@types/node": "^22.7.4",
+    "bumpp": "^9.6.1",
     "copyfiles": "^2.4.1",
-    "eslint": "^9.11.0",
+    "eslint": "^9.11.1",
     "husky": "^9.1.6",
     "nano-staged": "^0.8.0",
     "npm-run-all2": "^6.2.3",
@@ -79,7 +79,7 @@
     "tsc-watch": "^6.2.0",
     "typescript": "^5.6.2",
     "vitest": "^2.1.1",
-    "vuepress": "^2.0.0-rc.15"
+    "vuepress": "^2.0.0-rc.17"
   },
   "prettier": "@ntnyq/prettier-config",
   "nano-staged": {
