@@ -393,13 +393,13 @@ By default, those variables are set to **vuepress-plugin-social-share**.
 ```scss
 :root {
   // global trigger color
-  --c-social-share-trigger: var(--c-text-lightest);
+  --c-social-share-trigger: var(--c-text-lightest, #6a8bad);
 
   // plain mode icon color
-  --c-social-share-plain: var(--c-brand);
+  --c-social-share-plain: var(--c-brand, var(--vp-c-accent));
 
   // global bgColor
-  --c-bg-global-social-share: var(--c-bg);
+  --c-bg-global-social-share: var(--c-bg, var(--vp-c-bg));
 }
 ```
 
