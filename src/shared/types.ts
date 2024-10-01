@@ -20,7 +20,7 @@ export type SocialShareNetworkData = Record<string, SocialShareNetwork>
  */
 export type SocialShareQRCodeOptions = QRCodeToDataURLOptions
 
-export interface SocialShareFrontmatter {
+export type SocialShareFrontmatter = {
   noSocialShare?: boolean
   noGlobalSocialShare?: boolean
 
