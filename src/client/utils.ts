@@ -33,7 +33,7 @@ export const isExternalUrl = (url: string) => RE_EXTERNAL_LINK.test(url)
  */
 export function getMetaContentByName(name: string) {
   if (!inBrowser) return ''
-  const tag = document.getElementsByName(name)[0]
+  const tag = document.querySelectorAll(name)[0]
   if (!tag) return ''
   return tag.getAttribute('content') || ''
 }
