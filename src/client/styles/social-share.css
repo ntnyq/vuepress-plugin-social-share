@@ -1,9 +1,3 @@
-:root {
-  --c-social-share-trigger: var(--c-text-lightest, #6a8bad);
-  --c-social-share-plain: var(--c-brand, var(--vp-c-accent));
-  --c-bg-global-social-share: var(--c-bg, var(--vp-c-bg));
-}
-
 .social-share {
   position: relative;
   box-sizing: border-box;
