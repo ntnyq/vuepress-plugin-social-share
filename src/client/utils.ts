@@ -13,21 +13,21 @@ export const inBrowser = typeof window !== 'undefined'
 
 /**
  * Check if the given source string is SVG
- * @param source given source string
+ * @param source - given source string
  * @returns `true` if given a svg source string
  */
 export const isSVG = (source: string) => RE_SVG_SOURCE.test(source)
 
 /**
  * Check if the given url is external
- * @param url given url
+ * @param url - given url
  * @returns `true` is given an external url
  */
 export const isExternalUrl = (url: string) => RE_EXTERNAL_LINK.test(url)
 
 /**
  * Return meta tag's content in browser by name
- * @param name meta tag's name
+ * @param name - meta tag's name
  *
  * @returns meta tag's content if exists, or `''`
  */

@@ -1,53 +1,51 @@
 import type { QRCodeToDataURLOptions } from 'qrcode'
 
-export type SocialShareType = 'popup' | 'qrcode' | 'direct'
-
 export interface SocialShareNetwork {
-  type: SocialShareType
   icon: string
-  sharer?: string
+  type: SocialShareType
   color?: string
+  sharer?: string
 }
+
+export type SocialShareNetworkData = Record<string, SocialShareNetwork>
 
 export type SocialShareNetworkItem = SocialShareNetwork & { name: string }
 
-export type SocialShareNetworkData = Record<string, SocialShareNetwork>
+export type SocialShareType = 'direct' | 'popup' | 'qrcode'
 
 /**
  * QRCode options, alias of `QRCodeToDataURLOptions`
  *
  * @see {@link https://github.com/soldair/node-qrcode?tab=readme-ov-file#options-2}
  */
-export type SocialShareQRCodeOptions = QRCodeToDataURLOptions
-
 export type SocialShareFrontmatter = {
-  noSocialShare?: boolean
   noGlobalSocialShare?: boolean
+  noSocialShare?: boolean
 
   // share meta
-  shareUrl?: string
-  $shareUrl?: string
-  permalink?: string
-
-  title?: string
-  shareTitle?: string
-  $shareTitle?: string
-
-  description?: string
-  shareDescription?: string
   $shareDescription?: string
-
-  image?: string
-  shareImage?: string
   $shareImage?: string
-
-  shareQuote?: string
   $shareQuote?: string
 
+  $shareTags?: string
+  $shareTitle?: string
+  $shareUrl?: string
+
+  description?: string
+  image?: string
+  permalink?: string
+
+  shareDescription?: string
+  shareImage?: string
+  shareQuote?: string
+
+  shareTags?: string
+  shareTitle?: string
+
+  shareUrl?: string
   tag?: string
   tags?: string
-  shareTags?: string
-  $shareTags?: string
+  title?: string
 }
 
 export interface SocialSharePluginOptions {
@@ -124,3 +122,5 @@ export interface SocialSharePluginOptionsWithDefaults
   extends Omit<SocialSharePluginOptions, 'componentName' | 'useCustomStyle'> {
   networksData: SocialShareNetworkData
 }
+
+export type SocialShareQRCodeOptions = QRCodeToDataURLOptions
