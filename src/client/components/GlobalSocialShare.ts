@@ -55,6 +55,7 @@ export const GlobalSocialShare = defineComponent({
           class: 'social-share-btn social-share-trigger',
           type: 'button',
           role: 'button',
+          'aria-label': 'Toggle global social share',
           onClick: (evt: MouseEvent) => onClick(evt),
         },
         [renderButtonIcon()],
