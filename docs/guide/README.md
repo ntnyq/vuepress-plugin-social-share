@@ -100,6 +100,7 @@ Currently, networks below are built-in supported:
 - wechat <social-share class="list-demo-sns" :networks="['wechat']" />
 - weibo <social-share class="list-demo-sns" :networks="['weibo']"/>
 - whatsapp <social-share class="list-demo-sns" :networks="['whatsapp']"/>
+- x <social-share class="list-demo-sns" :networks="['x']"/>
 
 ::: warning Note
 There is no single, standard way in which browsers/email clients handle mailto links (e.g. subject and body fields may be discarded without a warning). Also there is a risk that popup and ad blockers, anti-virus software etc. may silently block forced opening of mailto links.

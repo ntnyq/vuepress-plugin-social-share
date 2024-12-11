@@ -66,11 +66,27 @@ Some demos.
     'skype',
     'whatsapp',
     'weibo',
+    'x',
   ]"
 />
 ```
 
-<social-share :networks="['bluesky', 'douban', 'facebook', 'line', 'qq', 'telegram', 'twitter', 'reddit', 'skype', 'whatsapp',  'weibo']" />
+<social-share 
+  :networks="[
+    'bluesky', 
+    'douban', 
+    'facebook', 
+    'line', 
+    'qq', 
+    'telegram', 
+    'twitter', 
+    'reddit', 
+    'skype', 
+    'whatsapp', 
+    'weibo',
+    'x',
+  ]" 
+/>
 
 ## User-customed networks
 
@@ -86,7 +102,7 @@ Add `noGlobalSocialShare: true` in **frontmatter** to disable the global ui comp
 
 Currently, the page you are looking at has no global social share component.
 
-```markdown
+```md
 ---
 noGlobalSocialShare: true
 ---
