@@ -86,19 +86,20 @@ Default networks set for all your social share components, no matter it's in glo
 
 Currently, networks below are built-in supported:
 
+- bluesky <social-share class="list-demo-sns" :networks="['bluesky']" />
+- douban <social-share class="list-demo-sns" :networks="['douban']"/>
+- email <social-share class="list-demo-sns" :networks="['email']"/>
 - facebook <social-share class="list-demo-sns" :networks="['facebook']"/>
 - line <social-share class="list-demo-sns" :networks="['line']"/>
+- qq <social-share class="list-demo-sns" :networks="['qq']"/>
+- qrcode <social-share class="list-demo-sns" :networks="['qrcode']" />
 - reddit <social-share class="list-demo-sns" :networks="['reddit']"/>
-- email <social-share class="list-demo-sns" :networks="['email']"/>
 - skype <social-share class="list-demo-sns" :networks="['skype']"/>
 - telegram <social-share class="list-demo-sns" :networks="['telegram']"/>
 - twitter <social-share class="list-demo-sns" :networks="['twitter']"/>
-- weibo <social-share class="list-demo-sns" :networks="['weibo']"/>
-- qq <social-share class="list-demo-sns" :networks="['qq']"/>
-- douban <social-share class="list-demo-sns" :networks="['douban']"/>
-- whatsapp <social-share class="list-demo-sns" :networks="['whatsapp']"/>
 - wechat <social-share class="list-demo-sns" :networks="['wechat']" />
-- qrcode <social-share class="list-demo-sns" :networks="['qrcode']" />
+- weibo <social-share class="list-demo-sns" :networks="['weibo']"/>
+- whatsapp <social-share class="list-demo-sns" :networks="['whatsapp']"/>
 
 ::: warning Note
 There is no single, standard way in which browsers/email clients handle mailto links (e.g. subject and body fields may be discarded without a warning). Also there is a risk that popup and ad blockers, anti-virus software etc. may silently block forced opening of mailto links.

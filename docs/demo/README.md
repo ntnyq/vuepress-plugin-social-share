@@ -54,21 +54,23 @@ Some demos.
 ```vue
 <social-share
   :networks="[
+    'bluesky',
+    'douban',
+    'email',
     'facebook',
-    'qq',
-    'twitter',
     'line',
+    'qq',
+    'telegram',
+    'twitter',
     'reddit',
     'skype',
-    'douban',
     'whatsapp',
-    'telegram',
     'weibo',
   ]"
 />
 ```
 
-<social-share :networks="['facebook', 'qq', 'twitter', 'line', 'reddit', 'skype', 'douban', 'whatsapp', 'telegram', 'weibo']" />
+<social-share :networks="['bluesky', 'douban', 'facebook', 'line', 'qq', 'telegram', 'twitter', 'reddit', 'skype', 'whatsapp',  'weibo']" />
 
 ## User-customed networks
 
