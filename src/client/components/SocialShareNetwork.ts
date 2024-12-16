@@ -46,7 +46,8 @@ export const SocialShareNetwork = defineComponent({
     })
     const resolvedColor = computed(() => {
       const { color = '' } = props.network
-      if (props.isPlain && !color) return ''
+      if (props.isPlain) return ''
+      if (!color) return ''
       if (isString(color)) return color
       return isDarkMode.value ? color.dark : color.light
     })
