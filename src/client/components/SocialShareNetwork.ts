@@ -1,5 +1,6 @@
+import { useDarkmode } from '@vuepress/helper/client'
 import { computed, defineComponent, h } from 'vue'
-import { isSVG } from '../utils.js'
+import { isString, isSVG } from '../utils.js'
 import type { PropType } from 'vue'
 import type { SocialShareNetworkItem } from '../../shared/index.js'
 
@@ -37,33 +38,46 @@ export const SocialShareNetwork = defineComponent({
   emits: [Event.Share],
 
   setup(props, ctx) {
-    const isSvgIcon = computed(() => isSVG(props.network.icon))
+    const isDarkMode = computed(() => useDarkmode().value)
+    const resolvedIcon = computed(() => {
+      const { icon } = props.network
+      if (isString(icon)) return icon
+      return isDarkMode.value ? icon.dark : icon.light
+    })
+    const resolvedColor = computed(() => {
+      const { color = '' } = props.network
+      if (props.isPlain && !color) return ''
+      if (isString(color)) return color
+      return isDarkMode.value ? color.dark : color.light
+    })
+    const isSvgIcon = computed(() => isSVG(resolvedIcon.value))
 
-    const renderShareIcon = (network: SocialShareNetworkItem) =>
+    const renderShareIcon = () =>
       isSvgIcon.value
         ? h('span', {
             class: 'social-share-icon-svg',
             focusable: false,
-            style: { color: !props.isPlain && network.color },
-            innerHTML: network.icon,
+            style: { color: resolvedColor.value },
+            innerHTML: resolvedIcon.value,
           })
         : h('span', {
-            style: { backgroundImage: `url(${network.icon})` },
+            style: { backgroundImage: `url(${resolvedIcon.value})` },
             class: 'social-share-icon-img',
           })
-    const renderShareButton = (network: SocialShareNetworkItem) =>
+    const renderShareButton = () =>
       h(
         'button',
         {
           class: 'social-share-btn',
-          title: network.name,
+          title: props.network.name,
           type: 'button',
           role: 'button',
-          'aria-label': network.name,
-          onClick: () => ctx.emit(Event.Share, network.name),
-          'data-link': network.type === 'popup' ? `#share-${network.name}` : props.shareURL,
+          'aria-label': props.network.name,
+          onClick: () => ctx.emit(Event.Share, props.network.name),
+          'data-link':
+            props.network.type === 'popup' ? `#share-${props.network.name}` : props.shareURL,
         },
-        [renderShareIcon(network)],
+        [renderShareIcon()],
       )
 
     return () =>
@@ -73,7 +87,7 @@ export const SocialShareNetwork = defineComponent({
           class: 'social-share-network',
           role: 'option',
         },
-        [renderShareButton(props.network)],
+        [renderShareButton()],
       )
   },
 })

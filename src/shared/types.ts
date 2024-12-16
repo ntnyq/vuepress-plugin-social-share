@@ -1,17 +1,43 @@
 import type { QRCodeToDataURLOptions } from 'qrcode'
 
-export interface SocialShareNetwork {
-  icon: string
-  type: SocialShareType
-  color?: string
-  sharer?: string
-}
-
 export type SocialShareNetworkData = Record<string, SocialShareNetwork>
 
 export type SocialShareNetworkItem = SocialShareNetwork & { name: string }
 
+/**
+ * Social share network
+ */
+export type SocialShareColor =
+  | string
+  | {
+      /**
+       * color for dark mode
+       */
+      dark: string
+      /**
+       * color for light mode
+       */
+      light: string
+    }
+export interface SocialShareNetwork {
+  icon: SocilaShareIcon
+  type: SocialShareType
+  color?: SocialShareColor
+  sharer?: string
+}
 export type SocialShareType = 'direct' | 'popup' | 'qrcode'
+export type SocilaShareIcon =
+  | string
+  | {
+      /**
+       * icon for dark mode
+       */
+      dark: string
+      /**
+       * icon for light mode
+       */
+      light: string
+    }
 
 /**
  * QRCode options, alias of `QRCodeToDataURLOptions`

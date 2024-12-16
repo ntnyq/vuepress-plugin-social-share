@@ -1,7 +1,7 @@
 import { computed, defineComponent, h, onMounted, reactive, ref } from 'vue'
 import { usePageFrontmatter, withBase } from 'vuepress/client'
 import { useSocialShareOptions } from '../helpers/index.js'
-import { getMetaContentByName, inBrowser, isExternalUrl } from '../utils.js'
+import { getMetaContentByName, inBrowser, isExternalUrl, isString } from '../utils.js'
 import { SocialShareNetwork } from './SocialShareNetwork.js'
 import type { PropType } from 'vue'
 import type {
@@ -136,7 +136,7 @@ export const SocialShare = defineComponent({
       if (Array.isArray(tags)) {
         return tags.join(',')
       }
-      if (typeof tags === 'string') {
+      if (isString(tags)) {
         return tags.replace(/\s/g, '')
       }
       return ''
