@@ -3,7 +3,11 @@ import { shikiPlugin } from '@vuepress/plugin-shiki'
 import { defaultTheme } from '@vuepress/theme-default'
 import { defineUserConfig } from 'vuepress'
 import { socialSharePlugin } from 'vuepress-plugin-social-share'
+import { version } from '../../package.json'
+import type { NavbarLinkOptions } from '@vuepress/theme-default'
 import type { SocialShareNetworkData } from 'vuepress-plugin-social-share'
+
+const packageName = 'vuepress-plugin-social-share'
 
 const extendsNetworks: SocialShareNetworkData = {
   pinterest: {
@@ -20,16 +24,22 @@ const extendsNetworks: SocialShareNetworkData = {
   },
 }
 
+const VERSIONS: NavbarLinkOptions[] = [
+  { text: `v${version} (current)`, link: '/' },
+  { text: `Release Notes`, link: `https://github.com/ntnyq/${packageName}/releases` },
+  { text: 'VuePress v1', link: 'https://social-share-v1.ntnyq.com' },
+]
+
 export default defineUserConfig({
-  title: 'vuepress-plugin-social-share',
+  title: packageName,
 
   description: 'Social sharing plugin for VuePress',
 
   bundler: viteBundler(),
 
   theme: defaultTheme({
-    repo: 'ntnyq/vuepress-plugin-social-share',
-    docsRepo: 'ntnyq/vuepress-plugin-social-share',
+    repo: `ntnyq/${packageName}`,
+    docsRepo: `ntnyq/${packageName}`,
     docsDir: 'docs',
     docsBranch: 'next',
     editLink: true,
@@ -39,10 +49,9 @@ export default defineUserConfig({
       { text: 'Home', link: '/' },
       { text: 'Guide', link: '/guide/' },
       { text: 'Demo', link: '/demo/' },
-      { text: 'VuePress v1', link: 'https://social-share-v1.ntnyq.com' },
       {
-        text: 'Changelog',
-        link: 'https://github.com/ntnyq/vuepress-plugin-social-share/releases',
+        text: `v${version}`,
+        children: VERSIONS,
       },
     ],
 
