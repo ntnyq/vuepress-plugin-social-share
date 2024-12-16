@@ -1,14 +1,9 @@
-import path from 'node:path'
-import { fileURLToPath, URL } from 'node:url'
 import { viteBundler } from '@vuepress/bundler-vite'
 import { shikiPlugin } from '@vuepress/plugin-shiki'
 import { defaultTheme } from '@vuepress/theme-default'
 import { defineUserConfig } from 'vuepress'
 import { socialSharePlugin } from 'vuepress-plugin-social-share'
 import type { SocialShareNetworkData } from 'vuepress-plugin-social-share'
-
-const __dirname = fileURLToPath(new URL('.', import.meta.url))
-const resolve = (...args: string[]) => path.resolve(__dirname, '..', ...args)
 
 const extendsNetworks: SocialShareNetworkData = {
   pinterest: {
@@ -31,10 +26,6 @@ export default defineUserConfig({
   description: 'Social sharing plugin for VuePress',
 
   bundler: viteBundler(),
-
-  alias: {
-    '@vuepress/plugin-palette/style': resolve('.vuepress/styles/index.scss'),
-  },
 
   theme: defaultTheme({
     repo: 'ntnyq/vuepress-plugin-social-share',

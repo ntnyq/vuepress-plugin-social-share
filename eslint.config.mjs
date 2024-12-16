@@ -1,6 +1,4 @@
-/**
- * @file ESLint config
- */
+// @ts-check
 
 import { defineESLintConfig } from '@ntnyq/eslint-config'
 
