@@ -2,6 +2,7 @@
 node_modules
 *.log*
 *.local
+
 dist
 
 # Typescript build info

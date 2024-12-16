@@ -23,5 +23,5 @@ jobs:
       - run: pnpm run lint
       - run: pnpm run typecheck
       - run: pnpm run build
-      - run: pnpm run build:docs
+      - run: pnpm run docs:build
       - run: pnpm run test
