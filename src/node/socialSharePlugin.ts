@@ -1,7 +1,7 @@
 import { addViteSsrNoExternal } from '@vuepress/helper'
 import { getDirname, path } from 'vuepress/utils'
-import { logger, PLUGIN_NAME } from './logger.js'
-import { mergeNetworksData } from './networks.js'
+import { PLUGIN_NAME } from './constants.js'
+import { logger, mergeNetworksData } from './helpers.js'
 import type { PluginFunction } from 'vuepress/core'
 import type { SocialSharePluginOptions } from '../shared/index.js'
 
@@ -14,7 +14,7 @@ export const socialSharePlugin =
       componentName = 'SocialShare',
       useCustomStyle = false,
       // Options for client
-      ...restOptions
+      ...clientOptions
     } = options
 
     if (app.env.isDebug) {
@@ -36,8 +36,8 @@ export const socialSharePlugin =
       },
 
       onPrepared(app) {
-        const networksData = mergeNetworksData(restOptions)
-        const socialShareOptions = { ...restOptions, networksData }
+        const networksData = mergeNetworksData(clientOptions)
+        const socialShareOptions = { ...clientOptions, networksData }
         const content = `export const socialShareOptions = ${JSON.stringify(socialShareOptions)}`
         app.writeTemp('social-share/options.js', content)
       },

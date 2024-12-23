@@ -39,10 +39,30 @@ export type SocilaShareIcon =
  * Social share network
  */
 export interface SocialShareNetwork {
+  /**
+   * Sharer icon
+   */
   icon: SocilaShareIcon
+
+  /**
+   * Sharer type
+   */
   type: SocialShareType
+
+  /**
+   * Sharer icon color
+   */
   color?: SocialShareColor
+
+  /**
+   * Sharer URL
+   */
   sharer?: string
+
+  /**
+   * If component `SocialShare` has no prop `networks`, all `default: true` network will show
+   */
+  default?: boolean
 }
 
 /**
