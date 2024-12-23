@@ -1,6 +1,7 @@
 import { useDarkmode } from '@vuepress/helper/client'
 import { computed, defineComponent, h } from 'vue'
-import { isString, isSVG } from '../utils.js'
+import { isString } from '../../shared/index.js'
+import { isSVG } from '../utils.js'
 import type { PropType } from 'vue'
 import type { SocialShareNetworkWithName } from '../../shared/index.js'
 

@@ -40,9 +40,9 @@ For advanced usage.
 ```ts
 import { defineUserConfig } from 'vuepress'
 import { socialSharePlugin } from 'vuepress-plugin-social-share'
-import type { SocialShareNetworkData } from 'vuepress-plugin-social-share'
+import type { SocialShareNetwork } from 'vuepress-plugin-social-share'
 
-const extendsNetworks: SocialShareNetworkData = {
+const extendsNetworks: Record<string, SocialShareNetwork> = {
   pinterest: {
     sharer: 'https://pinterest.com/pin/create/button/?url=@url&media=@media&description=@title',
     type: 'popup',
@@ -217,9 +217,9 @@ i.e:
 ```ts
 import { defineUserConfig } from 'vuepress'
 import { socialSharePlugin } from 'vuepress-plugin-social-share'
-import type { SocialShareNetworkData } from 'vuepress-plugin-social-share'
+import type { SocialShareNetwork } from 'vuepress-plugin-social-share'
 
-const extendsNetworks: SocialShareNetworkData = {
+const extendsNetworks: Record<string, SocialShareNetwork> = {
   pinterest: {
     sharer: 'https://pinterest.com/pin/create/button/?url=@url&media=@media&description=@title',
     type: 'popup',
