@@ -1,6 +1,11 @@
 import type { QRCodeToDataURLOptions } from 'qrcode'
-import type { SocialShareNetwork } from './network'
+import type { SocialShareNetwork, SocialShareNetworkWithName } from './network'
 
+/**
+ * @deprecated use `Record<string, SocialShareNetwork>` instead
+ *
+ * @see {@link SocialShareNetwork}
+ */
 export type SocialShareNetworkData = Record<string, SocialShareNetwork>
 
 /**
@@ -66,7 +71,7 @@ export interface SocialSharePluginOptions {
    *
    * @default ['twitter', 'facebook', 'reddit']
    */
-  networks?: string[]
+  networks?: (string | SocialShareNetworkWithName)[]
 
   /**
    * Twitter profile username
@@ -108,7 +113,7 @@ export interface SocialSharePluginOptions {
    *
    * @deprecated use {@link networks} instead
    */
-  extendsNetworks?: SocialShareNetworkData
+  extendsNetworks?: Record<string, SocialShareNetwork>
 
   /**
    * Set to `true` to hide SocialShare when printing
@@ -123,5 +128,5 @@ export interface SocialSharePluginOptions {
  */
 export interface SocialSharePluginOptionsWithDefaults
   extends Omit<SocialSharePluginOptions, 'componentName' | 'useCustomStyle'> {
-  networksData: SocialShareNetworkData
+  networksData: Record<string, SocialShareNetwork>
 }

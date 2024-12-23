@@ -1,7 +1,8 @@
 import { computed, defineComponent, h, onMounted, reactive, ref } from 'vue'
 import { usePageFrontmatter, withBase } from 'vuepress/client'
+import { isString } from '../../shared/index.js'
 import { useSocialShareOptions } from '../helpers/index.js'
-import { getMetaContentByName, inBrowser, isExternalUrl, isString } from '../utils.js'
+import { getMetaContentByName, inBrowser, isExternalUrl } from '../utils.js'
 import { SocialShareNetwork } from './SocialShareNetwork.js'
 import type { PropType } from 'vue'
 import type {
