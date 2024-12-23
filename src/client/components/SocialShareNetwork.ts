@@ -2,7 +2,7 @@ import { useDarkmode } from '@vuepress/helper/client'
 import { computed, defineComponent, h } from 'vue'
 import { isString, isSVG } from '../utils.js'
 import type { PropType } from 'vue'
-import type { SocialShareNetworkItem } from '../../shared/index.js'
+import type { SocialShareNetworkWithName } from '../../shared/index.js'
 
 export enum Event {
   Share = 'share',
@@ -15,9 +15,9 @@ export const SocialShareNetwork = defineComponent({
 
   props: {
     network: {
-      type: Object as PropType<SocialShareNetworkItem>,
+      type: Object as PropType<SocialShareNetworkWithName>,
       required: true,
-      validator: (network: SocialShareNetworkItem) => {
+      validator: (network: SocialShareNetworkWithName) => {
         if (!network.icon) return false
         if (['popup'].includes(network.type)) return Boolean(network.sharer)
         return true
