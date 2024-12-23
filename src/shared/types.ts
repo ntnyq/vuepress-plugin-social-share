@@ -2,7 +2,20 @@ import type { QRCodeToDataURLOptions } from 'qrcode'
 
 export type SocialShareNetworkData = Record<string, SocialShareNetwork>
 
-export type SocialShareNetworkItem = SocialShareNetwork & { name: string }
+/**
+ * @deprecated use {@link SocialShareNetworkWithName} instead
+ */
+export type SocialShareNetworkItem = SocialShareNetworkWithName
+
+/**
+ * Social share network with name
+ */
+export type SocialShareNetworkWithName = SocialShareNetwork & {
+  /**
+   * Sharer name
+   */
+  name: string
+}
 
 /**
  * Social share network
@@ -40,9 +53,7 @@ export type SocilaShareIcon =
     }
 
 /**
- * QRCode options, alias of `QRCodeToDataURLOptions`
- *
- * @see {@link https://github.com/soldair/node-qrcode?tab=readme-ov-file#options-2}
+ * Front-matter
  */
 export type SocialShareFrontmatter = {
   noGlobalSocialShare?: boolean
@@ -74,6 +85,16 @@ export type SocialShareFrontmatter = {
   title?: string
 }
 
+/**
+ * QRCode options, alias of `QRCodeToDataURLOptions`
+ *
+ * @see {@link https://github.com/soldair/node-qrcode?tab=readme-ov-file#options-2}
+ */
+export type SocialShareQRCodeOptions = QRCodeToDataURLOptions
+
+/**
+ * Plugin options
+ */
 export interface SocialSharePluginOptions {
   /**
    * Custom component name of `SocialShare`
@@ -133,6 +154,8 @@ export interface SocialSharePluginOptions {
 
   /**
    * Add user customed networks or overrides built-in networks
+   *
+   * @deprecated use {@link networks} instead
    */
   extendsNetworks?: SocialShareNetworkData
 
@@ -144,9 +167,10 @@ export interface SocialSharePluginOptions {
   hideWhenPrint?: boolean
 }
 
+/**
+ * Plugin options with networksData
+ */
 export interface SocialSharePluginOptionsWithDefaults
   extends Omit<SocialSharePluginOptions, 'componentName' | 'useCustomStyle'> {
   networksData: SocialShareNetworkData
 }
-
-export type SocialShareQRCodeOptions = QRCodeToDataURLOptions

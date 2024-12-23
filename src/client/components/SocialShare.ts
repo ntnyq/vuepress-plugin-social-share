@@ -7,7 +7,7 @@ import type { PropType } from 'vue'
 import type {
   SocialShareNetwork as Network,
   SocialShareFrontmatter,
-  SocialShareNetworkItem,
+  SocialShareNetworkWithName,
   SocialShareQRCodeOptions,
 } from '../../shared/index.js'
 
@@ -245,7 +245,7 @@ export const SocialShare = defineComponent({
           break
       }
     }
-    const renderNetworkList = (networks: SocialShareNetworkItem[]) =>
+    const renderNetworkList = (networks: SocialShareNetworkWithName[]) =>
       h(
         'ul',
         {
