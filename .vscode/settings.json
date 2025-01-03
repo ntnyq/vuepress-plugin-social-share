@@ -1,6 +1,7 @@
 {
-  "prettier.enable": true,
   "eslint.enable": true,
+  "prettier.enable": true,
+  "editor.formatOnSave": true,
   "eslint.validate": [
     "vue",
     "html",
