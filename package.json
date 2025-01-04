@@ -1,32 +1,32 @@
 {
   "name": "vuepress-plugin-social-share",
   "version": "1.3.0",
-  "packageManager": "pnpm@7.23.0",
+  "packageManager": "pnpm@9.15.2",
   "description": "Social sharing plugin for VuePress",
   "keywords": [
-    "vuepress",
-    "vuepress-plugin",
-    "share",
-    "social",
-    "social-share",
-    "sns",
     "facebook",
     "plugin",
+    "share",
+    "sns",
+    "social",
+    "social-share",
     "twitter",
+    "vuepress",
+    "vuepress-plugin",
     "weibo"
   ],
-  "homepage": "https://sns.goyfe.com",
-  "bugs": {
-    "url": "https://github.com/ntnyq/vuepress-plugin-social-share/issues"
-  },
   "license": "MIT",
   "author": {
     "name": "ntnyq",
     "email": "ntnyq13@gmail.com"
   },
+  "homepage": "https://sns.goyfe.com",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ntnyq/vuepress-plugin-social-share.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ntnyq/vuepress-plugin-social-share/issues"
   },
   "main": "./dist/index.js",
   "files": [
@@ -34,42 +34,43 @@
   ],
   "scripts": {
     "build": "run-s clean build:lib copy",
-    "build:docs": "pnpm --filter=docs run build",
+    "build:docs": "pnpm -C docs run build",
     "build:lib": "tsc --build",
-    "clean": "rimraf dist",
+    "clean": "premove dist",
     "copy": "copyfiles -a -u 1 -V src/*.styl dist",
     "dev": "run-s clean dev:lib",
-    "dev:docs": "pnpm --filter=docs run dev",
+    "dev:docs": "pnpm -C docs run dev",
     "dev:lib": "tsc-watch --onSuccess \"npm run copy\"",
     "lint": "eslint .",
-    "prepare": "husky install",
-    "prepublishOnly": "npm run build"
+    "prepare": "husky",
+    "prepublishOnly": "npm run build",
+    "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
     "vuepress": "^1.0.3"
   },
   "dependencies": {
-    "deepmerge": "^4.2.2",
-    "qrcode": "^1.5.1"
+    "deepmerge": "^4.3.1",
+    "qrcode": "^1.5.4"
   },
   "devDependencies": {
-    "@ntnyq/eslint-config-typescript": "^1.2.1",
-    "@types/qrcode": "^1.5.0",
+    "@ntnyq/eslint-config": "^3.11.0",
+    "@ntnyq/prettier-config": "^1.22.1",
+    "@types/qrcode": "^1.5.5",
     "copyfiles": "^2.4.1",
-    "eslint": "^8.31.0",
-    "husky": "^8.0.3",
+    "eslint": "^9.17.0",
+    "husky": "^9.1.7",
     "nano-staged": "^0.8.0",
-    "npm-run-all": "^4.1.5",
-    "pnpm": "^7.23.0",
-    "rimraf": "^3.0.2",
-    "tsc-watch": "^6.0.0",
-    "typescript": "^4.9.4",
-    "vue": "^2.7.14",
-    "vuepress": "^1.9.8",
+    "npm-run-all2": "^7.0.2",
+    "pnpm": "^9.15.2",
+    "premove": "^4.0.0",
+    "prettier": "^3.4.2",
+    "tsc-watch": "^6.2.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vue": "^2.7.16",
+    "vuepress": "^1.9.10",
     "vuepress-types": "^0.9.4"
-  },
-  "nano-staged": {
-    "*.{js,ts,yml,yaml,md,json}": "eslint --fix"
   },
   "pnpm": {
     "peerDependencyRules": {
@@ -77,5 +78,8 @@
         "css-loader"
       ]
     }
+  },
+  "nano-staged": {
+    "*.{js,ts,cjs,mjs,vue,yml,yaml,md,json}": "eslint --fix"
   }
 }

@@ -1,12 +1,10 @@
 {
-  "[typescript]": {
-    "editor.formatOnSave": false
-  },
-  "[javascript]": {
-    "editor.formatOnSave": false
-  },
-  "[markdown]": {
-    "editor.formatOnSave": true
+  "eslint.enable": true,
+  "prettier.enable": true,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
   },
   "cSpell.words": [
     "customed",

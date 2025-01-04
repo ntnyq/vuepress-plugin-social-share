@@ -2,7 +2,9 @@
  * @file Constants
  */
 
+// eslint-disable-next-line regexp/no-super-linear-backtracking
 export const RE_SVG_SOURCE = /<svg (.*?)>(.*?)<\/svg>/i
+// eslint-disable-next-line regexp/no-dupe-disjunctions
 export const RE_EXTERNAL_LINK = /^(https?:|mailto:|tel:|[a-zA-Z]{4,}:)/
 export const RE_EMAIL = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
 

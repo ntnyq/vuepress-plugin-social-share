@@ -52,13 +52,7 @@ module.exports = {
     [
       `social-share`,
       {
-        networks: [
-          `twitter`,
-          `facebook`,
-          `reddit`,
-          `telegram`,
-          `email`,
-        ],
+        networks: [`twitter`, `facebook`, `reddit`, `telegram`, `email`],
         email: `ntnyq13@gmail.com`,
         twitterUser: `ntnyq`,
         fallbackImage: `/social-share.png`,
@@ -76,30 +70,30 @@ module.exports = {
 
 ### networks
 
--   **type:** `string[]`
--   **default** `['twitter', 'facebook', 'reddit']`
+- **type:** `string[]`
+- **default** `['twitter', 'facebook', 'reddit']`
 
 Default networks set for all your social share component, no matter it's in global or local mode.
 
 Currently, networks below are built-in supported:
 
--   facebook <social-share class="list-demo-sns" :networks="['facebook']"/>
--   line <social-share class="list-demo-sns" :networks="['line']"/>
--   reddit <social-share class="list-demo-sns" :networks="['reddit']"/>
--   email <social-share class="list-demo-sns" :networks="['email']"/>
--   skype <social-share class="list-demo-sns" :networks="['skype']"/>
--   telegram <social-share class="list-demo-sns" :networks="['telegram']"/>
--   twitter <social-share class="list-demo-sns" :networks="['twitter']"/>
--   weibo <social-share class="list-demo-sns" :networks="['weibo']"/>
--   qq <social-share class="list-demo-sns" :networks="['qq']"/>
--   douban <social-share class="list-demo-sns" :networks="['douban']"/>
--   whatsapp <social-share class="list-demo-sns" :networks="['whatsapp']"/>
--   wechat <social-share class="list-demo-sns" :networks="['wechat']" />
+- facebook <social-share class="list-demo-sns" :networks="['facebook']"/>
+- line <social-share class="list-demo-sns" :networks="['line']"/>
+- reddit <social-share class="list-demo-sns" :networks="['reddit']"/>
+- email <social-share class="list-demo-sns" :networks="['email']"/>
+- skype <social-share class="list-demo-sns" :networks="['skype']"/>
+- telegram <social-share class="list-demo-sns" :networks="['telegram']"/>
+- twitter <social-share class="list-demo-sns" :networks="['twitter']"/>
+- weibo <social-share class="list-demo-sns" :networks="['weibo']"/>
+- qq <social-share class="list-demo-sns" :networks="['qq']"/>
+- douban <social-share class="list-demo-sns" :networks="['douban']"/>
+- whatsapp <social-share class="list-demo-sns" :networks="['whatsapp']"/>
+- wechat <social-share class="list-demo-sns" :networks="['wechat']" />
 
 ### email <badge>v0.3.0+</badge>
 
--   **type:** `string`
--   **default** `undefined`
+- **type:** `string`
+- **default** `undefined`
 
 Your email address.
 
@@ -111,27 +105,27 @@ Mailto only launches the MUA(Mail User Agent) which is configured as the default
 
 **Reference**:
 
--   [Automatically open default email client and pre-populate content](https://stackoverflow.com/questions/13231125/automatically-open-default-email-client-and-pre-populate-content)
--   [Open email client through javascript](https://stackoverflow.com/questions/22941457/open-email-client-through-javascript)
+- [Automatically open default email client and pre-populate content](https://stackoverflow.com/questions/13231125/automatically-open-default-email-client-and-pre-populate-content)
+- [Open email client through javascript](https://stackoverflow.com/questions/22941457/open-email-client-through-javascript)
 
 ### twitterUser
 
--   **type:** `string`
--   **default** `undefined`
+- **type:** `string`
+- **default** `undefined`
 
 Your Twitter profile username.
 
 ### weiboAppKey <badge type="error">Removed since v0.3.0</badge>
 
--   **type:** `string`
--   **default** `undefined`
+- **type:** `string`
+- **default** `undefined`
 
 Your Weibo app key.
 
 ### fallbackImage
 
--   **type:** `string`
--   **default** `undefined`
+- **type:** `string`
+- **default** `undefined`
 
 A fallback share image if the page has no share image specified.
 
@@ -142,9 +136,9 @@ You can provide a network image url or an absolute path resolve based on `.vuepr
 module.exports = {
   plugins: [
     [
-      `social-share`,
+      'social-share',
       {
-        fallbackImage: `https://vuepress.vuejs.org/hero.png`,
+        fallbackImage: 'https://vuepress.vuejs.org/hero.png',
       },
     ],
   ],
@@ -153,24 +147,27 @@ module.exports = {
 // Public file
 module.exports = {
   plugins: [
-    [`social-share`, {
-      fallbackImage: `/hero.png`,
-    }],
+    [
+      'social-share',
+      {
+        fallbackImage: '/hero.png',
+      },
+    ],
   ],
 }
 ```
 
 ### autoQuote
 
--   **type:** `boolean`
--   **default** `true`
+- **type:** `boolean`
+- **default** `true`
 
 For Facebook, use the share meta [description](/guide/#description) as the share quote content.
 
 ### isPlain
 
--   **type:** `boolean`
--   **default** `false`
+- **type:** `boolean`
+- **default** `false`
 
 You can set `isPlain` to `true` if you don't like that all share icons have different colors.
 
@@ -178,8 +175,8 @@ All share icon colors will be set as the [\$accentColor](/guide/#custom-style) b
 
 ### qrcodeOptions
 
--   **type:** `object`
--   **default**: `{ errorCorrectionLevel: 'H', width: 250, scale: 1, margin: 1.5 }`
+- **type:** `object`
+- **default**: `{ errorCorrectionLevel: 'H', width: 250, scale: 1, margin: 1.5 }`
 
 We use [qrcode](https://github.com/soldair/node-qrcode) to generate the qrcode image.
 
@@ -187,8 +184,8 @@ See it's [options](https://github.com/soldair/node-qrcode#qr-code-options) for m
 
 ### extendsNetworks
 
--   **type:** `object`
--   **default** `undefined`
+- **type:** `object`
+- **default** `undefined`
 
 With this option, you can add your custom sharer or override the [built-in networks config](https://github.com/ntnyq/vuepress-plugin-social-share/blob/master/lib/networks.json).
 
@@ -214,16 +211,13 @@ const extendsNetworks = {
 
 module.exports = {
   plugins: [
-    [`social-share`, {
-      networks: [
-          `twitter`,
-          `facebook`,
-          `email`,
-          `pinterest`,
-          `linkedin`,
-      ],
-      extendsNetworks,
-    }],
+    [
+      'social-share',
+      {
+        networks: ['twitter', 'facebook', 'email', 'pinterest', 'linkedin'],
+        extendsNetworks,
+      },
+    ],
   ],
 }
 ```
@@ -238,48 +232,48 @@ Custom sharer's option:
 
 #### sharer
 
--   **type:** `string`
--   **required** `true`
+- **type:** `string`
+- **required** `true`
 
 You can use placeholders below in the sharer, it will be replaced by [Share Meta](#share-meta)
 
--   `@url` [url](#url)
--   `@title` [title](#title)
--   `@media` [media](#media)
--   `@description` [description](#description)
--   `@quote` [quote](#quote)
--   `@hashtags` [hashtags](#hashtags)
+- `@url` [url](#url)
+- `@title` [title](#title)
+- `@media` [media](#media)
+- `@description` [description](#description)
+- `@quote` [quote](#quote)
+- `@hashtags` [hashtags](#hashtags)
 
 #### type
 
--   **type:** `string`
--   **default** `undefined`
--   **required** `true`
+- **type:** `string`
+- **default** `undefined`
+- **required** `true`
 
--   `popup` Open a new browser window for sharing service, mostly you need this
--   `direct` Open the sharer in current window directly. For `mailto:`, `sms:` and other built-in protocol
--   `qrcode` Open a model to show the qrcode of current page
+- `popup` Open a new browser window for sharing service, mostly you need this
+- `direct` Open the sharer in current window directly. For `mailto:`, `sms:` and other built-in protocol
+- `qrcode` Open a model to show the qrcode of current page
 
 The plugin does nothing if you haven't config `type` properly.
 
 #### color
 
--   **type:** `string`
--   **default** `''`
+- **type:** `string`
+- **default** `''`
 
 Set the svg element color if you use it as sharer's icon.
 
 #### icon
 
--   **type:** `string`
--   **required** `true`
+- **type:** `string`
+- **required** `true`
 
 You can set `icon` with a **network image**, an **image in your public folder with an absolute path** or an **svg element**.
 
 ### noGlobalSocialShare <badge>v0.2.0+</badge>
 
--   **type:** `boolean`
--   **default** `false`
+- **type:** `boolean`
+- **default** `false`
 
 Set it to `true` if you want to disable the global social share component.
 
@@ -295,8 +289,8 @@ Same as the plugin's option [networks](/guide/#networks), but with a higher prio
 
 ### tags
 
--   **type:** `string[]`
--   **default** `[]`
+- **type:** `string[]`
+- **default** `[]`
 
 Share tags for Twitter and Facebook.
 
@@ -312,65 +306,65 @@ Each meta data are listed following its priority.
 
 ### url
 
--   `$frontmatter.$shareUrl`
+- `$frontmatter.$shareUrl`
 
--   `$frontmatter.shareUrl`
+- `$frontmatter.shareUrl`
 
--   `location.href`
+- `location.href`
 
 ### title
 
--   `$frontmatter.$shareTitle`
+- `$frontmatter.$shareTitle`
 
--   `s$frontmatter.shareTitle`
+- `s$frontmatter.shareTitle`
 
--   `$frontmatter.title`
+- `$frontmatter.title`
 
--   `document.title`
+- `document.title`
 
 ### description
 
--   `$frontmatter.$shareDescription`
+- `$frontmatter.$shareDescription`
 
--   `$frontmatter.shareDescription`
+- `$frontmatter.shareDescription`
 
--   `$frontmatter.description`
+- `$frontmatter.description`
 
--   `<meta name="description" />'s content`
+- `<meta name="description" />'s content`
 
--   `themeConfig.description`
+- `themeConfig.description`
 
 ### image
 
--   `$frontmatter.$shareImage`
+- `$frontmatter.$shareImage`
 
--   `$frontmatter.shareImage`
+- `$frontmatter.shareImage`
 
--   `$frontmatter.image`
+- `$frontmatter.image`
 
--   `plugin option's fallbackImage`
+- `plugin option's fallbackImage`
 
 ### quote
 
--   `$frontmatter.$shareQuote`
+- `$frontmatter.$shareQuote`
 
--   `$frontmatter.shareQuote`
+- `$frontmatter.shareQuote`
 
--   fallback to [description](/guide/#description) when [autoQuote](/guide/#autoquote) is true.
+- fallback to [description](/guide/#description) when [autoQuote](/guide/#autoquote) is true.
 
 ### hashtags
 
--   `$frontmatter.$shareTags`
+- `$frontmatter.$shareTags`
 
--   `$frontmatter.shareTags`
+- `$frontmatter.shareTags`
 
--   `$frontmatter.tags`
+- `$frontmatter.tags`
 
--   `$frontmatter.tag`
+- `$frontmatter.tag`
 
--   `Component's prop tags`
+- `Component's prop tags`
 
--   `<meta name="keywords" />'s content`
+- `<meta name="keywords" />'s content`
 
 ## Custom style
 

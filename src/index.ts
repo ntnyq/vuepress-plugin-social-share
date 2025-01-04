@@ -1,6 +1,6 @@
-import { resolve } from 'path'
-import type { Plugin } from 'vuepress-types'
+import { resolve } from 'node:path'
 import { createNetworksData } from './utils'
+import type { Plugin } from 'vuepress-types'
 import type { SocialSharePluginOptions } from './types'
 
 const SocialSharePlugin: Plugin<SocialSharePluginOptions> = (options = {}) => {
@@ -8,20 +8,18 @@ const SocialSharePlugin: Plugin<SocialSharePluginOptions> = (options = {}) => {
   const socialShareOptions = { ...options, networksData }
 
   return {
-    name: `social-share`,
+    name: 'social-share',
 
-    enhanceAppFiles: resolve(__dirname, `enhanceApp.js`),
+    enhanceAppFiles: resolve(__dirname, 'enhanceApp.js'),
 
-    clientDynamicModules () {
+    clientDynamicModules() {
       return {
-        name: `social-share.js`,
+        name: 'social-share.js',
         content: `export default ${JSON.stringify(socialShareOptions)}`,
       }
     },
 
-    globalUIComponents: options.noGlobalSocialShare
-      ? []
-      : [`GlobalSocialShare`],
+    globalUIComponents: options.noGlobalSocialShare ? [] : ['GlobalSocialShare'],
   }
 }
 

@@ -1,24 +1,17 @@
 {
   "compilerOptions": {
-    "rootDir": "./src",
-    "outDir": "./dist",
-    "module": "CommonJS",
     "target": "ES2015",
+    "lib": ["DOM", "DOM.Iterable"],
+    "module": "CommonJS",
+    "rootDir": "./src",
     "moduleResolution": "node",
-    "esModuleInterop": true,
-    "sourceMap": false,
-    "strict": true,
-    "skipLibCheck": true,
+    "types": ["vuepress-types"],
     "declaration": true,
-    "types": [
-      "vuepress-types"
-    ],
-    "lib": [
-      "DOM",
-      "DOM.Iterable"
-    ]
+    "sourceMap": false,
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "strict": true,
+    "skipLibCheck": true
   },
-  "include": [
-    "./src"
-  ]
+  "include": ["./src/**/*.ts", "./docs/**/*.ts"]
 }
