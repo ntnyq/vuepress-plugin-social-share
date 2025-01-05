@@ -3,11 +3,11 @@ sidebar: false
 noGlobalSocialShare: true
 ---
 
-# Demo
+# Examples
 
-Some demos.
+Usage examples.
 
-## Local mode
+## Default mode
 
 ```vue
 <SocialShare />
@@ -85,13 +85,19 @@ Some demos.
     'email',
     'facebook',
     'line',
+    'linkedin',
+    'pinterest',
     'qq',
-    'telegram',
-    'twitter',
+    'qrcode',
     'reddit',
     'skype',
-    'whatsapp',
+    'telegram',
+    'threads',
+    'twitter',
+    'viber',
+    'wechat',
     'weibo',
+    'whatsapp',
     'x',
   ]"
 />
@@ -99,28 +105,35 @@ Some demos.
 
 <SocialShare 
   :networks="[
-    'bluesky', 
-    'douban', 
-    'facebook', 
-    'line', 
-    'qq', 
-    'telegram', 
-    'twitter', 
-    'reddit', 
-    'skype', 
-    'whatsapp', 
+    'bluesky',
+    'douban',
+    'email',
+    'facebook',
+    'line',
+    'linkedin',
+    'pinterest',
+    'qq',
+    'qrcode',
+    'reddit',
+    'skype',
+    'telegram',
+    'threads',
+    'twitter',
+    'viber',
+    'wechat',
     'weibo',
+    'whatsapp',
     'x',
   ]" 
 />
 
-## User-customed networks
+## User defined networks
 
 ```vue
-<SocialShare :networks="['pinterest', 'linkedin']" />
+<SocialShare :networks="['pocket']" />
 ```
 
-<SocialShare :networks="['pinterest', 'linkedin']" />
+<SocialShare :networks="['pocket']" />
 
 ## No global UI
 

@@ -1,4 +1,5 @@
 ---
+pageClass: page-guide
 sidebarDepth: 3
 ---
 
@@ -8,15 +9,15 @@ sidebarDepth: 3
 
 ## Install
 
-```bash
+```shell
 npm install vuepress-plugin-social-share@next -D
 ```
 
-```bash
+```shell
 yarn add vuepress-plugin-social-share@next -D
 ```
 
-```bash
+```shell
 pnpm add vuepress-plugin-social-share@next -D
 ```
 
@@ -139,7 +140,7 @@ type SocialShareNetworkWithName = {
 }
 ```
 
-When given type `string`, the network with this name will be used by default in both global and local **SocialShare** component if prop `networks` is not set.
+When given type `string`, the network with this name will be used by default in both global and default **SocialShare** component if prop `networks` is not set.
 
 When given type `SocialShareNetworkWithName`, will override a built-in network with the same name or add a user defined network.
 
@@ -150,12 +151,16 @@ Currently, networks below are built-in supported:
 - email <SocialShare class="list-demo-sns" :networks="['email']"/>
 - facebook <SocialShare class="list-demo-sns" :networks="['facebook']"/>
 - line <SocialShare class="list-demo-sns" :networks="['line']"/>
+- linkedin <SocialShare class="list-demo-sns" :networks="['linkedin']"/>
+- pinterest <SocialShare class="list-demo-sns" :networks="['pinterest']"/>
 - qq <SocialShare class="list-demo-sns" :networks="['qq']"/>
 - qrcode <SocialShare class="list-demo-sns" :networks="['qrcode']" />
 - reddit <SocialShare class="list-demo-sns" :networks="['reddit']"/>
 - skype <SocialShare class="list-demo-sns" :networks="['skype']"/>
 - telegram <SocialShare class="list-demo-sns" :networks="['telegram']"/>
+- threads <SocialShare class="list-demo-sns" :networks="['threads']"/>
 - twitter <SocialShare class="list-demo-sns" :networks="['twitter']"/>
+- viber <SocialShare class="list-demo-sns" :networks="['viber']"/>
 - wechat <SocialShare class="list-demo-sns" :networks="['wechat']" />
 - weibo <SocialShare class="list-demo-sns" :networks="['weibo']"/>
 - whatsapp <SocialShare class="list-demo-sns" :networks="['whatsapp']"/>
