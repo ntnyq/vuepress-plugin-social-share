@@ -1,9 +1,12 @@
 import { addViteSsrNoExternal } from '@vuepress/helper'
 import { getDirname, path } from 'vuepress/utils'
 import { PLUGIN_NAME } from './constants.js'
-import { logger, mergeNetworksData } from './helpers.js'
+import { logger, resolveNetworksData } from './helpers.js'
 import type { PluginFunction } from 'vuepress/core'
-import type { SocialSharePluginOptions } from '../shared/index.js'
+import type {
+  SocialSharePluginOptions,
+  SocialSharePluginOptionsWithDefaults,
+} from '../shared/index.js'
 
 const __dirname = getDirname(import.meta.url)
 
@@ -13,6 +16,8 @@ export const socialSharePlugin =
     const {
       componentName = 'SocialShare',
       useCustomStyle = false,
+      networks = ['twitter', 'facebook', 'reddit'],
+      extendsNetworks = {},
       // Options for client
       ...clientOptions
     } = options
@@ -36,8 +41,11 @@ export const socialSharePlugin =
       },
 
       onPrepared(app) {
-        const networksData = mergeNetworksData(clientOptions)
-        const socialShareOptions = { ...clientOptions, networksData }
+        const networksData = resolveNetworksData(networks, extendsNetworks)
+        const socialShareOptions: SocialSharePluginOptionsWithDefaults = {
+          ...clientOptions,
+          networksData,
+        }
         const content = `export const socialShareOptions = ${JSON.stringify(socialShareOptions)}`
         app.writeTemp('social-share/options.js', content)
       },
