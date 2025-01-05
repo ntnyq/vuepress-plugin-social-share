@@ -81,6 +81,12 @@
   box-shadow: -2px 1px 0.35rem rgba(0, 0, 0, 0.08);
 }
 
+.social-share-global .social-share {
+  max-height: 70%;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
 .social-share-global .social-share-network {
   display: block;
 }
