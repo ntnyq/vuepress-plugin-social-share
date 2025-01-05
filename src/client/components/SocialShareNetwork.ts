@@ -1,6 +1,6 @@
 import { useDarkmode } from '@vuepress/helper/client'
 import { computed, defineComponent, h } from 'vue'
-import { isString } from '../../shared/index.js'
+import { isString, upperFirst } from '../../shared/index.js'
 import { inBrowser, isSVG } from '../utils.js'
 import type { PropType } from 'vue'
 import type { SocialShareNetworkWithName } from '../../shared/index.js'
@@ -77,10 +77,10 @@ export const SocialShareNetwork = defineComponent({
         'button',
         {
           class: 'social-share-btn',
-          title: props.network.name,
+          title: upperFirst(props.network.name),
           type: 'button',
           role: 'button',
-          'aria-label': props.network.name,
+          'aria-label': `Share with ${upperFirst(props.network.name)}`,
           onClick: () => ctx.emit(Event.Share, props.network.name),
           'data-link':
             props.network.type === 'popup' ? `#share-${props.network.name}` : props.shareURL,
