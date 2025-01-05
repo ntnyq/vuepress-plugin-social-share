@@ -1,22 +1,48 @@
 import { Logger } from '@vuepress/helper'
 import deepmerge from 'deepmerge'
+import { isString } from '../shared/index.js'
 import { BUILT_IN_NETWORKS, PLUGIN_NAME } from './constants.js'
-import type { SocialSharePluginOptions } from '../shared/index.js'
+import type { SocialShareNetworkWithName, SocialSharePluginOptions } from '../shared/index.js'
 
 export const logger = new Logger(PLUGIN_NAME)
 
 /**
- * Merge extendsNetworks with built-in networks
- *
- * @param options - plugin options
- * @returns merged networks data
- */
-export const mergeNetworksData = (options: SocialSharePluginOptions) =>
-  deepmerge(BUILT_IN_NETWORKS, options.extendsNetworks || {})
-
-/**
  * Resolve all networks data
  */
-export function resolveNetworksData(options: SocialSharePluginOptions = {}) {
-  console.log({ options })
+export function resolveNetworksData(
+  networks: SocialSharePluginOptions['networks'] = [],
+  extendsNetworks: SocialSharePluginOptions['extendsNetworks'] = {},
+) {
+  const mergedNetworks = deepmerge(BUILT_IN_NETWORKS, extendsNetworks)
+
+  const mergedNetworkNames = new Set<string>(Object.keys(mergedNetworks))
+  const enabledNetworkNames = new Set<string>()
+
+  const networksData: SocialShareNetworkWithName[] = []
+
+  for (const network of networks) {
+    if (isString(network)) {
+      enabledNetworkNames.add(network)
+    } else {
+      if (network.default) {
+        enabledNetworkNames.add(network.name)
+      }
+      // Should override socialShareNetwork
+      if (mergedNetworkNames.has(network.name)) {
+        mergedNetworks[network.name] = deepmerge(mergedNetworks[network.name], network)
+      } else {
+        mergedNetworks[network.name] = network
+      }
+    }
+  }
+
+  Object.entries(mergedNetworks).forEach(([name, network]) => {
+    networksData.push({
+      ...network,
+      name,
+      default: enabledNetworkNames.has(name),
+    })
+  })
+
+  return networksData
 }

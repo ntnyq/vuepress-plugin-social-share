@@ -35,12 +35,13 @@ export const SocialShare = defineComponent({
   setup(props) {
     const options = useSocialShareOptions()
 
-    const networks = computed(() => [
-      ...new Set(props.networks ?? options.networks ?? ['twitter', 'facebook', 'reddit']),
-    ])
+    const defaultEnabledNetworks = options.networksData
+      .filter(item => item.default)
+      .map(item => item.name)
+
+    const networks = computed(() => [...new Set(props.networks ?? defaultEnabledNetworks)])
     const networkList = computed(() =>
-      Object.keys(options.networksData)
-        .map(name => ({ name, ...options.networksData[name] }))
+      options.networksData
         .filter(network => networks.value.includes(network.name))
         .sort(
           (prev, next) => networks.value.indexOf(prev.name) - networks.value.indexOf(next.name),
@@ -230,7 +231,7 @@ export const SocialShare = defineComponent({
         .replace(/@twitteruser/g, options.twitterUser ? `&via=${options.twitterUser}` : '')
     }
     const onShare = (name: string) => {
-      const network = options.networksData[name]
+      const network = options.networksData.find(item => item.name === name)!
       const shareURL = createShareURL(name, network)
       switch (network.type) {
         case 'popup':

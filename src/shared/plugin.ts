@@ -124,9 +124,12 @@ export interface SocialSharePluginOptions {
 }
 
 /**
- * Plugin options with networksData
+ * Client options with networksData
  */
 export interface SocialSharePluginOptionsWithDefaults
-  extends Omit<SocialSharePluginOptions, 'componentName' | 'useCustomStyle'> {
-  networksData: Record<string, SocialShareNetwork>
+  extends Omit<
+    SocialSharePluginOptions,
+    'componentName' | 'networks' | 'extendsNetworks' | 'useCustomStyle'
+  > {
+  networksData: SocialShareNetworkWithName[]
 }
