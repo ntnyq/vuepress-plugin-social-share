@@ -40,33 +40,51 @@ For advanced usage.
 ```ts
 import { defineUserConfig } from 'vuepress'
 import { socialSharePlugin } from 'vuepress-plugin-social-share'
-import type { SocialShareNetwork } from 'vuepress-plugin-social-share'
+import type { SocialShareNetworkWithName } from 'vuepress-plugin-social-share'
 
-const extendsNetworks: Record<string, SocialShareNetwork> = {
-  pinterest: {
+const userDefinedNetworks: SocialShareNetworkWithName[] = [
+  {
+    name: 'pinterest',
     sharer: 'https://pinterest.com/pin/create/button/?url=@url&media=@media&description=@title',
     type: 'popup',
     icon: '/pinterest.png',
+    /**
+     * mark this network as default
+     */
+    default: true,
   },
-  linkedin: {
+  {
+    name: 'linkedin',
     sharer:
       'https://www.linkedin.com/shareArticle?mini=true&url=@url&title=@title&summary=@description',
     type: 'popup',
     color: '#1786b1',
     icon: '<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M910.336 0H113.664A114.005333 114.005333 0 0 0 0 113.664v796.672A114.005333 114.005333 0 0 0 113.664 1024h796.672A114.005333 114.005333 0 0 0 1024 910.336V113.664A114.005333 114.005333 0 0 0 910.336 0zM352.256 796.330667H207.189333V375.466667h145.066667z m-72.021333-477.866667a77.824 77.824 0 0 1-81.237334-74.069333A77.824 77.824 0 0 1 280.234667 170.666667a77.824 77.824 0 0 1 81.237333 73.728 77.824 77.824 0 0 1-81.237333 73.386666z m582.314666 477.866667H716.8v-227.669334c0-46.762667-18.432-93.525333-73.045333-93.525333a84.992 84.992 0 0 0-81.237334 94.549333v226.304h-140.629333V375.466667h141.653333v60.757333a155.989333 155.989333 0 0 1 136.533334-71.338667c60.416 0 163.498667 30.378667 163.498666 194.901334z" /></svg>',
   },
-  twitter: {
+  {
+    name: 'twitter',
     color: {
       light: '#1786b1',
       dark: '#ff0',
-    }
+    },
   },
-}
+]
 
 export default defineUserConfig({
   plugins: [
     socialSharePlugin({
-      networks: ['twitter', 'facebook', 'email', 'pinterest', 'linkedin'],
+      networks: [
+        // enable build-in networks by default
+        'twitter',
+        'facebook',
+        'email',
+
+        // mark user defined networks as default
+        'linkedin',
+
+        // add user defined networks
+        userDefinedNetworks,
+      ],
       twitterUser: 'ntnyq',
       fallbackImage: '/social-share.png',
       autoQuote: true,
@@ -74,7 +92,6 @@ export default defineUserConfig({
       qrcodeOptions: {
         width: 240,
       },
-      extendsNetworks,
     }),
   ],
 })
@@ -82,28 +99,81 @@ export default defineUserConfig({
 
 ### networks
 
-- **type:** `string[]`
+- **type:** `(string | SocialShareNetworkWithName)[]`
 - **default** `['twitter', 'facebook', 'reddit']`
 
-Default networks set for all your social share components, no matter it's in global or local mode.
+```ts
+type SocialShareNetworkWithName = {
+  /**
+   * Sharer icon
+   */
+  icon:
+    | string
+    | {
+        /**
+         * icon for dark mode
+         */
+        dark: string
+        /**
+         * icon for light mode
+         */
+        light: string
+      }
+
+  /**
+   * Sharer type
+   */
+  type: 'direct' | 'popup' | 'qrcode'
+
+  /**
+   * Sharer icon color
+   */
+  color?:
+    | string
+    | {
+        /**
+         * color for dark mode
+         */
+        dark: string
+        /**
+         * color for light mode
+         */
+        light: string
+      }
+
+  /**
+   * Sharer URL
+   */
+  sharer?: string
+
+  /**
+   * If component `SocialShare` has no prop `networks`, all `default: true` network will show
+   */
+  default?: boolean
+}
+```
+
+When given type `string`, the network with this name will be used by default in both global and local **SocialShare** component if prop `networks` is not set.
+
+When given type `SocialShareNetworkWithName`, will override a built-in network with the same name or add a user defined network.
 
 Currently, networks below are built-in supported:
 
-- bluesky <social-share class="list-demo-sns" :networks="['bluesky']" />
-- douban <social-share class="list-demo-sns" :networks="['douban']"/>
-- email <social-share class="list-demo-sns" :networks="['email']"/>
-- facebook <social-share class="list-demo-sns" :networks="['facebook']"/>
-- line <social-share class="list-demo-sns" :networks="['line']"/>
-- qq <social-share class="list-demo-sns" :networks="['qq']"/>
-- qrcode <social-share class="list-demo-sns" :networks="['qrcode']" />
-- reddit <social-share class="list-demo-sns" :networks="['reddit']"/>
-- skype <social-share class="list-demo-sns" :networks="['skype']"/>
-- telegram <social-share class="list-demo-sns" :networks="['telegram']"/>
-- twitter <social-share class="list-demo-sns" :networks="['twitter']"/>
-- wechat <social-share class="list-demo-sns" :networks="['wechat']" />
-- weibo <social-share class="list-demo-sns" :networks="['weibo']"/>
-- whatsapp <social-share class="list-demo-sns" :networks="['whatsapp']"/>
-- x <social-share class="list-demo-sns" :networks="['x']"/>
+- bluesky <SocialShare class="list-demo-sns" :networks="['bluesky']" />
+- douban <SocialShare class="list-demo-sns" :networks="['douban']"/>
+- email <SocialShare class="list-demo-sns" :networks="['email']"/>
+- facebook <SocialShare class="list-demo-sns" :networks="['facebook']"/>
+- line <SocialShare class="list-demo-sns" :networks="['line']"/>
+- qq <SocialShare class="list-demo-sns" :networks="['qq']"/>
+- qrcode <SocialShare class="list-demo-sns" :networks="['qrcode']" />
+- reddit <SocialShare class="list-demo-sns" :networks="['reddit']"/>
+- skype <SocialShare class="list-demo-sns" :networks="['skype']"/>
+- telegram <SocialShare class="list-demo-sns" :networks="['telegram']"/>
+- twitter <SocialShare class="list-demo-sns" :networks="['twitter']"/>
+- wechat <SocialShare class="list-demo-sns" :networks="['wechat']" />
+- weibo <SocialShare class="list-demo-sns" :networks="['weibo']"/>
+- whatsapp <SocialShare class="list-demo-sns" :networks="['whatsapp']"/>
+- x <SocialShare class="list-demo-sns" :networks="['x']"/>
 
 ::: warning Note
 There is no single, standard way in which browsers/email clients handle mailto links (e.g. subject and body fields may be discarded without a warning). Also there is a risk that popup and ad blockers, anti-virus software etc. may silently block forced opening of mailto links.
@@ -205,10 +275,11 @@ We use [qrcode](https://github.com/soldair/node-qrcode) to generate the qrcode i
 
 See it's [options](https://github.com/soldair/node-qrcode#qr-code-options) for more information.
 
-### extendsNetworks
+### extendsNetworks <Badge type="danger" text="Deprecated" vertical="top" />
 
 - **type:** `object`
 - **default** `undefined`
+- **deprecated**: `true`
 
 With this option, you can add your custom sharer or override the [built-in networks config](https://github.com/ntnyq/vuepress-plugin-social-share/blob/master/lib/networks.json).
 

@@ -10,49 +10,75 @@ Some demos.
 ## Local mode
 
 ```vue
-<social-share />
+<SocialShare />
 ```
 
-<social-share />
+<SocialShare />
 
 ## Plain mode
 
+<!-- prettier-ignore-start -->
+
 ```vue
-<social-share
-  :networks="['facebook', 'qq', 'twitter', 'line', 'reddit']"
-  is-plain
+<SocialShare 
+  :networks="[
+    'facebook', 
+    'qq', 
+    'twitter', 
+    'line', 
+    'reddit',
+  ]" 
+  is-plain 
 />
 ```
 
-<social-share :networks="['facebook', 'qq', 'twitter', 'line', 'reddit']" is-plain />
+<SocialShare 
+  :networks="[
+    'facebook', 
+    'qq', 
+    'twitter', 
+    'line', 
+    'reddit',
+  ]" 
+  is-plain 
+/>
+
+<!-- prettier-ignore-end -->
 
 ## Custom hashtags
 
+<!-- prettier-ignore-start -->
+
 ```vue
-<social-share
-  :networks="['twitter', 'facebook']"
-  :tags="['SocialShare', 'VuePress']"
+<SocialShare 
+  :networks="['twitter', 'facebook']" 
+  :tags="['SocialShare', 'VuePress']" 
 />
 ```
 
-<social-share :networks="['twitter', 'facebook']" :tags="['SocialShare', 'VuePress']" />
+<SocialShare 
+  :networks="['twitter', 'facebook']" 
+  :tags="['SocialShare', 'VuePress']"
+/>
+
+<!-- prettier-ignore-end -->
 
 ## Custom order
 
 ```vue
-<social-share :networks="['twitter', 'facebook']" />
+<SocialShare :networks="['twitter', 'facebook']" />
 
-<social-share :networks="['facebook', 'twitter']" />
+<SocialShare :networks="['facebook', 'twitter']" />
 ```
 
-<social-share :networks="['twitter', 'facebook']" />
+<SocialShare :networks="['twitter', 'facebook']" />
 
-<social-share :networks="['facebook', 'twitter']" />
+<SocialShare :networks="['facebook', 'twitter']" />
 
 ## Built-in networks
 
 ```vue
-<social-share
+<SocialShare
   :networks="[
     'bluesky',
     'douban',
@@ -71,7 +97,7 @@ Some demos.
 />
 ```
 
-<social-share 
+<SocialShare 
   :networks="[
     'bluesky', 
     'douban', 
@@ -91,10 +117,10 @@ Some demos.
 ## User-customed networks
 
 ```vue
-<social-share :networks="['pinterest', 'linkedin']" />
+<SocialShare :networks="['pinterest', 'linkedin']" />
 ```
 
-<social-share :networks="['pinterest', 'linkedin']" />
+<SocialShare :networks="['pinterest', 'linkedin']" />
 
 ## No global UI
 
