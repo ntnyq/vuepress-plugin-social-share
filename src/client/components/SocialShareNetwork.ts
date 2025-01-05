@@ -1,7 +1,7 @@
 import { useDarkmode } from '@vuepress/helper/client'
 import { computed, defineComponent, h } from 'vue'
 import { isString } from '../../shared/index.js'
-import { isSVG } from '../utils.js'
+import { inBrowser, isSVG } from '../utils.js'
 import type { PropType } from 'vue'
 import type { SocialShareNetworkWithName } from '../../shared/index.js'
 
@@ -39,7 +39,11 @@ export const SocialShareNetwork = defineComponent({
   emits: [Event.Share],
 
   setup(props, ctx) {
-    const isDarkMode = computed(() => useDarkmode().value)
+    const isDarkMode = computed(() => {
+      // workaround for document is undefined
+      if (!inBrowser) return false
+      return useDarkmode().value
+    })
     const resolvedIcon = computed(() => {
       const { icon } = props.network
       if (isString(icon)) return icon
