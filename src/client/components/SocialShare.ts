@@ -187,17 +187,22 @@ export const SocialShare = defineComponent({
       const body = document.body
       const socialShareEl = document.querySelector('#__VUEPRESS_SOCIAL_SHARE__')
       const socialShareOverlay = document.createElement('div')
+
       socialShareOverlay.id = '__VUEPRESS_SOCIAL_SHARE__'
       socialShareOverlay.classList.add('social-share-overlay')
+
       if (socialShareEl && socialShareEl.parentNode) {
         socialShareEl.remove()
       }
+
       try {
         const QRCode = await import('qrcode')
         const dataURL = await QRCode.toDataURL(url.value, qrcodeRenderOptions.value)
+
         socialShareOverlay.innerHTML = `<img class="social-share-qrcode" src="${dataURL}" />`
         body.append(socialShareOverlay)
         socialShareOverlay.classList.add('show')
+
         socialShareOverlay.addEventListener('click', evt => {
           socialShareOverlay.classList.remove('show')
           socialShareOverlay.remove()
@@ -233,18 +238,16 @@ export const SocialShare = defineComponent({
     const onShare = (name: string) => {
       const network = options.networksData.find(item => item.name === name)!
       const shareURL = createShareURL(name, network)
+
       switch (network.type) {
         case 'popup':
-          openSharer(shareURL)
-          break
+          return openSharer(shareURL)
         case 'qrcode':
-          showQRCode()
-          break
+          return showQRCode()
         case 'direct':
-          openWindow(shareURL)
-          break
+          return openWindow(shareURL)
         default:
-          break
+          return openSharer(shareURL)
       }
     }
     const renderNetworkList = (networks: SocialShareNetworkWithName[]) =>

@@ -1,39 +1,9 @@
-/**
- * network color
- */
-export type SocialShareColor =
-  | string
-  | {
-      /**
-       * color for dark mode
-       */
-      dark: string
-      /**
-       * color for light mode
-       */
-      light: string
-    }
+import type { BuiltInNetworkNames } from './constants.js'
 
 /**
- * network type
+ * Themeable value
  */
-export type SocialShareType = 'direct' | 'popup' | 'qrcode'
-
-/**
- * network icon
- */
-export type SocilaShareIcon =
-  | string
-  | {
-      /**
-       * icon for dark mode
-       */
-      dark: string
-      /**
-       * icon for light mode
-       */
-      light: string
-    }
+export type ThemeableValue<T = string> = T | { light: T; dark: T }
 
 /**
  * Social share network
@@ -42,17 +12,17 @@ export interface SocialShareNetwork {
   /**
    * Sharer icon
    */
-  icon: SocilaShareIcon
+  icon: ThemeableValue
 
   /**
    * Sharer type
    */
-  type: SocialShareType
+  type: 'direct' | 'popup' | 'qrcode'
 
   /**
    * Sharer icon color
    */
-  color?: SocialShareColor
+  color?: ThemeableValue
 
   /**
    * Sharer URL
@@ -78,4 +48,14 @@ export type SocialShareNetworkWithName = SocialShareNetwork & {
    * Sharer name
    */
   name: string
+}
+
+/**
+ * Override social share network with name
+ */
+export type OverrideSocialShareNetworkWithName = Partial<SocialShareNetwork> & {
+  /**
+   * Built-in share name
+   */
+  name: BuiltInNetworkNames
 }

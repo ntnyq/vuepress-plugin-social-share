@@ -99,26 +99,24 @@ export default defineUserConfig({
 
 ### networks
 
-- **type:** `(string | SocialShareNetworkWithName)[]`
+- **type:** `(string | SocialShareNetworkWithName | OverrideSocialShareNetworkWithName)[]`
 - **default** `['twitter', 'facebook', 'reddit']`
 
 ```ts
+type ThemeableValue<T = string> = T | { light: T; dark: T }
+type OverrideSocialShareNetworkWithName = Partial<SocialShareNetworkWithName> & {
+  name: BuiltInNetworkNames
+}
 type SocialShareNetworkWithName = {
+  /**
+   * Sharer name
+   */
+  name: string
+
   /**
    * Sharer icon
    */
-  icon:
-    | string
-    | {
-        /**
-         * icon for dark mode
-         */
-        dark: string
-        /**
-         * icon for light mode
-         */
-        light: string
-      }
+  icon: ThemeableValue<string>
 
   /**
    * Sharer type
@@ -128,18 +126,7 @@ type SocialShareNetworkWithName = {
   /**
    * Sharer icon color
    */
-  color?:
-    | string
-    | {
-        /**
-         * color for dark mode
-         */
-        dark: string
-        /**
-         * color for light mode
-         */
-        light: string
-      }
+  color?: ThemeableValue<string>
 
   /**
    * Sharer URL

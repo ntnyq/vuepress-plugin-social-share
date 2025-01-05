@@ -1,7 +1,6 @@
 import { Logger } from '@vuepress/helper'
 import deepmerge from 'deepmerge'
-import { isString } from '../shared/index.js'
-import { BUILT_IN_NETWORKS, PLUGIN_NAME } from './constants.js'
+import { BUILT_IN_NETWORKS, isString, PLUGIN_NAME } from '../shared/index.js'
 import type { SocialShareNetworkWithName, SocialSharePluginOptions } from '../shared/index.js'
 
 export const logger = new Logger(PLUGIN_NAME)
@@ -31,7 +30,7 @@ export function resolveNetworksData(
       if (mergedNetworkNames.has(network.name)) {
         mergedNetworks[network.name] = deepmerge(mergedNetworks[network.name], network)
       } else {
-        mergedNetworks[network.name] = network
+        mergedNetworks[network.name] = network as SocialShareNetworkWithName
       }
     }
   }

@@ -20,7 +20,9 @@ export const SocialShareNetwork = defineComponent({
       required: true,
       validator: (network: SocialShareNetworkWithName) => {
         if (!network.icon) return false
-        if (['popup'].includes(network.type)) return Boolean(network.sharer)
+        if (network.type !== 'qrcode') {
+          return Boolean(network.sharer)
+        }
         return true
       },
     },

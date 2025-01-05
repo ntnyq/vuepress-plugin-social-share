@@ -1,5 +1,9 @@
 import type { QRCodeToDataURLOptions } from 'qrcode'
-import type { SocialShareNetwork, SocialShareNetworkWithName } from './network'
+import type {
+  OverrideSocialShareNetworkWithName,
+  SocialShareNetwork,
+  SocialShareNetworkWithName,
+} from './network.js'
 
 /**
  * @deprecated use `Record<string, SocialShareNetwork>` instead
@@ -71,7 +75,7 @@ export interface SocialSharePluginOptions {
    *
    * @default ['twitter', 'facebook', 'reddit']
    */
-  networks?: (string | SocialShareNetworkWithName)[]
+  networks?: (string | SocialShareNetworkWithName | OverrideSocialShareNetworkWithName)[]
 
   /**
    * Twitter profile username

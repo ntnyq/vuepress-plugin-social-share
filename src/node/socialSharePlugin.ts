@@ -1,6 +1,6 @@
 import { addViteSsrNoExternal } from '@vuepress/helper'
 import { getDirname, path } from 'vuepress/utils'
-import { PLUGIN_NAME } from './constants.js'
+import { PLUGIN_NAME } from '../shared/index.js'
 import { logger, resolveNetworksData } from './helpers.js'
 import type { PluginFunction } from 'vuepress/core'
 import type {
