@@ -19,11 +19,17 @@ export const socialSharePlugin =
       networks = ['twitter', 'facebook', 'reddit'],
       extendsNetworks = {},
       // Options for client
-      ...clientOptions
+      ...restClientOptions
     } = options
 
     if (app.env.isDebug) {
       logger.info('Options:', options)
+    }
+
+    const networksData = resolveNetworksData(networks, extendsNetworks)
+    const clientOptions: SocialSharePluginOptionsWithDefaults = {
+      ...restClientOptions,
+      networksData,
     }
 
     return {
@@ -31,23 +37,10 @@ export const socialSharePlugin =
 
       clientConfigFile: path.resolve(__dirname, '../client/config.js'),
 
-      alias: app => ({
-        '@vuepress/plugin-social-share/options': app.dir.temp('social-share/options'),
-      }),
-
       define: {
         __SOCIAL_SHARE_COMPONENT_NAME__: componentName,
         __SOCIAL_SHARE_USE_CUSTOM_STYLE__: useCustomStyle,
-      },
-
-      onPrepared(app) {
-        const networksData = resolveNetworksData(networks, extendsNetworks)
-        const socialShareOptions: SocialSharePluginOptionsWithDefaults = {
-          ...clientOptions,
-          networksData,
-        }
-        const content = `export const socialShareOptions = ${JSON.stringify(socialShareOptions)}`
-        app.writeTemp('social-share/options.js', content)
+        __SOCIAL_SHARE_CLIENT_OPTIONS__: clientOptions,
       },
 
       extendsBundlerOptions: (bundlerOptions: unknown, app): void => {
