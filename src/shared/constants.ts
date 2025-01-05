@@ -19,7 +19,7 @@ export const BUILT_IN_NETWORKS = {
   },
   email: {
     color: '#d4237a',
-    icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1117 1024"><path d="M53.865 558.08l289.92 121.6 560-492.16-491.52 530.56 371.84 140.8c8.96 3.2 19.2-1.28 22.4-10.24V848l260.48-816.64-1014.4 494.72c-8.96 4.48-12.16 14.72-8.32 23.68 2.56 3.84 5.76 7.04 9.6 8.32zm357.76 434.56l144.64-155.52-144.64-58.88v214.4z"/></svg>',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5l-8-5V6l8 5l8-5v2z"/></svg>',
     sharer: 'mailto:?subject=@title&body=@url%0D%0A%0D%0A@description',
     type: 'direct',
   },
