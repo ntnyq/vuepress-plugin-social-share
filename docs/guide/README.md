@@ -104,9 +104,10 @@ export default defineUserConfig({
 
 ```ts
 type ThemeableValue<T = string> = T | { light: T; dark: T }
-type OverrideSocialShareNetworkWithName = Partial<SocialShareNetworkWithName> & {
-  name: BuiltInNetworkNames
-}
+type OverrideSocialShareNetworkWithName =
+  Partial<SocialShareNetworkWithName> & {
+    name: BuiltInNetworkNames
+  }
 type SocialShareNetworkWithName = {
   /**
    * Sharer name
@@ -283,7 +284,8 @@ import type { SocialShareNetwork } from 'vuepress-plugin-social-share'
 
 const extendsNetworks: Record<string, SocialShareNetwork> = {
   pinterest: {
-    sharer: 'https://pinterest.com/pin/create/button/?url=@url&media=@media&description=@title',
+    sharer:
+      'https://pinterest.com/pin/create/button/?url=@url&media=@media&description=@title',
     type: 'popup',
     icon: '/pinterest.png',
   },
@@ -504,3 +506,4 @@ noSocialShare: true
 - [New VuePress plugin API with better TypeScript support](#options)
 - [Use CSS variables to custom plugin style](#custom-style)
 - [Option `email` is deprecated, just remove it, see #71 for reasons](https://github.com/ntnyq/vuepress-plugin-social-share/pull/71)
+- [Option `extendsNetworks` is deprecated, use `networks` instead](#networks)
