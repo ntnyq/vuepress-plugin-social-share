@@ -75,7 +75,11 @@ export interface SocialSharePluginOptions {
    *
    * @default ['twitter', 'facebook', 'reddit']
    */
-  networks?: (string | SocialShareNetworkWithName | OverrideSocialShareNetworkWithName)[]
+  networks?: (
+    | string
+    | SocialShareNetworkWithName
+    | OverrideSocialShareNetworkWithName
+  )[]
 
   /**
    * Twitter profile username

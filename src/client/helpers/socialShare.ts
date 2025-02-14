@@ -1,8 +1,9 @@
 import { inject } from 'vue'
-import type { App } from 'vue'
+import type { App, InjectionKey } from 'vue'
 import type { SocialSharePluginOptionsWithDefaults } from '../../shared/index.js'
 
-export const socialShareOptionsSymbol = Symbol('social-share-options')
+export const socialShareOptionsSymbol: InjectionKey<SocialSharePluginOptionsWithDefaults> =
+  Symbol('social-share-options')
 
 export const injectSocialShareOptions = (
   app: App,
@@ -12,5 +13,5 @@ export const injectSocialShareOptions = (
 }
 
 export const useSocialShareOptions = () => {
-  return inject<SocialSharePluginOptionsWithDefaults>(socialShareOptionsSymbol)!
+  return inject(socialShareOptionsSymbol)!
 }

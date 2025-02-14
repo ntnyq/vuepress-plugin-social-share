@@ -19,5 +19,7 @@ export default defineClientConfig({
     app.component(__SOCIAL_SHARE_COMPONENT_NAME__, SocialShare)
   },
 
-  rootComponents: __SOCIAL_SHARE_CLIENT_OPTIONS__.noGlobalSocialShare ? [] : [GlobalSocialShare],
+  rootComponents: __SOCIAL_SHARE_CLIENT_OPTIONS__.noGlobalSocialShare
+    ? []
+    : [GlobalSocialShare],
 })

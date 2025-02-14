@@ -39,12 +39,16 @@ export const SocialShare = defineComponent({
       .filter(item => item.default)
       .map(item => item.name)
 
-    const networks = computed(() => [...new Set(props.networks ?? defaultEnabledNetworks)])
+    const networks = computed(() => [
+      ...new Set(props.networks ?? defaultEnabledNetworks),
+    ])
     const networkList = computed(() =>
       options.networksData
         .filter(network => networks.value.includes(network.name))
         .sort(
-          (prev, next) => networks.value.indexOf(prev.name) - networks.value.indexOf(next.name),
+          (prev, next) =>
+            networks.value.indexOf(prev.name)
+            - networks.value.indexOf(next.name),
         ),
     )
 
@@ -70,8 +74,10 @@ export const SocialShare = defineComponent({
        * http://stackoverflow.com/questions/4068373/center-a-popup-window-on-screen/32261263
        */
       const rootEl = document.documentElement
-      const dualScreenLeft = window.screenLeft !== undefined ? window.screenLeft : window.screenX
-      const dualScreenTop = window.screenTop !== undefined ? window.screenTop : window.screenY
+      const dualScreenLeft =
+        window.screenLeft !== undefined ? window.screenLeft : window.screenX
+      const dualScreenTop =
+        window.screenTop !== undefined ? window.screenTop : window.screenY
       const width = window.innerWidth
         ? window.innerWidth
         : rootEl.clientWidth
@@ -87,34 +93,36 @@ export const SocialShare = defineComponent({
     })
 
     // Computed
-    const visible = computed(() => networks.value.length > 0 && !frontmatter.value.noSocialShare)
+    const visible = computed(
+      () => networks.value.length > 0 && !frontmatter.value.noSocialShare,
+    )
     const url = computed(
       () =>
-        frontmatter.value.$shareUrl ??
-        frontmatter.value.shareUrl ??
-        frontmatter.value.permalink ??
-        (inBrowser ? location.href : ''),
+        frontmatter.value.$shareUrl
+        ?? frontmatter.value.shareUrl
+        ?? frontmatter.value.permalink
+        ?? (inBrowser ? location.href : ''),
     )
     const title = computed(
       () =>
-        frontmatter.value.$shareTitle ??
-        frontmatter.value.shareTitle ??
-        frontmatter.value.title ??
-        (inBrowser ? document.title : ''),
+        frontmatter.value.$shareTitle
+        ?? frontmatter.value.shareTitle
+        ?? frontmatter.value.title
+        ?? (inBrowser ? document.title : ''),
     )
     const description = computed(
       () =>
-        frontmatter.value.$shareDescription ??
-        frontmatter.value.shareDescription ??
-        frontmatter.value.description ??
-        getMetaContentByName('description'),
+        frontmatter.value.$shareDescription
+        ?? frontmatter.value.shareDescription
+        ?? frontmatter.value.description
+        ?? getMetaContentByName('description'),
     )
     const media = computed(() => {
       const mediaURL =
-        frontmatter.value.$shareImage ??
-        frontmatter.value.shareImage ??
-        frontmatter.value.image ??
-        options.fallbackImage
+        frontmatter.value.$shareImage
+        ?? frontmatter.value.shareImage
+        ?? frontmatter.value.image
+        ?? options.fallbackImage
 
       if (!mediaURL) return ''
       if (isExternalUrl(mediaURL)) return mediaURL
@@ -123,18 +131,18 @@ export const SocialShare = defineComponent({
     })
     const quote = computed(
       () =>
-        frontmatter.value.$shareQuote ??
-        frontmatter.value.shareQuote ??
-        ((options.autoQuote ?? true) ? description.value : ''),
+        frontmatter.value.$shareQuote
+        ?? frontmatter.value.shareQuote
+        ?? ((options.autoQuote ?? true) ? description.value : ''),
     )
     const hashtags = computed(() => {
       const tags =
-        frontmatter.value.$shareTags ??
-        frontmatter.value.shareTags ??
-        frontmatter.value.tags ??
-        frontmatter.value.tag ??
-        props.tags ??
-        getMetaContentByName('keywords')
+        frontmatter.value.$shareTags
+        ?? frontmatter.value.shareTags
+        ?? frontmatter.value.tags
+        ?? frontmatter.value.tag
+        ?? props.tags
+        ?? getMetaContentByName('keywords')
       if (Array.isArray(tags)) {
         return tags.join(',')
       }
@@ -197,7 +205,10 @@ export const SocialShare = defineComponent({
 
       try {
         const QRCode = await import('qrcode')
-        const dataURL = await QRCode.toDataURL(url.value, qrcodeRenderOptions.value)
+        const dataURL = await QRCode.toDataURL(
+          url.value,
+          qrcodeRenderOptions.value,
+        )
 
         socialShareOverlay.innerHTML = `<img class="social-share-qrcode" src="${dataURL}" />`
         body.append(socialShareOverlay)
@@ -233,7 +244,10 @@ export const SocialShare = defineComponent({
         .replace(/@description/g, encodeURIComponent(description.value))
         .replace(/@quote/g, encodeURIComponent(quote.value))
         .replace(/@hashtags/g, generateHashTags(hashtags.value, name))
-        .replace(/@twitteruser/g, options.twitterUser ? `&via=${options.twitterUser}` : '')
+        .replace(
+          /@twitteruser/g,
+          options.twitterUser ? `&via=${options.twitterUser}` : '',
+        )
     }
     const onShare = (name: string) => {
       const network = options.networksData.find(item => item.name === name)!
@@ -271,7 +285,12 @@ export const SocialShare = defineComponent({
       visible.value
         ? h(
             'div',
-            { class: ['social-share', options.hideWhenPrint && 'social-share-hide-when-print'] },
+            {
+              class: [
+                'social-share',
+                options.hideWhenPrint && 'social-share-hide-when-print',
+              ],
+            },
             [renderNetworkList(networkList.value)],
           )
         : null

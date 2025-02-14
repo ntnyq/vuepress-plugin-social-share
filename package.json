@@ -26,10 +26,10 @@
     "url": "https://github.com/ntnyq/vuepress-plugin-social-share/issues"
   },
   "exports": {
+    "./package.json": "./package.json",
     ".": "./dist/node/index.js",
     "./client": "./dist/client/index.js",
-    "./client/*": "./dist/client/*",
-    "./package.json": "./package.json"
+    "./client/*": "./dist/client/*"
   },
   "main": "./dist/node/index.js",
   "types": "./dist/node/index.d.ts",
@@ -65,8 +65,8 @@
     "vue": "^3.5.13"
   },
   "devDependencies": {
-    "@ntnyq/eslint-config": "^3.12.3",
-    "@ntnyq/prettier-config": "^1.22.1",
+    "@ntnyq/eslint-config": "^4.0.0-beta.4",
+    "@ntnyq/prettier-config": "^2.0.0-beta.2",
     "@types/node": "^22.13.4",
     "bumpp": "^10.0.3",
     "copyfiles": "^2.4.1",
@@ -80,6 +80,11 @@
     "typescript": "^5.7.3",
     "vitest": "^3.0.5",
     "vuepress": "^2.0.0-rc.19"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
   },
   "nano-staged": {
     "*.{js,ts,cjs,mjs,vue,yml,yaml,md,json}": "eslint --fix"

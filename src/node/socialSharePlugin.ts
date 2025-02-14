@@ -43,7 +43,7 @@ export const socialSharePlugin =
         __SOCIAL_SHARE_CLIENT_OPTIONS__: clientOptions,
       },
 
-      extendsBundlerOptions: (bundlerOptions: unknown, app): void => {
+      extendsBundlerOptions(bundlerOptions, app) {
         addViteSsrNoExternal(bundlerOptions, app, '@vuepress/helper')
       },
     }

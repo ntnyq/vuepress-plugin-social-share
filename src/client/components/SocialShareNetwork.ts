@@ -83,7 +83,9 @@ export const SocialShareNetwork = defineComponent({
           'aria-label': `Share with ${upperFirst(props.network.name)}`,
           onClick: () => ctx.emit(Event.Share, props.network.name),
           'data-link':
-            props.network.type === 'popup' ? `#share-${props.network.name}` : props.shareURL,
+            props.network.type === 'popup'
+              ? `#share-${props.network.name}`
+              : props.shareURL,
         },
         [renderShareIcon()],
       )

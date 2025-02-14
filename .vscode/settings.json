@@ -2,9 +2,11 @@
   "eslint.enable": true,
   "prettier.enable": true,
   "editor.formatOnSave": true,
+  "prettier.configPath": "./prettier.config.mjs",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "eslint.validate": [
     "vue",
-    "html",
+    "yaml",
     "json",
     "jsonc",
     "json5",
@@ -16,7 +18,6 @@
   ],
   // required a .js extension for typescript import
   "typescript.preferences.importModuleSpecifierEnding": "js",
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "cSpell.words": [
     "bumpp",
     "changelogithub",
