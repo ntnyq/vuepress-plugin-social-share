@@ -1,2 +1,9 @@
+catalog:
+  '@vuepress/bundler-vite': ^2.0.0-rc.19
+  '@vuepress/helper': ^2.0.0-rc.78
+  '@vuepress/plugin-shiki': ^2.0.0-rc.78
+  '@vuepress/theme-default': ^2.0.0-rc.78
+  vuepress: ^2.0.0-rc.19
 packages:
+  - .
   - docs

@@ -6,6 +6,7 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "eslint.validate": [
     "vue",
+    "toml",
     "yaml",
     "json",
     "jsonc",
@@ -34,6 +35,7 @@
     "serializers",
     "shiki",
     "tsbuildinfo",
+    "vite",
     "vuepress",
     "weibo"
   ],

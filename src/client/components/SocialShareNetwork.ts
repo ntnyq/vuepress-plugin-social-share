@@ -1,4 +1,4 @@
-import { useDarkmode } from '@vuepress/helper/client'
+import { useDarkMode } from '@vuepress/helper/client'
 import { computed, defineComponent, h } from 'vue'
 import { isString, upperFirst } from '../../shared/index.js'
 import { inBrowser, isSVG } from '../utils.js'
@@ -44,7 +44,7 @@ export const SocialShareNetwork = defineComponent({
     const isDarkMode = computed(() => {
       // workaround for document is undefined
       if (!inBrowser) return false
-      return useDarkmode().value
+      return useDarkMode().value
     })
     const resolvedIcon = computed(() => {
       const { icon } = props.network

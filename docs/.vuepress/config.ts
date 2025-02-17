@@ -11,7 +11,7 @@ const packageName = 'vuepress-plugin-social-share'
 const VERSIONS: NavbarLinkOptions[] = [
   { text: `v${version} (current)`, link: '/' },
   {
-    text: `Release Notes`,
+    text: 'Release Notes',
     link: `https://github.com/ntnyq/${packageName}/releases`,
   },
   { text: 'VuePress v1', link: 'https://social-share-v1.ntnyq.com' },
