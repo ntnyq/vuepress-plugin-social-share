@@ -13,6 +13,7 @@ tags: VuePress, plugin, SocialShare
 ---
 
 <SocialShare 
+  class="social-share-home"
   :networks="[
     'qrcode', 
     'wechat', 
