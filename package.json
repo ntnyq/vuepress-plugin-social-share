@@ -77,7 +77,7 @@
     "prettier": "^3.5.2",
     "tsc-watch": "^6.2.1",
     "typescript": "^5.7.3",
-    "vitest": "^3.0.6",
+    "vitest": "^3.0.7",
     "vuepress": "catalog:"
   },
   "pnpm": {
