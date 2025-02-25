@@ -25,7 +25,7 @@ pnpm add vuepress-plugin-social-share@next -D
 
 > See [Official Docs](https://v2.vuepress.vuejs.org/guide/plugin.html#plugin) about how to use a plugin in VuePress.
 
-```js
+```ts
 import { defineUserConfig } from 'vuepress'
 import { socialSharePlugin } from 'vuepress-plugin-social-share'
 
@@ -370,6 +370,20 @@ You can set `icon` with a **network image**, an **image in your public folder wi
 Set it to `true` if you want to disable the global social share component.
 
 If you only want to disable global social share in some specific page, check [Disable social share](#disable-social-share).
+
+### shareIcon
+
+- **type:** `string | { dark: string; light: string }`
+- **default** `undefined`
+
+Share icon for `GlobalSocialShare` component.
+
+### shareCloseIcon
+
+- **type:** `string | { dark: string; light: string }`
+- **default** `undefined`
+
+Close share icon for `GlobalSocialShare` component.
 
 ## Component Props
 

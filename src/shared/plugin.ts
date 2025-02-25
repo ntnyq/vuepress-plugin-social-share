@@ -3,6 +3,7 @@ import type {
   OverrideSocialShareNetworkWithName,
   SocialShareNetwork,
   SocialShareNetworkWithName,
+  ThemeableValue,
 } from './network.js'
 
 /**
@@ -129,6 +130,16 @@ export interface SocialSharePluginOptions {
    * @default false
    */
   hideWhenPrint?: boolean
+
+  /**
+   * Share icon for `GlobalSocialShare` component
+   */
+  shareIcon?: ThemeableValue
+
+  /**
+   * Close share icon for `GlobalSocialShare` component
+   */
+  shareCloseIcon?: ThemeableValue
 }
 
 /**

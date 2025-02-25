@@ -1,3 +1,5 @@
+// @ts-check
+
 import path from 'node:path'
 import { fileURLToPath, URL } from 'node:url'
 

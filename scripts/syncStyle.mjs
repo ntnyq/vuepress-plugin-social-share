@@ -1,3 +1,5 @@
+// @ts-check
+
 import { cp } from 'node:fs/promises'
 import { resolve } from './utils.mjs'
 

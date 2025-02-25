@@ -52,24 +52,6 @@ export default defineUserConfig({
 
   plugins: [
     shikiPlugin({
-      // @keep-sorted
-      langs: [
-        'bash',
-        'css',
-        'html',
-        'js',
-        'json',
-        'jsonc',
-        'jsx',
-        'md',
-        'scss',
-        'shell',
-        'ts',
-        'tsx',
-        'vue',
-        'yaml',
-        'yml',
-      ],
       theme: 'one-dark-pro',
     }),
     socialSharePlugin({
