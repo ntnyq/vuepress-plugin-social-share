@@ -1,4 +1,3 @@
-import { useDarkMode } from '@vuepress/helper/client'
 import { computed, defineComponent, h } from 'vue'
 import { isString, upperFirst } from '../../shared/index.js'
 import { isSVG } from '../utils.js'
@@ -32,6 +31,11 @@ export const SocialShareNetwork = defineComponent({
       default: false,
     },
 
+    isDark: {
+      type: Boolean,
+      default: false,
+    },
+
     shareURL: {
       type: String,
       default: '',
@@ -41,15 +45,11 @@ export const SocialShareNetwork = defineComponent({
   emits: [Event.Share],
 
   setup(props, ctx) {
-    const isDarkMode = useDarkMode()
-
     const resolvedIcon = computed(() => {
       if (isString(props.network.icon)) {
         return props.network.icon
       }
-      return isDarkMode.value
-        ? props.network.icon.dark
-        : props.network.icon.light
+      return props.isDark ? props.network.icon.dark : props.network.icon.light
     })
     const resolvedColor = computed(() => {
       if (props.isPlain || !props.network.color) {
@@ -58,9 +58,7 @@ export const SocialShareNetwork = defineComponent({
       if (isString(props.network.color)) {
         return props.network.color
       }
-      return isDarkMode.value
-        ? props.network.color.dark
-        : props.network.color.light
+      return props.isDark ? props.network.color.dark : props.network.color.light
     })
     const isSvgIcon = computed(() => isSVG(resolvedIcon.value))
 

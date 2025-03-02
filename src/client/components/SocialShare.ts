@@ -1,3 +1,4 @@
+import { useDarkMode } from '@vuepress/helper/client'
 import { computed, defineComponent, h, onMounted, reactive, ref } from 'vue'
 import { usePageFrontmatter, withBase } from 'vuepress/client'
 import { isString } from '../../shared/index.js'
@@ -34,13 +35,16 @@ export const SocialShare = defineComponent({
 
   setup(props) {
     const options = useSocialShareOptions()
-
-    const defaultEnabledNetworks = options.networksData
-      .filter(item => item.default)
-      .map(item => item.name)
+    const frontmatter = usePageFrontmatter<SocialShareFrontmatter>()
+    const isDarkMode = useDarkMode()
 
     const networks = computed(() => [
-      ...new Set(props.networks ?? defaultEnabledNetworks),
+      ...new Set(
+        props.networks
+          ?? options.networksData
+            .filter(item => item.default)
+            .map(item => item.name),
+      ),
     ])
     const networkList = computed(() =>
       options.networksData
@@ -52,8 +56,7 @@ export const SocialShare = defineComponent({
         ),
     )
 
-    const frontmatter = usePageFrontmatter<SocialShareFrontmatter>()
-    const timer = ref<number | undefined>()
+    const intervalTimer = ref<ReturnType<typeof setInterval>>()
     const popup = reactive({
       status: false,
       resizable: false,
@@ -66,30 +69,6 @@ export const SocialShare = defineComponent({
       height: 436,
       top: 0,
       left: 0,
-    })
-
-    onMounted(() => {
-      /**
-       * Center the popup on dual screens
-       * http://stackoverflow.com/questions/4068373/center-a-popup-window-on-screen/32261263
-       */
-      const rootEl = document.documentElement
-      const dualScreenLeft =
-        window.screenLeft !== undefined ? window.screenLeft : window.screenX
-      const dualScreenTop =
-        window.screenTop !== undefined ? window.screenTop : window.screenY
-      const width = window.innerWidth
-        ? window.innerWidth
-        : rootEl.clientWidth
-          ? rootEl.clientWidth
-          : screen.width
-      const height = window.innerHeight
-        ? window.innerHeight
-        : rootEl.clientHeight
-          ? rootEl.clientHeight
-          : screen.height
-      popup.left = width / 2 - popup.width / 2 + dualScreenLeft
-      popup.top = height / 2 - popup.height / 2 + dualScreenTop
     })
 
     // Computed
@@ -184,9 +163,10 @@ export const SocialShare = defineComponent({
       ]
       popWindow = window.open(shareURL, 'sharer', shareParams.join(','))
       popWindow?.focus?.()
-      timer.value = window.setInterval(() => {
+
+      intervalTimer.value = setInterval(() => {
         if (popWindow?.closed) {
-          window.clearInterval(timer.value)
+          clearInterval(intervalTimer.value)
           popWindow = null
         }
       }, 500)
@@ -274,12 +254,37 @@ export const SocialShare = defineComponent({
         networks.map(network =>
           h(SocialShareNetwork, {
             network,
+            isDark: isDarkMode.value,
             isPlain: props.isPlain || options.isPlain,
             shareURL: createShareURL(network.name, network),
             onShare: (name: string) => onShare(name),
           }),
         ),
       )
+
+    onMounted(() => {
+      /**
+       * Center the popup on dual screens
+       * http://stackoverflow.com/questions/4068373/center-a-popup-window-on-screen/32261263
+       */
+      const rootEl = document.documentElement
+      const dualScreenLeft =
+        window.screenLeft !== undefined ? window.screenLeft : window.screenX
+      const dualScreenTop =
+        window.screenTop !== undefined ? window.screenTop : window.screenY
+      const width = window.innerWidth
+        ? window.innerWidth
+        : rootEl.clientWidth
+          ? rootEl.clientWidth
+          : screen.width
+      const height = window.innerHeight
+        ? window.innerHeight
+        : rootEl.clientHeight
+          ? rootEl.clientHeight
+          : screen.height
+      popup.left = width / 2 - popup.width / 2 + dualScreenLeft
+      popup.top = height / 2 - popup.height / 2 + dualScreenTop
+    })
 
     return () =>
       visible.value
