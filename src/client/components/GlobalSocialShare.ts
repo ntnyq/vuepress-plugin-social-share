@@ -1,9 +1,17 @@
 import { useDarkMode } from '@vuepress/helper/client'
-import { computed, defineComponent, h, onMounted, onUnmounted, ref } from 'vue'
+import {
+  computed,
+  defineComponent,
+  h,
+  onMounted,
+  onUnmounted,
+  ref,
+  shallowRef,
+} from 'vue'
 import { usePageFrontmatter } from 'vuepress/client'
 import { isString } from '../../shared/index.js'
 import { useSocialShareOptions } from '../helpers/index.js'
-import { inBrowser, isSVG, SVG_ICON_CLOSE, SVG_ICON_SHARE } from '../utils.js'
+import { isSVG, SVG_ICON_CLOSE, SVG_ICON_SHARE } from '../utils.js'
 import { SocialShare } from './SocialShare.js'
 import type { SocialShareFrontmatter } from '../../shared/index.js'
 
@@ -16,14 +24,10 @@ export const GlobalSocialShare = defineComponent({
     const options = useSocialShareOptions()
 
     const isActive = ref(false)
-    const globalRef = ref<HTMLElement>()
+    const globalRef = shallowRef<HTMLElement>()
     const frontmatter = usePageFrontmatter<SocialShareFrontmatter>()
 
-    const isDarkMode = computed(() => {
-      // workaround for document is undefined
-      if (!inBrowser) return false
-      return useDarkMode().value
-    })
+    const isDarkMode = useDarkMode()
 
     const visible = computed(
       () =>
