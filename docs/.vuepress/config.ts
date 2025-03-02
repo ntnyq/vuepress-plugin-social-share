@@ -7,12 +7,13 @@ import { version } from '../../package.json'
 import type { NavbarLinkOptions } from '@vuepress/theme-default'
 
 const packageName = 'vuepress-plugin-social-share'
+const repoSlug = `ntnyq/${packageName}`
 
 const VERSIONS: NavbarLinkOptions[] = [
   { text: `v${version} (current)`, link: '/' },
   {
     text: 'Release Notes',
-    link: `https://github.com/ntnyq/${packageName}/releases`,
+    link: `https://github.com/${repoSlug}/releases`,
   },
   { text: 'VuePress v1', link: 'https://social-share-v1.ntnyq.com' },
 ]
@@ -25,8 +26,8 @@ export default defineUserConfig({
   bundler: viteBundler(),
 
   theme: defaultTheme({
-    repo: `ntnyq/${packageName}`,
-    docsRepo: `ntnyq/${packageName}`,
+    repo: repoSlug,
+    docsRepo: repoSlug,
     docsDir: 'docs',
     docsBranch: 'next',
     editLink: true,
