@@ -75,7 +75,7 @@
     "nano-staged": "^0.8.0",
     "npm-run-all2": "^7.0.2",
     "premove": "^4.0.0",
-    "prettier": "^3.5.2",
+    "prettier": "^3.5.3",
     "tsc-watch": "^6.2.1",
     "typescript": "^5.8.2",
     "vitest": "^3.0.7",
