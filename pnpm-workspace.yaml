@@ -1,8 +1,8 @@
 catalog:
   '@vuepress/bundler-vite': ^2.0.0-rc.20
-  '@vuepress/helper': ^2.0.0-rc.80
-  '@vuepress/plugin-shiki': ^2.0.0-rc.80
-  '@vuepress/theme-default': ^2.0.0-rc.80
+  '@vuepress/helper': ^2.0.0-rc.81
+  '@vuepress/plugin-shiki': ^2.0.0-rc.81
+  '@vuepress/theme-default': ^2.0.0-rc.81
   vuepress: ^2.0.0-rc.20
 packages:
   - .
