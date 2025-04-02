@@ -2,7 +2,7 @@
   "name": "vuepress-plugin-social-share",
   "type": "module",
   "version": "2.0.0-beta.30",
-  "packageManager": "pnpm@10.7.0",
+  "packageManager": "pnpm@10.7.1",
   "description": "Social sharing plugin for VuePress",
   "keywords": [
     "facebook",
@@ -66,9 +66,9 @@
     "vue": "^3.5.13"
   },
   "devDependencies": {
-    "@ntnyq/eslint-config": "^4.0.2",
+    "@ntnyq/eslint-config": "^4.0.3",
     "@ntnyq/prettier-config": "^2.0.0",
-    "@types/node": "^22.13.14",
+    "@types/node": "^22.13.17",
     "bumpp": "^10.1.0",
     "eslint": "^9.23.0",
     "husky": "^9.1.7",
@@ -78,7 +78,7 @@
     "prettier": "^3.5.3",
     "tsc-watch": "^6.2.1",
     "typescript": "^5.8.2",
-    "vitest": "^3.0.9",
+    "vitest": "^3.1.1",
     "vuepress": "catalog:"
   },
   "pnpm": {
