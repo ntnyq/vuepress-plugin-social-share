@@ -11,7 +11,7 @@
     "@vuepress/bundler-vite": "catalog:",
     "@vuepress/plugin-shiki": "catalog:",
     "@vuepress/theme-default": "catalog:",
-    "sass-embedded": "^1.87.0",
+    "sass-embedded": "^1.88.0",
     "vuepress": "catalog:",
     "vuepress-plugin-social-share": "workspace:*"
   }
