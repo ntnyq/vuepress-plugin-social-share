@@ -3,7 +3,7 @@ packages:
   - docs
 catalog:
   '@vuepress/bundler-vite': ^2.0.0-rc.23
-  '@vuepress/helper': ^2.0.0-rc.103
-  '@vuepress/plugin-shiki': ^2.0.0-rc.103
-  '@vuepress/theme-default': ^2.0.0-rc.103
+  '@vuepress/helper': ^2.0.0-rc.105
+  '@vuepress/plugin-shiki': ^2.0.0-rc.105
+  '@vuepress/theme-default': ^2.0.0-rc.105
   vuepress: ^2.0.0-rc.23
