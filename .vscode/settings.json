@@ -25,6 +25,7 @@
     "customed",
     "dbaeumer",
     "esbenp",
+    "esbuild",
     "goyfe",
     "iconify",
     "linkedin",
@@ -35,6 +36,7 @@
     "serializers",
     "shiki",
     "tsbuildinfo",
+    "unrs",
     "vite",
     "vuepress",
     "weibo"

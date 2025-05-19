@@ -76,8 +76,12 @@ export const GlobalSocialShare = defineComponent({
     }
     const onClickOutside = (evt: MouseEvent) => {
       const target = evt.target as HTMLElement
-      if (!globalRef.value) return
-      if (globalRef.value.contains(target)) return
+      if (!globalRef.value) {
+        return
+      }
+      if (globalRef.value.contains(target)) {
+        return
+      }
       isActive.value = false
     }
 

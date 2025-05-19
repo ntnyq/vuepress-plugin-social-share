@@ -103,8 +103,12 @@ export const SocialShare = defineComponent({
         ?? frontmatter.value.image
         ?? options.fallbackImage
 
-      if (!mediaURL) return ''
-      if (isExternalUrl(mediaURL)) return mediaURL
+      if (!mediaURL) {
+        return ''
+      }
+      if (isExternalUrl(mediaURL)) {
+        return mediaURL
+      }
       const realURL = inBrowser ? `${location.origin}${withBase(mediaURL)}` : ''
       return realURL
     })

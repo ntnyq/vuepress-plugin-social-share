@@ -18,7 +18,9 @@ export const SocialShareNetwork = defineComponent({
       type: Object as PropType<SocialShareNetworkWithName>,
       required: true,
       validator: (network: SocialShareNetworkWithName) => {
-        if (!network.icon) return false
+        if (!network.icon) {
+          return false
+        }
         if (network.type !== 'qrcode') {
           return Boolean(network.sharer)
         }

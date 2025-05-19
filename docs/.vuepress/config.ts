@@ -3,17 +3,16 @@ import { shikiPlugin } from '@vuepress/plugin-shiki'
 import { defaultTheme } from '@vuepress/theme-default'
 import { defineUserConfig } from 'vuepress'
 import { socialSharePlugin } from 'vuepress-plugin-social-share'
-import { version } from '../../package.json'
+import { repository, version } from '../../package.json'
 import type { NavbarLinkOptions } from '@vuepress/theme-default'
 
 const packageName = 'vuepress-plugin-social-share'
-const repoSlug = `ntnyq/${packageName}`
 
 const VERSIONS: NavbarLinkOptions[] = [
   { text: `v${version} (current)`, link: '/' },
   {
     text: 'Release Notes',
-    link: `https://github.com/${repoSlug}/releases`,
+    link: `https://github.com/${repository}/releases`,
   },
   { text: 'VuePress v1', link: 'https://social-share-v1.ntnyq.com' },
 ]
@@ -26,8 +25,8 @@ export default defineUserConfig({
   bundler: viteBundler(),
 
   theme: defaultTheme({
-    repo: repoSlug,
-    docsRepo: repoSlug,
+    repo: repository,
+    docsRepo: repository,
     docsDir: 'docs',
     docsBranch: 'next',
     editLink: true,

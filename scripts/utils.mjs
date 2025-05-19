@@ -1,8 +1,11 @@
 // @ts-check
 
 import path from 'node:path'
-import { fileURLToPath, URL } from 'node:url'
 
-const __dirname = fileURLToPath(new URL('.', import.meta.url))
-
-export const resolve = (...args) => path.resolve(__dirname, '..', ...args)
+/**
+ * Resolve path from root
+ * @param args - path segments
+ * @returns resolved path
+ */
+export const resolve = (...args) =>
+  path.resolve(import.meta.dirname, '..', ...args)

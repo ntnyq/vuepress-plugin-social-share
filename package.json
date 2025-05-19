@@ -63,31 +63,23 @@
     "@vuepress/helper": "catalog:",
     "deepmerge": "^4.3.1",
     "qrcode": "^1.5.4",
-    "vue": "^3.5.15"
+    "vue": "^3.5.16"
   },
   "devDependencies": {
-    "@ntnyq/eslint-config": "^4.3.0",
+    "@ntnyq/eslint-config": "^5.0.0-beta.5",
     "@ntnyq/prettier-config": "^2.2.0",
-    "@types/node": "^22.15.21",
+    "@types/node": "^22.15.29",
     "bumpp": "^10.1.1",
-    "eslint": "^9.27.0",
+    "eslint": "^9.28.0",
     "husky": "^9.1.7",
     "nano-staged": "^0.8.0",
     "npm-run-all2": "^8.0.4",
     "premove": "^4.0.0",
     "prettier": "^3.5.3",
-    "tsc-watch": "^7.0.0",
+    "tsc-watch": "^7.1.1",
     "typescript": "^5.8.3",
-    "vitest": "^3.1.4",
+    "vitest": "^3.2.0",
     "vuepress": "catalog:"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild"
-    ],
-    "overrides": {
-      "esbuild": "^0.25.5"
-    }
   },
   "nano-staged": {
     "*.{js,ts,cjs,mjs,vue,md,yml,yaml,json}": "eslint --fix",
