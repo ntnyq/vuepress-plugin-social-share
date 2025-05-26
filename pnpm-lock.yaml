@@ -76,8 +76,8 @@ importers:
         specifier: ^3.5.3
         version: 3.5.3
       tsc-watch:
-        specifier: ^6.3.1
-        version: 6.3.1(typescript@5.8.3)
+        specifier: ^7.0.0
+        version: 7.0.0(typescript@5.8.3)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -3144,8 +3144,8 @@ packages:
     peerDependencies:
       typescript: '>=4.8.4'
 
-  tsc-watch@6.3.1:
-    resolution: {integrity: sha512-x1hNJ/m1Cln2OvNJJLPsnWI1pObm+Jq9jF6kyz0flEy/ym7Y9TvU9edg6lXLuGVkhDClwBWi8aWAFE0qgzEkzw==}
+  tsc-watch@7.0.0:
+    resolution: {integrity: sha512-Y1O0yB9gt7hnJ1hJ2WUcx/T898niAI1w8ZZA/tmbFyRawF5SiGbwCv8DX+Zwhcmt3dyO6PvmIF6R/GNEGyWIvg==}
     engines: {node: '>=12.12.0'}
     hasBin: true
     peerDependencies:
@@ -6912,7 +6912,7 @@ snapshots:
     dependencies:
       typescript: 5.8.3
 
-  tsc-watch@6.3.1(typescript@5.8.3):
+  tsc-watch@7.0.0(typescript@5.8.3):
     dependencies:
       cross-spawn: 7.0.6
       node-cleanup: 2.1.2
