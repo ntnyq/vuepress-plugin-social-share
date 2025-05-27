@@ -63,7 +63,7 @@
     "@vuepress/helper": "catalog:",
     "deepmerge": "^4.3.1",
     "qrcode": "^1.5.4",
-    "vue": "^3.5.14"
+    "vue": "^3.5.15"
   },
   "devDependencies": {
     "@ntnyq/eslint-config": "^4.3.0",
@@ -86,7 +86,7 @@
       "esbuild"
     ],
     "overrides": {
-      "esbuild": "^0.25.4"
+      "esbuild": "^0.25.5"
     }
   },
   "nano-staged": {
