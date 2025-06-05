@@ -1,10 +1,10 @@
 import { Logger } from '@vuepress/helper'
 import deepmerge from 'deepmerge'
-import { BUILT_IN_NETWORKS, isString, PLUGIN_NAME } from '../shared/index.js'
+import { BUILT_IN_NETWORKS, isString, PLUGIN_NAME } from '../shared'
 import type {
   SocialShareNetworkWithName,
   SocialSharePluginOptions,
-} from '../shared/index.js'
+} from '../shared'
 
 export const logger = new Logger(PLUGIN_NAME)
 

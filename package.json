@@ -2,7 +2,7 @@
   "name": "vuepress-plugin-social-share",
   "type": "module",
   "version": "2.0.0-beta.30",
-  "packageManager": "pnpm@10.11.0",
+  "packageManager": "pnpm@10.11.1",
   "description": "Social sharing plugin for VuePress",
   "keywords": [
     "facebook",
@@ -37,19 +37,16 @@
     "dist"
   ],
   "scripts": {
-    "build": "run-s clean build:lib copy",
-    "build:lib": "tsc",
+    "build": "tsdown",
     "build:site": "run-s build docs:build",
-    "clean": "premove dist *.tsbuildinfo",
-    "copy": "node scripts/syncStyle.mjs",
-    "dev": "run-s clean dev:lib",
-    "dev:lib": "tsc-watch --onSuccess \"npm run copy\"",
+    "dev": "tsdown --watch",
     "docs:build": "pnpm -C docs run build",
     "docs:dev": "pnpm -C docs run dev",
     "lint": "eslint",
     "prepare": "husky",
+    "prepublishOnly": "pnpm run build",
     "release": "run-s release:check release:version release:publish",
-    "release:check": "run-s lint typecheck clean build",
+    "release:check": "run-s lint typecheck test",
     "release:publish": "pnpm publish --tag next",
     "release:version": "bumpp",
     "test": "vitest",
@@ -60,7 +57,7 @@
   },
   "dependencies": {
     "@types/qrcode": "^1.5.5",
-    "@vuepress/helper": "catalog:",
+    "@vuepress/helper": "^2.0.0-rc.108",
     "deepmerge": "^4.3.1",
     "qrcode": "^1.5.4",
     "vue": "^3.5.16"
@@ -74,12 +71,11 @@
     "husky": "^9.1.7",
     "nano-staged": "^0.8.0",
     "npm-run-all2": "^8.0.4",
-    "premove": "^4.0.0",
     "prettier": "^3.5.3",
-    "tsc-watch": "^7.1.1",
+    "tsdown": "^0.12.6",
     "typescript": "^5.8.3",
-    "vitest": "^3.2.0",
-    "vuepress": "catalog:"
+    "vitest": "^3.2.1",
+    "vuepress": "^2.0.0-rc.23"
   },
   "nano-staged": {
     "*.{js,ts,cjs,mjs,vue,md,yml,yaml,json}": "eslint --fix",

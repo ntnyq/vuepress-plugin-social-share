@@ -1,4 +1,4 @@
-import type { SocialShareNetwork } from './network.js'
+import type { SocialShareNetwork } from './network'
 
 export const PLUGIN_NAME = 'vuepress-plugin-social-share'
 

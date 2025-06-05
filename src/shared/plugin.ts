@@ -4,7 +4,7 @@ import type {
   SocialShareNetwork,
   SocialShareNetworkWithName,
   ThemeableValue,
-} from './network.js'
+} from './network'
 
 /**
  * @deprecated use `Record<string, SocialShareNetwork>` instead

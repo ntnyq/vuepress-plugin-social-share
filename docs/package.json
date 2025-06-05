@@ -8,11 +8,11 @@
     "dev": "vuepress dev ."
   },
   "devDependencies": {
-    "@vuepress/bundler-vite": "catalog:",
-    "@vuepress/plugin-shiki": "catalog:",
-    "@vuepress/theme-default": "catalog:",
+    "@vuepress/bundler-vite": "^2.0.0-rc.23",
+    "@vuepress/plugin-shiki": "^2.0.0-rc.108",
+    "@vuepress/theme-default": "^2.0.0-rc.108",
     "sass-embedded": "^1.89.1",
-    "vuepress": "catalog:",
+    "vuepress": "^2.0.0-rc.23",
     "vuepress-plugin-social-share": "workspace:*"
   }
 }

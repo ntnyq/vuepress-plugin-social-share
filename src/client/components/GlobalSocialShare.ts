@@ -9,11 +9,11 @@ import {
   shallowRef,
 } from 'vue'
 import { usePageFrontmatter } from 'vuepress/client'
-import { isString } from '../../shared/index.js'
-import { useSocialShareOptions } from '../helpers/index.js'
-import { isSVG, SVG_ICON_CLOSE, SVG_ICON_SHARE } from '../utils.js'
-import { SocialShare } from './SocialShare.js'
-import type { SocialShareFrontmatter } from '../../shared/index.js'
+import { isString } from '../../shared'
+import { useSocialShareOptions } from '../helpers'
+import { isSVG, SVG_ICON_CLOSE, SVG_ICON_SHARE } from '../utils'
+import { SocialShare } from './SocialShare'
+import type { SocialShareFrontmatter } from '../../shared'
 
 export const GlobalSocialShare = defineComponent({
   name: 'GlobalSocialShare',

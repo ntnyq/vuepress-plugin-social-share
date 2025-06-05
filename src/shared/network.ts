@@ -1,4 +1,4 @@
-import type { BuiltInNetworkNames } from './constants.js'
+import type { BuiltInNetworkNames } from './constants'
 
 /**
  * Themeable value

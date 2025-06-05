@@ -17,8 +17,6 @@
     "javascriptreact",
     "typescriptreact"
   ],
-  // required a .js extension for typescript import
-  "typescript.preferences.importModuleSpecifierEnding": "js",
   "cSpell.words": [
     "bumpp",
     "changelogithub",
@@ -36,6 +34,8 @@
     "serializers",
     "shiki",
     "tsbuildinfo",
+    "tsdown",
+    "unplugin",
     "unrs",
     "vite",
     "vuepress",
