@@ -31,8 +31,8 @@ importers:
         specifier: ^5.0.0-beta.6
         version: 5.0.0-beta.6(@typescript-eslint/utils@8.33.1(eslint@9.29.0(jiti@2.4.2))(typescript@5.8.3))(@vue/compiler-sfc@3.5.16)(eslint@9.29.0(jiti@2.4.2))(typescript@5.8.3)(vitest@3.2.3(@types/debug@4.1.12)(@types/node@22.15.31)(jiti@2.4.2)(sass-embedded@1.89.2)(yaml@2.8.0))
       '@ntnyq/prettier-config':
-        specifier: ^2.2.0
-        version: 2.2.0
+        specifier: ^3.0.1
+        version: 3.0.1
       '@types/node':
         specifier: ^22.15.31
         version: 22.15.31
@@ -509,8 +509,8 @@ packages:
       svelte-eslint-parser:
         optional: true
 
-  '@ntnyq/prettier-config@2.2.0':
-    resolution: {integrity: sha512-FThP39/iAeyWACoXcWb52x6R3G1tD7J+UKcagbqepa18Kpz5PKuKLOShxAC4hwhAE09wHc7+gmmnW1K4EuN+Fw==}
+  '@ntnyq/prettier-config@3.0.1':
+    resolution: {integrity: sha512-Mi8pvBu6Z0HsC6vFQQ9ucmEiot4GJ3AbwfU8J626m5oll9mgF5InO+pdGnFVtr9e82YHUHA67MihHLYT7CDhHw==}
 
   '@ntnyq/utils@0.6.5':
     resolution: {integrity: sha512-sjCzIYGXvRRuwN37twCVjszeDTfPtDE3hQ+vT/orH9Xo0ubKQDEA+HsyTewN1vo3ao0Kl3DGpsgPJ4nxy+nyvQ==}
@@ -3819,7 +3819,7 @@ snapshots:
       - typescript
       - vitest
 
-  '@ntnyq/prettier-config@2.2.0': {}
+  '@ntnyq/prettier-config@3.0.1': {}
 
   '@ntnyq/utils@0.6.5': {}
 
