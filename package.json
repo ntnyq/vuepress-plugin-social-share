@@ -60,19 +60,19 @@
     "@vuepress/helper": "^2.0.0-rc.112",
     "deepmerge": "^4.3.1",
     "qrcode": "^1.5.4",
-    "vue": "^3.5.17"
+    "vue": "^3.5.18"
   },
   "devDependencies": {
-    "@ntnyq/eslint-config": "^5.1.0",
+    "@ntnyq/eslint-config": "^5.2.0",
     "@ntnyq/prettier-config": "^3.0.1",
-    "@types/node": "^24.0.15",
+    "@types/node": "^24.1.0",
     "bumpp": "^10.2.0",
-    "eslint": "^9.31.0",
+    "eslint": "^9.32.0",
     "husky": "^9.1.7",
     "nano-staged": "^0.8.0",
     "npm-run-all2": "^8.0.4",
     "prettier": "^3.6.2",
-    "tsdown": "^0.12.9",
+    "tsdown": "^0.13.0",
     "typescript": "^5.8.3",
     "vitest": "^3.2.4",
     "vuepress": "^2.0.0-rc.24"
