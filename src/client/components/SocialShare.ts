@@ -272,20 +272,10 @@ export const SocialShare = defineComponent({
        * http://stackoverflow.com/questions/4068373/center-a-popup-window-on-screen/32261263
        */
       const rootEl = document.documentElement
-      const dualScreenLeft =
-        window.screenLeft !== undefined ? window.screenLeft : window.screenX
-      const dualScreenTop =
-        window.screenTop !== undefined ? window.screenTop : window.screenY
-      const width = window.innerWidth
-        ? window.innerWidth
-        : rootEl.clientWidth
-          ? rootEl.clientWidth
-          : screen.width
-      const height = window.innerHeight
-        ? window.innerHeight
-        : rootEl.clientHeight
-          ? rootEl.clientHeight
-          : screen.height
+      const dualScreenLeft = window.screenLeft ?? window.screenX
+      const dualScreenTop = window.screenTop ?? window.screenY
+      const width = window.innerWidth ?? rootEl.clientWidth ?? screen.width
+      const height = window.innerHeight ?? rootEl.clientHeight ?? screen.height
       popup.left = width / 2 - popup.width / 2 + dualScreenLeft
       popup.top = height / 2 - popup.height / 2 + dualScreenTop
     })
