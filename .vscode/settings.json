@@ -38,6 +38,7 @@
     "unplugin",
     "unrs",
     "vite",
+    "Vitest",
     "vuepress",
     "weibo"
   ],
