@@ -12,6 +12,8 @@ export const injectSocialShareOptions = (
   app.provide(socialShareOptionsSymbol, options)
 }
 
-export const useSocialShareOptions = () => {
-  return inject(socialShareOptionsSymbol)!
+export const useSocialShareOptions = <
+  T = SocialSharePluginOptionsWithDefaults,
+>() => {
+  return inject(socialShareOptionsSymbol) as T
 }

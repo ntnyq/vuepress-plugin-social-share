@@ -3,15 +3,14 @@ import {
   computed,
   defineComponent,
   h,
+  onBeforeUnmount,
   onMounted,
-  onUnmounted,
   ref,
   shallowRef,
 } from 'vue'
 import { usePageFrontmatter } from 'vuepress/client'
-import { isString } from '../../shared'
 import { useSocialShareOptions } from '../helpers'
-import { isSVG, SVG_ICON_CLOSE, SVG_ICON_SHARE } from '../utils'
+import { resolveThemeIcon, SVG_ICON_CLOSE, SVG_ICON_SHARE } from '../utils'
 import { SocialShare } from './SocialShare'
 import type { SocialShareFrontmatter } from '../../shared'
 
@@ -35,40 +34,16 @@ export const GlobalSocialShare = defineComponent({
         && !frontmatter.value.noGlobalSocialShare
         && !frontmatter.value.noSocialShare,
     )
-    const resolvedShareIcon = computed(() => {
-      if (options.shareIcon) {
-        if (isString(options.shareIcon)) {
-          return isSVG(options.shareIcon) ? options.shareIcon : SVG_ICON_SHARE
-        } else {
-          return isDarkMode.value
-            ? isSVG(options.shareIcon.dark)
-              ? options.shareIcon.dark
-              : SVG_ICON_SHARE
-            : isSVG(options.shareIcon.light)
-              ? options.shareIcon.light
-              : SVG_ICON_SHARE
-        }
-      }
-      return SVG_ICON_SHARE
-    })
-    const resolvedShareCloseIcon = computed(() => {
-      if (options.shareCloseIcon) {
-        if (isString(options.shareCloseIcon)) {
-          return isSVG(options.shareCloseIcon)
-            ? options.shareCloseIcon
-            : SVG_ICON_CLOSE
-        } else {
-          return isDarkMode.value
-            ? isSVG(options.shareCloseIcon.dark)
-              ? options.shareCloseIcon.dark
-              : SVG_ICON_CLOSE
-            : isSVG(options.shareCloseIcon.light)
-              ? options.shareCloseIcon.light
-              : SVG_ICON_CLOSE
-        }
-      }
-      return SVG_ICON_CLOSE
-    })
+    const resolvedShareIcon = computed(() =>
+      resolveThemeIcon(options.shareIcon, isDarkMode.value, SVG_ICON_SHARE),
+    )
+    const resolvedShareCloseIcon = computed(() =>
+      resolveThemeIcon(
+        options.shareCloseIcon,
+        isDarkMode.value,
+        SVG_ICON_CLOSE,
+      ),
+    )
 
     const onClick = (evt: MouseEvent) => {
       isActive.value = !isActive.value
@@ -85,12 +60,11 @@ export const GlobalSocialShare = defineComponent({
       isActive.value = false
     }
 
+    onBeforeUnmount(() => {
+      document.removeEventListener('click', onClickOutside)
+    })
     onMounted(() => {
       document.addEventListener('click', onClickOutside)
-    })
-
-    onUnmounted(() => {
-      document.removeEventListener('click', onClickOutside)
     })
 
     const renderButtonIcon = () =>

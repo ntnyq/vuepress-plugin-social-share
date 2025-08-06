@@ -1,5 +1,13 @@
 import { useDarkMode } from '@vuepress/helper/client'
-import { computed, defineComponent, h, onMounted, reactive, ref } from 'vue'
+import {
+  computed,
+  defineComponent,
+  h,
+  onBeforeUnmount,
+  onMounted,
+  reactive,
+  ref,
+} from 'vue'
 import { usePageFrontmatter, withBase } from 'vuepress/client'
 import { isString } from '../../shared'
 import { useSocialShareOptions } from '../helpers'
@@ -265,6 +273,12 @@ export const SocialShare = defineComponent({
           }),
         ),
       )
+
+    onBeforeUnmount(() => {
+      if (intervalTimer.value) {
+        clearInterval(intervalTimer.value)
+      }
+    })
 
     onMounted(() => {
       /**

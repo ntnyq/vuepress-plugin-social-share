@@ -1,3 +1,6 @@
+import { isString } from '../shared'
+import type { ThemeableValue } from '../shared'
+
 export const RE_SVG_SOURCE = /<svg\b[^>]*>(.*?)<\/svg>/is
 export const RE_EXTERNAL_LINK = /^https?:/
 
@@ -40,4 +43,26 @@ export function getMetaContentByName(name: string) {
     return ''
   }
   return tag.getAttribute('content') || ''
+}
+
+/**
+ * Resolve theme icon based on the current theme
+ * @param icon - icon to resolve, can be a string or an object with `dark` and `light` properties
+ * @param isDark - whether the current theme is dark
+ * @param fallback - fallback icon if the resolved icon is not valid
+ * @returns resolved theme icon
+ */
+export function resolveThemeIcon(
+  icon: ThemeableValue | undefined | null,
+  isDark: boolean,
+  fallback: string,
+): string {
+  if (!icon) {
+    return fallback
+  }
+  if (isString(icon)) {
+    return isSVG(icon) ? icon : fallback
+  }
+  const themeIcon = isDark ? icon.dark : icon.light
+  return isSVG(themeIcon) ? themeIcon : fallback
 }
