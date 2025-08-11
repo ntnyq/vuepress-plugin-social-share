@@ -63,16 +63,16 @@
     "vue": "^3.5.18"
   },
   "devDependencies": {
-    "@ntnyq/eslint-config": "^5.3.0",
+    "@ntnyq/eslint-config": "^5.3.1",
     "@ntnyq/prettier-config": "^3.0.1",
-    "@types/node": "^24.2.0",
+    "@types/node": "^24.2.1",
     "bumpp": "^10.2.2",
-    "eslint": "^9.32.0",
+    "eslint": "^9.33.0",
     "husky": "^9.1.7",
     "nano-staged": "^0.8.0",
     "npm-run-all2": "^8.0.4",
     "prettier": "^3.6.2",
-    "tsdown": "^0.13.3",
+    "tsdown": "^0.14.0",
     "typescript": "^5.9.2",
     "vitest": "^3.2.4",
     "vuepress": "^2.0.0-rc.24"
