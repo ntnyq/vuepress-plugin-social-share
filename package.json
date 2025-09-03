@@ -36,6 +36,10 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public",
+    "tag": "next"
+  },
   "scripts": {
     "build": "tsdown",
     "build:site": "run-s build docs:build",
@@ -45,9 +49,8 @@
     "lint": "eslint",
     "prepare": "husky",
     "prepublishOnly": "pnpm run build",
-    "release": "run-s release:check release:version release:publish",
+    "release": "run-s release:check release:version",
     "release:check": "run-s lint typecheck test",
-    "release:publish": "pnpm publish --tag next",
     "release:version": "bumpp",
     "test": "vitest",
     "typecheck": "tsc --noEmit"
