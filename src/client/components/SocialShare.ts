@@ -46,6 +46,20 @@ export const SocialShare = defineComponent({
     const frontmatter = usePageFrontmatter<SocialShareFrontmatter>()
     const isDarkMode = useDarkMode()
 
+    // Helper function to get frontmatter value with fallback chain
+    const getFrontmatterValue = <T = string>(
+      keys: (keyof SocialShareFrontmatter)[],
+      fallback?: T,
+    ): T | undefined => {
+      for (const key of keys) {
+        const value = frontmatter.value[key]
+        if (value !== undefined && value !== null) {
+          return value as T
+        }
+      }
+      return fallback
+    }
+
     const networks = computed(() => [
       ...new Set(
         props.networks
@@ -54,15 +68,24 @@ export const SocialShare = defineComponent({
             .map(item => item.name),
       ),
     ])
-    const networkList = computed(() =>
-      options.networksData
-        .filter(network => networks.value.includes(network.name))
-        .sort(
-          (prev, next) =>
-            networks.value.indexOf(prev.name)
-            - networks.value.indexOf(next.name),
-        ),
-    )
+    // Use Map for better performance when filtering and sorting networks
+    const networkMap = computed(() => {
+      const map = new Map<string, SocialShareNetworkWithName>()
+      options.networksData.forEach(network => {
+        map.set(network.name, network)
+      })
+      return map
+    })
+    const networkList = computed(() => {
+      const result: SocialShareNetworkWithName[] = []
+      for (const name of networks.value) {
+        const network = networkMap.value.get(name)
+        if (network) {
+          result.push(network)
+        }
+      }
+      return result
+    })
 
     const intervalTimer = ref<ReturnType<typeof setInterval>>()
     const popup = reactive({
@@ -85,30 +108,25 @@ export const SocialShare = defineComponent({
     )
     const url = computed(
       () =>
-        frontmatter.value.$shareUrl
-        ?? frontmatter.value.shareUrl
-        ?? frontmatter.value.permalink
+        getFrontmatterValue(['$shareUrl', 'shareUrl', 'permalink'])
         ?? (inBrowser ? location.href : ''),
     )
     const title = computed(
       () =>
-        frontmatter.value.$shareTitle
-        ?? frontmatter.value.shareTitle
-        ?? frontmatter.value.title
+        getFrontmatterValue(['$shareTitle', 'shareTitle', 'title'])
         ?? (inBrowser ? document.title : ''),
     )
     const description = computed(
       () =>
-        frontmatter.value.$shareDescription
-        ?? frontmatter.value.shareDescription
-        ?? frontmatter.value.description
-        ?? getMetaContentByName('description'),
+        getFrontmatterValue([
+          '$shareDescription',
+          'shareDescription',
+          'description',
+        ]) ?? getMetaContentByName('description'),
     )
     const media = computed(() => {
       const mediaURL =
-        frontmatter.value.$shareImage
-        ?? frontmatter.value.shareImage
-        ?? frontmatter.value.image
+        getFrontmatterValue(['$shareImage', 'shareImage', 'image'])
         ?? options.fallbackImage
 
       if (!mediaURL) {
@@ -122,16 +140,12 @@ export const SocialShare = defineComponent({
     })
     const quote = computed(
       () =>
-        frontmatter.value.$shareQuote
-        ?? frontmatter.value.shareQuote
+        getFrontmatterValue(['$shareQuote', 'shareQuote'])
         ?? ((options.autoQuote ?? true) ? description.value : ''),
     )
     const hashtags = computed(() => {
       const tags =
-        frontmatter.value.$shareTags
-        ?? frontmatter.value.shareTags
-        ?? frontmatter.value.tags
-        ?? frontmatter.value.tag
+        getFrontmatterValue(['$shareTags', 'shareTags', 'tags', 'tag'])
         ?? props.tags
         ?? getMetaContentByName('keywords')
       if (Array.isArray(tags)) {
@@ -179,6 +193,7 @@ export const SocialShare = defineComponent({
       intervalTimer.value = setInterval(() => {
         if (popWindow?.closed) {
           clearInterval(intervalTimer.value)
+          intervalTimer.value = undefined
           popWindow = null
         }
       }, 500)
@@ -206,13 +221,15 @@ export const SocialShare = defineComponent({
         body.append(socialShareOverlay)
         socialShareOverlay.classList.add('show')
 
-        socialShareOverlay.addEventListener('click', evt => {
+        const handleClick = (evt: MouseEvent) => {
           socialShareOverlay.classList.remove('show')
+          socialShareOverlay.removeEventListener('click', handleClick)
           socialShareOverlay.remove()
           evt.stopPropagation()
-        })
+        }
+        socialShareOverlay.addEventListener('click', handleClick)
       } catch (err) {
-        console.log(err)
+        console.error('Failed to generate QR code:', err)
       }
     }
     const openWindow = (shareURL: string) => {
@@ -229,17 +246,21 @@ export const SocialShare = defineComponent({
       if (['twitter'].includes(name) && hashtags.value.length === 0) {
         sharer = sharer.replace('&hashtags=@hashtags', '')
       }
-      return sharer
-        .replace(/@url/g, encodeURIComponent(url.value))
-        .replace(/@title/g, encodeURIComponent(title.value))
-        .replace(/@media/g, media.value)
-        .replace(/@description/g, encodeURIComponent(description.value))
-        .replace(/@quote/g, encodeURIComponent(quote.value))
-        .replace(/@hashtags/g, generateHashTags(hashtags.value, name))
-        .replace(
-          /@twitteruser/g,
-          options.twitterUser ? `&via=${options.twitterUser}` : '',
-        )
+
+      // Use a single replace with a mapping object for better performance
+      const replacements: Record<string, string> = {
+        '@url': encodeURIComponent(url.value),
+        '@title': encodeURIComponent(title.value),
+        '@media': media.value,
+        '@description': encodeURIComponent(description.value),
+        '@quote': encodeURIComponent(quote.value),
+        '@hashtags': generateHashTags(hashtags.value, name),
+        '@twitteruser': options.twitterUser
+          ? `&via=${options.twitterUser}`
+          : '',
+      }
+
+      return sharer.replace(/@\w+/g, match => replacements[match] ?? match)
     }
     const onShare = (name: string) => {
       const network = options.networksData.find(item => item.name === name)!

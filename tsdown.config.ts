@@ -6,6 +6,7 @@ export default defineConfig({
   dts: true,
   entry: ['src/node/**/*.ts', 'src/client/**/*.ts', 'src/shared/**/*.ts'],
   hash: false,
+  platform: 'neutral',
   unbundle: true,
   hooks: {
     'build:done': async () => {
