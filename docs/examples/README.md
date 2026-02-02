@@ -20,15 +20,9 @@ Usage examples.
 <!-- prettier-ignore-start -->
 
 ```vue
-<SocialShare 
-  :networks="[
-    'facebook', 
-    'qq', 
-    'twitter', 
-    'line', 
-    'reddit',
-  ]" 
-  is-plain 
+<SocialShare
+  :networks="['facebook', 'qq', 'twitter', 'line', 'reddit']"
+  is-plain
 />
 ```
 
@@ -50,9 +44,9 @@ Usage examples.
 <!-- prettier-ignore-start -->
 
 ```vue
-<SocialShare 
-  :networks="['twitter', 'facebook']" 
-  :tags="['SocialShare', 'VuePress']" 
+<SocialShare
+  :networks="['twitter', 'facebook']"
+  :tags="['SocialShare', 'VuePress']"
 />
 ```
 

@@ -22,7 +22,7 @@ jobs:
           node-version: lts/*
           cache: pnpm
 
-      - run: npx changelogithub
+      - run: pnpm dlx changelogithub
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 

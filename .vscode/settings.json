@@ -1,9 +1,9 @@
 {
+  "oxc.enable": true,
   "eslint.enable": true,
-  "prettier.enable": true,
+  "prettier.enable": false,
   "editor.formatOnSave": true,
-  "prettier.configPath": "./prettier.config.mjs",
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "oxc.oxc-vscode",
   "eslint.validate": [
     "vue",
     "toml",
@@ -17,6 +17,7 @@
     "javascriptreact",
     "typescriptreact"
   ],
+  "typescript.experimental.useTsgo": true,
   "cSpell.words": [
     "bumpp",
     "changelogithub",
@@ -28,6 +29,7 @@
     "iconify",
     "linkedin",
     "ntnyq",
+    "oxfmt",
     "pnpm",
     "qrcode",
     "rgba",

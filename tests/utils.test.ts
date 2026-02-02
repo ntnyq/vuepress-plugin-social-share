@@ -10,29 +10,21 @@ const FIXTURES = {
 }
 
 describe('isSVG', () => {
-  it('valid', () => {
-    FIXTURES.validSVG.forEach(svg => {
-      expect(isSVG(svg)).toBeTruthy()
-    })
+  it.each(FIXTURES.validSVG)('valid - %s', svg => {
+    expect(isSVG(svg)).toBeTruthy()
   })
 
-  it('invald', () => {
-    FIXTURES.invalidSVG.forEach(svg => {
-      expect(isSVG(svg)).toBeFalsy()
-    })
+  it.each(FIXTURES.invalidSVG)('invalid - %s', svg => {
+    expect(isSVG(svg)).toBeFalsy()
   })
 })
 
 describe('isExternalUrl', () => {
-  it('valid', () => {
-    FIXTURES.validExternalUrl.forEach(url => {
-      expect(isExternalUrl(url)).toBeTruthy()
-    })
+  it.each(FIXTURES.validExternalUrl)('valid - %s', url => {
+    expect(isExternalUrl(url)).toBeTruthy()
   })
 
-  it('invald', () => {
-    FIXTURES.invalidExternalUrl.forEach(url => {
-      expect(isExternalUrl(url)).toBeFalsy()
-    })
+  it.each(FIXTURES.invalidExternalUrl)('invalid - %s', url => {
+    expect(isExternalUrl(url)).toBeFalsy()
   })
 })

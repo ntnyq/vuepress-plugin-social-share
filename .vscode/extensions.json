@@ -1,9 +1,10 @@
 {
   "recommendations": [
     "dbaeumer.vscode-eslint",
-    "esbenp.prettier-vscode",
     "ntnyq.eslint-command",
     "editorconfig.editorconfig",
-    "streetsidesoftware.code-spell-checker"
+    "streetsidesoftware.code-spell-checker",
+    "typescriptteam.native-preview",
+    "oxc.oxc-vscode"
   ]
 }

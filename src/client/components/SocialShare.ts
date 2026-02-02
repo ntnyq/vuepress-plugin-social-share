@@ -62,8 +62,8 @@ export const SocialShare = defineComponent({
 
     const networks = computed(() => [
       ...new Set(
-        props.networks
-          ?? options.networksData
+        props.networks ??
+          options.networksData
             .filter(item => item.default)
             .map(item => item.name),
       ),
@@ -108,13 +108,13 @@ export const SocialShare = defineComponent({
     )
     const url = computed(
       () =>
-        getFrontmatterValue(['$shareUrl', 'shareUrl', 'permalink'])
-        ?? (inBrowser ? location.href : ''),
+        getFrontmatterValue(['$shareUrl', 'shareUrl', 'permalink']) ??
+        (inBrowser ? location.href : ''),
     )
     const title = computed(
       () =>
-        getFrontmatterValue(['$shareTitle', 'shareTitle', 'title'])
-        ?? (inBrowser ? document.title : ''),
+        getFrontmatterValue(['$shareTitle', 'shareTitle', 'title']) ??
+        (inBrowser ? document.title : ''),
     )
     const description = computed(
       () =>
@@ -126,8 +126,8 @@ export const SocialShare = defineComponent({
     )
     const media = computed(() => {
       const mediaURL =
-        getFrontmatterValue(['$shareImage', 'shareImage', 'image'])
-        ?? options.fallbackImage
+        getFrontmatterValue(['$shareImage', 'shareImage', 'image']) ??
+        options.fallbackImage
 
       if (!mediaURL) {
         return ''
@@ -140,14 +140,14 @@ export const SocialShare = defineComponent({
     })
     const quote = computed(
       () =>
-        getFrontmatterValue(['$shareQuote', 'shareQuote'])
-        ?? ((options.autoQuote ?? true) ? description.value : ''),
+        getFrontmatterValue(['$shareQuote', 'shareQuote']) ??
+        ((options.autoQuote ?? true) ? description.value : ''),
     )
     const hashtags = computed(() => {
       const tags =
-        getFrontmatterValue(['$shareTags', 'shareTags', 'tags', 'tag'])
-        ?? props.tags
-        ?? getMetaContentByName('keywords')
+        getFrontmatterValue(['$shareTags', 'shareTags', 'tags', 'tag']) ??
+        props.tags ??
+        getMetaContentByName('keywords')
       if (Array.isArray(tags)) {
         return tags.join(',')
       }

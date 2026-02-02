@@ -30,9 +30,9 @@ export const GlobalSocialShare = defineComponent({
 
     const visible = computed(
       () =>
-        !options.noGlobalSocialShare
-        && !frontmatter.value.noGlobalSocialShare
-        && !frontmatter.value.noSocialShare,
+        !options.noGlobalSocialShare &&
+        !frontmatter.value.noGlobalSocialShare &&
+        !frontmatter.value.noSocialShare,
     )
     const resolvedShareIcon = computed(() =>
       resolveThemeIcon(options.shareIcon, isDarkMode.value, SVG_ICON_SHARE),
