@@ -1,8 +1,6 @@
 {
   "name": "vuepress-plugin-social-share",
-  "type": "module",
   "version": "2.0.0-beta.31",
-  "packageManager": "pnpm@10.29.3",
   "description": "Social sharing plugin for VuePress",
   "keywords": [
     "facebook",
@@ -15,27 +13,28 @@
     "vuepress-plugin",
     "weibo"
   ],
+  "homepage": "https://social-share.ntnyq.com",
+  "bugs": {
+    "url": "https://github.com/ntnyq/vuepress-plugin-social-share/issues"
+  },
   "license": "MIT",
   "author": {
     "name": "ntnyq",
     "email": "ntnyq13@gmail.com"
   },
-  "homepage": "https://social-share.ntnyq.com",
   "repository": "ntnyq/vuepress-plugin-social-share",
-  "bugs": {
-    "url": "https://github.com/ntnyq/vuepress-plugin-social-share/issues"
-  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "main": "./dist/node/index.js",
+  "types": "./dist/node/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": "./dist/node/index.js",
     "./client": "./dist/client/index.js",
     "./client/*": "./dist/client/*"
   },
-  "main": "./dist/node/index.js",
-  "types": "./dist/node/index.d.ts",
-  "files": [
-    "dist"
-  ],
   "publishConfig": {
     "access": "public",
     "tag": "next"
@@ -48,7 +47,7 @@
     "docs:dev": "pnpm -C docs run dev",
     "format": "oxfmt",
     "format:check": "oxfmt --check",
-    "lint": "eslint",
+    "lint": "oxlint",
     "prepare": "husky",
     "prepublishOnly": "pnpm run build",
     "release": "run-s release:check release:version",
@@ -57,33 +56,33 @@
     "test": "vitest",
     "typecheck": "tsc --noEmit"
   },
-  "peerDependencies": {
-    "vuepress": "^2.0.0-rc.19"
-  },
   "dependencies": {
     "@types/qrcode": "^1.5.6",
     "@vuepress/helper": "^2.0.0-rc.123",
     "deepmerge": "^4.3.1",
     "qrcode": "^1.5.4",
-    "vue": "^3.5.28"
+    "vue": "^3.5.29"
   },
   "devDependencies": {
-    "@ntnyq/eslint-config": "^6.0.0-beta.8",
-    "@types/node": "^25.2.3",
-    "@typescript/native-preview": "^7.0.0-dev.20260215.1",
+    "@types/node": "^25.3.0",
+    "@typescript/native-preview": "^7.0.0-dev.20260224.1",
     "bumpp": "^10.4.1",
-    "eslint": "^9.39.2",
     "husky": "^9.1.7",
     "nano-staged": "^0.9.0",
     "npm-run-all2": "^8.0.4",
-    "oxfmt": "^0.32.0",
+    "oxfmt": "^0.35.0",
+    "oxlint": "^1.50.0",
     "tsdown": "^0.20.3",
     "typescript": "^5.9.3",
     "vitest": "^4.0.18",
     "vuepress": "^2.0.0-rc.26"
   },
+  "peerDependencies": {
+    "vuepress": "^2.0.0-rc.19"
+  },
   "nano-staged": {
-    "*.{js,ts,mjs,tsx,vue,md,yml,yaml,json}": "eslint --fix",
+    "*.{js,ts,mjs,tsx,vue}": "oxlint --fix",
     "*": "oxfmt --no-error-on-unmatched-pattern"
-  }
+  },
+  "packageManager": "pnpm@10.30.2"
 }

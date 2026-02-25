@@ -1,8 +1,8 @@
 import './styles/vars.css'
 import { defineClientConfig } from 'vuepress/client'
+import type { SocialSharePluginOptionsWithDefaults } from '../shared/plugin'
 import { GlobalSocialShare, SocialShare } from './components'
 import { injectSocialShareOptions } from './helpers'
-import type { SocialSharePluginOptionsWithDefaults } from '../shared/plugin'
 
 declare const __SOCIAL_SHARE_COMPONENT_NAME__: string
 declare const __SOCIAL_SHARE_USE_CUSTOM_STYLE__: boolean

@@ -8,18 +8,18 @@ import {
   reactive,
   ref,
 } from 'vue'
+import type { PropType } from 'vue'
 import { usePageFrontmatter, withBase } from 'vuepress/client'
 import { isString } from '../../shared'
-import { useSocialShareOptions } from '../helpers'
-import { getMetaContentByName, inBrowser, isExternalUrl } from '../utils'
-import { SocialShareNetwork } from './SocialShareNetwork'
-import type { PropType } from 'vue'
 import type {
   SocialShareNetwork as Network,
   SocialShareFrontmatter,
   SocialShareNetworkWithName,
   SocialShareQRCodeOptions,
 } from '../../shared'
+import { useSocialShareOptions } from '../helpers'
+import { getMetaContentByName, inBrowser, isExternalUrl } from '../utils'
+import { SocialShareNetwork } from './SocialShareNetwork'
 
 export const SocialShare = defineComponent({
   name: 'SocialShare',

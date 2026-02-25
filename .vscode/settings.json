@@ -1,22 +1,9 @@
 {
   "oxc.enable": true,
-  "eslint.enable": true,
+  "eslint.enable": false,
   "prettier.enable": false,
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "oxc.oxc-vscode",
-  "eslint.validate": [
-    "vue",
-    "toml",
-    "yaml",
-    "json",
-    "jsonc",
-    "json5",
-    "markdown",
-    "javascript",
-    "typescript",
-    "javascriptreact",
-    "typescriptreact"
-  ],
   "typescript.experimental.useTsgo": true,
   "cSpell.words": [
     "bumpp",
@@ -30,6 +17,7 @@
     "linkedin",
     "ntnyq",
     "oxfmt",
+    "oxlint",
     "pnpm",
     "qrcode",
     "rgba",

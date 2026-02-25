@@ -1,10 +1,10 @@
 import { viteBundler } from '@vuepress/bundler-vite'
 import { shikiPlugin } from '@vuepress/plugin-shiki'
 import { defaultTheme } from '@vuepress/theme-default'
+import type { NavbarLinkOptions } from '@vuepress/theme-default'
 import { defineUserConfig } from 'vuepress'
 import { socialSharePlugin } from 'vuepress-plugin-social-share'
 import { repository, version } from '../../package.json'
-import type { NavbarLinkOptions } from '@vuepress/theme-default'
 
 const packageName = 'vuepress-plugin-social-share'
 

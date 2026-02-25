@@ -1,12 +1,12 @@
 import { addViteSsrNoExternal } from '@vuepress/helper'
+import type { PluginFunction } from 'vuepress/core'
 import { getDirname, path } from 'vuepress/utils'
 import { PLUGIN_NAME } from '../shared'
-import { logger, resolveNetworksData } from './helpers'
-import type { PluginFunction } from 'vuepress/core'
 import type {
   SocialSharePluginOptions,
   SocialSharePluginOptionsWithDefaults,
 } from '../shared'
+import { logger, resolveNetworksData } from './helpers'
 
 const __dirname = getDirname(import.meta.url)
 

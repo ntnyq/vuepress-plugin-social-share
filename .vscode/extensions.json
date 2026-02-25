@@ -1,6 +1,5 @@
 {
   "recommendations": [
-    "dbaeumer.vscode-eslint",
     "ntnyq.eslint-command",
     "editorconfig.editorconfig",
     "streetsidesoftware.code-spell-checker",

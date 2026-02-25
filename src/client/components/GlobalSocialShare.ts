@@ -9,10 +9,10 @@ import {
   shallowRef,
 } from 'vue'
 import { usePageFrontmatter } from 'vuepress/client'
+import type { SocialShareFrontmatter } from '../../shared'
 import { useSocialShareOptions } from '../helpers'
 import { resolveThemeIcon, SVG_ICON_CLOSE, SVG_ICON_SHARE } from '../utils'
 import { SocialShare } from './SocialShare'
-import type { SocialShareFrontmatter } from '../../shared'
 
 export const GlobalSocialShare = defineComponent({
   name: 'GlobalSocialShare',
