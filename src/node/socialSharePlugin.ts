@@ -33,8 +33,6 @@ export const socialSharePlugin =
     }
 
     return {
-      name: PLUGIN_NAME,
-
       clientConfigFile: path.resolve(__dirname, '../client/config.js'),
 
       define: {
@@ -46,5 +44,7 @@ export const socialSharePlugin =
       extendsBundlerOptions(bundlerOptions, app) {
         addViteSsrNoExternal(bundlerOptions, app, '@vuepress/helper')
       },
+
+      name: PLUGIN_NAME,
     }
   }

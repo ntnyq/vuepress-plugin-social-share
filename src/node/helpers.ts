@@ -1,6 +1,6 @@
 import { Logger } from '@vuepress/helper'
 import deepmerge from 'deepmerge'
-import { BUILT_IN_NETWORKS, isString, PLUGIN_NAME } from '../shared'
+import { BUILT_IN_NETWORKS, PLUGIN_NAME, isString } from '../shared'
 import type {
   SocialShareNetworkWithName,
   SocialSharePluginOptions,
@@ -44,8 +44,8 @@ export function resolveNetworksData(
   Object.entries(mergedNetworks).forEach(([name, network]) => {
     networksData.push({
       ...network,
-      name,
       default: enabledNetworkNames.has(name),
+      name,
     })
   })
 

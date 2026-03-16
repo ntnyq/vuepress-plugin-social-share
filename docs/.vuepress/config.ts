@@ -9,46 +9,18 @@ import { repository, version } from '../../package.json'
 const packageName = 'vuepress-plugin-social-share'
 
 const VERSIONS: NavbarLinkOptions[] = [
-  { text: `v${version} (current)`, link: '/' },
+  { link: '/', text: `v${version} (current)` },
   {
-    text: 'Release Notes',
     link: `https://github.com/${repository}/releases`,
+    text: 'Release Notes',
   },
-  { text: 'VuePress v1', link: 'https://social-share-v1.ntnyq.com' },
+  { link: 'https://social-share-v1.ntnyq.com', text: 'VuePress v1' },
 ]
 
 export default defineUserConfig({
-  title: packageName,
-
-  description: 'Social sharing plugin for VuePress',
-
   bundler: viteBundler(),
 
-  theme: defaultTheme({
-    repo: repository,
-    docsRepo: repository,
-    docsDir: 'docs',
-    docsBranch: 'next',
-    editLink: true,
-    lastUpdated: true,
-
-    navbar: [
-      { text: 'Home', link: '/' },
-      { text: 'Guide', link: '/guide/' },
-      { text: 'Examples', link: '/examples/' },
-      {
-        text: `v${version}`,
-        children: VERSIONS,
-      },
-    ],
-
-    sidebar: [
-      {
-        link: '/guide/',
-        text: 'Guide',
-      },
-    ],
-  }),
+  description: 'Social sharing plugin for VuePress',
 
   plugins: [
     shikiPlugin({
@@ -81,4 +53,32 @@ export default defineUserConfig({
       hideWhenPrint: true,
     }),
   ],
+
+  theme: defaultTheme({
+    repo: repository,
+    docsRepo: repository,
+    docsDir: 'docs',
+    docsBranch: 'next',
+    editLink: true,
+    lastUpdated: true,
+
+    navbar: [
+      { text: 'Home', link: '/' },
+      { text: 'Guide', link: '/guide/' },
+      { text: 'Examples', link: '/examples/' },
+      {
+        text: `v${version}`,
+        children: VERSIONS,
+      },
+    ],
+
+    sidebar: [
+      {
+        link: '/guide/',
+        text: 'Guide',
+      },
+    ],
+  }),
+
+  title: packageName,
 })

@@ -2,11 +2,11 @@ import { describe, expect, it } from 'vitest'
 import { isExternalUrl, isSVG } from '../src/client/utils'
 
 const FIXTURES = {
-  validSVG: ['<svg></svg>', '<svg><g></g></svg>'],
+  invalidExternalUrl: ['foo.bar', '/foo.bar'],
   invalidSVG: ['<svg</svg>', '<svg><svg>'],
 
   validExternalUrl: ['https://foo.bar', 'http://foo.bar'],
-  invalidExternalUrl: ['foo.bar', '/foo.bar'],
+  validSVG: ['<svg></svg>', '<svg><g></g></svg>'],
 }
 
 describe('isSVG', () => {

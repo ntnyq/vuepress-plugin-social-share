@@ -22,9 +22,9 @@ import { getMetaContentByName, inBrowser, isExternalUrl } from '../utils'
 import { SocialShareNetwork } from './SocialShareNetwork'
 
 export const SocialShare = defineComponent({
-  name: 'SocialShare',
-
   inheritAttrs: true,
+
+  name: 'SocialShare',
 
   props: {
     networks: {

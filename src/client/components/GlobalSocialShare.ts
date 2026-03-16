@@ -11,13 +11,13 @@ import {
 import { usePageFrontmatter } from 'vuepress/client'
 import type { SocialShareFrontmatter } from '../../shared'
 import { useSocialShareOptions } from '../helpers'
-import { resolveThemeIcon, SVG_ICON_CLOSE, SVG_ICON_SHARE } from '../utils'
+import { SVG_ICON_CLOSE, SVG_ICON_SHARE, resolveThemeIcon } from '../utils'
 import { SocialShare } from './SocialShare'
 
 export const GlobalSocialShare = defineComponent({
-  name: 'GlobalSocialShare',
-
   inheritAttrs: true,
+
+  name: 'GlobalSocialShare',
 
   setup() {
     const options = useSocialShareOptions()

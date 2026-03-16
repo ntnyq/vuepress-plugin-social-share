@@ -9,9 +9,11 @@ export enum Event {
 }
 
 export const SocialShareNetwork = defineComponent({
-  name: 'SocialShareNetwork',
+  emits: [Event.Share],
 
   inheritAttrs: true,
+
+  name: 'SocialShareNetwork',
 
   props: {
     network: {
@@ -43,8 +45,6 @@ export const SocialShareNetwork = defineComponent({
       default: '',
     },
   },
-
-  emits: [Event.Share],
 
   setup(props, ctx) {
     const resolvedIcon = computed(() => {
