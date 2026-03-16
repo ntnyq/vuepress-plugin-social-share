@@ -20,7 +20,7 @@ export interface SocialShareFrontmatter {
   noGlobalSocialShare?: boolean
   noSocialShare?: boolean
 
-  // share meta
+  // Share meta
   $shareDescription?: string
   $shareImage?: string
   $shareQuote?: string

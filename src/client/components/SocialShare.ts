@@ -27,12 +27,12 @@ export const SocialShare = defineComponent({
   name: 'SocialShare',
 
   props: {
-    networks: {
-      type: Array as PropType<string[]>,
-    },
-
     isPlain: {
       type: Boolean,
+    },
+
+    networks: {
+      type: Array as PropType<string[]>,
     },
 
     tags: {
@@ -89,17 +89,17 @@ export const SocialShare = defineComponent({
 
     const intervalTimer = ref<ReturnType<typeof setInterval>>()
     const popup = reactive({
-      status: false,
-      resizable: false,
-      toolbar: false,
-      menubar: false,
-      scrollbars: false,
-      location: false,
       directories: false,
-      width: 626,
       height: 436,
-      top: 0,
       left: 0,
+      location: false,
+      menubar: false,
+      resizable: false,
+      scrollbars: false,
+      status: false,
+      toolbar: false,
+      top: 0,
+      width: 626,
     })
 
     // Computed
@@ -152,16 +152,16 @@ export const SocialShare = defineComponent({
         return tags.join(',')
       }
       if (isString(tags)) {
-        return tags.replace(/\s/g, '')
+        return tags.replaceAll(/\s/g, '')
       }
       return ''
     })
     const qrcodeRenderOptions = computed<SocialShareQRCodeOptions>(() => {
       const defaultOptions: SocialShareQRCodeOptions = {
         errorCorrectionLevel: 'H',
-        width: 250,
-        scale: 1,
         margin: 1.5,
+        scale: 1,
+        width: 250,
       }
       return {
         ...defaultOptions,
@@ -199,7 +199,7 @@ export const SocialShare = defineComponent({
       }, 500)
     }
     const showQRCode = async () => {
-      const body = document.body
+      const {body} = document
       const socialShareEl = document.querySelector('#__VUEPRESS_SOCIAL_SHARE__')
       const socialShareOverlay = document.createElement('div')
 
@@ -228,8 +228,8 @@ export const SocialShare = defineComponent({
           evt.stopPropagation()
         }
         socialShareOverlay.addEventListener('click', handleClick)
-      } catch (err) {
-        console.error('Failed to generate QR code:', err)
+      } catch (error) {
+        console.error('Failed to generate QR code:', error)
       }
     }
     const openWindow = (shareURL: string) => {
@@ -249,32 +249,36 @@ export const SocialShare = defineComponent({
 
       // Use a single replace with a mapping object for better performance
       const replacements: Record<string, string> = {
-        '@url': encodeURIComponent(url.value),
-        '@title': encodeURIComponent(title.value),
-        '@media': media.value,
         '@description': encodeURIComponent(description.value),
-        '@quote': encodeURIComponent(quote.value),
         '@hashtags': generateHashTags(hashtags.value, name),
+        '@media': media.value,
+        '@quote': encodeURIComponent(quote.value),
+        '@title': encodeURIComponent(title.value),
         '@twitteruser': options.twitterUser
           ? `&via=${options.twitterUser}`
           : '',
+        '@url': encodeURIComponent(url.value),
       }
 
-      return sharer.replace(/@\w+/g, match => replacements[match] ?? match)
+      return sharer.replaceAll(/@\w+/g, match => replacements[match] ?? match)
     }
     const onShare = (name: string) => {
       const network = options.networksData.find(item => item.name === name)!
       const shareURL = createShareURL(name, network)
 
       switch (network.type) {
-        case 'popup':
+        case 'popup': {
           return openSharer(shareURL)
-        case 'qrcode':
+        }
+        case 'qrcode': {
           return showQRCode()
-        case 'direct':
+        }
+        case 'direct': {
           return openWindow(shareURL)
-        default:
+        }
+        default: {
           return openSharer(shareURL)
+        }
       }
     }
     const renderNetworkList = (networks: SocialShareNetworkWithName[]) =>
@@ -286,11 +290,11 @@ export const SocialShare = defineComponent({
         },
         networks.map(network =>
           h(SocialShareNetwork, {
-            network,
             isDark: isDarkMode.value,
             isPlain: props.isPlain || options.isPlain,
-            shareURL: createShareURL(network.name, network),
+            network,
             onShare: (name: string) => onShare(name),
+            shareURL: createShareURL(network.name, network),
           }),
         ),
       )

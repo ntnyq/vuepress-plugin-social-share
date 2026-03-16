@@ -36,9 +36,9 @@ export const socialSharePlugin =
       clientConfigFile: path.resolve(__dirname, '../client/config.js'),
 
       define: {
+        __SOCIAL_SHARE_CLIENT_OPTIONS__: clientOptions,
         __SOCIAL_SHARE_COMPONENT_NAME__: componentName,
         __SOCIAL_SHARE_USE_CUSTOM_STYLE__: useCustomStyle,
-        __SOCIAL_SHARE_CLIENT_OPTIONS__: clientOptions,
       },
 
       extendsBundlerOptions(bundlerOptions, app) {

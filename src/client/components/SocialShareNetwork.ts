@@ -16,6 +16,16 @@ export const SocialShareNetwork = defineComponent({
   name: 'SocialShareNetwork',
 
   props: {
+    isDark: {
+      type: Boolean,
+      default: false,
+    },
+
+    isPlain: {
+      type: Boolean,
+      default: false,
+    },
+
     network: {
       type: Object as PropType<SocialShareNetworkWithName>,
       required: true,
@@ -28,16 +38,6 @@ export const SocialShareNetwork = defineComponent({
         }
         return true
       },
-    },
-
-    isPlain: {
-      type: Boolean,
-      default: false,
-    },
-
-    isDark: {
-      type: Boolean,
-      default: false,
     },
 
     shareURL: {
@@ -69,27 +69,27 @@ export const SocialShareNetwork = defineComponent({
         ? h('span', {
             class: 'social-share-icon-svg',
             focusable: false,
-            style: { color: resolvedColor.value },
             innerHTML: resolvedIcon.value,
+            style: { color: resolvedColor.value },
           })
         : h('span', {
-            style: { backgroundImage: `url(${resolvedIcon.value})` },
             class: 'social-share-icon-img',
+            style: { backgroundImage: `url(${resolvedIcon.value})` },
           })
     const renderShareButton = () =>
       h(
         'button',
         {
-          class: 'social-share-btn',
-          title: upperFirst(props.network.name),
-          type: 'button',
-          role: 'button',
           'aria-label': `Share with ${upperFirst(props.network.name)}`,
-          onClick: () => ctx.emit(Event.Share, props.network.name),
+          class: 'social-share-btn',
           'data-link':
             props.network.type === 'popup'
               ? `#share-${props.network.name}`
               : props.shareURL,
+          onClick: () => ctx.emit(Event.Share, props.network.name),
+          role: 'button',
+          title: upperFirst(props.network.name),
+          type: 'button',
         },
         [renderShareIcon()],
       )

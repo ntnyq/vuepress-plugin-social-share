@@ -28,6 +28,8 @@ export default defineUserConfig({
     }),
     socialSharePlugin({
       // @keep-sorted
+      fallbackImage: '/hero.png',
+      hideWhenPrint: true,
       networks: [
         'email',
         'facebook',
@@ -48,20 +50,16 @@ export default defineUserConfig({
         },
       ],
       twitterUser: 'ntnyq',
-      fallbackImage: '/hero.png',
       useCustomStyle: false,
-      hideWhenPrint: true,
     }),
   ],
 
   theme: defaultTheme({
-    repo: repository,
-    docsRepo: repository,
-    docsDir: 'docs',
     docsBranch: 'next',
+    docsDir: 'docs',
+    docsRepo: repository,
     editLink: true,
     lastUpdated: true,
-
     navbar: [
       { text: 'Home', link: '/' },
       { text: 'Guide', link: '/guide/' },
@@ -71,6 +69,8 @@ export default defineUserConfig({
         children: VERSIONS,
       },
     ],
+
+    repo: repository,
 
     sidebar: [
       {

@@ -78,11 +78,11 @@ export const GlobalSocialShare = defineComponent({
       h(
         'button',
         {
-          class: 'social-share-btn social-share-trigger',
-          type: 'button',
-          role: 'button',
           'aria-label': 'Toggle global social share',
+          class: 'social-share-btn social-share-trigger',
           onClick: (evt: MouseEvent) => onClick(evt),
+          role: 'button',
+          type: 'button',
         },
         [renderButtonIcon()],
       )
