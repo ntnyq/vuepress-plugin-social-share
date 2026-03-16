@@ -36,8 +36,8 @@ export const SocialShare = defineComponent({
     },
 
     tags: {
-      type: Array as PropType<string[]>,
       default: () => [],
+      type: Array as PropType<string[]>,
     },
   },
 

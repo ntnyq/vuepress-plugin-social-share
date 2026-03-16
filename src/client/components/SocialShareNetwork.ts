@@ -17,18 +17,18 @@ export const SocialShareNetwork = defineComponent({
 
   props: {
     isDark: {
-      type: Boolean,
       default: false,
+      type: Boolean,
     },
 
     isPlain: {
-      type: Boolean,
       default: false,
+      type: Boolean,
     },
 
     network: {
-      type: Object as PropType<SocialShareNetworkWithName>,
       required: true,
+      type: Object as PropType<SocialShareNetworkWithName>,
       validator: (network: SocialShareNetworkWithName) => {
         if (!network.icon) {
           return false
@@ -41,8 +41,8 @@ export const SocialShareNetwork = defineComponent({
     },
 
     shareURL: {
-      type: String,
       default: '',
+      type: String,
     },
   },
 
