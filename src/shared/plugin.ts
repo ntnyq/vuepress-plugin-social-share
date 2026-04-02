@@ -16,7 +16,7 @@ export type SocialShareNetworkData = Record<string, SocialShareNetwork>
 /**
  * Front-matter
  */
-export type SocialShareFrontmatter = {
+export interface SocialShareFrontmatter {
   noGlobalSocialShare?: boolean
   noSocialShare?: boolean
 
@@ -44,6 +44,8 @@ export type SocialShareFrontmatter = {
   tag?: string
   tags?: string
   title?: string
+
+  [key: string]: unknown
 }
 
 /**

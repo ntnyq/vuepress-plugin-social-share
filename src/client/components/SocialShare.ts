@@ -21,6 +21,16 @@ import { useSocialShareOptions } from '../helpers'
 import { getMetaContentByName, inBrowser, isExternalUrl } from '../utils'
 import { SocialShareNetwork } from './SocialShareNetwork'
 
+function openWindow(shareURL: string) {
+  window.open(shareURL, '_blank')
+}
+function generateHashTags(hashtags: string, name: string) {
+  if (['facebook'].includes(name) && hashtags.length > 0) {
+    return `%23${hashtags.split(',')[0]}`
+  }
+  return hashtags
+}
+
 export const SocialShare = defineComponent({
   name: 'SocialShare',
 
@@ -152,7 +162,7 @@ export const SocialShare = defineComponent({
         return tags.join(',')
       }
       if (isString(tags)) {
-        return tags.replace(/\s/g, '')
+        return tags.replaceAll(/\s/g, '')
       }
       return ''
     })
@@ -228,18 +238,9 @@ export const SocialShare = defineComponent({
           evt.stopPropagation()
         }
         socialShareOverlay.addEventListener('click', handleClick)
-      } catch (err) {
-        console.error('Failed to generate QR code:', err)
+      } catch (error) {
+        console.error('Failed to generate QR code:', error)
       }
-    }
-    const openWindow = (shareURL: string) => {
-      window.open(shareURL, '_blank')
-    }
-    const generateHashTags = (hashtags: string, name: string) => {
-      if (['facebook'].includes(name) && hashtags.length > 0) {
-        return `%23${hashtags.split(',')[0]}`
-      }
-      return hashtags
     }
     const createShareURL = (name: string, network: Network) => {
       let { sharer = '' } = network
@@ -260,21 +261,25 @@ export const SocialShare = defineComponent({
           : '',
       }
 
-      return sharer.replace(/@\w+/g, match => replacements[match] ?? match)
+      return sharer.replaceAll(/@\w+/g, match => replacements[match] ?? match)
     }
     const onShare = (name: string) => {
       const network = options.networksData.find(item => item.name === name)!
       const shareURL = createShareURL(name, network)
 
       switch (network.type) {
-        case 'popup':
+        case 'popup': {
           return openSharer(shareURL)
-        case 'qrcode':
+        }
+        case 'qrcode': {
           return showQRCode()
-        case 'direct':
+        }
+        case 'direct': {
           return openWindow(shareURL)
-        default:
+        }
+        default: {
           return openSharer(shareURL)
+        }
       }
     }
     const renderNetworkList = (networks: SocialShareNetworkWithName[]) =>

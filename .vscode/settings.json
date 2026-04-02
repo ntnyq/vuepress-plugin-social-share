@@ -4,7 +4,7 @@
   "prettier.enable": false,
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "oxc.oxc-vscode",
-  "typescript.experimental.useTsgo": true,
+  "js/ts.experimental.useTsgo": true,
   "cSpell.words": [
     "bumpp",
     "changelogithub",

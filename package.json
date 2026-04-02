@@ -58,31 +58,31 @@
   },
   "dependencies": {
     "@types/qrcode": "^1.5.6",
-    "@vuepress/helper": "^2.0.0-rc.123",
+    "@vuepress/helper": "^2.0.0-rc.128",
     "deepmerge": "^4.3.1",
     "qrcode": "^1.5.4",
-    "vue": "^3.5.29"
+    "vue": "^3.5.31"
   },
   "devDependencies": {
-    "@types/node": "^25.3.3",
-    "@typescript/native-preview": "^7.0.0-dev.20260301.1",
-    "bumpp": "^11.0.0",
+    "@types/node": "^25.5.0",
+    "@typescript/native-preview": "^7.0.0-dev.20260401.1",
+    "bumpp": "^11.0.1",
     "husky": "^9.1.7",
     "nano-staged": "^0.9.0",
     "npm-run-all2": "^8.0.4",
-    "oxfmt": "^0.35.0",
-    "oxlint": "^1.50.0",
-    "tsdown": "^0.20.3",
-    "typescript": "^5.9.3",
-    "vitest": "^4.0.18",
-    "vuepress": "^2.0.0-rc.26"
+    "oxfmt": "^0.43.0",
+    "oxlint": "^1.58.0",
+    "tsdown": "^0.21.7",
+    "typescript": "^6.0.2",
+    "vitest": "^4.1.2",
+    "vuepress": "^2.0.0-rc.28"
   },
   "peerDependencies": {
-    "vuepress": "^2.0.0-rc.19"
+    "vuepress": "^2.0.0-rc.28"
   },
   "nano-staged": {
     "*.{js,ts,mjs,tsx,vue}": "oxlint --fix",
     "*": "oxfmt --no-error-on-unmatched-pattern"
   },
-  "packageManager": "pnpm@10.30.3"
+  "packageManager": "pnpm@10.33.0"
 }

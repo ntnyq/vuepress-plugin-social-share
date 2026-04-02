@@ -9,22 +9,22 @@ const FIXTURES = {
   invalidExternalUrl: ['foo.bar', '/foo.bar'],
 }
 
-describe('isSVG', () => {
+describe(isSVG, () => {
   it.each(FIXTURES.validSVG)('valid - %s', svg => {
-    expect(isSVG(svg)).toBeTruthy()
+    expect(isSVG(svg)).toBe(true)
   })
 
   it.each(FIXTURES.invalidSVG)('invalid - %s', svg => {
-    expect(isSVG(svg)).toBeFalsy()
+    expect(isSVG(svg)).toBe(false)
   })
 })
 
-describe('isExternalUrl', () => {
+describe(isExternalUrl, () => {
   it.each(FIXTURES.validExternalUrl)('valid - %s', url => {
-    expect(isExternalUrl(url)).toBeTruthy()
+    expect(isExternalUrl(url)).toBe(true)
   })
 
   it.each(FIXTURES.invalidExternalUrl)('invalid - %s', url => {
-    expect(isExternalUrl(url)).toBeFalsy()
+    expect(isExternalUrl(url)).toBe(false)
   })
 })

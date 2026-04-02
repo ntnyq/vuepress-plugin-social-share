@@ -1,5 +1,65 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "categories": {
+    "correctness": "error",
+    "pedantic": "warn",
+    "perf": "warn",
+    "restriction": "warn",
+    "style": "warn",
+    "suspicious": "warn",
+  },
+  "ignorePatterns": ["**/dist/**", "**/node_modules/**", "**/fixtures/**"],
+  "overrides": [
+    {
+      "files": ["scripts/**/*.{js,ts}"],
+      "rules": {
+        "import/no-named-export": "off",
+        "import/no-nodejs-modules": "off",
+        "import/prefer-default-export": "off",
+        "no-console": "off",
+      },
+    },
+    {
+      "files": ["*.config.{mjs,ts}"],
+      "rules": {
+        "import/no-default-export": "off",
+        "import/no-nodejs-modules": "off",
+        "new-cap": "off",
+        "no-magic-numbers": "off",
+        "sort-keys": "warn",
+      },
+    },
+    {
+      "files": ["*.d.ts"],
+      "rules": {
+        "import/unambiguous": "off",
+        "unicorn/require-module-specifiers": "off",
+      },
+    },
+    {
+      "files": ["*.{spec,test}.{js,ts,tsx}", "*.{spec,test}-d.{ts,tsx}"],
+      "plugins": ["vitest"],
+      "rules": {
+        "id-length": "off",
+        "import/no-nodejs-modules": "off",
+        "max-classes-per-file": "off",
+        "max-lines": "off",
+        "max-lines-per-function": "off",
+        "max-statements": "off",
+        "no-empty-function": "off",
+        "no-magic-numbers": "off",
+        "no-undefined": "off",
+        "typescript/ban-ts-comment": "off",
+        "typescript/no-non-null-assertion": "off",
+        "typescript/prefer-ts-expect-error": "off",
+        "typescript/require-array-sort-compare": "off",
+        "vitest/no-importing-vitest-globals": "off",
+        "vitest/prefer-to-be-falsy": "off",
+        "vitest/prefer-to-be-truthy": "off",
+        "vitest/require-test-timeout": "off",
+      },
+    },
+  ],
   "plugins": [
     "eslint",
     "import",
@@ -11,65 +71,90 @@
     "unicorn",
     "vue",
   ],
-  "categories": {
-    "correctness": "error",
-    "suspicious": "warn",
-    "pedantic": "warn",
-    "perf": "warn",
-    "style": "warn",
-    "restriction": "warn",
+  "rules": {
+    "capitalized-comments": "off",
+    "func-style": [
+      "warn",
+      "declaration",
+      {
+        "allowArrowFunctions": true,
+      },
+    ],
+    "id-length": [
+      "warn",
+      {
+        "exceptions": ["_", "$", "i", "j", "k", "x", "y", "z", "T"],
+        "min": 2,
+        "properties": "never",
+      },
+    ],
+    "import/group-exports": "off",
+    "import/no-default-export": "off",
+    "import/no-named-export": "off",
+    "import/no-relative-parent-imports": "off",
+    "import/no-unassigned-import": [
+      "warn",
+      {
+        "allow": ["**/*.css"],
+      },
+    ],
+    "import/prefer-default-export": "off",
+    "jsdoc/require-param": "off",
+    "jsdoc/require-param-type": "off",
+    "jsdoc/require-returns": "off",
+    "jsdoc/require-returns-type": "off",
+    "max-lines": [
+      "warn",
+      {
+        "max": 1000,
+        "skipBlankLines": true,
+        "skipComments": true,
+      },
+    ],
+    "max-lines-per-function": [
+      "warn",
+      {
+        "max": 500,
+        "skipBlankLines": true,
+        "skipComments": true,
+      },
+    ],
+    "max-statements": ["warn", 100],
+    "no-console": "off",
+    "no-duplicate-imports": [
+      "warn",
+      {
+        "allowSeparateTypeImports": true,
+        "includeExports": true,
+      },
+    ],
+    "no-magic-numbers": [
+      "warn",
+      {
+        "detectObjects": false,
+        "enforceConst": true,
+        "ignore": [0, 1, -1, 2, 10, 100, 500, 1000],
+        "ignoreArrayIndexes": true,
+      },
+    ],
+    "no-plusplus": "off",
+    "no-shadow": "off",
+    "no-ternary": "off",
+    "no-undefined": "off",
+    "oxc/no-async-await": "off",
+    "oxc/no-barrel-file": "off",
+    "oxc/no-optional-chaining": "off",
+    "oxc/no-rest-spread-properties": "off",
+    "prefer-destructuring": "off",
+    "sort-imports": "off",
+    "sort-keys": "off",
+    "typescript/explicit-function-return-type": "off",
+    "typescript/explicit-module-boundary-types": "off",
+    "typescript/no-non-null-assertion": "off",
+    "unicorn/filename-case": "off",
+    "unicorn/no-array-for-each": "off",
+    "unicorn/no-null": "off",
+    "unicorn/prefer-global-this": "off",
+    "unicorn/prefer-ternary": "off",
   },
-  "ignorePatterns": [
-    "**/dist/**",
-    "**/node_modules/**",
-    "**/tests/fixtures/**",
-  ],
-  "globals": {},
-  "rules": {},
-  "overrides": [
-    {
-      "files": ["scripts/**/*.{js,ts}"],
-      "rules": {},
-    },
-    {
-      "files": ["**/components/**/*.{ts,tsx,vue}"],
-      "rules": {
-        // loose max lines for components setup blocks
-        "max-lines-per-function": [
-          "warn",
-          { "max": 300, "skipBlankLines": true, "skipComments": true },
-        ],
-        // FIXME: This does not work unless plugin vue is enabled
-        // increase max props for vue components to 5
-        // "vue/max-props": ["warn", { "maxProps": 5 }]
-      },
-    },
-    {
-      "files": ["*.d.ts"],
-      "rules": {
-        // to extend existing modules, import/export must not appear in declaration files at top level
-        "import/unambiguous": "off",
-        // we need `export {}` to convert a file to a module
-        "unicorn/require-module-specifiers": "off",
-      },
-    },
-    {
-      "files": [".{spec,test}.{js,ts,tsx}", ".{spec,test}-d.{ts,tsx}"],
-      "plugins": ["vitest"],
-      "rules": {
-        "id-length": "off",
-        "max-classes-per-file": "off",
-        "max-lines-per-function": "off",
-        "max-lines": "off",
-        "max-statements": "off",
-        "no-empty-function": "off",
-        "no-undefined": "off",
-        "import/no-nodejs-modules": "off",
-        "typescript/ban-ts-comment": "off",
-        "typescript/no-non-null-assertion": "off",
-        "typescript/prefer-ts-expect-error": "off",
-        "typescript/require-array-sort-compare": "off",
-      },
-    },
-  ],
 }

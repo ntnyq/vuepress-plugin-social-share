@@ -3,11 +3,12 @@ import { defineConfig } from 'tsdown'
 
 export default defineConfig({
   clean: true,
+  deps: {
+    neverBundle: [/\.css$/],
+  },
   dts: true,
   entry: ['src/node/**/*.ts', 'src/client/**/*.ts', 'src/shared/**/*.ts'],
   hash: false,
-  platform: 'neutral',
-  unbundle: true,
   hooks: {
     'build:done': async () => {
       await mkdir('dist/client/styles', { recursive: true })
@@ -19,7 +20,6 @@ export default defineConfig({
       }
     },
   },
-  external(id) {
-    return id.endsWith('.css')
-  },
+  platform: 'neutral',
+  unbundle: true,
 })
