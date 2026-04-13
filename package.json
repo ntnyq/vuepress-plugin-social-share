@@ -61,11 +61,11 @@
     "@vuepress/helper": "^2.0.0-rc.128",
     "deepmerge": "^4.3.1",
     "qrcode": "^1.5.4",
-    "vue": "^3.5.31"
+    "vue": "^3.5.32"
   },
   "devDependencies": {
-    "@types/node": "^25.5.0",
-    "@typescript/native-preview": "^7.0.0-dev.20260401.1",
+    "@types/node": "^25.5.2",
+    "@typescript/native-preview": "^7.0.0-dev.20260405.1",
     "bumpp": "^11.0.1",
     "husky": "^9.1.7",
     "nano-staged": "^0.9.0",
