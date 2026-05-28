@@ -1,8 +1,8 @@
 import { isString } from '../shared'
 import type { ThemeableValue } from '../shared'
 
-export const RE_SVG_SOURCE = /<svg\b[^>]*>(.*?)<\/svg>/is
-export const RE_EXTERNAL_LINK = /^https?:/
+export const RE_SVG_SOURCE = /<svg\b[^>]*>(.*?)<\/svg>/isu
+export const RE_EXTERNAL_LINK = /^https?:/u
 
 export const SVG_ICON_CLOSE = `<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
   <path d="M657.44 512l266.72-266.72A102.88 102.88 0 00778.72 99.84L512 366.56 245.28 99.84A102.88 102.88 0 1099.84 245.28L366.56 512 99.84 778.72a102.88 102.88 0 00145.44 145.44L512 657.44l266.72 266.72a102.88 102.88 0 00145.44-145.44L657.44 512z" />

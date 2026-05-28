@@ -8,7 +8,7 @@ import type {
 } from '../shared'
 import { logger, resolveNetworksData } from './helpers'
 
-const __dirname = getDirname(import.meta.url)
+const dirname = getDirname(import.meta.url)
 
 export const socialSharePlugin =
   (options: SocialSharePluginOptions = {}): PluginFunction =>
@@ -35,7 +35,7 @@ export const socialSharePlugin =
     return {
       name: PLUGIN_NAME,
 
-      clientConfigFile: path.resolve(__dirname, '../client/config.js'),
+      clientConfigFile: path.resolve(dirname, '../client/config.js'),
 
       define: {
         __SOCIAL_SHARE_COMPONENT_NAME__: componentName,

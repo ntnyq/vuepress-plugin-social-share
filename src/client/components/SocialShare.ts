@@ -162,7 +162,7 @@ export const SocialShare = defineComponent({
         return tags.join(',')
       }
       if (isString(tags)) {
-        return tags.replaceAll(/\s/g, '')
+        return tags.replaceAll(/\s/gu, '')
       }
       return ''
     })
@@ -261,7 +261,7 @@ export const SocialShare = defineComponent({
           : '',
       }
 
-      return sharer.replaceAll(/@\w+/g, match => replacements[match] ?? match)
+      return sharer.replaceAll(/@\w+/gu, match => replacements[match] ?? match)
     }
     const onShare = (name: string) => {
       const network = options.networksData.find(item => item.name === name)!

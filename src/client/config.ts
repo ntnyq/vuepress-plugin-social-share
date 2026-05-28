@@ -4,8 +4,11 @@ import type { SocialSharePluginOptionsWithDefaults } from '../shared/plugin'
 import { GlobalSocialShare, SocialShare } from './components'
 import { injectSocialShareOptions } from './helpers'
 
+// oxlint-disable-next-line no-underscore-dangle
 declare const __SOCIAL_SHARE_COMPONENT_NAME__: string
+// oxlint-disable-next-line no-underscore-dangle
 declare const __SOCIAL_SHARE_USE_CUSTOM_STYLE__: boolean
+// oxlint-disable-next-line no-underscore-dangle
 declare const __SOCIAL_SHARE_CLIENT_OPTIONS__: SocialSharePluginOptionsWithDefaults
 
 if (!__SOCIAL_SHARE_USE_CUSTOM_STYLE__) {

@@ -2,7 +2,9 @@ packages:
   - docs
 overrides:
   esbuild: ^0.28.0
-onlyBuiltDependencies:
-  - '@parcel/watcher'
-  - esbuild
-  - unrs-resolver
+
+minimumReleaseAge: 0
+
+allowBuilds:
+  '@parcel/watcher': true
+  esbuild: true
