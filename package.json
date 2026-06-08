@@ -72,7 +72,7 @@
     "npm-run-all2": "^9.0.1",
     "oxfmt": "^0.52.0",
     "oxlint": "^1.67.0",
-    "tsdown": "^0.22.0",
+    "tsdown": "^0.22.1",
     "typescript": "^6.0.3",
     "vitest": "^4.1.7",
     "vuepress": "^2.0.0-rc.30"
@@ -84,5 +84,5 @@
     "*.{js,ts,mjs,tsx,vue}": "oxlint --fix",
     "*": "oxfmt --no-error-on-unmatched-pattern"
   },
-  "packageManager": "pnpm@11.4.0"
+  "packageManager": "pnpm@11.5.0"
 }
