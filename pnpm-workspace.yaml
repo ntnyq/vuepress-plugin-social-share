@@ -1,7 +1,7 @@
 packages:
   - docs
 overrides:
-  esbuild: ^0.28.0
+  esbuild: ^0.28.1
 
 minimumReleaseAge: 0
 
