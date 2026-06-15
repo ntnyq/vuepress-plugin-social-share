@@ -64,17 +64,17 @@
     "vue": "^3.5.35"
   },
   "devDependencies": {
-    "@types/node": "^25.9.1",
-    "@typescript/native-preview": "^7.0.0-dev.20260527.2",
+    "@types/node": "^25.9.2",
+    "@typescript/native-preview": "^7.0.0-dev.20260607.1",
     "bumpp": "^11.1.0",
     "husky": "^9.1.7",
     "nano-staged": "^1.0.2",
     "npm-run-all2": "^9.0.1",
-    "oxfmt": "^0.52.0",
-    "oxlint": "^1.67.0",
-    "tsdown": "^0.22.1",
+    "oxfmt": "^0.53.0",
+    "oxlint": "^1.68.0",
+    "tsdown": "^0.22.2",
     "typescript": "^6.0.3",
-    "vitest": "^4.1.7",
+    "vitest": "^4.1.8",
     "vuepress": "^2.0.0-rc.30"
   },
   "peerDependencies": {
@@ -84,5 +84,5 @@
     "*.{js,ts,mjs,tsx,vue}": "oxlint --fix",
     "*": "oxfmt --no-error-on-unmatched-pattern"
   },
-  "packageManager": "pnpm@11.5.0"
+  "packageManager": "pnpm@11.5.2"
 }
