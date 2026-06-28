@@ -1,6 +1,7 @@
 import { isString } from '../shared'
 import type { ThemeableValue } from '../shared'
 
+// oxlint-disable-next-line prefer-named-capture-group
 export const RE_SVG_SOURCE = /<svg\b[^>]*>(.*?)<\/svg>/isu
 export const RE_EXTERNAL_LINK = /^https?:/u
 

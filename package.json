@@ -61,28 +61,28 @@
     "@vuepress/helper": "^2.0.0-rc.130",
     "deepmerge": "^4.3.1",
     "qrcode": "^1.5.4",
-    "vue": "^3.5.35"
+    "vue": "^3.5.39"
   },
   "devDependencies": {
-    "@types/node": "^25.9.2",
-    "@typescript/native-preview": "^7.0.0-dev.20260607.1",
+    "@types/node": "^26.0.1",
+    "@typescript/native-preview": "^7.0.0-dev.20260627.2",
     "bumpp": "^11.1.0",
     "husky": "^9.1.7",
     "nano-staged": "^1.0.2",
-    "npm-run-all2": "^9.0.1",
-    "oxfmt": "^0.53.0",
-    "oxlint": "^1.68.0",
-    "tsdown": "^0.22.2",
+    "npm-run-all2": "^9.0.2",
+    "oxfmt": "^0.56.0",
+    "oxlint": "^1.71.0",
+    "tsdown": "^0.22.3",
     "typescript": "^6.0.3",
-    "vitest": "^4.1.8",
+    "vitest": "^4.1.9",
     "vuepress": "^2.0.0-rc.30"
   },
   "peerDependencies": {
-    "vuepress": "^2.0.0-rc.28"
+    "vuepress": "^2.0.0-rc.30"
   },
   "nano-staged": {
     "*.{js,ts,mjs,tsx,vue}": "oxlint --fix",
     "*": "oxfmt --no-error-on-unmatched-pattern"
   },
-  "packageManager": "pnpm@11.5.2"
+  "packageManager": "pnpm@11.9.0"
 }

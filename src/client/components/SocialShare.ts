@@ -39,6 +39,7 @@ export const SocialShare = defineComponent({
   props: {
     networks: {
       type: Array as PropType<string[]>,
+      default: () => [],
     },
 
     isPlain: {
