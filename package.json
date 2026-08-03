@@ -66,7 +66,7 @@
   "devDependencies": {
     "@types/node": "^26.1.1",
     "@typescript/native-preview": "^7.0.0-dev.20260707.2",
-    "bumpp": "^11.1.0",
+    "bumpp": "^12.0.0",
     "husky": "^9.1.7",
     "nano-staged": "^1.0.2",
     "npm-run-all2": "^9.0.2",
