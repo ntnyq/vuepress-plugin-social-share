@@ -26,8 +26,8 @@ export const socialSharePlugin =
       logger.info('Options:', options)
     }
 
-    const networksData = resolveNetworksData(networks, extendsNetworks)
-    const clientOptions: SocialSharePluginOptionsWithDefaults = {
+    const networksData = resolveNetworksData(networks, extendsNetworks),
+     clientOptions: SocialSharePluginOptionsWithDefaults = {
       ...restClientOptions,
       networksData,
     }

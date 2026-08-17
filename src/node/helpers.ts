@@ -15,12 +15,12 @@ export function resolveNetworksData(
   networks: SocialSharePluginOptions['networks'] = [],
   extendsNetworks: SocialSharePluginOptions['extendsNetworks'] = {},
 ) {
-  const mergedNetworks = deepmerge(BUILT_IN_NETWORKS, extendsNetworks)
+  const mergedNetworks = deepmerge(BUILT_IN_NETWORKS, extendsNetworks),
 
-  const mergedNetworkNames = new Set<string>(Object.keys(mergedNetworks))
-  const enabledNetworkNames = new Set<string>()
+   mergedNetworkNames = new Set<string>(Object.keys(mergedNetworks)),
+   enabledNetworkNames = new Set<string>(),
 
-  const networksData: SocialShareNetworkWithName[] = []
+   networksData: SocialShareNetworkWithName[] = []
 
   for (const network of networks) {
     if (isString(network)) {
