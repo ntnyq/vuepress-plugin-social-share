@@ -52,8 +52,8 @@ export const SocialShareNetwork = defineComponent({
         return props.network.icon
       }
       return props.isDark ? props.network.icon.dark : props.network.icon.light
-    })
-    const resolvedColor = computed(() => {
+    }),
+     resolvedColor = computed(() => {
       if (props.isPlain || !props.network.color) {
         return ''
       }
@@ -61,10 +61,10 @@ export const SocialShareNetwork = defineComponent({
         return props.network.color
       }
       return props.isDark ? props.network.color.dark : props.network.color.light
-    })
-    const isSvgIcon = computed(() => isSVG(resolvedIcon.value))
+    }),
+     isSvgIcon = computed(() => isSVG(resolvedIcon.value)),
 
-    const renderShareIcon = () =>
+     renderShareIcon = () =>
       isSvgIcon.value
         ? h('span', {
             class: 'social-share-icon-svg',
@@ -75,8 +75,8 @@ export const SocialShareNetwork = defineComponent({
         : h('span', {
             style: { backgroundImage: `url(${resolvedIcon.value})` },
             class: 'social-share-icon-img',
-          })
-    const renderShareButton = () =>
+          }),
+     renderShareButton = () =>
       h(
         'button',
         {

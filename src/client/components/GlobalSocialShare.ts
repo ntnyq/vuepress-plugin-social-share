@@ -20,36 +20,36 @@ export const GlobalSocialShare = defineComponent({
   inheritAttrs: true,
 
   setup() {
-    const options = useSocialShareOptions()
+    const options = useSocialShareOptions(),
 
-    const isActive = ref(false)
-    const globalRef = shallowRef<HTMLElement>()
-    const frontmatter = usePageFrontmatter<SocialShareFrontmatter>()
+     isActive = ref(false),
+     globalRef = shallowRef<HTMLElement>(),
+     frontmatter = usePageFrontmatter<SocialShareFrontmatter>(),
 
-    const isDarkMode = useDarkMode()
+     isDarkMode = useDarkMode(),
 
-    const visible = computed(
+     visible = computed(
       () =>
         !options.noGlobalSocialShare &&
         !frontmatter.value.noGlobalSocialShare &&
         !frontmatter.value.noSocialShare,
-    )
-    const resolvedShareIcon = computed(() =>
+    ),
+     resolvedShareIcon = computed(() =>
       resolveThemeIcon(options.shareIcon, isDarkMode.value, SVG_ICON_SHARE),
-    )
-    const resolvedShareCloseIcon = computed(() =>
+    ),
+     resolvedShareCloseIcon = computed(() =>
       resolveThemeIcon(
         options.shareCloseIcon,
         isDarkMode.value,
         SVG_ICON_CLOSE,
       ),
-    )
+    ),
 
-    const onClick = (evt: MouseEvent) => {
+     onClick = (evt: MouseEvent) => {
       isActive.value = !isActive.value
       evt.stopPropagation()
-    }
-    const onClickOutside = (evt: MouseEvent) => {
+    },
+     onClickOutside = (evt: MouseEvent) => {
       const target = evt.target as HTMLElement
       if (!globalRef.value) {
         return
@@ -73,8 +73,8 @@ export const GlobalSocialShare = defineComponent({
         innerHTML: isActive.value
           ? resolvedShareCloseIcon.value
           : resolvedShareIcon.value,
-      })
-    const renderGlobalButton = () =>
+      }),
+     renderGlobalButton = () =>
       h(
         'button',
         {
@@ -85,8 +85,8 @@ export const GlobalSocialShare = defineComponent({
           onClick: (evt: MouseEvent) => onClick(evt),
         },
         [renderButtonIcon()],
-      )
-    const renderSocialShare = () => (isActive.value ? h(SocialShare) : null)
+      ),
+     renderSocialShare = () => (isActive.value ? h(SocialShare) : null)
 
     return () =>
       visible.value

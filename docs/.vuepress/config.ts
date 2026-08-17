@@ -6,9 +6,9 @@ import { defineUserConfig } from 'vuepress'
 import { socialSharePlugin } from 'vuepress-plugin-social-share'
 import { repository, version } from '../../package.json'
 
-const packageName = 'vuepress-plugin-social-share'
+const packageName = 'vuepress-plugin-social-share',
 
-const VERSIONS: NavbarLinkOptions[] = [
+ VERSIONS: NavbarLinkOptions[] = [
   { text: `v${version} (current)`, link: '/' },
   {
     text: 'Release Notes',
