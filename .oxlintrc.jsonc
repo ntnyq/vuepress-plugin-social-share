@@ -106,6 +106,7 @@
         "allow": ["**/*.css"],
       },
     ],
+    "one-var": ["warn", "never"],
   },
   "overrides": [
     {
