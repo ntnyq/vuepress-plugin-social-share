@@ -4,6 +4,10 @@
   "prettier.enable": false,
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "oxc.oxc-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.oxc": "explicit",
+    "source.format.oxc": "explicit"
+  },
   "js/ts.experimental.useTsgo": true,
   "cSpell.words": [
     "bumpp",

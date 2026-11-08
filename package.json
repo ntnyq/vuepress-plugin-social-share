@@ -61,22 +61,23 @@
   },
   "dependencies": {
     "@types/qrcode": "^1.5.6",
-    "@vuepress/helper": "^2.0.0-rc.134",
+    "@vuepress/helper": "^2.0.0-rc.135",
     "deepmerge": "^4.3.1",
     "qrcode": "^1.5.4",
-    "vue": "^3.5.43"
+    "vue": "^3.5.45"
   },
   "devDependencies": {
-    "@types/node": "^26.6.2",
+    "@types/node": "^26.6.6",
     "bumpp": "^12.3.0",
+    "happy-dom": "^21.0.4",
     "husky": "^9.1.7",
     "nano-staged": "^1.0.2",
-    "npm-run-all2": "^9.0.3",
-    "oxfmt": "^0.70.0",
-    "oxlint": "^1.85.0",
-    "tsdown": "^0.23.0",
+    "npm-run-all2": "^9.0.4",
+    "oxfmt": "^0.77.0",
+    "oxlint": "^1.92.0",
+    "tsdown": "^0.23.7",
     "typescript": "^7.0.2",
-    "vitest": "^5.0.1",
+    "vitest": "^5.1.0",
     "vuepress": "^2.0.0-rc.31"
   },
   "peerDependencies": {
@@ -86,5 +87,5 @@
     "*.{js,ts,mjs,tsx,vue}": "oxlint --fix",
     "*": "oxfmt --no-error-on-unmatched-pattern"
   },
-  "packageManager": "pnpm@12.5.1"
+  "packageManager": "pnpm@12.18.0"
 }

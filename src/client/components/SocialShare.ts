@@ -6,7 +6,6 @@ import {
   onBeforeUnmount,
   onMounted,
   reactive,
-  ref,
 } from 'vue'
 import type { PropType } from 'vue'
 import { usePageFrontmatter, withBase } from 'vuepress/client'
@@ -26,7 +25,7 @@ function openWindow(shareURL: string) {
 }
 function generateHashTags(hashtags: string, name: string) {
   if (['facebook'].includes(name) && hashtags.length > 0) {
-    return `%23${hashtags.split(',')[0]}`
+    return `#${hashtags.split(',')[0]}`
   }
   return hashtags
 }
@@ -39,23 +38,25 @@ export const SocialShare = defineComponent({
   props: {
     networks: {
       type: Array as PropType<string[]>,
-      default: () => [],
+      default: undefined,
     },
 
     isPlain: {
       type: Boolean,
+      default: undefined,
     },
 
     tags: {
       type: Array as PropType<string[]>,
-      default: () => [],
+      default: undefined,
     },
   },
 
   setup(props) {
     const options = useSocialShareOptions()
-    const frontmatter = usePageFrontmatter<SocialShareFrontmatter>()
+
     const isDarkMode = useDarkMode()
+    const frontmatter = usePageFrontmatter<SocialShareFrontmatter>()
 
     // Helper function to get frontmatter value with fallback chain
     const getFrontmatterValue = <T = string>(
@@ -98,7 +99,8 @@ export const SocialShare = defineComponent({
       return result
     })
 
-    const intervalTimer = ref<ReturnType<typeof setInterval>>()
+    let qrcodeRequestId = 0
+    let qrcodeOverlay: HTMLDivElement | null = null
     const popup = reactive({
       status: false,
       resizable: false,
@@ -182,7 +184,6 @@ export const SocialShare = defineComponent({
 
     // Methods
     const openSharer = (shareURL: string) => {
-      let popWindow: Window | null = null
       const shareParams: string[] = [
         `status=${popup.status ? 'yes' : 'no'}`,
         `height=${popup.height}`,
@@ -198,49 +199,53 @@ export const SocialShare = defineComponent({
         `location=${popup.location ? 'yes' : 'no'}`,
         `directories=${popup.directories ? 'yes' : 'no'}`,
       ]
-      popWindow = window.open(shareURL, 'sharer', shareParams.join(','))
+      const popWindow = window.open(shareURL, 'sharer', shareParams.join(','))
       popWindow?.focus?.()
-
-      intervalTimer.value = setInterval(() => {
-        if (popWindow?.closed) {
-          clearInterval(intervalTimer.value)
-          intervalTimer.value = undefined
-          popWindow = null
-        }
-      }, 500)
+    }
+    const removeQRCode = () => {
+      qrcodeOverlay?.remove()
+      qrcodeOverlay = null
     }
     const showQRCode = async () => {
-      const body = document.body
-      const socialShareEl = document.querySelector('#__VUEPRESS_SOCIAL_SHARE__')
-      const socialShareOverlay = document.createElement('div')
-
-      socialShareOverlay.id = '__VUEPRESS_SOCIAL_SHARE__'
-      socialShareOverlay.classList.add('social-share-overlay')
-
-      if (socialShareEl && socialShareEl.parentNode) {
-        socialShareEl.remove()
-      }
-
+      const requestId = ++qrcodeRequestId
+      const shareURL = url.value
+      const renderOptions = qrcodeRenderOptions.value
       try {
         const QRCode = await import('qrcode')
-        const dataURL = await QRCode.toDataURL(
-          url.value,
-          qrcodeRenderOptions.value,
-        )
-
-        socialShareOverlay.innerHTML = `<img class="social-share-qrcode" src="${dataURL}" />`
-        body.append(socialShareOverlay)
-        socialShareOverlay.classList.add('show')
-
-        const handleClick = (evt: MouseEvent) => {
-          socialShareOverlay.classList.remove('show')
-          socialShareOverlay.removeEventListener('click', handleClick)
-          socialShareOverlay.remove()
-          evt.stopPropagation()
+        if (requestId !== qrcodeRequestId) {
+          return
         }
-        socialShareOverlay.addEventListener('click', handleClick)
+        const dataURL = await QRCode.toDataURL(shareURL, renderOptions)
+        if (requestId !== qrcodeRequestId) {
+          return
+        }
+
+        removeQRCode()
+        document.querySelector('#__VUEPRESS_SOCIAL_SHARE__')?.remove()
+
+        const overlay = document.createElement('div')
+        const image = document.createElement('img')
+
+        overlay.id = '__VUEPRESS_SOCIAL_SHARE__'
+        overlay.classList.add('social-share-overlay', 'show')
+        image.classList.add('social-share-qrcode')
+        image.src = dataURL
+        overlay.append(image)
+
+        overlay.addEventListener(
+          'click',
+          (evt: MouseEvent) => {
+            removeQRCode()
+            evt.stopPropagation()
+          },
+          { once: true },
+        )
+        qrcodeOverlay = overlay
+        document.body.append(overlay)
       } catch (error) {
-        console.error('Failed to generate QR code:', error)
+        if (requestId === qrcodeRequestId) {
+          console.error('Failed to generate QR code:', error)
+        }
       }
     }
     const createShareURL = (name: string, network: Network) => {
@@ -253,12 +258,12 @@ export const SocialShare = defineComponent({
       const replacements: Record<string, string> = {
         '@url': encodeURIComponent(url.value),
         '@title': encodeURIComponent(title.value),
-        '@media': media.value,
+        '@media': encodeURIComponent(media.value),
         '@description': encodeURIComponent(description.value),
         '@quote': encodeURIComponent(quote.value),
-        '@hashtags': generateHashTags(hashtags.value, name),
+        '@hashtags': encodeURIComponent(generateHashTags(hashtags.value, name)),
         '@twitteruser': options.twitterUser
-          ? `&via=${options.twitterUser}`
+          ? `&via=${encodeURIComponent(options.twitterUser)}`
           : '',
       }
 
@@ -294,7 +299,7 @@ export const SocialShare = defineComponent({
           h(SocialShareNetwork, {
             network,
             isDark: isDarkMode.value,
-            isPlain: props.isPlain || options.isPlain,
+            isPlain: props.isPlain ?? options.isPlain,
             shareURL: createShareURL(network.name, network),
             onShare: (name: string) => onShare(name),
           }),
@@ -302,9 +307,8 @@ export const SocialShare = defineComponent({
       )
 
     onBeforeUnmount(() => {
-      if (intervalTimer.value) {
-        clearInterval(intervalTimer.value)
-      }
+      qrcodeRequestId++
+      removeQRCode()
     })
 
     onMounted(() => {

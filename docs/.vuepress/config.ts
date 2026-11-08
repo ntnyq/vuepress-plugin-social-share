@@ -7,12 +7,15 @@ import { socialSharePlugin } from 'vuepress-plugin-social-share'
 import { repository, version } from '../../package.json'
 
 const packageName = 'vuepress-plugin-social-share'
+const repositoryURL = repository.url
+  .replace(/^git\+/u, '')
+  .replace(/\.git$/u, '')
 
 const VERSIONS: NavbarLinkOptions[] = [
   { text: `v${version} (current)`, link: '/' },
   {
     text: 'Release Notes',
-    link: `https://github.com/${repository}/releases`,
+    link: `${repositoryURL}/releases`,
   },
   { text: 'VuePress v1', link: 'https://social-share-v1.ntnyq.com' },
 ]
@@ -25,8 +28,8 @@ export default defineUserConfig({
   bundler: viteBundler(),
 
   theme: defaultTheme({
-    repo: repository,
-    docsRepo: repository,
+    repo: repositoryURL,
+    docsRepo: repositoryURL,
     docsDir: 'docs',
     docsBranch: 'next',
     editLink: true,

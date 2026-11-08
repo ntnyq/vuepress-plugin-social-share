@@ -396,9 +396,11 @@ Same as the plugin's option [networks](/guide/#networks), but with a higher prio
 ### tags
 
 - **type:** `string[]`
-- **default** `[]`
+- **default** `undefined`
 
 Share tags for Twitter and Facebook.
+
+When omitted, tags fall back to the page's keywords meta tag. Pass an empty array to disable this fallback.
 
 ### isPlain
 

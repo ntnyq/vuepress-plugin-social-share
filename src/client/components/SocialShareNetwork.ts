@@ -1,5 +1,6 @@
 import { computed, defineComponent, h } from 'vue'
 import type { PropType } from 'vue'
+import { withBase } from 'vuepress/client'
 import { isString, upperFirst } from '../../shared'
 import type { SocialShareNetworkWithName } from '../../shared'
 import { isSVG } from '../utils'
@@ -48,10 +49,13 @@ export const SocialShareNetwork = defineComponent({
 
   setup(props, ctx) {
     const resolvedIcon = computed(() => {
-      if (isString(props.network.icon)) {
-        return props.network.icon
-      }
-      return props.isDark ? props.network.icon.dark : props.network.icon.light
+      const theme = props.isDark ? 'dark' : 'light'
+      const icon = isString(props.network.icon)
+        ? props.network.icon
+        : props.network.icon[theme]
+      return icon.startsWith('/') && !icon.startsWith('//')
+        ? withBase(icon)
+        : icon
     })
     const resolvedColor = computed(() => {
       if (props.isPlain || !props.network.color) {

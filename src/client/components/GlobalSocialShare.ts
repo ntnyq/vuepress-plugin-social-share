@@ -22,11 +22,11 @@ export const GlobalSocialShare = defineComponent({
   setup() {
     const options = useSocialShareOptions()
 
-    const isActive = ref(false)
-    const globalRef = shallowRef<HTMLElement>()
+    const isDarkMode = useDarkMode()
     const frontmatter = usePageFrontmatter<SocialShareFrontmatter>()
 
-    const isDarkMode = useDarkMode()
+    const isActive = ref(false)
+    const globalRef = shallowRef<HTMLElement>()
 
     const visible = computed(
       () =>
@@ -60,13 +60,6 @@ export const GlobalSocialShare = defineComponent({
       isActive.value = false
     }
 
-    onBeforeUnmount(() => {
-      document.removeEventListener('click', onClickOutside)
-    })
-    onMounted(() => {
-      document.addEventListener('click', onClickOutside)
-    })
-
     const renderButtonIcon = () =>
       h('span', {
         class: 'social-share-icon-svg',
@@ -87,6 +80,13 @@ export const GlobalSocialShare = defineComponent({
         [renderButtonIcon()],
       )
     const renderSocialShare = () => (isActive.value ? h(SocialShare) : null)
+
+    onBeforeUnmount(() => {
+      document.removeEventListener('click', onClickOutside)
+    })
+    onMounted(() => {
+      document.addEventListener('click', onClickOutside)
+    })
 
     return () =>
       visible.value
