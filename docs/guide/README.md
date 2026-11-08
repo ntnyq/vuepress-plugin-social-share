@@ -420,6 +420,10 @@ Each meta data are listed following its priority.
 
 - `location.href`
 
+The browser fallback is read when sharing starts, so it includes the current
+query and fragment. Pages with a `permalink` use their actual browser URL,
+including the site origin and base path.
+
 ### title
 
 - `$frontmatter.$shareTitle`
@@ -523,3 +527,166 @@ noSocialShare: true
 - [Use CSS variables to custom plugin style](#custom-style)
 - [Option `email` is deprecated, just remove it, see #71 for reasons](https://github.com/ntnyq/vuepress-plugin-social-share/pull/71)
 - [Option `extendsNetworks` is deprecated, use `networks` instead](#networks)
+
+## Page configuration
+
+Override presentation for one page with frontmatter:
+
+```yaml
+socialShare:
+  networks: [weibo, wechat, copy]
+  isPlain: true
+  hideWhenPrint: true
+```
+
+For `networks`, `isPlain`, and `hideWhenPrint`, priority is component props →
+page `socialShare` → plugin options → built-in defaults. Explicit `false` and `[]`
+are preserved. An empty list hides both inline sharing and the global trigger.
+Names reference registered networks, retain their order, and are deduplicated.
+Unknown names are skipped, with a development warning; an entirely unknown list
+also hides the trigger. Route changes re-resolve these options.
+
+`noSocialShare` and `noGlobalSocialShare` retain their disabling behavior.
+Existing share metadata and tag priorities are unchanged. `hideWhenPrint` is also
+available as a component prop.
+
+## Locales
+
+Messages support English and Simplified Chinese, chosen from the current page
+language. Override individual fields with VuePress locale paths:
+
+```ts
+socialSharePlugin({
+  locales: {
+    '/': { copied: 'Link copied!' },
+    '/zh/': {
+      shareWith: '分享到 {network}',
+      expand: '展开分享',
+      collapse: '收起分享',
+      networkLabels: { twitter: '推特' },
+    },
+  },
+})
+```
+
+Fallback is current locale path → root path → built-in page language → English.
+`networkLabels` merges by network name. `{network}` is plain text. Route changes
+update labels and feedback. Other fields are `markdownCopied`, `copyFailed`,
+`shareFailed`, `nativeShared`, `cancelled`, `qrcodeAlt`, and `qrcodeClose`. The global trigger
+exposes `aria-expanded` and `aria-controls` alongside its translated label.
+
+## Client hooks and events
+
+Register callbacks in `.vuepress/client.ts`. They belong to the current Vue App
+and can be configured before or after the plugin's own `enhance` hook:
+
+```ts
+import { configureSocialShare } from 'vuepress-plugin-social-share/client'
+import { defineClientConfig } from 'vuepress/client'
+
+export default defineClientConfig({
+  enhance({ app }) {
+    configureSocialShare(app, {
+      beforeShare({ meta }) {
+        if (meta.url.includes('/private/')) return false
+        return { title: `${meta.title} | My site` }
+      },
+      onShareEvent(event) {
+        console.log(event.status, event.network.name, event.meta.url)
+      },
+    })
+  },
+})
+```
+
+`beforeShare` is synchronous: return `false` to cancel, a partial metadata object
+(`url`, `title`, `description`, `media`, `quote`, `hashtags`) to patch this action,
+or nothing to continue. It receives read-only snapshots. Patches never change
+frontmatter or future actions. Exceptions and Promise returns stop the action
+and emit an error at stage `before-share`. Async pre-hooks are rejected by both
+TypeScript and runtime checks to preserve browser user activation.
+
+Listen locally with `<SocialShare @share-event="onShareEvent" />`. Both local
+listeners and app callbacks may return a Promise; synchronous exceptions and
+Promise rejections are logged separately and do not change the share result.
+Local listeners retain Vue’s `.once` behavior and support multiple handlers. Events include `network`, final `meta`, and one of these statuses:
+
+| Status       | Meaning                                                                           |
+| ------------ | --------------------------------------------------------------------------------- |
+| `opened`     | Browser returned a share window handle                                            |
+| `displayed`  | QR code was appended to the page                                                  |
+| `copied`     | Clipboard write completed                                                         |
+| `handed-off` | System sharing Promise resolved                                                   |
+| `cancelled`  | Pre-hook cancelled, or system sharing returned `AbortError`                       |
+| `error`      | Action failed; includes original `error` and `stage` (`before-share` or `action`) |
+
+These events do not prove the user published anything. Blocked windows emit an
+error. Pending QR, clipboard and native results are discarded on route change or
+unmount. QR failures also retain their existing console error report.
+
+Only the latest QR request in the document may display its result. QR codes open
+in a modal dialog with a localized close button. Escape or clicking the overlay
+closes it and returns focus to the sharing button.
+
+## Copy and system sharing
+
+Opt in to these built-in networks; the default network list is unchanged:
+
+```ts
+socialSharePlugin({ networks: ['twitter', 'copy', 'copy-markdown', 'native'] })
+```
+
+- `copy` copies the final share URL.
+- `copy-markdown` copies `[title](URL)`, escaping Markdown text and URL delimiters.
+- `native` calls `navigator.share({ title, text: description, url })`.
+
+Clipboard and system sharing require a secure context and browser support.
+Unavailable native sharing is hidden after capability detection at mount, with
+the same initial markup during SSR and hydration. Clipboard failure displays a
+read-only text field for manual copying. Pending clipboard/native actions disable
+buttons and ignore repeated clicks. Feedback is announced in a `role="status"`
+region. A native `AbortError` means cancellation or no available target and never
+silently copies instead.
+
+Custom networks also support `type: 'clipboard'` with
+`clipboardFormat: 'url' | 'markdown'` (default `url`), or `type: 'native'`.
+Neither requires `sharer`; both still require an icon.
+
+## Layout
+
+```ts
+socialSharePlugin({
+  globalLayout: {
+    position: 'left',
+    direction: 'vertical',
+    mobile: { position: 'bottom', direction: 'horizontal' },
+  },
+})
+```
+
+Positions are `left`, `right`, and `bottom`; directions are `horizontal` and
+`vertical`. Mobile fields override the desktop fields below 768px. With no
+configuration, the toolbar retains its right-side desktop and mobile placement.
+Bottom positioning includes the device safe area. Long lists scroll within the
+viewport. Inline components accept `<SocialShare direction="vertical" />`.
+
+Customize dimensions with CSS variables. Unset size variables preserve the
+existing desktop, global-toolbar, and mobile sizes:
+
+```css
+:root {
+  --social-share-button-size: 3.5rem;
+  --social-share-icon-size: 2rem;
+  --social-share-gap: 0.25rem;
+  --social-share-button-radius: 50%;
+  --social-share-z-index: 99999;
+  --social-share-offset-inline: 0.5rem;
+  --social-share-offset-block: 50%;
+  --social-share-mobile-offset-block: 15vh;
+  --social-share-offset-bottom: 1rem;
+}
+```
+
+The existing three color variables continue to work. With `useCustomStyle`,
+components still output `data-direction`, `data-position`,
+`data-mobile-direction`, and `data-mobile-position` for theme styles to consume.

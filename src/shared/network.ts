@@ -1,61 +1,93 @@
 import type { BuiltInNetworkNames } from './constants'
 
 /**
- * Themeable value
+ * Value shared by both themes or configured independently for each theme.
+ *
+ * @template [T=string] - Value type used by both themes.
  */
-export type ThemeableValue<T = string> = T | { light: T; dark: T }
+export type ThemeableValue<T = string> =
+  | T
+  | {
+      /**
+       * Value selected in light mode.
+       */
+      light: T
+      /**
+       * Value selected in dark mode.
+       */
+      dark: T
+    }
 
 /**
- * Social share network
+ * Share action definition with presentation and browser dispatch settings.
+ * Link-based actions require a sharer template; other actions use browser APIs
+ * or a generated QR overlay.
  */
 export interface SocialShareNetwork {
   /**
-   * Sharer icon
+   * SVG markup or image URL, optionally selected by the current theme.
    */
   icon: ThemeableValue
 
   /**
-   * Sharer type
+   * Browser effect used to share: navigation, popup, QR overlay, clipboard or system UI.
    */
-  type: 'direct' | 'popup' | 'qrcode'
+  type: 'direct' | 'popup' | 'qrcode' | 'clipboard' | 'native'
 
   /**
-   * Sharer icon color
+   * Content copied by a clipboard network.
+   *
+   * @default 'url'
+   */
+  clipboardFormat?: 'url' | 'markdown'
+
+  /**
+   * SVG icon color, optionally selected by theme; ignored in plain mode.
+   *
+   * @default undefined
    */
   color?: ThemeableValue
 
   /**
-   * Sharer URL
+   * Share URL template with placeholders such as @url, @title and @description.
+   * Required by direct and popup networks.
+   *
+   * @default undefined
    */
   sharer?: string
 
   /**
-   * If component `SocialShare` has no prop `networks`, all `default: true` network will show
+   * Enables this network when no component or page network list overrides it.
+   * String entries in plugin networks also enable the corresponding network.
+   *
+   * @default false
    */
   default?: boolean
 }
 
 /**
+ * Legacy alias for a named network configuration.
+ *
  * @deprecated use {@link SocialShareNetworkWithName} instead
  */
 export type SocialShareNetworkItem = SocialShareNetworkWithName
 
 /**
- * Social share network with name
+ * Complete network definition with its stable registry key.
  */
 export type SocialShareNetworkWithName = SocialShareNetwork & {
   /**
-   * Sharer name
+   * Registry key used in network lists, locale labels and share events.
    */
   name: string
 }
 
 /**
- * Override social share network with name
+ * Partial overrides targeting one of the built-in network registry keys.
  */
 export type OverrideSocialShareNetworkWithName = Partial<SocialShareNetwork> & {
   /**
-   * Built-in share name
+   * Built-in registry key whose presentation or action settings are overridden.
    */
   name: BuiltInNetworkNames
 }

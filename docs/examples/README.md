@@ -140,3 +140,25 @@ Currently, the page you are looking at has no global social share component.
 noGlobalSocialShare: true
 ---
 ```
+
+## Copy and system sharing
+
+<SocialShare :networks="['copy', 'copy-markdown', 'native', 'qrcode']" />
+
+```vue
+<SocialShare :networks="['copy', 'copy-markdown', 'native', 'qrcode']" />
+```
+
+The system share button is shown only in supported browsers. Failed clipboard
+writes offer text for manual copying.
+
+## Vertical layout
+
+<SocialShare direction="vertical" :networks="['twitter', 'wechat', 'copy']" />
+
+```vue
+<SocialShare direction="vertical" :networks="['twitter', 'wechat', 'copy']" />
+```
+
+Configure floating-toolbar positions and mobile direction with the
+[`globalLayout` option](/guide/#layout).

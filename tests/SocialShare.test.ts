@@ -10,6 +10,19 @@ vi.mock(import('@vuepress/helper/client'), () => ({
 }))
 
 vi.mock(import('vuepress/client'), () => ({
+  usePageLang: () => computed(() => 'en'),
+  useRouteLocale: () => computed(() => '/'),
+  useRoute: () => ({
+    fullPath: '/',
+    path: '/',
+    name: undefined,
+    params: {},
+    query: {},
+    hash: '',
+    matched: [],
+    meta: {},
+    redirectedFrom: undefined,
+  }),
   usePageFrontmatter: () => computed(() => ({})),
   withBase: (url: string) => url,
 }))
@@ -24,6 +37,8 @@ function renderSocialShare(networks?: string[]) {
       { ...BUILT_IN_NETWORKS.twitter, name: 'twitter', default: true },
       { ...BUILT_IN_NETWORKS.reddit, name: 'reddit', default: true },
       { ...BUILT_IN_NETWORKS.wechat, name: 'wechat', default: false },
+      { ...BUILT_IN_NETWORKS.copy, name: 'copy' },
+      { ...BUILT_IN_NETWORKS.native, name: 'native' },
     ],
   })
 
@@ -31,6 +46,12 @@ function renderSocialShare(networks?: string[]) {
 }
 
 describe('social share networks', () => {
+  it('renders copying safely in SSR and defers native support detection', async () => {
+    const html = await renderSocialShare(['copy', 'native'])
+    expect(html).toContain('Share with Copy link')
+    expect(html).not.toContain('System share')
+  })
+
   it('renders configured defaults when networks are omitted', async () => {
     const html = await renderSocialShare()
 

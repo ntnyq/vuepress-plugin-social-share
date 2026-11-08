@@ -8,8 +8,17 @@ import type {
 } from '../shared'
 import { logger, resolveNetworksData } from './helpers'
 
+/**
+ * Absolute directory of this module used to locate the emitted client config.
+ */
 const dirname = getDirname(import.meta.url)
 
+/**
+ * Creates the VuePress social sharing plugin with build-time client definitions.
+ *
+ * @param options - Plugin configuration; defaults to {}.
+ * @returns A VuePress plugin factory that registers client configuration and bundler integration.
+ */
 export const socialSharePlugin =
   (options: SocialSharePluginOptions = {}): PluginFunction =>
   app => {

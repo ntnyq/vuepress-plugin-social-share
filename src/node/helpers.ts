@@ -6,10 +6,18 @@ import type {
   SocialSharePluginOptions,
 } from '../shared'
 
+/**
+ * VuePress logger scoped to the social sharing plugin.
+ */
 export const logger = new Logger(PLUGIN_NAME)
 
 /**
- * Resolve all networks data
+ * Merges built-in, legacy and inline network definitions and resolves enabled flags.
+ * Unknown string names are not added to the registry.
+ *
+ * @param networks - Ordered names or definitions to enable or override; defaults to [].
+ * @param extendsNetworks - Legacy registry overrides merged first; defaults to {}.
+ * @returns Every registered network with its name and resolved default flag.
  */
 export function resolveNetworksData(
   networks: SocialSharePluginOptions['networks'] = [],

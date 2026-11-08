@@ -1,4 +1,6 @@
 export * from './utils'
-export * from './helpers'
+export * from './helpers/socialShare'
+export { configureSocialShare } from './helpers/clientOptions'
 export * from './components/SocialShare'
 export * from './components/SocialShareNetwork'
+export type * from '../shared/actions'

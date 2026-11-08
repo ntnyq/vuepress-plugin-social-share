@@ -36,5 +36,6 @@
     "vuepress",
     "weibo"
   ],
-  "cSpell.allowCompoundWords": true
+  "cSpell.allowCompoundWords": true,
+  "js/ts.tsdk.path": "node_modules/typescript"
 }
