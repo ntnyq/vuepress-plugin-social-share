@@ -2,6 +2,10 @@ import { describe, expect, it } from 'vitest'
 import { resolveSocialShareLocale } from '../src/client/helpers/resolveLocale'
 
 describe('locale resolution', () => {
+  it.each(['en', 'zh-CN'])('uses the official QQ display name in %s', lang => {
+    expect(resolveSocialShareLocale({}, '/', lang).networkLabels.qq).toBe('QQ')
+  })
+
   it('treats undefined overrides as missing and supports script subtags', () => {
     const locale = resolveSocialShareLocale(
       { '/': { expand: undefined }, '/zh/': { copied: undefined } },

@@ -173,6 +173,12 @@ export type SocialShareQRCodeOptions = QRCodeToDataURLOptions
  */
 export interface SocialSharePluginOptions {
   /**
+   * Default inline button presentation; pages and component props can override it.
+   *
+   * @default 'default'
+   */
+  variant?: SocialShareVariant
+  /**
    * Floating toolbar layout with CSS overrides below 768px.
    *
    * @default { position: 'right', direction: 'vertical' }
@@ -307,6 +313,18 @@ export interface SocialSharePluginOptionsWithDefaults extends Omit<
  */
 export interface SocialSharePageOptions {
   /**
+   * Inline presentation, inherited from plugin options unless overridden by props.
+   *
+   * @default undefined
+   */
+  variant?: SocialShareVariant
+  /**
+   * Page-specific floating layout. Omitted desktop and mobile fields inherit plugin settings.
+   *
+   * @default undefined
+   */
+  globalLayout?: SocialShareGlobalLayout
+  /**
    * Ordered network names for this page or component; an empty array hides all buttons.
    * Falls back to the plugin-enabled networks when omitted.
    *
@@ -337,9 +355,20 @@ export type SocialShareDirection = 'horizontal' | 'vertical'
 export type SocialSharePosition = 'left' | 'right' | 'bottom'
 
 /**
+ * Button presentation: original icons, compact icons, or a labeled action grid.
+ */
+export type SocialShareVariant = 'default' | 'compact' | 'panel'
+
+/**
  * Responsive floating toolbar placement. Mobile overrides apply below 768px.
  */
 export interface SocialShareGlobalLayout {
+  /**
+   * Original expandable toolbar or an independent panel with a fixed launcher.
+   *
+   * @default 'toolbar'
+   */
+  variant?: 'toolbar' | 'panel'
   /**
    * Viewport edge used on desktop and inherited by mobile unless overridden.
    *

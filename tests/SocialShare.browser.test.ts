@@ -4,6 +4,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import {
   computed,
   createApp,
+  createSSRApp,
   h,
   mergeProps,
   nextTick,
@@ -11,6 +12,7 @@ import {
   ref,
 } from 'vue'
 import type { App } from 'vue'
+import { renderToString } from 'vue/server-renderer'
 import { usePageFrontmatter } from 'vuepress/client'
 import { GlobalSocialShare } from '../src/client/components/GlobalSocialShare'
 import { SocialShare } from '../src/client/components/SocialShare'
@@ -33,6 +35,7 @@ const { renderQRCode } = vi.hoisted(() => ({
 }))
 
 const frontmatter = ref<SocialShareFrontmatter>({})
+const darkMode = ref(false)
 const pageLang = ref('en')
 const routeLocale = ref('/')
 const route = reactive({
@@ -52,7 +55,7 @@ vi.mock(import('qrcode'), async importOriginal => ({
   toDataURL: renderQRCode,
 }))
 vi.mock(import('@vuepress/helper/client'), () => ({
-  useDarkMode: () => ref(false),
+  useDarkMode: () => darkMode,
 }))
 vi.mock(import('vuepress/client'), () => ({
   usePageLang: () => computed(() => pageLang.value),
@@ -112,6 +115,28 @@ function getButton(container: HTMLElement) {
   return button
 }
 
+function createSharingSSRApp() {
+  const app = createSSRApp({
+    render: () => h(SocialShare, { networks: ['x'] }),
+  })
+  injectSocialShareOptions(app, {
+    networksData: [{ ...BUILT_IN_NETWORKS.x, name: 'x', default: true }],
+  })
+  configureSocialShare(app, {})
+  return app
+}
+
+function getElement<ElementType extends HTMLElement>(
+  container: HTMLElement,
+  selector: string,
+) {
+  const element = container.querySelector<ElementType>(selector)
+  if (!element) {
+    throw new Error(`Missing sharing element: ${selector}`)
+  }
+  return element
+}
+
 function share(container: HTMLElement) {
   getButton(container).click()
   expect(window.open).toHaveBeenCalledWith(
@@ -163,6 +188,7 @@ function mockNativeShare() {
 
 describe('social sharing browser integration', () => {
   beforeEach(() => {
+    darkMode.value = false
     pageLang.value = 'en'
     routeLocale.value = '/'
     route.fullPath = '/guide/'
@@ -1127,6 +1153,251 @@ describe('social sharing browser integration', () => {
       })
     })
   })
+  describe('share presentations', () => {
+    it('applies dark icons after hydrating server-rendered light markup', async () => {
+      const container = document.createElement('div')
+      container.innerHTML = await renderToString(createSharingSSRApp())
+      document.body.append(container)
+      darkMode.value = true
+      const app = createSharingSSRApp()
+      apps.add(app)
+      app.mount(container)
+      await nextTick()
+      expect(getElement(container, '.social-share-icon-svg').style.color).toBe(
+        BUILT_IN_NETWORKS.x.color.dark,
+      )
+    })
+
+    it('keeps the original toolbar and icon-only list by default', async () => {
+      const { container } = mountSocialShare({}, {}, { global: true })
+      expect(
+        getElement(container, '.social-share-global').dataset.variant,
+      ).toBe('toolbar')
+      getButton(container).click()
+      await nextTick()
+      expect(container.querySelector('[role="dialog"]')).toBeNull()
+      expect(container.querySelector('.social-share-label')).toBeNull()
+      expect(getElement(container, '.social-share').dataset.variant).toBe(
+        'default',
+      )
+      expect(container.querySelectorAll('.social-share-network')).toHaveLength(
+        1,
+      )
+    })
+
+    it('inherits inline appearance from frontmatter and lets props restore the old style', () => {
+      frontmatter.value.socialShare = { variant: 'compact' }
+      const inherited = mountSocialShare()
+      const override = mountSocialShare({ variant: 'default' })
+      expect(
+        getElement(inherited.container, '.social-share').dataset.variant,
+      ).toBe('compact')
+      expect(
+        getElement(override.container, '.social-share').dataset.variant,
+      ).toBe('default')
+    })
+
+    it('groups configured actions and platforms with localized visible labels', async () => {
+      pageLang.value = 'zh-CN'
+      frontmatter.value.socialShare = {
+        networks: ['wechat', 'copy-markdown', 'twitter', 'native', 'copy'],
+        globalLayout: { variant: 'panel', mobile: { position: 'bottom' } },
+      }
+      const { container } = mountSocialShare(
+        {},
+        {
+          globalLayout: {
+            position: 'left',
+            mobile: { direction: 'horizontal' },
+          },
+          locales: {
+            '/': { panelTitle: '分享本文', networkLabels: { wechat: '微信' } },
+          },
+        },
+        { global: true },
+      )
+      expect(
+        getElement(container, '.social-share-global').dataset,
+      ).toMatchObject({
+        variant: 'panel',
+        position: 'left',
+        mobilePosition: 'bottom',
+        mobileDirection: 'horizontal',
+      })
+      getButton(container).click()
+      await nextTick()
+      expect(
+        getElement(container, '[role="dialog"]').getAttribute(
+          'aria-labelledby',
+        ),
+      ).toBe(getElement(container, '.social-share-panel-title').id)
+      expect(
+        getElement(container, '.social-share-panel-title').textContent,
+      ).toBe('分享本文')
+      expect(
+        [
+          ...container.querySelectorAll(
+            '.social-share-quick-actions .social-share-label',
+          ),
+        ].map(label => label.textContent),
+      ).toStrictEqual(['复制 Markdown 链接', '复制链接'])
+      expect(
+        [
+          ...container.querySelectorAll(
+            '.social-share-platform-grid .social-share-label',
+          ),
+        ].map(label => label.textContent),
+      ).toStrictEqual(['微信', 'Twitter'])
+    })
+
+    it('restores focus when closed by the button or Escape', async () => {
+      const { container } = mountSocialShare(
+        {},
+        { globalLayout: { variant: 'panel' } },
+        { global: true },
+      )
+      const trigger = getElement<HTMLButtonElement>(
+        container,
+        '.social-share-trigger',
+      )
+      trigger.click()
+      await nextTick()
+      const close = getElement<HTMLButtonElement>(
+        container,
+        '.social-share-panel-close',
+      )
+      expect(document.activeElement).toBe(close)
+      close.click()
+      await nextTick()
+      expect(document.activeElement).toBe(trigger)
+      expect(trigger.getAttribute('aria-expanded')).toBe('false')
+      trigger.click()
+      await nextTick()
+      document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }))
+      await nextTick()
+      expect(document.activeElement).toBe(trigger)
+      expect(container.querySelector('[role="dialog"]')).toBeNull()
+    })
+
+    it('lets pages restore the toolbar and reacts to frontmatter appearance changes', async () => {
+      frontmatter.value.socialShare = { globalLayout: { variant: 'toolbar' } }
+      const { container } = mountSocialShare(
+        {},
+        {
+          globalLayout: { variant: 'panel', position: 'left' },
+        },
+        { global: true },
+      )
+      getButton(container).click()
+      await nextTick()
+      expect(
+        getElement(container, '.social-share-global').dataset.variant,
+      ).toBe('toolbar')
+      expect(container.querySelector('[role="dialog"]')).toBeNull()
+      frontmatter.value = {
+        ...frontmatter.value,
+        socialShare: { variant: 'compact', globalLayout: { variant: 'panel' } },
+      }
+      await nextTick()
+      expect(
+        getElement(container, '.social-share-global').dataset,
+      ).toMatchObject({ variant: 'panel', position: 'left' })
+      expect(
+        getElement(container, '.social-share-trigger').getAttribute(
+          'aria-expanded',
+        ),
+      ).toBe('false')
+    })
+
+    it('dismisses the panel on outside clicks or navigation', async () => {
+      const { container } = mountSocialShare(
+        {},
+        { globalLayout: { variant: 'panel' } },
+        { global: true },
+      )
+      const trigger = getElement<HTMLButtonElement>(
+        container,
+        '.social-share-trigger',
+      )
+      trigger.click()
+      await nextTick()
+      document.body.click()
+      await nextTick()
+      expect(trigger.getAttribute('aria-expanded')).toBe('false')
+      trigger.click()
+      await nextTick()
+      route.fullPath = '/next-page/'
+      await nextTick()
+      expect(trigger.getAttribute('aria-expanded')).toBe('false')
+    })
+
+    it('shares one feedback region across the panel and supports manual copying', async () => {
+      const writeText = mockClipboard()
+      frontmatter.value.socialShare = { networks: ['copy', 'twitter'] }
+      const { container } = mountSocialShare(
+        {},
+        { globalLayout: { variant: 'panel' } },
+        { global: true },
+      )
+      getButton(container).click()
+      await nextTick()
+      const copy = getElement<HTMLButtonElement>(
+        container,
+        '.social-share-quick-actions button',
+      )
+      copy.click()
+      await vi.waitFor(() =>
+        expect(getElement(container, '[role="status"]').textContent).toBe(
+          'Link copied',
+        ),
+      )
+      writeText.mockRejectedValueOnce(new Error('Clipboard denied'))
+      copy.click()
+      await vi.waitFor(() =>
+        expect(container.querySelector('textarea')).not.toBeNull(),
+      )
+      const text = getElement<HTMLTextAreaElement>(container, 'textarea')
+      expect(text.value).toBe('https://example.com/guide/')
+      text.focus()
+      expect(text.selectionEnd).toBe(text.value.length)
+      expect(container.querySelectorAll('[role="status"]')).toHaveLength(1)
+      expect(
+        getElement(container, '.social-share-trigger').getAttribute(
+          'aria-expanded',
+        ),
+      ).toBe('true')
+    })
+
+    it('leaves the parent panel open while the QR modal handles Escape', async () => {
+      frontmatter.value.socialShare = { networks: ['wechat'] }
+      const { container } = mountSocialShare(
+        {},
+        { globalLayout: { variant: 'panel' } },
+        { global: true },
+      )
+      getButton(container).click()
+      await nextTick()
+      getElement<HTMLButtonElement>(
+        container,
+        '.social-share-network button',
+      ).click()
+      await vi.dynamicImportSettled()
+      document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }))
+      await nextTick()
+      expect(
+        getElement(container, '.social-share-trigger').getAttribute(
+          'aria-expanded',
+        ),
+      ).toBe('true')
+      document
+        .querySelector('dialog')
+        ?.dispatchEvent(new Event('cancel', { cancelable: true }))
+      await nextTick()
+      expect(container.querySelector('[role="dialog"]')).not.toBeNull()
+      expect(document.querySelector('.social-share-overlay')).toBeNull()
+    })
+  })
+
   describe('local event failures', () => {
     it('reports rejected local listener Promises without an unhandled rejection', async () => {
       const error = new Error('Async local listener failed')

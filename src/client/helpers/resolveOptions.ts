@@ -31,6 +31,10 @@ export function resolveSocialShareOptions(
   )
   return {
     /**
+     * Presentation after component, page and plugin overrides.
+     */
+    variant: props.variant ?? page?.variant ?? options.variant ?? 'default',
+    /**
      * Known networks in the requested order, with duplicate names removed.
      */
     networks: names.flatMap(name => {

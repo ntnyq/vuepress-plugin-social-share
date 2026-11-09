@@ -6,4 +6,18 @@
   --social-share-z-index: 99999;
   --social-share-offset-inline: 0px;
   --social-share-offset-bottom: 1rem;
+  --c-social-share-text: var(--vp-c-text, var(--c-text, #3c3c43));
+  --c-social-share-muted: var(--vp-c-text-mute, var(--c-text-light, #67676c));
+  --c-social-share-surface: var(
+    --vp-c-bg-elv,
+    var(--c-bg-global-social-share, #fff)
+  );
+  --c-social-share-border: var(--vp-c-border, var(--c-border, #d5d5da));
+  --c-social-share-control: color-mix(
+    in srgb,
+    var(--c-social-share-surface) 94%,
+    var(--c-social-share-text)
+  );
+  --c-social-share-accent: var(--c-social-share-plain, #299764);
+  --social-share-panel-width: 20.75rem;
 }

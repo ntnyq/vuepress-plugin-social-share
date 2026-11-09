@@ -652,6 +652,71 @@ Custom networks also support `type: 'clipboard'` with
 `clipboardFormat: 'url' | 'markdown'` (default `url`), or `type: 'native'`.
 Neither requires `sharer`; both still require an icon.
 
+## Appearance
+
+Existing sites keep the original icon buttons and expandable toolbar by default.
+Opt into the independent panel and compact inline buttons separately:
+
+```ts
+socialSharePlugin({
+  variant: 'compact',
+  networks: [
+    'copy',
+    'copy-markdown',
+    'native',
+    'wechat',
+    'qq',
+    'weibo',
+    'x',
+    'facebook',
+  ],
+  globalLayout: { variant: 'panel', position: 'right' },
+})
+```
+
+Inline `variant` values are `default` (original dimensions), `compact` (44px
+buttons with 24px icons), and `panel` (labeled quick actions and a platform grid).
+Component props override page frontmatter, which overrides plugin options:
+
+```vue
+<SocialShare variant="compact" />
+<SocialShare variant="panel" :networks="['copy', 'wechat', 'x']" />
+```
+
+Each page can select its own inline appearance and global layout:
+
+```yaml
+---
+socialShare:
+  variant: compact
+  globalLayout:
+    variant: panel
+    position: right
+    mobile:
+      position: bottom
+---
+```
+
+Page layout fields override the corresponding plugin fields; omitted fields,
+including individual mobile fields, inherit plugin settings. Use
+`socialShare.globalLayout.variant: toolbar` to select the original strip on a page
+even when the plugin defaults to the panel.
+
+The panel keeps its Share2 launcher fixed near the bottom edge and provides a
+separate close button. It groups configured clipboard and native networks into
+quick actions, preserving order within each group. Other networks form a
+four-column grid with visible labels. Networks are never added automatically.
+`direction` and `mobile.direction` apply to the toolbar; the panel always uses
+its grid. Left, right, and bottom positions anchor the launcher; bottom centers
+it. Closing with the close button or Escape returns focus to the launcher.
+
+Custom `shareIcon`, `shareCloseIcon`, `isPlain`, network labels and locale messages
+continue to apply. New locale fields are `panelTitle`, `panelClose`, `quickActions`,
+and `shareTo`; missing translations use the built-in locale.
+
+Try the [independent panel](/examples/panel.html),
+[original toolbar](/examples/toolbar.html), and [inline variants](/examples/).
+
 ## Layout
 
 ```ts
@@ -690,3 +755,25 @@ existing desktop, global-toolbar, and mobile sizes:
 The existing three color variables continue to work. With `useCustomStyle`,
 components still output `data-direction`, `data-position`,
 `data-mobile-direction`, and `data-mobile-position` for theme styles to consume.
+They also output `data-variant`: inline `default`, `compact`, or `panel`, and
+global `toolbar` or `panel`.
+
+Panel colors inherit VuePress theme variables. Override these additional tokens
+when integrating a custom theme:
+
+```css
+:root {
+  --social-share-panel-width: 20.75rem;
+  --social-share-panel-mobile-width: 22.5rem;
+  --c-social-share-surface: var(--vp-c-bg-elv);
+  --c-social-share-text: var(--vp-c-text);
+  --c-social-share-muted: var(--vp-c-text-mute);
+  --c-social-share-border: var(--vp-c-border);
+  --c-social-share-control: var(--vp-c-control);
+  --c-social-share-accent: var(--vp-c-accent);
+}
+```
+
+Panel mode uses `--social-share-offset-bottom` (plus the device safe area) and
+leaves at least 16px at the left or right edge. It limits its width and height to
+the viewport and scrolls its contents when needed.

@@ -1,9 +1,11 @@
 import { describe, expect, it, vi } from 'vitest'
 import { computed, createSSRApp, h, ref } from 'vue'
 import { renderToString } from 'vue/server-renderer'
+import { GlobalSocialShare } from '../src/client/components/GlobalSocialShare'
 import { SocialShare } from '../src/client/components/SocialShare'
 import { injectSocialShareOptions } from '../src/client/helpers'
 import { BUILT_IN_NETWORKS } from '../src/shared'
+import type { SocialShareVariant } from '../src/shared'
 
 vi.mock(import('@vuepress/helper/client'), () => ({
   useDarkMode: () => ref(false),
@@ -27,9 +29,9 @@ vi.mock(import('vuepress/client'), () => ({
   withBase: (url: string) => url,
 }))
 
-function renderSocialShare(networks?: string[]) {
+function renderSocialShare(networks?: string[], variant?: SocialShareVariant) {
   const app = createSSRApp({
-    render: () => h(SocialShare, { networks }),
+    render: () => h(SocialShare, { networks, variant }),
   })
 
   injectSocialShareOptions(app, {
@@ -46,6 +48,31 @@ function renderSocialShare(networks?: string[]) {
 }
 
 describe('social share networks', () => {
+  it('renders the labeled panel safely on the server without native sharing', async () => {
+    const html = await renderSocialShare(['copy', 'native', 'wechat'], 'panel')
+    expect(html).toContain('social-share-quick-actions')
+    expect(html).toContain('social-share-platform-grid')
+    expect(html).toContain('social-share-label')
+    expect(html).not.toContain('System share')
+  })
+
+  it.each(['toolbar', 'panel'] as const)(
+    'renders a collapsed global %s without browser APIs',
+    async variant => {
+      const app = createSSRApp({ render: () => h(GlobalSocialShare) })
+      injectSocialShareOptions(app, {
+        networksData: [
+          { ...BUILT_IN_NETWORKS.twitter, name: 'twitter', default: true },
+        ],
+        globalLayout: { variant },
+      })
+      const html = await renderToString(app)
+      expect(html).toContain(`data-variant="${variant}"`)
+      expect(html).toContain('aria-expanded="false"')
+      expect(html).not.toContain('role="dialog"')
+    },
+  )
+
   it('renders copying safely in SSR and defers native support detection', async () => {
     const html = await renderSocialShare(['copy', 'native'])
     expect(html).toContain('Share with Copy link')

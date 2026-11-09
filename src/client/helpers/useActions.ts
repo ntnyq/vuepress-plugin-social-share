@@ -83,7 +83,7 @@ function invokeBrowserShare(
  * @param meta - Resolver that reads current page metadata at the start of each action.
  * @param presentation - Reactive QR rendering options and localized messages.
  * @param emit - Component event dispatcher; listener failures are logged separately.
- * @returns Share and reset actions, feedback text, manual copy text and pending state.
+ * @returns Share and reset actions, feedback presentation, manual copy text and pending state.
  */
 export function useSocialShareActions(
   meta: () => SocialShareMeta,
@@ -114,6 +114,16 @@ export function useSocialShareActions(
     feedbackKey.value ? presentation.locale.value[feedbackKey.value] : '',
   )
   const manualCopyText = ref('')
+  const successfulNetwork = ref('')
+  const feedbackTone = computed(() => {
+    if (successfulNetwork.value) {
+      return 'success'
+    }
+    return feedbackKey.value === 'copyFailed' ||
+      feedbackKey.value === 'shareFailed'
+      ? 'error'
+      : 'neutral'
+  })
   const pending = ref(false)
   let actionRequestId = 0
   const publish = (event: SocialShareEvent) => {
@@ -156,6 +166,7 @@ export function useSocialShareActions(
     qrcode.reset()
     feedbackKey.value = undefined
     manualCopyText.value = ''
+    successfulNetwork.value = ''
   }
   onBeforeUnmount(reset)
 
@@ -211,6 +222,7 @@ export function useSocialShareActions(
       }
       const copiedKey = isMarkdown ? 'markdownCopied' : 'copied'
       feedbackKey.value = isClipboard ? copiedKey : 'nativeShared'
+      successfulNetwork.value = context.network.name
       publish({ ...context, status: isClipboard ? 'copied' : 'handed-off' })
     } catch (error) {
       if (requestId !== actionRequestId) {
@@ -247,6 +259,7 @@ export function useSocialShareActions(
     const requestId = ++actionRequestId
     feedbackKey.value = undefined
     manualCopyText.value = ''
+    successfulNetwork.value = ''
     const context = prepare(network)
     if (!context) {
       return
@@ -277,5 +290,13 @@ export function useSocialShareActions(
       fail(context, 'action', error)
     }
   }
-  return { share, reset, feedback, manualCopyText, pending }
+  return {
+    share,
+    reset,
+    feedback,
+    feedbackTone,
+    successfulNetwork,
+    manualCopyText,
+    pending,
+  }
 }

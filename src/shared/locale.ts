@@ -4,6 +4,22 @@
  */
 export interface SocialShareLocaleData {
   /**
+   * Heading and accessible name for the independent share panel.
+   */
+  panelTitle?: string
+  /**
+   * Accessible label for clipboard and system sharing actions.
+   */
+  quickActions?: string
+  /**
+   * Caption above the platform grid.
+   */
+  shareTo?: string
+  /**
+   * Accessible label for closing the independent share panel.
+   */
+  panelClose?: string
+  /**
    * Accessible share button label; {network} is replaced with the network label.
    */
   shareWith: string
@@ -56,7 +72,11 @@ export interface SocialShareLocaleData {
 /**
  * Built-in English messages and action labels used by default for non-Chinese locales.
  */
-export const EN_LOCALE: SocialShareLocaleData = {
+export const EN_LOCALE: Required<SocialShareLocaleData> = {
+  panelTitle: 'Share this page',
+  quickActions: 'Quick actions',
+  shareTo: 'Share to',
+  panelClose: 'Close sharing panel',
   /**
    * Accessible share button label; {network} is replaced with the network label.
    */
@@ -106,6 +126,10 @@ export const EN_LOCALE: SocialShareLocaleData = {
    */
   networkLabels: {
     /**
+     * Official display name of QQ; the registry key remains lowercase.
+     */
+    qq: 'QQ',
+    /**
      * Label for copying the page URL.
      */
     copy: 'Copy link',
@@ -123,7 +147,11 @@ export const EN_LOCALE: SocialShareLocaleData = {
 /**
  * Built-in Simplified Chinese messages for zh, zh-CN, zh-SG and zh-Hans languages.
  */
-export const ZH_CN_LOCALE: SocialShareLocaleData = {
+export const ZH_CN_LOCALE: Required<SocialShareLocaleData> = {
+  panelTitle: '分享此页',
+  quickActions: '快捷操作',
+  shareTo: '分享到',
+  panelClose: '关闭分享面板',
   /**
    * Accessible share button label; {network} is replaced with the network label.
    */
@@ -172,6 +200,10 @@ export const ZH_CN_LOCALE: SocialShareLocaleData = {
    * Network display labels keyed by registry name; missing labels use a capitalized name.
    */
   networkLabels: {
+    /**
+     * Official display name of QQ; the registry key remains lowercase.
+     */
+    qq: 'QQ',
     /**
      * Label for copying the page URL.
      */

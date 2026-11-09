@@ -7,6 +7,12 @@ noGlobalSocialShare: true
 
 Usage examples.
 
+- [Independent panel and compact inline buttons](./panel.md)
+- [Original floating toolbar](./toolbar.md)
+
+These pages select their appearance through frontmatter, using the same plugin
+configuration.
+
 ## Default mode
 
 ```vue
@@ -162,3 +168,37 @@ writes offer text for manual copying.
 
 Configure floating-toolbar positions and mobile direction with the
 [`globalLayout` option](/guide/#layout).
+
+## Compact inline buttons
+
+<SocialShare variant="compact" :networks="['copy', 'wechat', 'qq', 'weibo', 'x', 'facebook']" />
+
+```vue
+<SocialShare
+  variant="compact"
+  :networks="['copy', 'wechat', 'qq', 'weibo', 'x', 'facebook']"
+/>
+```
+
+## Labeled action grid
+
+<SocialShare variant="panel" :networks="['copy', 'copy-markdown', 'native', 'wechat', 'qq', 'weibo', 'x', 'facebook', 'linkedin', 'email', 'reddit']" />
+
+```vue
+<SocialShare
+  variant="panel"
+  :networks="[
+    'copy',
+    'copy-markdown',
+    'native',
+    'wechat',
+    'qq',
+    'weibo',
+    'x',
+    'facebook',
+    'linkedin',
+    'email',
+    'reddit',
+  ]"
+/>
+```

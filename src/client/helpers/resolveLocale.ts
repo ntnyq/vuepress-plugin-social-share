@@ -28,7 +28,7 @@ export function resolveSocialShareLocale(
   locales: Record<string, Partial<SocialShareLocaleData>> = {},
   routeLocale = '/',
   lang = 'en',
-): SocialShareLocaleData {
+): Required<SocialShareLocaleData> {
   const builtin = /^zh(?:$|-(?:cn|sg|hans)(?:-|$))/iu.test(lang)
     ? ZH_CN_LOCALE
     : EN_LOCALE

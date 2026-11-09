@@ -13,6 +13,22 @@ const options: SocialSharePluginOptionsWithDefaults = {
 }
 
 describe('page configuration', () => {
+  it('resolves appearance from props, page, plugin and the legacy default', () => {
+    const plugin = { ...options, variant: 'compact' } as const
+    expect(resolveSocialShareOptions(options).variant).toBe('default')
+    expect(resolveSocialShareOptions(plugin).variant).toBe('compact')
+    expect(
+      resolveSocialShareOptions(plugin, { variant: 'panel' }).variant,
+    ).toBe('panel')
+    expect(
+      resolveSocialShareOptions(
+        plugin,
+        { variant: 'panel' },
+        { variant: 'default' },
+      ).variant,
+    ).toBe('default')
+  })
+
   it('uses props before page options and preserves false and empty lists', () => {
     const resolved = resolveSocialShareOptions(
       options,

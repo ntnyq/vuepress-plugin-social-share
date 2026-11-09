@@ -1,4 +1,3 @@
-import { useDarkMode } from '@vuepress/helper/client'
 import { computed, defineComponent, h, watch } from 'vue'
 import type { PropType } from 'vue'
 import { usePageFrontmatter, useRoute, withBase } from 'vuepress/client'
@@ -10,6 +9,7 @@ import type {
   SocialShareFrontmatter,
   SocialShareNetworkWithName,
   SocialShareQRCodeOptions,
+  SocialShareVariant,
 } from '../../shared'
 import {
   useSocialShareOptions,
@@ -19,7 +19,13 @@ import {
 import { createShareURL } from '../helpers/shareURL'
 import { useSocialShareActions } from '../helpers/useActions'
 import { useSocialShareLocale } from '../helpers/useLocale'
-import { getMetaContentByName, inBrowser, isExternalUrl } from '../utils'
+import { useShareDarkMode } from '../helpers/useShareDarkMode'
+import {
+  getMetaContentByName,
+  inBrowser,
+  isExternalUrl,
+  SVG_ICON_CHECK,
+} from '../utils'
 import { SocialShareNetwork } from './SocialShareNetwork'
 
 /**
@@ -42,6 +48,15 @@ export const SocialShare = defineComponent({
    * Component overrides and metadata inputs for the sharing list.
    */
   props: {
+    /**
+     * Original icons, compact 44px buttons, or grouped actions with visible labels.
+     *
+     * @default undefined
+     */
+    variant: {
+      type: String as PropType<SocialShareVariant>,
+      default: undefined,
+    },
     /**
      * Button list orientation, independent of the floating toolbar layout.
      *
@@ -119,7 +134,7 @@ export const SocialShare = defineComponent({
     const options = useSocialShareOptions()
     const locale = useSocialShareLocale()
 
-    const isDarkMode = useDarkMode()
+    const isDarkMode = useShareDarkMode()
     const frontmatter = usePageFrontmatter<SocialShareFrontmatter>()
     const route = useRoute()
 
@@ -139,6 +154,14 @@ export const SocialShare = defineComponent({
 
     const resolvedOptions = useResolvedSocialShareOptions(props)
     const networkList = computed(() => resolvedOptions.value.networks)
+    const panelNetworks = computed(() => ({
+      quick: networkList.value.filter(network =>
+        ['clipboard', 'native'].includes(network.type),
+      ),
+      platforms: networkList.value.filter(
+        network => !['clipboard', 'native'].includes(network.type),
+      ),
+    }))
 
     // Computed
     const visible = computed(
@@ -218,15 +241,25 @@ export const SocialShare = defineComponent({
     watch([frontmatter, () => route.fullPath], () => actions.reset())
     const shareURL = (network: SocialShareNetworkWithName) =>
       createShareURL(network, meta(), options.twitterUser)
-    const renderNetworkList = (networks: SocialShareNetworkWithName[]) =>
+    const renderNetworkList = (
+      networks: SocialShareNetworkWithName[],
+      className?: string,
+    ) =>
       h(
         'ul',
         {
-          class: 'social-share-list',
+          class: ['social-share-list', className],
+          'aria-label':
+            className === 'social-share-quick-actions'
+              ? locale.value.quickActions
+              : undefined,
         },
         networks.map(network =>
           h(SocialShareNetwork, {
+            key: network.name,
             network,
+            'data-success': actions.successfulNetwork.value === network.name,
+            showLabel: resolvedOptions.value.variant === 'panel',
             disabled: actions.pending.value,
             label:
               locale.value.networkLabels[network.name] ??
@@ -244,12 +277,32 @@ export const SocialShare = defineComponent({
         ),
       )
 
+    const renderNetworks = () => {
+      if (resolvedOptions.value.variant !== 'panel') {
+        return renderNetworkList(networkList.value)
+      }
+      const { quick, platforms } = panelNetworks.value
+      return [
+        quick.length > 0
+          ? renderNetworkList(quick, 'social-share-quick-actions')
+          : null,
+        platforms.length > 0
+          ? h('div', { class: 'social-share-platforms' }, [
+              h('div', { class: 'social-share-caption' }, locale.value.shareTo),
+              renderNetworkList(platforms, 'social-share-platform-grid'),
+            ])
+          : null,
+      ]
+    }
+
     return () =>
       visible.value
         ? h(
             'div',
             {
               'data-direction': props.direction,
+              'data-variant': resolvedOptions.value.variant,
+              'data-feedback': actions.feedbackTone.value,
               class: [
                 'social-share',
                 resolvedOptions.value.hideWhenPrint &&
@@ -257,7 +310,7 @@ export const SocialShare = defineComponent({
               ],
             },
             [
-              renderNetworkList(networkList.value),
+              renderNetworks(),
               h(
                 'div',
                 {
@@ -265,7 +318,17 @@ export const SocialShare = defineComponent({
                   class: 'social-share-status',
                   'aria-live': 'polite',
                 },
-                actions.feedback.value,
+                [
+                  resolvedOptions.value.variant === 'panel' &&
+                  actions.feedbackTone.value === 'success'
+                    ? h('span', {
+                        class: 'social-share-icon-svg social-share-status-icon',
+                        'aria-hidden': 'true',
+                        innerHTML: SVG_ICON_CHECK,
+                      })
+                    : null,
+                  actions.feedback.value,
+                ],
               ),
               actions.manualCopyText.value
                 ? h('textarea', {

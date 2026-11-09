@@ -85,6 +85,12 @@ export const SocialShareNetwork = defineComponent({
      */
     disabled: Boolean,
     /**
+     * Displays the network label below its icon in the panel grid.
+     *
+     * @default false
+     */
+    showLabel: Boolean,
+    /**
      * Visible tooltip label; falls back to the capitalized network name.
      *
      * @default undefined
@@ -145,6 +151,7 @@ export const SocialShareNetwork = defineComponent({
       isSvgIcon.value
         ? h('span', {
             class: 'social-share-icon-svg',
+            'aria-hidden': 'true',
             focusable: false,
             style: { color: resolvedColor.value },
             innerHTML: resolvedIcon.value,
@@ -152,6 +159,7 @@ export const SocialShareNetwork = defineComponent({
         : h('span', {
             style: { backgroundImage: `url(${resolvedIcon.value})` },
             class: 'social-share-icon-img',
+            'aria-hidden': 'true',
           })
     const renderShareButton = () =>
       h(
@@ -170,7 +178,16 @@ export const SocialShareNetwork = defineComponent({
               ? `#share-${props.network.name}`
               : props.shareURL,
         },
-        [renderShareIcon()],
+        [
+          renderShareIcon(),
+          props.showLabel
+            ? h(
+                'span',
+                { class: 'social-share-label', 'aria-hidden': 'true' },
+                props.label ?? upperFirst(props.network.name),
+              )
+            : null,
+        ],
       )
 
     return () =>
@@ -178,6 +195,7 @@ export const SocialShareNetwork = defineComponent({
         'li',
         {
           class: 'social-share-network',
+          'data-type': props.network.type,
         },
         [renderShareButton()],
       )

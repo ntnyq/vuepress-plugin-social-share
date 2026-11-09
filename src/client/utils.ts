@@ -12,6 +12,21 @@ export const RE_SVG_SOURCE = /<svg\b[^>]*>.*?<\/svg>/isu
 export const RE_EXTERNAL_LINK = /^https?:/u
 
 /**
+ * Three-node sharing icon used by the independent panel launcher.
+ */
+export const SVG_ICON_SHARE_PANEL = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.59 13.51 6.83 3.98M15.41 6.51l-6.82 3.98"/></svg>`
+
+/**
+ * Thin close icon used in the independent panel header.
+ */
+export const SVG_ICON_CLOSE_PANEL = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>`
+
+/**
+ * Confirmation icon shown beside successful panel action feedback.
+ */
+export const SVG_ICON_CHECK = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4 4L19 6"/></svg>`
+
+/**
  * Default SVG icon for closing the global share panel
  */
 export const SVG_ICON_CLOSE = `<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
